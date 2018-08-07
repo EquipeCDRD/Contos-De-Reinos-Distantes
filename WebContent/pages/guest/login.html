@@ -1,0 +1,43 @@
+<div id="intPerso">
+    <div id="login">
+    <form name="frmlogin" onsubmit="return validaLogin()">
+    <table class="intTable"> <!--Tabela de interações-->
+        <tr>
+        <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
+        </tr>
+        <tr>
+            <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                <table><!--Tabela da fala-->
+                    <tr>
+                    <td colspan="2" class="intCadRow intDialogue">Vamos ver então... Qual seu nome?</td><!--Falas do Personagem-->
+                    </tr>
+                    <tr>
+                    <td class="intCadOptions1">Usuário:</td>
+                    <td><input class="intInput1" type="text" name="txtuser"></td>
+                    </tr>
+                    <tr>
+                    <td class="intCadOptions1">Senha:</td>
+                    <td><input class="intInput1" type="password" name="pwdpassword"></td>
+                    </tr>
+                    <tr>
+                    <td><input type="reset" value="Limpar" class="intCadButton"></td>
+                    <td><input type="submit" value="Enviar" class="intCadButton2"></td>
+                    </tr>
+                </table><!--Fim da tabela da fala-->
+            </td><!--Fim da td das falas do Personagem-->
+            <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+        </tr>
+        <tr>
+            <td colspan="2" class="intTdButton"><!--Td dos botões-->
+            <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                <input type="button" class="intButton registrarBtn" value="Na verdade, eu não estou na lista. (Registrar)">
+                <input type="button" class="intButton esqueciBtn" value="Ah... E se eu esqueci o meu nome? (Esqueci minha senha)">
+                <input type="button" class="intButton redesBtn" value="Tenho uma carteirinha do Sindicato dos Taberneiros! (Logar por redes sociais)">
+                <input type="button" class="intButton sairBtn" value="Outra hora eu volto. (Sair)">
+            </div><!--Fim do agrupamento dos botões-->
+            </td><!--Fim da td dos botões-->
+        </tr>
+    </table>
+    </form>
+    </div>
+</div>

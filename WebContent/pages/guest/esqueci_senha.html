@@ -1,0 +1,37 @@
+<div id="intPerso">
+    <div id="esqueci_senha">
+        <table class="intTable"> <!--Tabela de interações-->
+            <tr>
+                <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
+            </tr>
+            <tr>
+                <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                    <form name="frmesqueci" onsubmit="return validaEsqueciSenha()">
+                        <table><!--Tabela da fala-->
+                            <tr>
+                                <td colspan="2" class="intCadRow intDialogue">Isso é mais comum do que você imagina, até criamos um plano para lidar com esse tipo de problema! Enviaremos um pombo correio para sua casa. (Você receberá um e-mail com o link para redefinição de senha)</td><!--Falas do Personagem-->
+                            </tr>
+                            <tr>
+                                <td class="intCadOptions">Endereço de E-mail:</td>
+                                <td class="tdInput" ><input type="text" name="txtmail" value="" class="intInput" maxlength="100"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="reset" value="Limpar" class="intCadButton3"></td>
+                                <td><input type="submit" value="Enviar" class="intCadButton4"></td>
+                            </tr>
+                        </table><!--Fim da tabela da fala-->
+                    </form>
+                </td><!--Fim da td das falas do Personagem-->
+                <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+            </tr>
+            <tr>
+                <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                    <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                        <input type="button" class="intButton loginBtn" value="Acabei de lembrar o meu nome! (Login)">
+                        <input type="button" class="intButton sairBtn" value="Acho que vim ao lugar errado. (Sair)">
+                    </div><!--Fim do agrupamento dos botões-->
+                </td><!--Fim da td dos botões-->
+            </tr>
+        </table>
+    </div>
+</div>
