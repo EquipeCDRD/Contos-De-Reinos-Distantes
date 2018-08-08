@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>Contos de Reinos Distantes - Página de Administrador</title>
+    <meta name="author" content="Equipe CRD">
+    <meta name="description" content="Página de administrador do Contos de Reinos Distantes">
+    <meta name="creation-date" content="2018/06/05">
+    <meta name="last-modified" content="2018/06/06">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../../resources/style/css/admin.css" />
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+        <script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+        crossorigin="anonymous"></script>
+    <script src="../../resources/js/admin.js"></script>
+    <script src="../../resources/js/adminServlet.js"></script>
+</head>
+<body>
+    <div id="admPaginas">
+        <div class="admMenu">
+            <ul>
+                <li><img src="../../resources/style/images/bgplaceholder.jpg" title="Contos de Reinos Distantes" alt="Logo"></li>
+                <li><a href="#admPaginas-1"><div>Ranking</div></a></li>
+                <li><a href="#admPaginas-2"><div>Gerenciar Contas</div></a></li>
+                <li><a href="#admPaginas-3"><div>Logs de Acesso</div></a></li>
+                <li><a href="#admPaginas-4"><div>Notificações</div></a></li>
+                <li><a href="#admPaginas-5"><div>Gráficos</div></a></li>
+                <li><a href="#admPaginas-6"><div>Gerenciar Admin</div></a></li>
+                <li><a href="#admPaginas-7"><div>Minha Conta</div></a></li>
+                <li><a href="sair"><div>Sair</div></a></li>
+            </ul>
+        </div>
+        <div class="conteudo" id="admPaginas-1"> <!--Ranking-->
+            <h2 class="tituloTabela">Ranking:</h2>
+            <table class="tabelaGeral" id="tabelaRanking"> <!--Tabela de Ranking-->
+                <tr>
+                    <th>Posição</th>
+                    <th>Pontuação</th>
+                    <th>Usuário</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>9999999e</td>
+                    <td>xXHackerman1337Xx</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>193456</td>
+                    <td>jogador2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>182432</td>
+                    <td>jogador3</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>132356</td>
+                    <td>jogador4</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>10509</td>
+                    <td>jogador20</td>
+                </tr>
+            </table>
+            <div class="paginacao">
+                <a href="">&#8810; anterior</a>
+                <a href="pg1">1</a>
+                <a href="pg2">2</a>
+                <a href="pg3">3</a>
+                <a href="pg4">4</a>
+                <a href="pg5">5</a>
+                <a href="pg10">10</a>
+                <a href="">proximo &#8811;</a>
+            </div>
+        </div>    
+        <div class="conteudo" id="admPaginas-2"> <!--Gerenciar Contas-->
+            <div class="divSelecionarContas comBorda">
+                <h2>Contas:</h2>
+                <input type="text" placeholder="search...">
+                <button type="submit">Procurar</button><!--Botão para procurar contas-->
+                <ul class="listaContas">
+                    <li>jogador1</li>
+                    <li>jogador2</li>
+                    <li>jogador3</li>
+                    <li>jogador4</li>
+                    <li>jogador5</li>
+                    <li>jogador6</li>
+                    <li>jogador7</li>
+                    <li>jogador8</li>
+                    <li>jogador9</li>
+                    <li>jogador10</li>
+                    <li class="carregarMais">Carregar mais</li>
+                </ul>
+            </div>
+            <div class="divDeletarContas comBorda">
+                <h2>Deletar conta:</h2>
+                <form name="frmdeletarconta" onsubmit="return deletarUsuario(0)">
+                    <h3>Usuário selecionado:</h3>
+                    <input readonly id="input1" type="text" name="txtusuario" placeholder="Nenhum usuário selecionado">
+                    <h3 id="tituloMotivo">Motivo:</h3>
+                    <textarea name="txamotivo" id="txa1"></textarea>
+                    <div class="divBotoesDeletar">
+                        <button type="reset" name="btnlimparmotivo">Limpar</button>
+                        <button name="btndeletarconta" type="submit">Deletar Conta</button><!--Botão para deletar contas-->
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="conteudo" id="admPaginas-3"> <!--Logs de Acesso-->
+            <h2 class="tituloTabela">Logs de acesso:</h2>
+            <table class="tabelaGeral" id="tabelaLogs">
+                <tr>
+                    <th>Usuário</th>
+                    <th>Data - Horário</th>
+                </tr>
+                <tr>
+                    <td>Jão</td>
+                    <td>2018/09/16 - 06:21</td>
+                </tr>
+                <tr>
+                     <td>Weiss</td>
+                    <td>2018/09/14 - 13:37</td>
+                </tr>
+                <tr>
+                    <td>Henings</td>
+                    <td>2018/09/13 - 16:20</td>
+                </tr>
+            </table>
+            <div class="paginacao">
+                    <a href="">&#8810; anterior</a>
+                    <a href="pg1">1</a>
+                    <a href="pg2">2</a>
+                    <a href="pg3">3</a>
+                    <a href="pg4">4</a>
+                    <a href="pg5">5</a>
+                    <a href="pg10">10</a>
+                    <a href="">proximo &#8811;</a>
+            </div>
+        </div>
+        <div class="conteudo" id="admPaginas-4"> <!--Notificações-->
+            <div class="divComporNotificacoes comBorda">
+                <form name="frmcompornotificacoes" onsubmit="return validaNotificacao(0)">
+                    <h2>Compor nova notificação:</h2>
+                    <textarea name="txacompnotificacao" cols="30" rows="7"></textarea>
+                    <div><button type="submit" name="btnpostarnotificacao" id="botaoPostar">Postar Notificação</button></div>
+                </form>
+            </div>
+            <div class="divComporNotificacoes comBorda" id="divEditarNotificacoes">
+                <form name="frmeditarnotificacoes" onsubmit="return validaNotificacao(1)">
+                    <h2>Editar notificação:</h2>
+                    <textarea name="txaeditnotificacao" cols="30" rows="7"></textarea>
+                    <div class="divBotoesEditar">
+                        <button type="submit">Editar Notificação</button>
+                        <button type="button" onclick="cancelarEdicao()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="divHistoricoNotificacoes comBorda">
+                <h2>Histórico de notificações:</h2>
+                <table class="tabelaNotificacoes">
+                    <tr>
+                        <th>Data:</th>
+                        <th class="colMeio">Mensagem:</th>
+                        <th>Opções</th>
+                    </tr>
+                    <tr>
+                        <td>19/05/2018</td>
+                        <td class="colMeio"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, possimus laudantium doloremque, error nihil dolor assumenda sint, officia doloribus illo sit cum!</span></td>
+                        <td><button onclick="editarNotificacao()">Editar</button><button>Excluir</button></td>
+                    </tr>
+                    <tr>
+                        <td>13/05/2018</td>
+                        <td class="colMeio"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, possimus laudantium doloremque, error nihil dolor assumenda sint, officia doloribus illo sit cum!</span></td>
+                        <td><button onclick="editarNotificacao()">Editar</button><button>Excluir</button></td>
+                    </tr>
+                    <tr>
+                        <td>12/05/2018</td>
+                        <td class="colMeio"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, possimus laudantium doloremque, error nihil dolor assumenda sint, officia doloribus illo sit cum!</span></td>
+                        <td><button onclick="editarNotificacao()">Editar</button><button>Excluir</button></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><button id="carregarNotificacoes">Carregar mais</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="conteudo" id="admPaginas-5"> <!--Gráficos-->
+            <h2>Gráficos</h2>
+            <div class="divGrafico graficoEsq" id="graficoIdade">AQUI HAVERÁ O GRÁFICO DE USUÁRIOS POR FAIXA ETÁRIA</div>
+            <div class="divGrafico graficoDir" id="graficoTempoPorIdade">AQUI HAVERÁ O GRÁFICO DE USO POR FAIXA ETÁRIA</div>
+            <div class="divGrafico graficoEsq" id="graficoTempoPorFase">AQUI HAVERÁ O GRÁFICO DE TEMPO MÉDIO POR FASE</div>
+            <div class="divGrafico graficoDir" id="graficoDerrotas">AQUI HAVERÁ O GRÁFICO DE DERROTAS POR FASE</div>
+        </div>
+        <div class="conteudo" id="admPaginas-6"> <!--Gerenciard Admin-->
+            <div class="divListaContasAdmin comBorda quaseCheio">
+                <h2>Cadastro de Administrador</h2>
+                <form id="cadastrarAdmin" name="frmcadastraradm" onsubmit="return validaCadastroAdm()">
+                    <div class="cadCampo">
+                        <label>Nome Completo: </label>
+                        <input type="text" name="txtnomeadm" id="cadNome">
+                    </div>
+                    <div class="cadCampo">
+                        <label>Email: </label>
+                        <input type="text" name="txtemailadm" id="cadEmail">
+                    </div>
+                    <div class="cadCampo">
+                        <label>Data de Nascimento: </label>
+                        <input type="date" name="dtenascimentoadm" id="cadNascimento">
+                    </div>
+                    <div class="cadCampo">
+                        <label>Nome do Administrador: </label>
+                        <input type="text" name="txtapelidoadm" id="cadApelido">
+                    </div>
+                    <div class="cadCampo">
+                        <label>Senha: </label>
+                        <input type="password" name="pwdsenhaadm" id="cadsenha">
+                    </div>
+                    <div class="cadCampo">
+                        <label>Confirmar Senha: </label>
+                        <input type="password" name="pwdconfsenhaadm" id="cadconfsenha">
+                    </div>
+                    <div class="cadBotoes">
+                        <button type="submit">Enviar</button>
+                        <button type="reset">Limpar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="divSelecionarContas comBorda">
+                    <h2>Contas:</h2>
+                    <input type="text" placeholder="search...">
+                    <button type="submit">Procurar</button><!--Botão para procurar contas-->
+                    <ul class="listaContas" id="listaAdmins">
+                        <li>adm1</li>
+                        <li>adm2</li>
+                        <li>adm3</li>
+                        <li>adm4</li>
+                    </ul>
+                </div>
+                <div class="divDeletarContas comBorda">
+                    <h2>Deletar administrador:</h2>
+                    <form name="frmdeletarcontaadm" onsubmit="return deletarUsuario(1)">
+                        <h3>Admin selecionado:</h3>
+                        <input readonly type="text" name="txtadmin" placeholder="Nenhum administrador selecionado">
+                        <h3 class="tituloMotivo">Motivo:</h3>
+                        <textarea name="txamotivoadm"></textarea>
+                        <div class="divBotoesDeletar">
+                            <button type="reset" name="btnlimparmotivo">Limpar</button>
+                            <button name="btndeletarconta" type="submit">Deletar Conta</button><!--Botão para deletar contas-->
+                        </div>
+                    </form>
+                </div>
+        </div>
+        <div class="conteudo" id="admPaginas-7"> <!--Minha Conta-->
+            <div class="divMinhaConta comBorda quaseCheio">
+                <h2>Minha Conta</h2>
+                <form name="frmminhaconta" id="editarConta" onsubmit="return validaMinhaConta()">
+                    <div class="cadCampo">
+                        <label>Nome Completo: </label>
+                        <input type="text" name="txtnome" id="altNome"> 
+                    </div>
+                    <div class="cadCampo">
+                        <label>Email: </label>
+                        <input type="text" name="txtemail" id="altEmail">
+                    </div>
+                    <div class="cadCampo">
+                        <label>Data de Nascimento: </label>
+                        <input type="date" name="dtenascimento" id="altNascimento">
+                    </div>
+                    <div class="cadCampo">
+                        <label>Nome do Administrador: </label>
+                        <input type="text" name="txtapelido" id="altApelido">
+                    </div>
+                    <div class="cadCampo">
+                        <label>Senha Antiga:</label>
+                        <input type="password" name="pwdsenhaantiga" id="altVelhaSenha">    
+                    </div>
+                    <div class="cadCampo">
+                        <label>Nova Senha: </label>
+                        <input type="password" name="pwdsenhanova" id="altNovaSenha">
+                    </div>
+                    <div class="cadCampo">
+                        <label>Confirmar Nova Senha: </label>
+                        <input type="password" name="pwdconfsenha" id="altConfSenha">
+                    </div>
+                    <div class="cadBotoes">
+                        <button type="submit">Enviar</button>
+                        <button type="reset">Limpar</button>
+                    </div>
+                </form>
+            </div>
+       </div> 
+    </div>
+</body>
+</html>
