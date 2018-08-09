@@ -46,9 +46,9 @@ public class InsereNotificacao extends HttpServlet {
     		Map<String, String> msg = new HashMap<String, String>();
     		boolean retorno = jdbcNotificacao.inserir(notificacao);
     		if(retorno){
-    			msg.put("msg", "Notificação enviada com sucesso.");
+    			msg.put("msg", "NotificaÃ§Ã£o enviada com sucesso.");
     		}else{
-    			msg.put("msg", "Não foi possível enviar a notificação.");
+    			msg.put("msg", "NÃ£o foi possÃ­vel enviar a notificaÃ§Ã£o.");
     		}
     		conec.fecharConexao();
 	    	System.out.println(msg);
@@ -66,14 +66,13 @@ public class InsereNotificacao extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		process(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
+		process(request, response);
+	}	
 }

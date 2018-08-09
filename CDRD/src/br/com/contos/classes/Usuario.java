@@ -9,6 +9,7 @@ public class Usuario implements Serializable{
 	private String id;
 	private String nome;
 	private String nascimento;
+	private String dataCriacao;
 	private String email;
 	private String login;
 	private String senha;
@@ -33,6 +34,13 @@ public class Usuario implements Serializable{
 	}
 	public void setNascimento(String nascimento) {
 		this.nascimento = nascimento;
+	}
+	
+	public String getDataCriacao() {
+		return dataCriacao;
+	}
+	public void setDataCriacao(String dataCriacao) {
+		this.dataCriacao = dataCriacao;
 	}
 
 	public String getEmail() {
