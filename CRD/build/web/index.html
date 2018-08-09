@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- O que ser isso? -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Contos de Reinos Distantes</title>
+        <!--============== importação dos scripts e folhas de estilo ==============-->
+
+        <!--=== libs ===-->
+
+        <!--JQuery-->
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+        </script>
+
+        <!--JQueryUI js & css-->
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+            crossorigin="anonymous">
+        </script>
+
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+        <!--DetectJS-->
+        <!--Importado usando o serviço gratuito RawGit-->
+        <script src="https://cdn.rawgit.com/darcyclarke/Detect.js/41643bd1/detect.js"></script>
+
+        <!--=== scripts próprios ===-->
+        <script src="resources/js/index.js"></script>
+        <script src="resources/js/modais_index.js"></script>
+
+        <!--=== folhas de estilo ===-->
+        <link rel="stylesheet" type="text/css" media="screen" href="resources/style/css/index.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="resources/style/css/modais_index.css">
+
+        <!--============== restante dos metadados ==============-->
+        <meta name="author" content="Equipe CRD">
+        <meta name="creation-date" content="2018-06-21-15:43PM">
+        <meta name="last-modified" content="2018-06-21-15:43PM">
+
+    </head>
+
+    <!--======================== início conteúdo ========================-->
+
+    <!--
+        div que contem todo o conteúdo da index.html, exceto a div
+        reservada para as janelas de interação com usuário (login,
+        Cadastro, etc)
+    -->
+    <body id="contentIndex">
+
+        <!--======================== início paredeTaverna ========================-->
+
+        <!--
+            div que contem a parede da taverna, onde estão
+            localizadas duas janelas, cada uma em uma das extremidades,
+            uma porta e um guarda, sendo os dois últimos maneiras pelas quais
+            os usuáros podem logar no site.
+        -->
+        <div id="paredeTaverna">
+
+            <!--janela da taverna-->
+            <div class="containerJanela" id="containerJanelaIndex1">
+                <img src="resources/style/images/janelaNoite.png" alt="janela da taverna n° 1" class="janela">
+            </div>
+
+            <!--container da porta-->
+            <div class="containerPorta" id="containerPortaIndex" onclick="abrirModal()"> <!--chamada de função de abertura de prompt de log in-->
+                <img src="https://s-media-cache-ak0.pinimg.com/originals/49/47/0a/49470a8ac53138b1e9a20e71ebbd1a17.jpg" alt="porta da taverna" class="porta">
+            </div>
+
+            <!--container do guarda-->
+            <div class="containerNPC" id="containerGuardaIndex">
+                <img src="https://images.cdn2.stockunlimited.net/preview1300/pixel-art-army_1959068.jpg" alt="guarda preguiçoso" class="NPCInterativo"
+                     id="guardaIndex" onclick="abrirModal()"> 
+            </div>
+
+            <!--container de janelas-->
+            <div class="containerJanela" id="containerJanelaIndex2">
+                <img src="resources/style/images/janelaNoite.png  " alt="janela da taverna n° 1" class="janela" >
+            </div>
+
+        </div>
+
+        <!--======================== fim paredeTaverna ========================-->
+
+        <!--======================== início muroTaverna ========================-->
+
+        <!--
+            div que contem o muro frontal da taverna, onde estarão presentes a placa
+            da taverna e o quadro de ranking
+        -->
+        <div id="muroTaverna">
+
+            <!--mureta-->
+            <div class="containerMuro" id="containerMuro1">
+                <img src="resources/style/images/muroEsquerdoNoite.png" alt="mureta da taverna" class="muro">
+            </div>
+
+            <!--placa da taverna-->
+            <div class="containerPlaca" id="containerPlacaIndex">
+                <img src="resources/style/images/McNaldos.jpg" alt="placa da taverna O Siri Cotocos" class="placaTaverna">
+            </div>
+
+            <!--mureta-->
+            <div class="containerMuro" id="containerMuro2">
+                <img src="resources/style/images/muroDireitoNoite.png" alt="mureta da taverna" class="muro">
+            </div>
+
+            <!--quadro de ranking-->
+            <div class="containerRanking" id="containerRankingIndex">
+                <table id="tabelaVisitante"> <!--Tabela de Ranking-->
+                    <tr>
+                        <th colspan="3" class="tdTabela"><h2 class="tituloTabela">MELHORES GUERREIROS DO REINO</h2></th>
+                    </tr>
+                    <tr>
+                        <th class="tdTabela">Posição</th>
+                        <th class="tdTabela">Usuário</th>
+                        <th class="tdTabela">Pontuação</th>
+                    </tr>
+                    <tr>
+                        <td class="tdTabela">1</td>
+                        <td class="tdTabela">xXHackerman1337Xx</td>
+                        <td class="tdTabela">9999999e</td>
+                    </tr>
+                    <tr>
+                        <td class="tdTabela">2</td>
+                        <td class="tdTabela">jogador2</td>
+                        <td class="tdTabela">193456</td>
+                    </tr> 
+                    <tr>
+                        <td class="tdTabela">3</td>
+                        <td class="tdTabela">jogador3</td>
+                        <td class="tdTabela">182432</td>
+                    </tr>
+                    <tr>
+                        <td class="tdTabela">4</td>
+                        <td class="tdTabela">jogador4</td>
+                        <td class="tdTabela">132356</td>
+                    </tr>
+                    <tr>
+                        <td class="tdTabela">5</td>
+                        <td class="tdTabela">jogador5</td>
+                        <td class="tdTabela">10509</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!--======================== fim muroTaverna ========================-->
+
+        <!--======================== início containerModais ========================-->
+
+        <!--
+            esta div irá ficar oculta até o usuário interagir com algo, e quando isso
+            ocorrer, esta div fica sobre o condeúdo da página, esmaecendo o fundo e exibindo
+            as possíveis interações do usuário mediante a opção selecionada pelo usuário
+            dentro
+        -->
+        <div class="containerModais" id="containerModaisIndex">
+        </div>
+        <!--======================== fim containerModais ========================-->
+
+
+    </body>
+
+    <!--======================== fim conteúdo ========================-->
+</html>
