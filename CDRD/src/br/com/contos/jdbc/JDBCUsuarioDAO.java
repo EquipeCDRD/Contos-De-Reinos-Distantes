@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +38,24 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 			return false;
 		}
 		return true;
+	}
+
+	public boolean buscarPorLogin(String busca) {
+		String comando = "SELECT  FROM usuarios"
+			+ " WHERE login = '" + busca + "'";
+		try {
+			java.sql.Statement stmt = conexao.createStatement();
+			ResultSet rs = stmt.executeQuery(comando);
+			while (rs.next()) {
+				String login  = rs.getString("login");
+				if(busca==login) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public Usuario buscarPorId(String id) {

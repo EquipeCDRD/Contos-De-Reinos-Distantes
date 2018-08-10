@@ -89,42 +89,59 @@ $( function() {
 
 //--------------------------------Gerenciar Admins--------------------------------------------
 
+function cadatroAdm(){
+	if (validaCadastroAdm){
+		$.ajax({
+			type: "POST",
+			url: "InsereUsuario",
+			data: $("#cadastroUsuario").serialize(),
+			success: function (msg) {
+				alert(msg.msg);
+			},
+			error: function (info) {
+				alert("Erro ao cadastrar um novo jogador: "+ info.status + " - " + info.statusText);		   
+			}
+		});
+	}
+}  
+  
+  
 function validaCadastroAdm(){
     var conf = false;
-    if($("input[name=txtnomeadm]").val()!=""){
-        if($("input[name=txtemailadm]").val()!=""){
-            if($("input[name=dtenascimentoadm]").val()!=""){
-                if($("input[name=txtapelidoadm]").val()!=""){
-                    if($("input[name=pwdsenhaadm]").val()!=""){
-                        if($("input[name=pwdconfsenhaadm]").val()!=""){
-                            if($("input[name=pwdsenhaadm]").val()==$("input[name=pwdconfsenhaadm]").val()){
+    if($("input[name=txtnome]").val()!=""){
+        if($("input[name=txtemail]").val()!=""){
+            if($("input[name=dtenascimento]").val()!=""){
+                if($("input[name=txtapelido]").val()!=""){
+                    if($("input[name=pwdsenha]").val()!=""){
+                        if($("input[name=pwdconfsenha]").val()!=""){
+                            if($("input[name=pwdsenha]").val()==$("input[name=pwdconfsenhaadm]").val()){
                                 conf = confirm("Tem certeza que deseja cadastrar um novo administrador?");
                             }else{
                                 alert("As senhas não coincidem.");
                             }
                         }else{
                             alert("Preencha a confirmação de senha.");
-                            $("input[name=pwdconfsenhaadm]").focus();
+                            $("input[name=pwdconfsenha]").focus();
                         }
                     }else{
                         alert("Preencha a senha.");
-                        $("input[name=pwdsenhaadm]").focus();
+                        $("input[name=pwdsenha]").focus();
                     }
                 }else{
                     alert("Preencha o nome de usuário do administrador.");
-                    $("input[name=txtapelidoadm]").focus();
+                    $("input[name=txtapelido]").focus();
                 }
             }else{
                 alert("Preencha a data de nascimento.");
-                $("input[name=dtenascimentoadm]").focus();
+                $("input[name=dtenascimento]").focus();
             }
         }else{
             alert("Preencha o e-mail.");
-            $("input[name=txtemailadm]").focus();
+            $("input[name=txtemail]").focus();
         }
     }else{
         alert("Preencha o nome.");
-        $("input[name=txtnomeadm]").focus();
+        $("input[name=txtnome]").focus();
     }
     return conf;
 }    
@@ -138,6 +155,21 @@ $(function escolherAdmin(){
 })
 
 //-------------------------------------Minha Conta------------------------------------------
+
+function cadastraConta(){
+	$.ajax({
+		type: "POST",
+		url: "InsereUsuario",
+		data: $("#cadastroUsuario").serialize(),
+		success: function (msg) {
+			alert(msg.msg);
+		},
+		error: function (info) {
+			alert("Erro ao cadastrar um novo jogador: "+ info.status + " - " + info.statusText);		   
+		}
+	});	
+}
+
 
 function validaMinhaConta(){
     var conf = false;
