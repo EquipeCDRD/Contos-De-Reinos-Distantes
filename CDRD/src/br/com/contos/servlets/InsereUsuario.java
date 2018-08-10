@@ -38,10 +38,9 @@ public class InsereUsuario extends HttpServlet {
     	try {
     		usuario.setNome(request.getParameter("txtnome"));
     		usuario.setEmail(request.getParameter("txtemail"));
-    		usuario.setNascimento(request.getParameter("txtnascimento"));
-    		usuario.setDataCriacao(request.getParameter("hddatacriacao"));
-    		usuario.setLogin(request.getParameter("txtlogin"));
-    		usuario.setSenha(request.getParameter("txtsenha"));
+    		usuario.setNascimento(request.getParameter("dtenascimento"));
+    		usuario.setLogin(request.getParameter("txtapelido"));
+    		usuario.setSenha(request.getParameter("pwdsenha"));
     		usuario.setPermissao(request.getParameter("hdpermissao"));
     		Conexao conec = new Conexao();
     		Connection conexao = conec.abrirConexao();

@@ -89,12 +89,14 @@ $( function() {
 
 //--------------------------------Gerenciar Admins--------------------------------------------
 
-function cadatroAdm(){
-	if (validaCadastroAdm){
+function cadastraAdm(){
+	console.log("1");
+	if (validaCadastroAdm()==true){
+		console.log("1");
 		$.ajax({
 			type: "POST",
-			url: "InsereUsuario",
-			data: $("#cadastroUsuario").serialize(),
+			url: "../../InsereUsuario",
+			data: $("#cadastrarAdmin").serialize(),
 			success: function (msg) {
 				alert(msg.msg);
 			},
@@ -107,6 +109,7 @@ function cadatroAdm(){
   
   
 function validaCadastroAdm(){
+	console.log("validou");
     var conf = false;
     if($("input[name=txtnome]").val()!=""){
         if($("input[name=txtemail]").val()!=""){
@@ -114,7 +117,7 @@ function validaCadastroAdm(){
                 if($("input[name=txtapelido]").val()!=""){
                     if($("input[name=pwdsenha]").val()!=""){
                         if($("input[name=pwdconfsenha]").val()!=""){
-                            if($("input[name=pwdsenha]").val()==$("input[name=pwdconfsenhaadm]").val()){
+                            if($("input[name=pwdsenha]").val()==$("input[name=pwdconfsenha]").val()){
                                 conf = confirm("Tem certeza que deseja cadastrar um novo administrador?");
                             }else{
                                 alert("As senhas não coincidem.");
@@ -156,19 +159,7 @@ $(function escolherAdmin(){
 
 //-------------------------------------Minha Conta------------------------------------------
 
-function cadastraConta(){
-	$.ajax({
-		type: "POST",
-		url: "InsereUsuario",
-		data: $("#cadastroUsuario").serialize(),
-		success: function (msg) {
-			alert(msg.msg);
-		},
-		error: function (info) {
-			alert("Erro ao cadastrar um novo jogador: "+ info.status + " - " + info.statusText);		   
-		}
-	});	
-}
+
 
 
 function validaMinhaConta(){

@@ -21,7 +21,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 	}
 	
 	public boolean inserir(Usuario usuario) {
-		String comando = "INSERT INTO usuarios (usuario, senha, email, nome, data_nascimento, data_criacao, permissao) VALUES (?,?,?,?,?,?,?)";
+		String comando = "INSERT INTO usuarios (usuario, senha, email, nome, data_nascimento, data_criacao, permissao) VALUES (?,?,?,?,?,NOW(),?)";
 		PreparedStatement p;
 		try {
 			p = this.conexao.prepareStatement(comando);
@@ -30,8 +30,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 			p.setString(3, usuario.getEmail());
 			p.setString(4, usuario.getNome());
 			p.setString(5, usuario.getNascimento());
-			p.setString(6, usuario.getDataCriacao());
-			p.setString(7, usuario.getPermissao());
+			p.setString(6, usuario.getPermissao());
 			p.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
