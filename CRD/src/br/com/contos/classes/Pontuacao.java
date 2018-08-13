@@ -14,20 +14,22 @@ public class Pontuacao implements Serializable{
 	/*
 	 * O identificador irá indicar para qual formulário a pontuação deverá ser enviada 
 	 * (um set completo das melhores pontuações dos melhores usuario e/ou o score pessoal,
-	 * composto de 5 puntuações recorde do jogador
+	 * composto de 5 pontuações recorde do jogador
 	 * 	
 	 * Os possíveis valores são:
 	 * 	
-	 * 	pessoal - carrega os 5 maiores escores PESSOAIS do jogador, no quarto da teverna
+	 * 	pessoal - carrega os 5 maiores scores PESSOAIS do jogador, no quarto da teverna, e
 	 * 
 	 * 	ranking - carrega o MELHOR escore dentre os 5 scores pessoais do jogador,
 	 * 	e repete a operação para TODOS os jogadores cadastrados
 	 */
 	private String identificadorTabela;
 	/*
-	 * A posicaoRanking irá armazenar a posição do carinha no ranking
+	 * A posicaoRanking irá armazenar a posição do carinha no ranking, e exibi-lá tanto para o
+	 * dono da pontuação, no quarto da taverna, assim como para o restante dos usuários no ranking
 	 */
 	private String posicaoRanking;
+	
 	
 	/*===================== getters =====================*/
 	public String getId() {
@@ -48,12 +50,18 @@ public class Pontuacao implements Serializable{
 	public String getIdentificadorTabela() {
 		return identificadorTabela;
 	}
+	
+	public String getPosicaoRanking() {
+		return posicaoRanking;
+	}
+	
+	
 	/*===================== setters =====================*/
 	public void setId(String id) {
 		this.id = id;
 	}
 	
-	public void setScore(String Sscore) {
+	public void setScore(String score) {
 		this.score = score;
 	}
 	
@@ -69,7 +77,10 @@ public class Pontuacao implements Serializable{
 		this.identificadorTabela = identificadorTabela;
 	}
 	
-	/*===================== convers�o de datas =====================*/
+	public void setPosicaoRanking(String posicaoRanking) {
+		this.posicaoRanking = posicaoRanking;
+	}
+	/*===================== conversão de datas =====================*/
 	public String dataParaDB(String dataCriacao){
 		String[] dataDividida = dataCriacao.split("/");
 		String dataParaDB = dataDividida[2]+"-"+dataDividida[1]+"-"+dataDividida[0];

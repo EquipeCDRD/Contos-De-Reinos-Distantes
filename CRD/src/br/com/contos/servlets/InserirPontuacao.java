@@ -3,6 +3,7 @@ package br.com.contos.servlets;
 /*==================Libs do java==================*/
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class InserirPontuacao extends HttpServlet{
 	//método construtor
 	public static final long serialVersionUID = 1L;
 	
-	public inserePontuacao() {
+	public InserirPontuacao() {
 		
 	}
 	
@@ -51,7 +52,7 @@ public class InserirPontuacao extends HttpServlet{
 		
 		try {
 			//recolhimento dos dados da frontend
-			pontuacao.setPontuacao(request.getParameter("pontuacao"));
+			pontuacao.setScore(request.getParameter("pontuacao"));
 			pontuacao.setDataCriacao(request.getParameter("dataCriacao"));
 			pontuacao.setUsuarioId(request.getParameter("usuarioId"));
 			pontuacao.setIdentificadorTabela(request.getParameter("identificador"));
@@ -64,6 +65,8 @@ public class InserirPontuacao extends HttpServlet{
 			//chamada do método de inserção de pontuação
 			jdbcPontuacao.inserirPontuacao(pontuacao);
 			
+		}catch(SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }
