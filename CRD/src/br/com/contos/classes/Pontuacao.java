@@ -24,6 +24,10 @@ public class Pontuacao implements Serializable{
 	 * 	e repete a operação para TODOS os jogadores cadastrados
 	 */
 	private String identificadorTabela;
+	/*
+	 * A posicaoRanking irá armazenar a posição do carinha no ranking
+	 */
+	private String posicaoRanking;
 	
 	/*===================== getters =====================*/
 	public String getId() {

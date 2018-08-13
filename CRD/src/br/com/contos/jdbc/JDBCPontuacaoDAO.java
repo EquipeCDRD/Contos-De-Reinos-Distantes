@@ -59,7 +59,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                 while (result.next()) {
 
                     //Se estiver maior que cinco vai dizer que deu merda
-                    if (listaDePontuacoes.size() > 5) {
+                    if (listaDePontuacoes.size() > 4) {
                         throw new SQLException("Deu merda no tamnho da lista."
                                 + "Mais de 5 itens numa lista cujo maximo É 5");
                     }
@@ -113,11 +113,13 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                         identificar a maior pontuação do jogador em questão e atribuíla ao placar
                      */
                     Integer[] arrayPontuacoes = null;
+                    
                     //string que permite identificar a qual usuário a pontuação pertence
                     String idUsuario = result.getString("Usuarios");
-
+                    String pontuacaoRanking;//Aqui será armazenada a pontuação
+                    String dataCriacao;
                     //for onde são salvas as 5 pontuações
-                    for (int i = 0; i < 5; i++) {
+                    for (int i = 0; i < 4; i++) {
                         arrayPontuacoes[i] = Integer.parseInt(result.getString("pontuacoes"));
                     }
                     
