@@ -81,10 +81,11 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 				+ " email=?"
 				+ " WHERE id=?";
 		PreparedStatement p;
+		Criptografia criptografia = new Criptografia();
 		try {
 			p = this.conexao.prepareStatement(comando);
 			p.setString(3, usuario.getLogin());
-			p.setString(2, Criptografia.criptografaSenha(usuario.getSenha()));
+			p.setString(2, criptografia.criptografar(usuario.getSenha()));//
 			p.setString(3, usuario.getNome());
 			p.setString(4, usuario.getNascimento());
 			p.setString(5, usuario.getEmail());

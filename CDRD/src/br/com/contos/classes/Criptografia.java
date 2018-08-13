@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 
 public class Criptografia {
     
-    public static String criptografaSenha(String senha){
+    public String criptografar(String senha){
         //salt
         senha += "C0n7osDi57aNte$";
         
@@ -21,6 +21,7 @@ public class Criptografia {
             senhaCriptografada = hexString.toString();
             
         } catch (Exception e) {
+                    // TODO Auto-generated catch block
                     e.printStackTrace();
             }
             return senhaCriptografada;
