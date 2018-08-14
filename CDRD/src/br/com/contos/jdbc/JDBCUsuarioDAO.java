@@ -127,6 +127,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 		return true;
 	}
 	
+	@SuppressWarnings("null")
 	public List<Usuario> buscar(String nivel, String busca) {
 		String comando = "SELECT * FROM usuarios ";
 		if (!nivel.equals("2") || !busca.equals("")) {
