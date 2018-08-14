@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import br.com.contos.classes.Pontuacao;
+import br.com.contos.classes.Usuario;
 import br.com.contos.conexao.Conexao;
 import br.com.contos.interfaces.PontuacaoDAO;
 import java.sql.SQLException;
@@ -23,16 +24,26 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         this.conexao = conexao;
     }
     
-    /*============================================= inserir pontuacao =======================================================*/
+    /*=============================================inserirPontuacao()=======================================================*/
     
+    //Método responsável pela inserção de novas pontuações
     @Override
     public boolean inserirPontuacao(Pontuacao pontuacao) {
-        List<Pontuacao> listaDePontuacoes = buscarPontuacao(pontuacao.getUsuarioId(), pontuacao.getIdentificadorTabela());
+        
     }
     
-    /*============================================= bucar pontuacao =======================================================*/
+    /*=============================================inserirPontuacao()=======================================================*/
     
-    //Método responsável pela realização da busca de pontuações salvas no banco
+    //Método responsável pela deleção de pontuações já salvas no banco
+    @Override
+	public boolean deletarPontuacao(int pontuacao, int usuarioId) {
+		
+		return false;
+	}
+    
+/*=============================================buscarPontuacao()=======================================================*/
+    
+    //Método responsável pela realização da busca de pontuações salvas no banco (FEITO)
     @Override
     public List<Pontuacao> buscarPontuacao(String usuarioId, String identificadorTabela) {
 
@@ -41,9 +52,9 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
 
         //Criação da lista de pontuações que será retornada
         List<Pontuacao> listaDePontuacoes = new ArrayList<Pontuacao>();
-        //Instanciamento de Pontuacao e nulificação da mesma
+        //Instanciamento de Pontuacao e Usuario e nulifica��o das mesmas
         Pontuacao pontuacao = null;
-
+        Usuario usuario = null;
         /*
                 No if abaixo é checado o parâmetro de identificação da tabela,
                 para então prosseguir mediante ao valor do mesmo
@@ -74,13 +85,14 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                             algum lugar
                      */
                     pontuacao = new Pontuacao();
-
+                    usuario = new Usuario();
+              
                     //aquisição dos dados...
                     String id = result.getString("id");
                     String score = result.getString("pontuacao");
                     String dataCriacao = pontuacao.dataParaFrontEnd(result.getString("data_criacao"));
                     //foge dos padrões somente porque já há uma variável com esse nome
-                    String idUser = result.getString("usuarios_id");
+                    String idUser = result.getString(usuario.getId());
                     String posicaoRanking;
                     
                     //chamada do método que encontra a posição do carinha no ranking
@@ -90,7 +102,6 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                     pontuacao.setId(id);
                     pontuacao.setScore(score);
                     pontuacao.setDataCriacao(dataCriacao);
-                    pontuacao.setUsuarioId(idUser);
                     pontuacao.setPosicaoRanking(posicaoRanking);
 
                     //adição do objeto recém criado à lista de pontuações
@@ -125,7 +136,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
  	        		serem organizadas em ordem decrescente, permitindo assim que seja possível
  	        		identificar a maior pontuação do jogador em questão e atribuí-la ao placar
 	 	            */
-	 	            Integer[] arrayPontuacoes = new Integer[4]; 
+	 	            Integer[] arrayPontuacoes = new Integer[5]; 
 	                     
                      /*
                      Nova instancia de Pontuacao, que ira armazenar os dados individuais de cada
@@ -139,7 +150,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                      String id = result.getString("id");
                      String dataCriacao = pontuacao.dataParaFrontEnd(result.getString("data_criacao"));
                      //foge dos padrões somente porque já há uma variável com esse nome
-                     String idUser = result.getString("usuarios_id");
+                     String idUser = result.getString(usuario.getId());
                      String posicaoRanking;
                      String maiorPontuacao;
                      
@@ -160,11 +171,9 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                      
                      //passagem dos dados obtidos a um objeto de Pontuacoes
                      pontuacao.setId(id);
-                     
                      pontuacao.setScore(maiorPontuacao);//note que está sendo usada a maior pontuação do feladapota
-                     
                      pontuacao.setDataCriacao(dataCriacao);
-                     pontuacao.setUsuarioId(idUser);//E SE A OPERAÇÂO FOR COM O MESMO CARA? CONDICIONAL P/ NÃO FAZER NADA SE FOR MESMA ID ANTIGA?
+                     pontuacao.setUsuarioId(idUser);
                      pontuacao.setPosicaoRanking(posicaoRanking);
                      
                      //adição do objeto recém criado à lista de pontuações
@@ -181,18 +190,24 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         return listaDePontuacoes;
     }
     
+    /*=============================================inserirPontuacao()=======================================================*/
+    
+    //Método responsável pela alteração dos scores do jogador
+	@Override
+	public boolean alterarPontuacao(Pontuacao pontuacao) {
+		
+		//Instancia nova de pontuação
+		Pontuacao pontuacao = pontuacao;
+		
+	}
+	
     /*=============================================encontraPosicao()=======================================================*/
     
-    //Método utilizado para encontrar a posição do carinha no ranking 
-
-    
+    //Método utilizado para encontrar a posição do carinha no ranking (FEITO)
     private String encontraPosicao() {
     	
     	//Query para pegar todos as pontuações do banco
     	String sqlQuery = "SELECT * FROM pontuacoes";
-    	
-    	//Nova instância de Pontuação()
-    	Pontuacao pontuacao = null;
     	
     	//String onde a posição do jogador no ranking será salva
     	String posicaoRanking = "";
@@ -220,9 +235,6 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
 	            */
 	            Integer[] arrayPontuacoes = new Integer[4];
 	            
-                //Criação de nova instância
-                pontuacao = new Pontuacao();
-
                 //for onde são salvas as 5 pontuações
                 for (int i = 0; i < 4; i++) {
                     arrayPontuacoes[i] = Integer.parseInt(result.getString("pontuacao"));
@@ -245,19 +257,21 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
             
             //loop para checagem da posição do player
             Boolean condition = true;
-            do {
+            while(condition){
             	if(maiorPontuacao>arrayMaioresPontuacoes[index]) {
-            		posicaoRanking = String.valueOf(index+1);
+            		posicaoRanking = String.valueOf(index+1);//pq arrays começam em zero
             		 condition = true;
             	}else {
             		index++;
             		condition = false;
             	}
-            }while(condition);
+            }
             
         } catch(SQLException e) {
         	e.printStackTrace();
         }
         return posicaoRanking;
    }
+
+	
 }
