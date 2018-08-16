@@ -28,8 +28,10 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
     
     //Método responsável pela inserção de novas pontuações
     @Override
-    public boolean inserirPontuacao(Pontuacao pontuacao) {
+    public boolean inserirPontuacao(Pontuacao pontuacao, List<Pontuacao> listaDePontuacoes) {
         
+    	//Insere a nova pontuação onde o campo de 
+    	
     }
     
     /*=============================================inserirPontuacao()=======================================================*/
@@ -103,19 +105,21 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                     pontuacao.setScore(score);
                     pontuacao.setDataCriacao(dataCriacao);
                     pontuacao.setPosicaoRanking(posicaoRanking);
+                    pontuacao.setUsuarioId(idUser);
 
                     //adição do objeto recém criado à lista de pontuações
                     listaDePontuacoes.add(pontuacao);
                 }
             
             } catch (SQLException e) {
-                e.printStackTrace();
+                //Printa o stack no console do eblipse
+            	e.printStackTrace();
+                //Se der caca a lista volta nula
                 listaDePontuacoes = null;
             }
+        //Se o identificador for para o ranking global...
         }else if(identificadorTabela.equals("ranking")) {
         	 
-        	//declaração da varável que conterá o maior score do jogador, isto é, aqule que irá para o ranking
-        	
         	try {
                  //validação da query (serve para evitar SQL Injections(^-^))
                  PreparedStatement statement = conexao.prepareStatement(sqlQuery);
@@ -145,6 +149,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                      algum lugar
                      */
                      pontuacao = new Pontuacao();
+                     usuario = new Usuario();
 
                      //aquisição dos dados...
                      String id = result.getString("id");
@@ -182,11 +187,12 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         
         	}catch(SQLException e) {
         		e.printStackTrace();
-        		listaDePontuacoes = null;//NÂO DEVERIA ENVIAR TAMBÉM UM IDENTIFICADOR QUE DEU ERRADO?
+        		//se der caca retorna a lista nula
+        		listaDePontuacoes = null;
         	}
         }
         
-       //devolve a lista de pontuações ao método que fez a chamada
+       //devolve a lista de pontuações ao método que fez a chamada ( UMA LISTA != DE null )
         return listaDePontuacoes;
     }
     
@@ -194,10 +200,38 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
     
     //Método responsável pela alteração dos scores do jogador
 	@Override
-	public boolean alterarPontuacao(Pontuacao pontuacao) {
+	public boolean alterarPontuacao(Pontuacao pontuacao, List<Pontuacao> listaDePontuacoes) {
 		
-		//Instancia nova de pontuação
-		Pontuacao pontuacao = pontuacao;
+		/*
+		 *	Loop onde serão verificadas as pontuações recebidas como parâmetro novamente, substituindo a pontuação
+		 *	ultrapassada pela nova 
+		 */
+		
+		for(int i=0; i>4; i++) {
+			
+			//checa qual pontuação deve ser substituída
+			if(Integer.parseInt(pontuacao.getScore())>Integer.parseInt(listaDePontuacoes.get(i).getScore())) {
+				
+				try {
+					
+					//criação da query de atualização da pontuação 
+					String sqlQuery = "UPDATE pontuacoes SET pontuacao=? WHERE id=?";
+					
+					PreparedStatement statement = conexao.prepareStatement(sqlQuery);
+					statement.setString(1, pontuacao.getScore());
+					statement.setString(2, pontuacao.getUsuarioId());
+					statement.executeUpdate();
+					
+				}catch(SQLException e) {
+					e.printStackTrace();
+					//se der algum problema volta falso
+					return false;
+				}
+			}
+		}
+		
+		//e se foi tudo de buenas, volta true
+		return true;
 		
 	}
 	
