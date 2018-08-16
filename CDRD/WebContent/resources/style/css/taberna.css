@@ -1,0 +1,505 @@
+
+@font-face{
+	font-family: pixel font;
+	src: url("../pixel_font7.ttf");
+}
+
+*, *::after, *::before {
+	font-family: pixel font;
+}
+
+
+body{ /*Desabilita scroll*/
+    position: fixed;
+    overflow-y: scroll;
+    width: 100%;
+    overflow:hidden;
+}
+
+img, table, th, td{
+
+	image-rendering: pixelated;
+}
+
+/*-----------------Remoção da margem da body-----------------*/
+#bodyTaberna{
+  margin: 0;
+  position: relative;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  width: 99.55%;
+  position: relative;
+  bottom: 378px;
+}
+
+
+
+/*-----------------Taberna-----------------*/
+#taberna{
+  height: 100%;
+}
+
+
+
+/*-----------------Parede Superior-----------------*/
+  #paredeSuperior{
+    border: 3px solid black;
+    border-left: 0;
+    border-right: 0;
+    height: 130px;
+    margin-top: 18px;
+    background: url(../images/paredeTaverna.png);
+  }
+  /*Quarto*/
+  #divQuarto{
+    height: 130px;
+    width: 85.438px;
+    margin-left: 170px;
+    display: inline-block;
+		z-index: 2;
+  }
+  #portaQuarto{
+    height: 125px;
+    padding: 5px 0;
+    image-rendering: pixelated;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  /*Ranking*/
+  #quadroRanking{
+    display: inline-block;
+    height: 91px;
+    width: 360px;
+    position: relative;
+    top: -30px;
+    left: 90px;
+    background: url(../images/ranking.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #tabela{
+    height: 100%;
+    width: 360px;
+    font-size: 12px;
+  }
+  #rkgPosicao{
+    width: 68px;
+  }
+  #rkgUsuario{
+    width: 185px;
+  }
+  #rkgPontuacao{
+    width: 99px;
+  }
+  .tdTabela{
+    padding: 2px 0 0 0;
+    text-align: center;
+  }
+  .tdTabela1{
+    padding: 3px 0 0 0;
+    text-align: center;
+  }
+  .tdTabela2{
+    padding: 3px 0 0 0;
+    text-align: center;
+  }
+  .tdTabela3{
+    padding: 3px 0 0 0;
+    text-align: center;
+  }
+  /*Avisos*/
+  #quadroAvisos{
+    display: inline-block;
+    width: 125px;
+    height: 150px;
+    position: relative;
+    left: 730px;
+		bottom: 200px;
+		z-index: 3px;
+  }
+  #avisosImg{
+    height: 100%;
+    width: 100%;
+  }
+
+/*Logo*/
+  #divLogo{
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    left: 330px;
+    bottom: 30px;
+  }
+  #logo{
+    height: 100%;
+    width: 100%;
+  }
+/*Quarto Taberneiro*/
+  #divQuartoT{
+    height: 130px;
+    width: 85.438px;
+    position: relative;
+    margin-left: 1250px;
+    bottom: 139px;
+  }
+  #portaQuartoT{
+    height: 125px;
+    padding: 5px 0;
+    image-rendering: pixelated;
+  }
+
+/*-----------------Piso da Taberna-----------------*/
+  #pisoTaberna{
+    height: 481px;
+    background: url(../images/piso.png);
+  }
+  #imgBardo{
+    height: 170px;
+    position: relative;
+		bottom: 750px;
+		right: 30px;
+  }
+  #imgTaverneiro{
+    height: 170px;
+    position: relative;;
+    left: 800px;
+		bottom: 105px;
+  }
+  #balcao{
+    height: 420px;
+    width: 500px;
+    background-image: url("../images/balcao.png");
+		background-repeat: no-repeat;
+    position: relative;
+    left: 868px;
+    bottom: 290px;
+		z-index: 0;
+  }
+  #imgMesa{
+    position: relative;
+		height: 230px;
+		left: 300px;
+		top: 100px;
+  }
+  /*Modais*/
+  #containerModaisTaverneiro, #containerModaisBardo, #containerModaisAlterar, #ranking, #avisos{
+    display: none;
+
+  }
+
+/*-----------------Parede Inferior-----------------*/
+#paredeInferior{
+  border: 3px solid black;
+  border-left: 0;
+  border-right: 0;
+  height: 130px;
+  position: relative;
+  bottom: 473px;
+  background-color: #532700;
+  position: relative;
+  z-index: 0;
+}
+/*Porta Saída*/
+#divSair{
+  height: 130px;
+  width: 85.438px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#portaSair{
+  height: 125px;
+  width: 85px;
+  padding: 5px 0;
+  cursor: pointer;
+  transition: 0.2s;
+  image-rendering: pixelated;
+}
+
+
+/*-----------------Piso Externo-----------------*/
+
+
+#pisoExterno{
+  height: 18px;
+}
+
+
+/*-----------------Quartos-----------------*/
+#paredeQuartos{
+  width: 100%;
+  height: 130px;
+  display: inline-block;
+  position: relative;
+  top: 3.5px;
+}
+#paredeQuarto{
+  width: 800px;
+  height: 130px;
+  border-top: 3px solid black;
+  border-right: 3px solid black;
+  display: inline-block;
+  position: relative;
+  background: url(../images/paredeQuarto.png);
+
+}
+#paredeQuartoT{
+  width: 535px;
+  height: 130px;
+  border: 3px solid black;
+  border-bottom: 0;
+  display: inline-block;
+  position: fixed;
+  filter: brightness(50%);
+  background: url(../images/paredeQuarto.png);
+  margin-left: 18px;
+}
+#divisoria{
+  height: 376px;
+  width: 100%;
+  left: 0;
+  position:absolute;
+  z-index: -1;
+  display: inline-block;
+  background: url(../images/paredeTaverna.png);
+}
+#quarto{
+  height: 220px;
+  width: 800px;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  position: relative;
+  display: inline-block;
+  background: url(../images/piso.png);
+}
+#quartoTaverneiro{
+  height: 220px;
+  width: 536px;
+  border-left: 3px solid black;
+  border-bottom: 3px solid black;
+  position: fixed;
+  display: inline-flex;
+  background: url(../images/piso.png);
+  margin-left: 18px;
+}
+#cama{
+  height: 200px;
+  position: absolute;
+  bottom: 47px;
+}
+#ajustaQuarto{
+  height: 200px;
+  position: relative;
+  bottom: 47px;
+  opacity: 0;
+}
+#criadoMudo{
+  height: 70px;
+  width: 70px;
+  border: 3px solid black;
+  position: absolute;
+  bottom: 171px;
+  left: 120px;
+  background-color: yellow;
+}
+#trofeus{
+  height: 170px;
+  width: 250px;
+  position: absolute;
+  bottom: 175px;
+  left: 320px;
+}
+#mesaQuarto{
+  width: 100px;
+  height: 200px;
+  position: absolute;
+  left: 700px;
+  bottom: 10px;
+}
+#cadeiraQuarto{
+  width: 50px;
+  height: 150px;
+  position: absolute;
+  left: 640px;
+  bottom: 50px;
+}
+/*Alterar Dados*/
+
+#perfil{
+  height: 200px;
+  position: relative;
+  left: 50px;
+}
+.cTable{
+  border: 3px solid black;
+  padding-bottom: 50px;
+  background-color: white;
+}
+.tdConta{
+  text-align: right;
+  width: 200px;
+}
+.iptConta{
+  width: 250px;
+}
+/*    -----Tabela-----   */
+
+#intTaverneiro, #intBardo, #ranking, #avisos, #alterarDados{ /*Bordas externas da tabela*/
+  border: 1px solid #532700;
+  border-collapse: collapse;
+  width: 800px;
+  border-radius: 5px;
+  background-color: #BD7938;
+}
+.intPersonagem{
+  width: 800px;
+}
+.intTable, .intRow, .intRowRanking{ /*Bordas internas da tabela*/
+  border: 3px solid #532700;
+  border-collapse: collapse;
+}
+.intRow{
+  font-size: 30px;
+}
+.vAlign{
+  vertical-align: text-top;
+}
+.containerModais{
+	display: none;
+	z-index: 4;
+	width: 800px;
+	bottom: 550px;
+	left: 280px;
+	position: relative;
+}
+#ranking, #avisos{
+	display: none;
+	z-index: 4;
+	width: 1170px;
+	bottom: 600px;
+	left: 100px;
+	position: relative;
+	text-align: center;
+	height: 450px;
+}
+#alterarDados{
+	display: none;
+	z-index: 4;
+	width: 1170px;
+	bottom: 970px;
+	left: 100px;
+	position: relative;
+	height: 450px;
+}
+#tableAlterar{
+	width: 100%;
+	height: 100%;
+}
+#tableRanking{
+	width: 100%;
+}
+.intRowRanking{
+	font-size: 20px;
+	padding-top: 5px;
+}
+.tituloRanking{
+	font-size: 30px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+#flecha{
+	width: 100px;
+	float: right;
+	padding: 15px;
+}
+#fechar{
+	position: relative;
+	bottom: 393px;
+	left: 995px;
+}
+#fecharAvisos{
+	position: relative;
+	bottom: 375px;
+	left: 560px;
+ }
+#avisos{
+	border: 4px solid #532700;
+}
+#tableAvisos{
+	width: 100%;
+	font-size: 50px;
+}
+.buttonAvisos{
+	width: 90%;
+	height: 30px;
+	border: 3px solid #532700;
+	background-color: #8D4421;
+	border-radius: 5px;
+	height: 28px;
+}
+/*--------Images e Falas----------*/
+.intImg{
+  height: 100%;
+  vertical-align: bottom;
+}
+.intTdImg{
+  background-color: #BD7938;
+  height: 313px;
+  width: 300px;
+}
+.intArrow{
+  width: 100px;
+}
+.intTdArrow{
+  background-color: #BD7938;
+}
+.intDialogue{ /*Falas do Personagem*/
+  width: 100%;
+}
+.intAlerta{
+  border-bottom: 0;
+}
+.intRow, .intRowRanking{
+  background-color: #BD7938;
+  color: white;
+}
+.intIcn{
+  width: 50px;
+}
+/* ----Inputs------*/
+.intButton, .intGroupButton, .intGroupCadButton{ /* Botões */
+  width: 100%;
+  height: 35px;
+  background-color: #BD7938;
+  border: 1px solid #8D4421;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.intButton:hover, .intCadButton:hover, .intCadButton2:hover, .intCadButton3:hover, .intCadButton4:hover{
+  background-color: #8D4421;
+  transition: 0.3s;
+}
+.intTdButton{ /* Td do Botão */
+  height: 35px;
+  border: 3px solid #532700;
+  border-collapse: collapse;
+}
+.intInput{
+  width: 200px;
+  padding: 0;
+}
+.tdInput{
+  width: 200px;
+  position: relative;
+  bottom: 3px;
+}
+/*-- TIRAR BORDA DE 1px--*/
+.intTdButton, .intTdImg{
+  padding: 0;
+}
