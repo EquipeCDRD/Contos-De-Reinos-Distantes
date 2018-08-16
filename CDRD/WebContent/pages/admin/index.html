@@ -18,8 +18,6 @@
         integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
         crossorigin="anonymous"></script>
     <script src="../../resources/js/admin.js"></script>
-    <script src="../../resources/js/adminServlet.js"></script>
-    <script src="../../resources/js/geral.js"></script>
 </head>
 <body>
     <div id="admPaginas">
@@ -202,7 +200,7 @@
         <div class="conteudo" id="admPaginas-6"> <!--Gerenciard Admin-->
             <div class="divListaContasAdmin comBorda quaseCheio">
                 <h2>Cadastro de Administrador</h2>
-                <form id="cadastrarAdmin" name="frmcadastraradm">
+                <form id="cadastrarAdmin" name="frmcadastraradm" onsubmit="return validaCadastroAdm()">
                     <div class="cadCampo">
                         <label>Nome Completo: </label>
                         <input type="text" name="txtnome" id="cadNome">
@@ -228,24 +226,19 @@
                         <input type="password" name="pwdconfsenha" id="cadconfsenha">
                     </div>
                     <div>
-                    	<input type="hidden" name="hdpermissao" id="cadpermissao" value="1">
-                    </div>
+               			<input type="hidden" name="hdpermissao" value="0">
+               		</div>
                     <div class="cadBotoes">
-                        <input type="button" value="Enviar"onclick="cadastraAdm()">
+                        <input type="button" value="Enviar" onclick="cadastraAdm()">
                         <button type="reset">Limpar</button>
                     </div>
                 </form>
             </div>
             <div class="divSelecionarContas comBorda">
                     <h2>Contas:</h2>
-                    <input type="text" placeholder="search...">
-                    <button type="submit">Procurar</button><!--Botão para procurar contas-->
-                    <ul class="listaContas" id="listaAdmins">
-                        <li>adm1</li>
-                        <li>adm2</li>
-                        <li>adm3</li>
-                        <li>adm4</li>
-                    </ul>
+                	<input type="text" name="txtbuscaadm" placeholder="search...">
+                   	<button onclick="buscaAdm()">Procurar</button><!--Botão para procurar contas-->
+                    <div id="listaAdm"></div>
                 </div>
                 <div class="divDeletarContas comBorda">
                     <h2>Deletar administrador:</h2>
@@ -267,31 +260,31 @@
                 <form name="frmminhaconta" id="editarConta" onsubmit="return validaMinhaConta()">
                     <div class="cadCampo">
                         <label>Nome Completo: </label>
-                        <input type="text" name="txtnome" id="nome"> 
+                        <input type="text" name="txtnome" id="altNome"> 
                     </div>
                     <div class="cadCampo">
                         <label>Email: </label>
-                        <input type="text" name="txtemail" id="email">
+                        <input type="text" name="txtemail" id="altEmail">
                     </div>
                     <div class="cadCampo">
                         <label>Data de Nascimento: </label>
-                        <input type="date" name="dtenascimento" id="nascimento">
+                        <input type="date" name="dtenascimento" id="altNascimento">
                     </div>
                     <div class="cadCampo">
                         <label>Nome do Administrador: </label>
-                        <input type="text" name="txtapelido" id="apelido">
+                        <input type="text" name="txtapelido" id="altApelido">
                     </div>
                     <div class="cadCampo">
                         <label>Senha Antiga:</label>
-                        <input type="password" name="pwdsenhaantiga" id="velhaSenha">    
+                        <input type="password" name="pwdsenhaantiga" id="altVelhaSenha">    
                     </div>
                     <div class="cadCampo">
                         <label>Nova Senha: </label>
-                        <input type="password" name="pwdsenhanova" id="novaSenha">
+                        <input type="password" name="pwdsenhanova" id="altNovaSenha">
                     </div>
                     <div class="cadCampo">
                         <label>Confirmar Nova Senha: </label>
-                        <input type="password" name="pwdconfsenha" id="confSenha">
+                        <input type="password" name="pwdconfsenha" id="altConfSenha">
                     </div>
                     <div class="cadBotoes">
                         <button type="submit">Enviar</button>

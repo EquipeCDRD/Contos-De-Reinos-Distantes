@@ -40,17 +40,16 @@ public class AlteraUsuario extends HttpServlet {
     		Conexao conec = new Conexao();
     		Connection conexao = conec.abrirConexao();
     		JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
-    		Usuario usuariobd = jdbcUsuario.buscarPorId(request.getParameter("txtid"));
+    		Usuario usuariobd = jdbcUsuario.buscarPorValor(request.getParameter("txtapelido"), "usuario");
     		Map<String, String> msg = new HashMap<String, String>();
-    		if (request.getParameter("txtlogin").equals(usuariobd.getLogin())) {
+    		if (request.getParameter("txtapelido").equals(usuariobd.getLogin())) {
     			String senhaAtualCript = Criptografia.criptografaSenha(request.getParameter("txtsenhaatual")); 
     			if (senhaAtualCript.equals(usuariobd.getSenha())) {
     				Usuario usuario = new Usuario();
-    	    		usuario.setLogin(request.getParameter("txtlogin"));
+    	    		usuario.setLogin(request.getParameter("txtapelido"));
     	    		usuario.setSenha(request.getParameter("txtnovasenha"));
-    	    		usuario.setPermissao(request.getParameter("hdpermissao"));
     	    		usuario.setNome(request.getParameter("txtnome"));
-    	    		usuario.setNascimento(request.getParameter("txtnascimento"));
+    	    		usuario.setNascimento(request.getParameter("dtenascimento"));
     	    		usuario.setEmail(request.getParameter("txtemail"));
     	    		boolean retorno = jdbcUsuario.atualizar(usuario);
     		    	conec.fecharConexao();

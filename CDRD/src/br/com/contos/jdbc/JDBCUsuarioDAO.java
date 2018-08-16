@@ -39,33 +39,16 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 		return true;
 	}
 
-	public boolean buscarPorLogin(String busca) {
-		String comando = "SELECT  FROM usuarios"
-			+ " WHERE login = '" + busca + "'";
-		try {
-			java.sql.Statement stmt = conexao.createStatement();
-			ResultSet rs = stmt.executeQuery(comando);
-			while (rs.next()) {
-				String login  = rs.getString("login");
-				if(busca==login) {
-					return true;
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	public Usuario buscarPorId(String id) {
+	public Usuario buscarPorValor(String valor, String tipo) {
 		String comando = "SELECT * FROM usuarios"
-			+ " WHERE id = '" + id + "'";
+			+ " WHERE "+ tipo +" = '" + valor + "'";
 		Usuario usuario = new Usuario();
 		try {
 			java.sql.Statement stmt = conexao.createStatement();
 			ResultSet rs = stmt.executeQuery(comando);
 			while (rs.next()) {
-				String login = rs.getString("login");
+				String id = rs.getString("id");
+				String login = rs.getString("usuario");
 				String senha = rs.getString("senha");
 				String email = rs.getString("email");
 				String nome = rs.getString("nome");
@@ -73,6 +56,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 				String dataCriacao = rs.getString("data_criacao");
 				String permissao = rs.getString("permissao");
 				
+				usuario.setId(id);
 		        usuario.setLogin(login);
 		        usuario.setSenha(senha);
 		        usuario.setEmail(email);
@@ -90,7 +74,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 
 	public boolean atualizar(Usuario usuario) {
 		String comando = "UPDATE usuarios SET"
-				+ " login=?,"
+				+ " usuario=?,"
 				+ " senha=?,"
 				+ " nome=?,"
 				+ " nascimento=?,"
@@ -140,15 +124,16 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 			}
 		}
 		if(!busca.equals("")) {
-			comando += "(nome LIKE '%" + busca + "%' OR login LIKE '%" + busca + "%' OR email = '" + busca + "%' OR id = '" + busca + "')";
+			comando += "(nome LIKE '%" + busca + "%' OR usuario LIKE '%" + busca + "%' OR email LIKE '" + busca + "%' OR id LIKE '" + busca + "')";
 		}
 		List<Usuario> listUsuario = new ArrayList<Usuario>();
-		Usuario usuario = null;
+		
 		try {
 			Statement stmt = conexao.createStatement(); 
 			ResultSet rs = stmt.executeQuery(comando);
 			while (rs.next()) {
-				String login = rs.getString("login");
+				Usuario usuario = new Usuario();
+				String login = rs.getString("usuario");
 				String senha = rs.getString("senha");
 				String email = rs.getString("email");
 				String nome = rs.getString("nome");

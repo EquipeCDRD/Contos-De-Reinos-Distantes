@@ -162,11 +162,11 @@ body{
     transition: 0.5s;
     background-color: darkolivegreen;
 }
-
+/*
 .listaContas li:last-child{
     border-bottom:none;
 }
-
+*/
 .divDeletarContas{
     float: right;
 }
