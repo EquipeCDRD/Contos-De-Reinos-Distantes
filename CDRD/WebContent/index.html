@@ -62,14 +62,14 @@
         </div>
 
         <!--container da porta-->
-        <div class="containerPorta" id="containerPortaIndex" onclick="abrirModal()"> <!--chamada de função de abertura de prompt de log in-->
+        <div class="containerPorta" id="containerPortaIndex" onclick="abrirModal('containerModaisIndex')"> <!--chamada de função de abertura de prompt de log in-->
             <img src="https://s-media-cache-ak0.pinimg.com/originals/49/47/0a/49470a8ac53138b1e9a20e71ebbd1a17.jpg" alt="porta da taverna" class="porta">
         </div>
 
         <!--container do guarda-->
         <div class="containerNPC" id="containerGuardaIndex">
             <img src="https://images.cdn2.stockunlimited.net/preview1300/pixel-art-army_1959068.jpg" alt="guarda preguiçoso" class="NPCInterativo"
-                 id="guardaIndex" onclick="abrirModal()"> <!--chamada de função de abertura de prompt de log in-->
+                 id="guardaIndex" onclick=""> <!--chamada de função de abertura de prompt de log in-->
         </div>
 
         <!--container de janelas-->
@@ -106,7 +106,7 @@
 
         <!--quadro de ranking-->
         <div class="containerRanking" id="containerRankingIndex">
-          <table id="tabelaVisitante"> <!--Tabela de Ranking-->
+          <table id="tabela"> <!--Tabela de Ranking-->
               <tr>
                 <th colspan="3" class="tdTabela"><h2 class="tituloTabela">MELHORES GUERREIROS DO REINO</h2></th>
               </tr>
@@ -280,7 +280,7 @@
                 </tr>
                 <tr>
                     <td class="intRow vAlign"><!--Td das falas do Personagem-->
-                        <form name="frmcadastro" id="cadastroJogador" onsubmit="return validaCadastro()">
+                        <form name="frmcadastro" onsubmit="return validaCadastro()">
                         <table><!--Tabela da fala-->
                             <tr>
                             <td colspan="2" class="intCadRow intDialogue">Então vamos mudar isso! Preencha esta folha com seus dados:</td><!--Falas do Personagem-->

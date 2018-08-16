@@ -103,7 +103,7 @@ function validaCadastroAdm(){
                                 alert("As senhas não coincidem.");
                             }
                         }else{
-                            alert("Preencha a confirmação de senha.");
+                            alert("Preencha a validação de senha.");
                             $("input[name=pwdconfsenhaadm]").focus();
                         }
                     }else{
@@ -163,7 +163,7 @@ function validaMinhaConta(){
                         }
                     }else{
                         alert("Preencha a senha antiga.");
-                        $("input[name=pwdsenhaantiga]").focus();
+                        $("input[name=pwdsenhavelha]").focus();
                     }
                 }else{
                     alert("Preencha o nome de usuário.");

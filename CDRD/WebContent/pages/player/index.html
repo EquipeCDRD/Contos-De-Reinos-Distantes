@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <title>Contos de Reinos Distantes - Taberna</title>
+    <meta name="author" content="Equipe CRD">
+    <meta name="description" content="Página da Taberna do Contos de Reinos Distantes">
+    <meta name="creation-date" content="2018/07/04">
+    <meta name="last-modified" content="2018/07/04">
+    <link rel="stylesheet" type="text/css" href="../../resources/style/css/taberna.css" />
+    <link rel="stylesheet" type="text/css" href="../../resources/style/css/jquery-ui.css" />
+    <script src="../../resources/js/libs/jquery-3.3.1.js"></script>
+    <script src="../../resources/js/taberna.js"></script>
+  </head>
+  <body id="bodyTaberna">
+    <div id="paredeQuartos">
+      <div id="paredeQuarto">
+      </div>
+      <div id="divisoria">
+      </div>
+      <div id="paredeQuartoT">
+      </div>
+    </div>
+    <div id=taberna>
+      <div>
+        <div id="quarto">
+          <img src="../../resources/style/images/bed.png" alt="img" id="cama">
+          <img src="../../resources/style/images/bed.png" alt="img" id="ajustaQuarto">
+          <div id="criadoMudo"></div>
+          <img src="../../resources/style/images/trofeus.jpg" alt="img" id="trofeus">
+          <img src="../../resources/style/images/mesaQuarto.png" alt="img" id="mesaQuarto" onclick="abrirModal(5)">
+          <img src="../../resources/style/images/cadeiraQuarto.png" alt="img" id="cadeiraQuarto">
+        </div>
+        <div id="quartoTaverneiro">
+        </div>
+      </div>
+      <div id="paredeSuperior"> <!--Div para programação da "Porta do Quarto", "Ranking", "Avisos" e "Logo" e seus hovers-->
+        <div id="divQuarto"><!--Porta do Quarto-->
+          <img src="../../resources/style/images/door.png" alt="img" id="portaQuarto" onclick="abrirQuartos()">
+        </div>
+
+        <div id="quadroRanking" onclick="abrirModal(3)">
+          <table id="tabela"> <!--Tabela de Ranking-->
+              <tr>
+                <th colspan="3" class="tdTabela" id="tabelaTitulo">MELHORES GUERREIROS DO REINO</th>
+              </tr>
+              <tr>
+                  <th class="tdTabela" id="rkgPosicao">Posição</th>
+                  <th class="tdTabela" id="rkgUsuario">Usuário</th>
+                  <th class="tdTabela" id="rkgPontuacao">Pontuação</th>
+              </tr>
+              <tr>
+                  <td class="tdTabela1">1</td>
+                  <td class="tdTabela1">MMMMMMMMMMMMMMMM</td>
+                  <td class="tdTabela1">9999999e</td>
+              </tr>
+              <tr>
+                  <td class="tdTabela2">2</td>
+                  <td class="tdTabela2">jogador2</td>
+                  <td class="tdTabela2">193456</td>
+              </tr>
+              <tr>
+                  <td class="tdTabela3">3</td>
+                  <td class="tdTabela3">jogador3</td>
+                  <td class="tdTabela3">182432</td>
+              </tr>
+          </table>
+        </div>
+
+        <div id="divLogo">
+          <img src="../../resources/style/images/logo.png" alt="img" id="logo">
+        </div>
+
+        <div id="divQuartoT">
+          <img src="../../resources/style/images/door.png" alt="img" id="portaQuartoT">
+        </div>
+      </div>
+
+      <div id="pisoTaberna"><!--Div para programação do "Bardo", "Mesa com os heróis" e "Taberneiro" e seus hovers-->
+        <!--Mesa com heróis-->
+        <div id="quadroAvisos"><!--Avisos-->
+          <img src="../../resources/style/images/avisos.png" alt="img" id="avisosImg" onclick="abrirModal(4)">
+        </div>
+
+        <img src="../../resources/style/images/mesaHerois.gif" alt="img" id="imgMesa" onclick="alert('jogo')">
+        <!--Taverneiro-->
+        <img src="../../resources/style/images/taverneiro.gif" alt="img" id="imgTaverneiro" onclick="abrirModal(1)">
+        <div id="balcao"></div>
+
+        <!--Fim Taverneiro-->
+        <!--Bardo-->
+        <img src="../../resources/style/images/bardo.gif" alt="img" id="imgBardo" onclick="abrirModal(2)">
+
+        <!--Fim Bardo-->
+        <div id="paredeInferior"><!--Div para programação da "Porta de Saida" e seus hovers-->
+          <div id="divSair"><!--Porta de Saída-->
+            <a><img src="../../resources/style/images/door.png" alt="img" id="portaSair" onclick="portaSair()"></a>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+    <div id="pisoExterno">
+    </div>
+
+
+
+      </div>
+    </div>
+    <div class="containerModais" id="containerModaisTaverneiro">
+      <div id="intTaverneiro">
+        <div id="taverneiro">
+        <table class="intTable"> <!--Tabela de interações-->
+            <tr>
+                <th class="intRow" colspan="2">Taverneiro</th> <!--Nome do personagem que está falando-->
+            </tr>
+            <tr>
+                <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                    <table><!--Tabela da fala-->
+                        <tr>
+                        <td class="intCadRow intDialogue">Boas vindas viajante! Em que posso ajudá-lo?</td><!--Falas do Personagem-->
+                        </tr>
+                    </table><!--Fim da tabela da fala-->
+                </td><!--Fim da td das falas do Personagem-->
+                <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+            </tr>
+            <tr>
+                <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                    <input type="button" class="intButton jogoTBtn" value="Conte-me sobre o mundo. (Jogo)">
+                    <input type="button" class="intButton projetoTBtn" value="Conte-me sobre a religião. (Projeto)">
+                    <input type="button" class="intButton equipeTBtn" value="Conte-me sobre os Criadores. (Equipe)">
+                    <input type="button" class="intButton sairBtn" value="Nada não. (Sair)">
+                </div><!--Fim do agrupamento dos botões-->
+                </td><!--Fim da td dos botões-->
+            </tr>
+        </table>
+        </div>
+
+        <!-- Sobre o jogo -->
+
+        <div id="jogoT">
+          <table class="intTable"> <!--Tabela de interações-->
+            <tr>
+                <th class="intRow" colspan="2">Taverneiro</th> <!--Nome do personagem que está falando-->
+            </tr>
+            <tr>
+                <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                    <table><!--Tabela da fala-->
+                        <tr>
+                        <td class="intCadRow intDialogue">blablabla</td><!--Falas do Personagem-->
+                        </tr>
+                    </table><!--Fim da tabela da fala-->
+                </td><!--Fim da td das falas do Personagem-->
+                <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+            </tr>
+            <tr>
+                <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                    <input type="button" class="intButton projetoTBtn" value="Conte-me sobre a religião. (Projeto)">
+                    <input type="button" class="intButton equipeTBtn" value="Conte-me sobre os Criadores. (Equipe)">
+                    <input type="button" class="intButton sairBtn" value="Obrigado. (Sair)">
+                </div><!--Fim do agrupamento dos botões-->
+                </td><!--Fim da td dos botões-->
+            </tr>
+        </table>
+        </div>
+
+
+        <!-- Sobre o Projeto -->
+
+        <div id="projetoT">
+        <table class="intTable"> <!--Tabela de interações-->
+            <tr>
+                <th class="intRow" colspan="2">Taverneiro</th> <!--Nome do personagem que está falando-->
+            </tr>
+            <tr>
+                <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                    <table><!--Tabela da fala-->
+                        <tr>
+                        <td class="intCadRow intDialogue">blablabla</td><!--Falas do Personagem-->
+                        </tr>
+                    </table><!--Fim da tabela da fala-->
+                </td><!--Fim da td das falas do Personagem-->
+                <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+            </tr>
+            <tr>
+                <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                    <input type="button" class="intButton jogoTBtn" value="Conte-me sobre o mundo. (Jogo)">
+                    <input type="button" class="intButton equipeTBtn" value="Conte-me sobre os Criadores. (Equipe)">
+                    <input type="button" class="intButton sairBtn" value="Obrigado. (Sair)">
+                </div><!--Fim do agrupamento dos botões-->
+                </td><!--Fim da td dos botões-->
+            </tr>
+        </table>
+        </div>
+
+        <!-- Sobre a equipe -->
+
+        <div id="equipeT">
+        <table class="intTable"> <!--Tabela de interações-->
+            <tr>
+                <th class="intRow" colspan="2">Taverneiro</th> <!--Nome do personagem que está falando-->
+            </tr>
+            <tr>
+                <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                    <table><!--Tabela da fala-->
+                        <tr>
+                        <td class="intCadRow intDialogue">blablabla</td><!--Falas do Personagem-->
+                        </tr>
+                    </table><!--Fim da tabela da fala-->
+                </td><!--Fim da td das falas do Personagem-->
+                <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+            </tr>
+            <tr>
+                <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                    <input type="button" class="intButton jogoTBtn" value="Conte-me sobre o mundo. (Jogo)">
+                    <input type="button" class="intButton projetoTBtn" value="Conte-me sobre a religião. (Projeto)">
+                    <input type="button" class="intButton sairBtn" value="Obrigado. (Sair)">
+                </div><!--Fim do agrupamento dos botões-->
+                </td><!--Fim da td dos botões-->
+            </tr>
+        </table>
+        </div>
+      </div>
+    </div>
+
+        <div class="containerModais" id="containerModaisBardo">
+          <div id="intBardo"><!--Sufixo "B" indica "bardo"-->
+          <div id="bardo">
+          <table class="intTable"> <!--Tabela de interações-->
+              <tr>
+                  <th class="intRow intPersonagem" colspan="2">Bardo</th> <!--Nome do personagem que está falando-->
+              </tr>
+              <tr>
+                  <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                      <table><!--Tabela da fala-->
+                          <tr>
+                          <td class="intCadRow intDialogue">
+                            "2,3,4,5,meia,7,8<br>
+                             Tá na hora de matar o orc afoito<br>
+                             Eu quebro osso mas eu não me canso
+                             Tá na hora de matar o elfo tanso..."<br><br>
+                            Oh! Olá aventureiro, gostaria de propor um tema para minha próxima música?</td><!--Falas do Personagem-->
+                          </tr>
+                      </table><!--Fim da tabela da fala-->
+                  </td><!--Fim da td das falas do Personagem-->
+                  <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+              </tr>
+              <tr>
+                  <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                  <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                      <input type="button" class="intButton reinosBBtn" value="Cante sobre os reinos.">
+                      <input type="button" class="intButton guerraBBtn" value="Cante sobre a guerra.">
+                      <input type="button" class="intButton criaturasBBtn" value="Cante sobre as criaturas sombrias.">
+                      <input type="button" class="intButton sairBtn" value="Não obrigado, deixa pra lá. (Sair)">
+                  </div><!--Fim do agrupamento dos botões-->
+                  </td><!--Fim da td dos botões-->
+              </tr>
+          </table>
+          </div>
+
+          <!-- Sobre o jogo -->
+
+          <div id="reinosB">
+          <table class="intTable"> <!--Tabela de interações-->
+              <tr>
+                  <th class="intRow intPersonagem" colspan="2">Bardo</th> <!--Nome do personagem que está falando-->
+              </tr>
+              <tr>
+                  <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                      <table><!--Tabela da fala-->
+                          <tr>
+                          <td class="intCadRow intDialogue">blablabla</td><!--Falas do Personagem-->
+                          </tr>
+                      </table><!--Fim da tabela da fala-->
+                  </td><!--Fim da td das falas do Personagem-->
+                  <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+              </tr>
+              <tr>
+                  <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                  <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                      <input type="button" class="intButton guerraBBtn" value="Cante sobre a guerra.">
+                      <input type="button" class="intButton criaturasBBtn" value="Cante sobre as criaturas sombrias.">
+                      <input type="button" class="intButton sairBtn" value="Obrigado pela música! (Sair)">
+                  </div><!--Fim do agrupamento dos botões-->
+                  </td><!--Fim da td dos botões-->
+              </tr>
+          </table>
+          </div>
+
+
+          <!-- Sobre o Projeto -->
+
+          <div id="guerraB">
+          <table class="intTable"> <!--Tabela de interações-->
+              <tr>
+                  <th class="intRow intPersonagem" colspan="2">Bardo</th> <!--Nome do personagem que está falando-->
+              </tr>
+              <tr>
+                  <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                      <table><!--Tabela da fala-->
+                          <tr>
+                          <td class="intCadRow intDialogue">blablabla</td><!--Falas do Personagem-->
+                          </tr>
+                      </table><!--Fim da tabela da fala-->
+                  </td><!--Fim da td das falas do Personagem-->
+                  <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+              </tr>
+              <tr>
+                  <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                  <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                      <input type="button" class="intButton reinosBBtn" value="Cante sobre os reinos.">
+                      <input type="button" class="intButton criaturasBBtn" value="Cante sobre as criaturas sombrias.">
+                      <input type="button" class="intButton sairBtn" value="Obrigado pela música! (Sair)">
+                  </div><!--Fim do agrupamento dos botões-->
+                  </td><!--Fim da td dos botões-->
+              </tr>
+          </table>
+          </div>
+
+          <!-- Sobre a equipe -->
+
+          <div id="criaturasB">
+          <table class="intTable"> <!--Tabela de interações-->
+              <tr>
+                  <th class="intRow intPersonagem" colspan="2">Bardo</th> <!--Nome do personagem que está falando-->
+              </tr>
+              <tr>
+                  <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                      <table><!--Tabela da fala-->
+                          <tr>
+                          <td class="intCadRow intDialogue">blablabla</td><!--Falas do Personagem-->
+                          </tr>
+                      </table><!--Fim da tabela da fala-->
+                  </td><!--Fim da td das falas do Personagem-->
+                  <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+              </tr>
+              <tr>
+                  <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                  <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                      <input type="button" class="intButton reinosBBtn" value="Cante sobre os reinos.">
+                      <input type="button" class="intButton guerraBBtn" value="Cante sobre a guerra.">
+                      <input type="button" class="intButton sairBtn" value="Obrigado pela música! (Sair)">
+                  </div><!--Fim do agrupamento dos botões-->
+                  </td><!--Fim da td dos botões-->
+              </tr>
+          </table>
+          </div>
+        </div>
+        </div>
+
+        <div id="ranking">
+          <form id="formRanking">
+            <table id="tableRanking" class="intRowRanking">
+              <tr>
+                <th class="intRowRanking tituloRanking" colspan="3">MELHORES AVENTUREIROS DO REINO</th>
+              </tr>
+              <tr>
+                <th class="intRowRanking tituloRanking">POSIÇÃO</th>
+                <th class="intRowRanking tituloRanking">USUÁRIO</th>
+                <th class="intRowRanking tituloRanking">PONTUAÇÃO</th>
+              </tr>
+              <tr>
+                <td class="intRowRanking">1</td>
+                <td class="intRowRanking">MMMMMMMMMMMMMMMM</td>
+                <td class="intRowRanking">999999e8</td>
+              </tr>
+              <tr>
+                <td class="intRowRanking">2</td>
+                <td class="intRowRanking">BRADESGO</td>
+                <td class="intRowRanking">999999</td>
+              </tr>
+              <tr>
+                <td class="intRowRanking">3</td>
+                <td class="intRowRanking">BITAU</td>
+                <td class="intRowRanking">999998</td>
+              </tr>
+              <tr>
+                <td class="intRowRanking">4</td>
+                <td class="intRowRanking">BANTANDER</td>
+                <td class="intRowRanking">999997</td>
+              </tr>
+              <tr>
+                <td class="intRowRanking">5</td>
+                <td class="intRowRanking">PIRAGANJUBA</td>
+                <td class="intRowRanking">999996</td>
+              </tr>
+              <tr>
+                <td class="intRowRanking">6</td>
+                <td class="intRowRanking">ROGERINHO GAMES</td>
+                <td class="intRowRanking">999994</td>
+              </tr>
+              <tr>
+                <td class="intRowRanking">7</td>
+                <td class="intRowRanking">TIMRA BEI</td>
+                <td class="intRowRanking">999993</td>
+              </tr>
+              <tr>
+                <td class="intRowRanking">8</td>
+                <td class="intRowRanking">JACINTO PAULA DE</td>
+                <td class="intRowRanking">999992</td>
+              </tr>
+              <tr>
+                <td class="intRowRanking">9</td>
+                <td class="intRowRanking">TAVINHO KONESKI</td>
+                <td class="intRowRanking">999991</td>
+              </tr>
+              <tr>
+                <td class="intRowRanking">10</td>
+                <td class="intRowRanking">MEUPA UDEASA</td>
+                <td class="intRowRanking">999990</td>
+              </tr>
+              <tr>
+                <td><img src="../../resources/style/images/x.png" alt="img" id="fechar" class="sairBtn" /></td>
+                <td colspan="2"><img src="../../resources/style/images/flecha.png" alt="img" id="flecha"/></td>
+              </tr>
+              <tr>
+                <th class="intRowRanking tituloRanking" colspan="3">SUA PONTUAÇAO</th>
+              </tr>
+              <tr>
+                <td class="intRowRanking">13803</td>
+                <td class="intRowRanking">DjRogerinho</td>
+                <td class="intRowRanking">9</td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+        <div id="avisos">
+          <table id="tableAvisos">
+            <tr>
+              <th>Avisos</th>
+            </tr>
+            <tr>
+              <td><button type="button" class="buttonAvisos">Data e Horário 1</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" class="buttonAvisos">Data e Horário 2</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" class="buttonAvisos">Data e Horário 3</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" class="buttonAvisos">Data e Horário 4</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" class="buttonAvisos">Data e Horário 5</button></td>
+            </tr>
+            <tr>
+              <td><button type="button" class="buttonAvisos">Data e Horário 6</button></td>
+            </tr>
+          </table>
+
+            <img src="../../resources/style/images/x.png" alt="img" id="fecharAvisos" class="sairBtn" />
+        </div>
+        <div id="alterarDados">
+          <table id="tableAlterar">
+            <tr>
+              <th colspan="2">FOLHA DE CADASTRO</th>
+            </tr>
+            <tr>
+              <td><img></td>
+              <td><button type="button">Alterar Dados</button>
+            </tr>
+            <tr>
+              <td>Nome:</td>
+              <td>xXDJMarquinhosXx</td>
+            </tr>
+            <tr>
+              <td>Data de Nascimento:</td>
+              <td>05/11/2000</td>
+            </tr>
+            <tr>
+              <td>E-mail:</td>
+              <td>djmarquinhos123@gmail.com</td>
+            </tr>
+            <tr>
+              <td>Senha:</td>
+              <td>***********</td>
+            </tr>
+          </table>
+        </div>
+  </body>
+</html>
