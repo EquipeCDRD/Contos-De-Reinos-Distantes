@@ -12,7 +12,7 @@ import java.util.Collection;
 import br.com.contos.classes.Pontuacao;
 import br.com.contos.classes.Usuario;
 import br.com.contos.conexao.Conexao;
-import br.com.contos.interfaces.PontuacaoDAO;
+import br.com.contos.jdbcinterfaces.PontuacaoDAO;
 import java.sql.SQLException;
 import static java.util.Collections.reverseOrder;
 
@@ -31,13 +31,13 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
     public boolean inserirPontuacao(Pontuacao pontuacao, List<Pontuacao> listaDePontuacoes) {
         
     	//Insere a nova pontuação onde o campo de 
-    	
+    	return false;
     }
     
     /*=============================================inserirPontuacao()=======================================================*/
     
     //Método responsável pela deleção de pontuações já salvas no banco
-    @Override
+   
 	public boolean deletarPontuacao(int pontuacao, int usuarioId) {
 		
 		return false;

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
+    <wb-module deploy-name="CDRD">
+                
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                
+        <property name="context-root" value="CDRD"/>
+                
+        <property name="java-output-path" value="/CDRD/build/classes"/>
+            
+    </wb-module>
+    
+</project-modules>

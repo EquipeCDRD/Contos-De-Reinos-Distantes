@@ -1,4 +1,4 @@
-package br.com.contos.interfaces;
+package br.com.contos.jdbcinterfaces;
 
 import java.util.List;
 import br.com.contos.classes.Pontuacao;
