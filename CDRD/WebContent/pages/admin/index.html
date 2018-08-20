@@ -18,6 +18,7 @@
         integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
         crossorigin="anonymous"></script>
     <script src="../../resources/js/admin.js"></script>
+    <script src="../../resources/js/adminServlet.js"></script>
 </head>
 <body>
     <div id="admPaginas">
@@ -197,6 +198,7 @@
             <div class="divGrafico graficoEsq" id="graficoTempoPorFase">AQUI HAVERÁ O GRÁFICO DE TEMPO MÉDIO POR FASE</div>
             <div class="divGrafico graficoDir" id="graficoDerrotas">AQUI HAVERÁ O GRÁFICO DE DERROTAS POR FASE</div>
         </div>
+
         <div class="conteudo" id="admPaginas-6"> <!--Gerenciard Admin-->
             <div class="divListaContasAdmin comBorda quaseCheio">
                 <h2>Cadastro de Administrador</h2>
@@ -242,14 +244,14 @@
                 </div>
                 <div class="divDeletarContas comBorda">
                     <h2>Deletar administrador:</h2>
-                    <form name="frmdeletarcontaadm" onsubmit="return deletarUsuario(1)">
+                    <form name="frmdeletarcontaadm">
                         <h3>Admin selecionado:</h3>
                         <input readonly type="text" name="txtadmin" placeholder="Nenhum administrador selecionado">
                         <h3 class="tituloMotivo">Motivo:</h3>
                         <textarea name="txamotivoadm"></textarea>
                         <div class="divBotoesDeletar">
                             <button type="reset" name="btnlimparmotivo">Limpar</button>
-                            <button name="btndeletarconta" type="submit">Deletar Conta</button><!--Botão para deletar contas-->
+                            <button name="btndeletarconta" onclick="deletarUsuario(0)">Deletar Conta</button><!--Botão para deletar contas-->
                         </div>
                     </form>
                 </div>
@@ -284,7 +286,7 @@
                     </div>
                     <div class="cadCampo">
                         <label>Confirmar Nova Senha: </label>
-                        <input type="password" name="pwdconfsenha" id="altConfSenha">
+                        <input type="password" name="pwdconfsenhanova" id="altConfSenha">
                     </div>
                     <div class="cadBotoes">
                         <button type="submit">Enviar</button>

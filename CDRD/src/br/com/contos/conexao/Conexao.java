@@ -1,5 +1,7 @@
 package br.com.contos.conexao;
+
 import java.sql.Connection;
+
 public class Conexao {
 	private Connection conexao;
 	public Connection abrirConexao() {
@@ -20,4 +22,3 @@ public class Conexao {
 		}
 	}
 }
-

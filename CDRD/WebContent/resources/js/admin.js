@@ -8,20 +8,13 @@ $( function() {
     $( "#admPaginas" ).tabs();
   } );
 
-//-----------------------------Gerenciar Contas-----------------
 
-  $(function escolherUsuario(){
-      $(".listaContas").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
-      if(!$(this).is(".carregarMais")){
-          $("input[name=txtusuario]").val($(this).text());
-      }
-      });
-  });
   
   //se os campos estao preenchidos pede confirmação, se sim, envia.
   function deletarUsuario(tipouser){//Parâmetro para ver se foi chamado por gerenciar contas ou adm.
     var conf = false;
-    if(tipouser==0){
+    var id = ($("input[name=txt]").val());
+    if(tipouser==1){
         if($("input[name=txtusuario").val()!=""){
             if($("textarea[name=txamotivo]").val()!=""){
                 conf = confirm("Você tem certeza que deseja deletar o usuário?");
@@ -33,7 +26,7 @@ $( function() {
           alert("Selecione um usuário primeiro.");
           $("input[name=txtusuario").focus();
         }
-    }else if(tipouser==1){
+    }else if(tipouser==0){
         if($("input[name=txtadmin").val()!=""){
             if($("textarea[name=txamotivoadm]").val()!=""){
                 conf = confirm("Você tem certeza que deseja deletar o administrador?");
@@ -46,7 +39,20 @@ $( function() {
           $("input[name=txtadmin").focus();
         }
     }
-    return conf;
+    if(conf){
+    		$.ajax({
+    			type:"POST",
+    			url: PATH + "DeletaUsuario",
+    			data: "id="+id,
+    			success: function(msg){
+    				alert(msg.msg);
+    			},
+    			error: function(info){
+    				alert("Erro ao deletar contato: "+ info.status + " - " + info.statusText);
+    			}
+    		});
+    
+    };
 }
 
   
@@ -67,25 +73,7 @@ $( function() {
       $("#divEditarNotificacoes").hide();
   }
 
-  function validaNotificacao(compedit){//Recebe o parâmetro se o foi chamado pelo compor ou pelo editar.
-    var conf = false;
-    if(compedit==0){
-        if($("textarea[name=txacompnotificacao]").val()!=""){
-            conf = confirm("Você tem certeza que deseja postar uma notificação?");
-        }else{
-            alert("Escreva uma notificação.");
-            $("textarea[name=txacompnotificacao]").focus();
-        }
-    }else if(compedit==1){
-        if($("textarea[name=txaeditnotificacao]").val()!=""){
-            conf = confirm("Você tem certeza que deseja editar uma notificação?");
-        }else{
-            alert("Escreva uma notificação.");
-            $("textarea[name=txaeditnotificacao]").focus();
-        }
-    }
-    return conf;   
-}
+
 
 //--------------------------------Gerenciar Admins--------------------------------------------
 //usa a servlet BuscaUsuariosParaLista para fazer bem isso
@@ -107,7 +95,7 @@ buscaAdm = function(){
     
 };
 
-$(function listaLegal(){
+$(function lista(){
     var html;
     $.ajax({
         type: "POST",
@@ -133,13 +121,28 @@ listaAdm = function(lista) {
         dados += "<ul class='listaContas' id='listaAdmins'>";
         if (lista != undefined && lista.length > 0){
             for (var i=0; i<lista.length; i++){
-                dados +="<li>"+lista[i].login+"</li>";
+                dados +="<li name='txt"+lista[i].login+" value='"+lista[i].id+"'>"+lista[i].login+"</li>";
             }
         }
         dados+="</ul>";
     }
     return dados;
 };
+
+deletaAdm = function(id){
+	$.ajax({
+		type:"POST",
+		url: PATH + "DeletaUsuario",
+		data: "id="+id,
+		success: function(msg){
+			alert(msg.msg);
+		},
+		error: function(info){
+			alert("Erro ao deletar contato: "+ info.status + " - " + info.statusText);
+		}
+	});
+};
+
 //faz o cadastro
 function cadastraAdm(){
 	if (validaCadastroAdm()==true){
@@ -215,15 +218,15 @@ function validaMinhaConta(){
                 if($("input[name=txtapelido]").val()!=""){
                     if($("input[name=pwdsenhaantiga]").val()!=""){
                         if($("input[name=pwdsenhanova]").val()!=""){
-                            if($("input[name=pwdconfsenha]").val()!=""){
-                                if($("input[name=pwdsenhanova]").val()==$("input[name=pwdconfsenha]").val()){
+                            if($("input[name=pwdconfsenhanova]").val()!=""){
+                                if($("input[name=pwdsenhanova]").val()==$("input[name=pwdconfsenhanova]").val()){
                                     conf = confirm("Tem certeza que deseja alterar informações de sua conta?");
                                 }else{
                                     alert("As senhas não coincidem.");
                                 }
                             }else{
                                 alert("Preencha a confirmação de senha.");
-                                $("input[name=pwdconfsenha]").focus();
+                                $("input[name=pwdconfsenhanova]").focus();
                             }
                         }else{
                             alert("Preencha a senha nova.");
@@ -251,3 +254,43 @@ function validaMinhaConta(){
     }
     return conf;
 }
+//Scripts para as pgs de admin do Contos de Reinos Distantes.
+//Autor: João Guilherme Oliveira Porto Nunes
+
+//-----------------------------Gerenciar Contas-----------------
+
+  $(function escolherUsuario(){
+      $(".listaContas").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
+      if(!$(this).is(".carregarMais")){
+          $("input[name=txtusuario]").val($(this).text());
+      }
+      });
+  })
+  
+
+  
+//----------------------------------Notificacoes-------------------------------------
+
+
+  function validaNotificacao(compedit){//Recebe o parâmetro se o foi chamado pelo compor ou pelo editar.
+    var conf = false;
+    if(compedit==0){
+        if($("textarea[name=txacompnotificacao]").val()!=""){
+            conf = confirm("Você tem certeza que deseja postar uma notificação?");
+        }else{
+            alert("Escreva uma notificação.");
+            $("textarea[name=txacompnotificacao]").focus();
+        }
+    }else if(compedit==1){
+        if($("textarea[name=txaeditnotificacao]").val()!=""){
+            conf = confirm("Você tem certeza que deseja editar uma notificação?");
+        }else{
+            alert("Escreva uma notificação.");
+            $("textarea[name=txaeditnotificacao]").focus();
+        }
+    }
+    return conf;   
+}
+
+
+

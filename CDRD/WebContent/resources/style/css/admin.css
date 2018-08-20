@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 /*--------------------CSS - Páginas de administrador Contos de Reinos Distantes--------*/
@@ -318,3 +319,325 @@ body{
     margin: 0 auto 20px;
 }
 
+=======
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/*--------------------CSS - Páginas de administrador Contos de Reinos Distantes--------*/
+
+/*--------------------------------------------Geral------------------------------------*/
+body{
+    font-family: 'Roboto', sans-serif;
+    margin:0;
+    background-color: darkslategray;
+}
+
+/*-------------------------------------Geral - Menu------------------------------------*/
+
+.admMenu{
+    height: 100px;
+    width: auto;
+    margin: 0px auto 0px;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    border-style: solid;
+    border-color: darkolivegreen;
+    border-width: 0px 3px 3px 3px;
+    background-color: darkseagreen;
+}
+
+.admMenu img{
+    float: left;
+    width: 200px;
+    height: 200px;
+}
+
+.admMenu ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;    
+}
+
+.admMenu div{
+    float: left;
+    display: block;
+    padding: 0px 0.5%;
+    margin: 0;
+    height: 100px;
+    width: auto;
+    line-height: 90px;
+}
+
+.admMenu div:hover{
+    transition: 1s;
+    background-color: darkolivegreen;
+    color: #000000;
+   }
+
+.admMenu a{
+    display: inline;
+    font-size: 1.4em;
+    color: #000000;
+    text-decoration: none;
+}
+
+/*------------------------------------Geral - Conteúdo------------------------------------*/
+
+.conteudo{
+    float: left;
+    width: 80%;
+    height: auto;
+    margin: 1% 10% 0;
+    padding: 1%;
+    background-color: darkseagreen;
+    border: 3px solid darkolivegreen;
+}
+
+.comBorda{
+    background-color: inherit;
+    border: 3px solid darkolivegreen;
+    width: 45%;
+    padding: 1%;
+    margin-bottom: 10px;
+}
+
+/*--------------------------------Ranking, Logs de Acesso------------------------------------*/
+
+.tabelaGeral{
+    margin-left: 10%;
+    border: 3px solid darkolivegreen;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+.paginacao{
+    width: 80%;
+    margin: 1% 0 0 10%;
+    padding: 0.5% 0 0.5% 0;
+    text-align: center
+}
+
+.paginacao a{
+    display: inline;
+    font-size: 1.25em;
+    color: #000000;
+}
+
+.paginacao a:hover{
+    transition: 0s;
+    background-color: darkolivegreen;
+}
+
+
+.tituloTabela{
+    margin: 0 0 1% 10%;
+}
+
+.tabelaGeral td, th{                                          
+    text-align: justify;     
+    border: 3px solid darkolivegreen;
+    height: 30px;
+}
+
+/*----------------------------------------Gerenciar Contas------------------------------------*/
+
+.divSelecionarContas{
+    float: left;
+}
+
+.divSelecionarContas h2{
+    display: inline-block;
+    margin: 0%;
+    height: 31px;
+}
+
+.divSelecionarContas input{
+    height: 25px;
+    width: 62%;
+    position: relative;
+    left: 1%;
+}
+
+.divSelecionarContas button{
+    height: 31px;
+    margin-left: 1%;
+}
+
+.listaContas{
+    border: 3px solid darkolivegreen;
+    margin: 1% 0 0 0;
+    padding: 0;
+    height: 170px;
+    text-decoration: none;
+    list-style-type: none; 
+    background-color: darkseagreen;
+    overflow-y: scroll;
+}
+
+.listaContas li{
+    cursor: pointer;
+    border-bottom: 3px solid darkolivegreen;
+    border-right: 3px solid darkolivegreen;
+}
+
+.listaContas li:hover{
+    transition: 0.5s;
+    background-color: darkolivegreen;
+}
+
+.listaContas li:last-child{
+    border-bottom:none;
+}
+
+.divDeletarContas{
+    float: right;
+}
+
+.divDeletarContas h2{
+    margin: 0;
+}
+
+.divDeletarContas h3{
+    margin:0;
+    display: inline-block;
+}
+
+.divDeletarContas input{
+    height: 17.5px;
+    width: 50%;
+    margin-left: 5%;
+}
+
+#tituloMotivo{
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    bottom: 40px;
+}
+
+.divDeletarContas textarea{
+    margin: 3% 0 0 1%;
+    width: 80%;
+    height: 80px;
+}
+
+.divBotoesDeletar{
+    float: left;
+    margin: 1% 0 0 35%;
+}
+
+.divBotoesDeletar button{
+    height: 30px;
+}
+
+/*-------------------------------Notificações-------------------------------------*/
+
+.divHistoricoNotificacoes{
+    float: left;
+}
+
+.divHistoricoNotificacoes h2{
+    padding: 0;
+    margin:0 0 2.5% 5%;
+}
+
+.divComporNotificacoes{
+    float: right;
+}
+
+.divComporNotificacoes h2{
+    text-align: center;
+    margin: 0;
+}
+
+.divComporNotificacoes textarea{
+    width: 80%;
+    margin: 2% 0 0 10%;
+}
+
+#botaoPostar{
+    margin-left:39%;
+}
+
+.divBotoesEditar{
+    float: left;
+    margin-left: 30%;
+}
+
+.divComporNotificacoes button{
+    height: 35px;
+    margin-top: 1%;
+}
+
+.tabelaNotificacoes{
+    margin-left: 5%;
+    border: 3px solid darkolivegreen;
+    border-collapse: collapse;
+    width: 90%;
+    overflow: scroll;
+}
+
+.tabelaNotificacoes th, td{
+    text-align: justify;     
+    border: 3px solid darkolivegreen;
+    width: 20%;
+    height: 30px;
+    margin-top: 1%;
+}
+
+.tabelaNotificacoes button{
+    width: 100%;
+}
+
+.colMeio{
+    width: 60%;
+}
+
+#carregarNotificacoes{
+    height: 100%;
+    width: 100%;
+}
+
+/*-----------------------------------Gráficos-----------------------------------*/
+.graficoDir{
+    float: right;
+}
+.graficoEsq{
+    float: left;
+}
+
+.divGrafico{
+    height: 500px;
+    width: 48%;
+}
+
+/* Gerenciar Admin // Minha Conta */
+
+.cadCampo, .cadBotoes{
+    margin-bottom: 5px;
+    width: 50%;
+	text-align: left;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.cadCampo input{
+    margin-left: 200px;
+    width: 300px;
+}
+
+.cadCampo label{
+	position: absolute;
+	margin-top: 4px;
+}
+
+.cadBotoes input{
+    margin: 0 auto;
+}
+
+.quaseCheio{
+    width: 95%;
+    margin: 0 auto 20px;
+}
+
+>>>>>>> 013cc7f963ab361469ef0b167d6c79855f1ffb20

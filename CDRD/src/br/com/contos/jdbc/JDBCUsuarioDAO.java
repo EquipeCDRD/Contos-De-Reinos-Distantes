@@ -81,10 +81,11 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 				+ " email=?"
 				+ " WHERE id=?";
 		PreparedStatement p;
+		Criptografia criptografia = new Criptografia();
 		try {
 			p = this.conexao.prepareStatement(comando);
 			p.setString(3, usuario.getLogin());
-			p.setString(2, Criptografia.criptografaSenha(usuario.getSenha()));
+			p.setString(2, criptografia.criptografar(usuario.getSenha()));//
 			p.setString(3, usuario.getNome());
 			p.setString(4, usuario.getNascimento());
 			p.setString(5, usuario.getEmail());
@@ -111,7 +112,6 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 		return true;
 	}
 	
-	@SuppressWarnings("null")
 	public List<Usuario> buscar(String nivel, String busca) {
 		String comando = "SELECT * FROM usuarios ";
 		if (!nivel.equals("2") || !busca.equals("")) {
@@ -133,6 +133,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 			ResultSet rs = stmt.executeQuery(comando);
 			while (rs.next()) {
 				Usuario usuario = new Usuario();
+				String id = rs.getString("id");
 				String login = rs.getString("usuario");
 				String senha = rs.getString("senha");
 				String email = rs.getString("email");
@@ -141,6 +142,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 				String dataCriacao = rs.getString("data_criacao");
 				String permissao = rs.getString("permissao");
 				
+				usuario.setId(id);
 		        usuario.setLogin(login);
 		        usuario.setSenha(senha);
 		        usuario.setEmail(email);
