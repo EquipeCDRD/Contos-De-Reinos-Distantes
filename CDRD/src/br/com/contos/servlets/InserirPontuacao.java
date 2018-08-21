@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /*==================Pacotes==================*/
 import br.com.contos.classes.Pontuacao;
-import br.com.contos.classes.Usuario;
 import br.com.contos.conexao.Conexao;
 import br.com.contos.jdbc.JDBCPontuacaoDAO;
 
@@ -25,7 +24,7 @@ import br.com.contos.jdbc.JDBCPontuacaoDAO;
 import com.google.gson.Gson;
 
 //Anotação que indica a URL da servlet
-@WebServlet("/inserePontuacao")
+@WebServlet("/inserirPontuacao")
 public class InserirPontuacao extends HttpServlet{
 	
 	public static final long serialVersionUID = 1L;
@@ -47,8 +46,6 @@ public class InserirPontuacao extends HttpServlet{
 		
 		//Instanciamento de Pontuacao e usuario
 		Pontuacao pontuacao = new Pontuacao();
-		Usuario usuario = new Usuario();
-		
 		
 		try {
 			
@@ -57,7 +54,7 @@ public class InserirPontuacao extends HttpServlet{
 			pontuacao.setScore(request.getParameter("txtpontuacao"));
 			pontuacao.setDataCriacao(request.getParameter("txtdatacriacao"));
 			pontuacao.setIdentificadorTabela(request.getParameter("hdidentificador"));
-			pontuacao.setUsuarioId(usuario.getId());
+			pontuacao.setUsuarioId(request.getParameter("usuarioid"));
 			
 			//instanciamento de Conexao abertura da conexao com o banco
 			Conexao con = new Conexao();
@@ -73,50 +70,57 @@ public class InserirPontuacao extends HttpServlet{
 			List<Pontuacao> listaDePontuacoes = new ArrayList<Pontuacao>();
 			listaDePontuacoes = jdbcPontuacao.buscarPontuacao(pontuacao.getIdentificadorTabela(),pontuacao.getUsuarioId());
 			
+			//fechamento da conexao com o banco
+			con.fecharConexao();
+			
 			//Criação da mensagem de retorno 
 			Map<String, String> msg = new HashMap<String, String>();
 			
 			//Se a lista voltar nula, significa que deu merda em algum ponto
 			if(listaDePontuacoes == null) {
+				
 				//Atualização da msg dizendo que deu merda
 				msg.put("msg","Deu caca na hora de buscar nossos registros. Lamentamos pelo inconveniente");
-			}
 			
 			//Se não tiver dado problema até aqui...
-			
-			//Essa variável irá dizer se os processos realizados pelo JDBC deram certo ou não
-			Boolean retorno = null;
-			
-			//Se não tiver pontuação salva
-			if(listaDePontuacoes.size()!=4) {
+			}else {
 				
-				//Chama o método para inserção da nova pontuação
-				retorno = jdbcPontuacao.inserirPontuacao(pontuacao);
-			
-			//e se tiver alguma
-			}else{ 
+				//Essa variável irá dizer se os processos realizados pelo JDBC deram certo ou não
+				Boolean retorno = null;
 				
-				//Chama método para alterar pontuação
-				retorno = jdbcPontuacao.alterarPontuacao(pontuacao, listaDePontuacoes);
-				 
+				//Se não tiver pontuação salva
+				if(listaDePontuacoes.size()!=4) {
+					
+					//Chama o método para inserção da nova pontuação
+					retorno = jdbcPontuacao.inserirPontuacao(pontuacao);
+				
+				//e se tiver alguma
+				}else{ 
+					
+					//Chama método para alterar pontuação
+					retorno = jdbcPontuacao.alterarPontuacao(pontuacao, listaDePontuacoes);
+					 
+				}
+				
+				/*
+				 * 	Checa se os processos do JDBC foram de boas ou falharam. Se estiver true,
+				 * 	tudo ocorreu bem, e se estiver falso, deu merda em algum ponto
+				 */
+				if(retorno) {
+					msg.put("msg","Sua pontuação foi atualizada!");
+				}else {
+					msg.put("msg", "Não atualizou a pontuação não fion...");
+				}
+				
+				//Criação da string json que irá conter a mensagem de resposta
+				String json = new Gson().toJson(msg);
+				
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(json);
 			}
 			
-			/*
-			 * 	Checa se os processos do JDBC foram de boas ou falharam. Se estiver true,
-			 * 	tudo ocorreu bem, e se estiver falso, deu merda em algum ponto ( n
-			 */
-			if(retorno) {
-				msg.put("msg","Sua pontuação foi atualizada!");
-			}
 			
-			//fechamento da conexão
-			con.fecharConexao();
-			
-			String json = new Gson().toJson(msg);
-			
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write(json);
 			
 		}catch(IOException e) {
 			e.printStackTrace();

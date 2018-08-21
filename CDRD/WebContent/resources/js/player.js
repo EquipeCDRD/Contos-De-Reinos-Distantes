@@ -7,6 +7,13 @@
 //Main
 $(document).ready(function(){
 
-    var
+    var usuarioLogado;
+    /**
+     * especifica o caminho a ser trilhado pela função até a chamada da mesma
+     * na raiz do projeto
+     */
+    var PATH = "../../";
+    
+    
 
 });

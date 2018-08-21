@@ -1,13 +1,16 @@
 package br.com.contos.jdbc;
 
+/*==================Libs do java==================*/
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/*==================Pacotes==================*/
 import br.com.contos.classes.Pontuacao;
 import br.com.contos.interfaces.PontuacaoDAO;
-import java.sql.SQLException;
 
 public class JDBCPontuacaoDAO implements PontuacaoDAO {
 
