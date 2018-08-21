@@ -6,7 +6,6 @@ $(document).ready(function(){
 
     //carregamento das janelas modais
     $("#containerModaisIndex").hide();
-    
     var ua = detect.parse(navigator.userAgent);
 
     if(ua.browser.family == "Chrome"){
@@ -30,7 +29,3 @@ function abrirModal(){
     $("#intPerso").show();
     $("#guard_1").show();  
 }
-
-
-
-

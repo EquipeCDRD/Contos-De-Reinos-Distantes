@@ -83,27 +83,22 @@ public class InserirPontuacao extends HttpServlet{
 			}
 			
 			//Se não tiver dado problema até aqui...
-			Boolean retorno = null;//Essa variável irá dizer se os processos realizados pelo JDBC deram certo ou não
-			/*
-			 * Loop onde é checado se alguma das pontuações recupuperadas do banco são maiores, menores ou iguais a 
-			 * nova pontuação, ou seja, somente se a pontuação nova for maior que as outras ela será salva 
-			 */
 			
-			for(int i=0; i>4;i++) {
+			//Essa variável irá dizer se os processos realizados pelo JDBC deram certo ou não
+			Boolean retorno = null;
+			
+			//Se não tiver pontuação salva
+			if(listaDePontuacoes.size()!=4) {
 				
-				//Se não tiver pontuação salva
-				if(Integer.parseInt(listaDePontuacoes.get(i).getScore()) == 0) {
-					
-					//Chama o método para inserção da nova pontuação
-					retorno = jdbcPontuacao.inserirPontuacao(pontuacao, listaDePontuacoes);
-					
-					
-				}else if(Integer.parseInt(pontuacao.getScore()) > (Integer.parseInt(listaDePontuacoes.get(i).getScore()))){ 
-					
-					//Chama método para alterar pontuação
-					retorno = jdbcPontuacao.alterarPontuacao(pontuacao, listaDePontuacoes);
-					 
-				}
+				//Chama o método para inserção da nova pontuação
+				retorno = jdbcPontuacao.inserirPontuacao(pontuacao);
+			
+			//e se tiver alguma
+			}else{ 
+				
+				//Chama método para alterar pontuação
+				retorno = jdbcPontuacao.alterarPontuacao(pontuacao, listaDePontuacoes);
+				 
 			}
 			
 			/*

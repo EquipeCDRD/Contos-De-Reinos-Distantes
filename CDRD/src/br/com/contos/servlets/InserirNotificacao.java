@@ -18,16 +18,16 @@ import br.com.contos.jdbc.JDBCNotificacaoDAO;
 import br.com.contos.conexao.Conexao;
 
 /**
- * Servlet implementation class InsereNotificacao
+ * Servlet implementation class InserirNotificacao
  */
-@WebServlet("/InsereNotificacao")
-public class InsereNotificacao extends HttpServlet {
+@WebServlet("/InserirNotificacao")
+public class InserirNotificacao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public InsereNotificacao() {
+    public InserirNotificacao() {
         // TODO Auto-generated constructor stub
     }
 

@@ -5,7 +5,8 @@ import java.security.MessageDigest;
 public class Criptografia {
     
     public String criptografar(String senha){
-        //salt
+        
+    	//salt
         senha += "C0n7osDi57aNte$";
         
         String senhaCriptografada = "";
