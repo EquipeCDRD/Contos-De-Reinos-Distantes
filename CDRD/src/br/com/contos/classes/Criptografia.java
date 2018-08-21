@@ -4,9 +4,8 @@ import java.security.MessageDigest;
 
 public class Criptografia {
     
-    public String criptografar(String senha){
-        
-    	//salt
+    public static String criptografaSenha(String senha){
+        //salt
         senha += "C0n7osDi57aNte$";
         
         String senhaCriptografada = "";
