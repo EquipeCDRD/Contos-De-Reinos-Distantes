@@ -2,6 +2,8 @@ package br.com.contos.servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,32 +16,33 @@ import com.google.gson.Gson;
 import br.com.contos.classes.Usuario;
 import br.com.contos.conexao.Conexao;
 import br.com.contos.jdbc.JDBCUsuarioDAO;
-
 /**
- * Servlet implementation class BuscarUsuario
- */
-@WebServlet("/BuscaUsuario")
-public class BuscaUsuario extends HttpServlet {
+ * Servlet implementation class BuscarUsuarioParaLista
+ */ 
+@WebServlet("/BuscarUsuariosParaLista")
+public class BuscarUsuariosParaLista extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BuscaUsuario() {
+    public BuscarUsuariosParaLista() {
         super();
         // TODO Auto-generated constructor stub
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Usuario usuario = new Usuario();
+    	List<Usuario> usuarios = new ArrayList<Usuario>();
     	
+    	//Chamar o método que busca os usuarios do banco de dados
     	Conexao conec = new Conexao();
     	Connection conexao = conec.abrirConexao();
     	JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
-    	usuario = jdbcUsuario.buscarPorValor(request.getParameter("usuario"),"usuario");
+    	usuarios = jdbcUsuario.buscar(request.getParameter("permissao"), request.getParameter("valorBusca"));
     	conec.fecharConexao();
     	
-    	String json = new Gson().toJson(usuario);
+    	//Para retornar um objeto para o usuário
+    	String json = new Gson().toJson(usuarios);
     	try {
     		response.setContentType("application/json");
     		response.setCharacterEncoding("UTF-8");
@@ -47,22 +50,23 @@ public class BuscaUsuario extends HttpServlet {
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
+    	
     }
     
     /**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		process(request, response);	
-	}
+   	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+   	 */
+   	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   		// TODO Auto-generated method stub
+   		process(request, response);	
+   	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		process(request, response);
-	}
+   	/**
+   	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+   	 */
+   	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   		// TODO Auto-generated method stub
+   		process(request, response);
+   	}
 
 }

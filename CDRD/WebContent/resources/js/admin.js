@@ -7,14 +7,13 @@
 $( function() {
     $( "#admPaginas" ).tabs();
   } );
-
+var usuarioLogado;
 var PATH = "../../"
   
   //se os campos estao preenchidos pede confirmação, se sim, envia.
 deletarUsuario = function (tipouser){//Parâmetro para ver se foi chamado por gerenciar contas ou adm.
     var conf = false;
     var usuario = ($("input[name=txtadmin]").val());
-    console.log(usuario);
     if(tipouser==1){
         if($("input[name=txtusuario").val()!=""){
             if($("textarea[name=txamotivo]").val()!=""){
@@ -43,7 +42,7 @@ deletarUsuario = function (tipouser){//Parâmetro para ver se foi chamado por ge
     if(conf){
     		$.ajax({
     			type:"POST",
-    			url: PATH + "DeletaUsuario",
+    			url: PATH + "DeletarUsuario",
     			data: "usuario="+usuario,
     			success: function(msg){
     				alert(msg.msg);
@@ -83,7 +82,7 @@ buscaAdm = function(){
     var html;
     $.ajax({
         type: "POST",
-        url: "../../BuscaUsuariosParaLista",
+        url: PATH + "BuscarUsuariosParaLista",
         data: "permissao=0&valorBusca="+valorBusca,
         success: function(dados){
             html = listaAdm(dados);
@@ -100,7 +99,7 @@ $(function lista(){
     var html;
     $.ajax({
         type: "POST",
-        url: "../../BuscaUsuariosParaLista",
+        url: PATH + "BuscarUsuariosParaLista",
         data: "permissao=0&valorBusca=",
         success: function(dados){
             html = listaAdm(dados);
@@ -133,7 +132,7 @@ listaAdm = function(lista) {
 function deletaAdm(id){
 	$.ajax({
 		type:"POST",
-		url: PATH + "DeletaUsuario",
+		url: PATH + "DeletarUsuario",
 		data: "id="+id,
 		success: function(msg){
 			alert(msg.msg);
@@ -149,7 +148,7 @@ function cadastraAdm(){
 	if (validaCadastroAdm()==true){
 		$.ajax({
 			type: "POST",
-			url: "../../InsereUsuario",
+			url: PATH + "InserirUsuario",
 			data: $("#cadastrarAdmin").serialize(),
 			success: function (msg) {
 				alert(msg.msg);
@@ -297,7 +296,7 @@ function validaMinhaConta(){
   buscaAdmParaEditar = function(id){
 	  $.ajax({
 		  type: "POST",
-		  url: PATH + "BuscaUsuarioPorValor",
+		  url: PATH + "BuscarUsuarioPorValor",
 		  data: "valor="+id+"&tipo=id",
 		  success: function(nome){
 			  $("#altNome").val(contato.nome);
@@ -330,7 +329,7 @@ function validaMinhaConta(){
 		} else {
 			$.ajax({
 				type: "POST",
-				url: PATH + "AlteraUsuario",
+				url: PATH + "AlterarUsuario",
 				data: $("#editarConta").serialize(),
 				success: function (msg) {
 					alert(msg.msg);

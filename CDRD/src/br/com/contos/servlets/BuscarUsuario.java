@@ -2,8 +2,6 @@ package br.com.contos.servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,53 +11,50 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import br.com.contos.classes.Usuario;
 import br.com.contos.conexao.Conexao;
 import br.com.contos.jdbc.JDBCUsuarioDAO;
 
-
 /**
- * Servlet implementation class DeletaUsuario
+ * Servlet implementation class BuscarUsuario
  */
-@WebServlet("/DeletaUsuario")
-public class DeletaUsuario extends HttpServlet {
+@WebServlet("/BuscaUsuario")
+public class BuscarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeletaUsuario() {
+    public BuscarUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    private void process(HttpServletRequest request, HttpServletResponse response) 
-    		throws ServletException, IOException {
-    	String login = request.getParameter("usuario");
+    private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Usuario usuario = new Usuario();
     	
     	Conexao conec = new Conexao();
     	Connection conexao = conec.abrirConexao();
     	JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
-    	boolean retorno = jdbcUsuario.deletar(login);
+    	usuario = jdbcUsuario.buscarPorValor(request.getParameter("usuario"),"usuario");
     	conec.fecharConexao();
     	
-    	Map<String, String> msg = new HashMap<String, String>();
-    	if (retorno) {
-    		msg.put("msg", "Usuário deletado com sucesso.");
-    	} else {
-    		msg.put("msg", "Não foi possível deletar o usuario.");
+    	String json = new Gson().toJson(usuario);
+    	try {
+    		response.setContentType("application/json");
+    		response.setCharacterEncoding("UTF-8");
+    		response.getWriter().write(json);
+    	} catch (IOException e) {
+    		e.printStackTrace();
     	}
-    	String json = new Gson().toJson(msg);
-    	response.setContentType("application/json");
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(json);
-    }    
-
-	/**
+    }
+    
+    /**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		process(request, response);
+		process(request, response);	
 	}
 
 	/**

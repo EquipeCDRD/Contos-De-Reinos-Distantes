@@ -1,5 +1,4 @@
 package br.com.contos.servlets;
-//aserfeito
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,72 +11,65 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.contos.classes.Usuario;
 import br.com.contos.classes.Criptografia;
+import br.com.contos.classes.Usuario;
 import br.com.contos.conexao.Conexao;
 import br.com.contos.jdbc.JDBCUsuarioDAO;
 
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class AlterarUsuario
+ * Servlet implementation class InsereUsuario
  */
-@WebServlet("/AlteraUsuario")
-public class AlteraUsuario extends HttpServlet {
+@WebServlet("/InserirUsuario")
+public class InserirUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AlteraUsuario() {
-        super();
+    public InserirUsuario() {
         // TODO Auto-generated constructor stub
     }
     
     private void process(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException{
-    	try {	
+    	Usuario usuario = new Usuario();
+    	
+    	try {
+    		usuario.setNome(request.getParameter("txtnome"));
+    		usuario.setEmail(request.getParameter("txtemail"));
+    		usuario.setNascimento(request.getParameter("dtenascimento"));
+    		usuario.setLogin(request.getParameter("txtapelido"));
+    		usuario.setSenha(Criptografia.criptografaSenha(request.getParameter("pwdsenha")));
+    		usuario.setPermissao(request.getParameter("hdpermissao"));
     		Conexao conec = new Conexao();
     		Connection conexao = conec.abrirConexao();
     		JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
-    		Usuario usuariobd = jdbcUsuario.buscarPorValor(request.getParameter("txtapelido"), "usuario");
+    		Usuario usuariobd=jdbcUsuario.buscarPorValor(usuario.getLogin(), "usuario");
+    		String loginbd = usuariobd.getLogin();
     		Map<String, String> msg = new HashMap<String, String>();
-    		if (request.getParameter("txtapelido").equals(usuariobd.getLogin())) {
-    			String senhaAtualCript = Criptografia.criptografaSenha(request.getParameter("txtsenhaatual")); 
-    			if (senhaAtualCript.equals(usuariobd.getSenha())) {
-    				Usuario usuario = new Usuario();
-    	    		usuario.setLogin(request.getParameter("txtapelido"));
-    	    		usuario.setSenha(request.getParameter("txtnovasenha"));
-    	    		usuario.setNome(request.getParameter("txtnome"));
-    	    		usuario.setNascimento(request.getParameter("dtenascimento"));
-    	    		usuario.setEmail(request.getParameter("txtemail"));
-    	    		boolean retorno = jdbcUsuario.atualizar(usuario);
-    		    	conec.fecharConexao();
-    		    	
-    		    	if (retorno) {
-    		    		msg.put("msg", "Usuário editado com sucesso.");
-    		    	} else {
-    		    		msg.put("msg", "Não foi possível editar o usuário.");
-    		    		msg.put("erro", "true");
-    		    	}
-	    		} else {
-	    			msg.put("msg", "Senha não corresponde com o cadastro.");
-	    			msg.put("erro", "true");
-	    		}
+    		if (usuario.getLogin().equals(loginbd)) {
+    			msg.put("msg", "Esse login já existe.");
     		} else {	
-	    		msg.put("msg", "Você não pode alterar seu usuário.");
-	    		msg.put("erro", "true");
+	    		boolean retorno = jdbcUsuario.inserir(usuario);
+	    		if (retorno) {
+	    			msg.put("msg", "Usuário cadastrado com sucesso.");
+	    		} else {
+	    			msg.put("msg", "Não foi possível cadastrar o usuário.");
+	    		}
     		}	
     		conec.fecharConexao();
+    		String json = new Gson().toJson(msg);
     		
     		response.setContentType("application/json");
-    	   	response.setCharacterEncoding("UTF-8");
-    	   	response.getWriter().write(new Gson().toJson(msg));
-    	} catch (IOException e) {
+    		response.setCharacterEncoding("UTF-8");
+    		response.getWriter().write(json);
+    		
+    	} catch(IOException e) {
     		e.printStackTrace();
     	}
     }
-    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
