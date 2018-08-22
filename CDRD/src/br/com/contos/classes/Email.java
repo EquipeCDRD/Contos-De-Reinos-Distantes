@@ -57,6 +57,7 @@ public class Email {
         } catch (MessagingException e) {
         	return false;
         }
+        
         return true;
 	}
 }

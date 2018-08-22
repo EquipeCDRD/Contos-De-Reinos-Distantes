@@ -14,6 +14,15 @@ $(document).ready(function(){
      */
     var PATH = "../../";
     
-    
-
+    /**
+     * função ajax que chama a servlet de inserção de pontuações 
+     */
+    $.$.ajax({
+        type: "POST",
+        url: PATH + "inserirPontuacao",
+        data: usuarioLogado.serialize(),
+        success: function (response) {
+            
+        }
+    });
 });
