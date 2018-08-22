@@ -202,7 +202,7 @@
         <div class="conteudo" id="admPaginas-6"> <!--Gerenciard Admin-->
             <div class="divListaContasAdmin comBorda quaseCheio">
                 <h2>Cadastro de Administrador</h2>
-                <form id="cadastrarAdmin" name="frmcadastraradm" onsubmit="return validaCadastroAdm()">
+                <form id="cadastrarAdmin" name="frmcadastraradm">
                     <div class="cadCampo">
                         <label>Nome Completo: </label>
                         <input type="text" name="txtnome" id="cadNome">
@@ -244,14 +244,14 @@
                 </div>
                 <div class="divDeletarContas comBorda">
                     <h2>Deletar administrador:</h2>
-                    <form name="frmdeletarcontaadm">
+                    <form name="frmdeletarcontaadm" onsubmit="deletarUsuario(0)">
                         <h3>Admin selecionado:</h3>
                         <input readonly type="text" name="txtadmin" placeholder="Nenhum administrador selecionado">
                         <h3 class="tituloMotivo">Motivo:</h3>
                         <textarea name="txamotivoadm"></textarea>
                         <div class="divBotoesDeletar">
                             <button type="reset" name="btnlimparmotivo">Limpar</button>
-                            <button name="btndeletarconta" onclick="deletarUsuario(0)">Deletar Conta</button><!--Botão para deletar contas-->
+                            <button type="button" name="btndeletarconta" onclick="deletarUsuario(0)">Deletar Conta</button><!--Botão para deletar contas-->
                         </div>
                     </form>
                 </div>
@@ -262,31 +262,31 @@
                 <form name="frmminhaconta" id="editarConta" onsubmit="return validaMinhaConta()">
                     <div class="cadCampo">
                         <label>Nome Completo: </label>
-                        <input type="text" name="txtnome" id="altNome"> 
+                        <input type="text" name="txtaltnome" id="altNome"> 
                     </div>
                     <div class="cadCampo">
                         <label>Email: </label>
-                        <input type="text" name="txtemail" id="altEmail">
+                        <input type="text" name="txtaltemail" id="altEmail">
                     </div>
                     <div class="cadCampo">
                         <label>Data de Nascimento: </label>
-                        <input type="date" name="dtenascimento" id="altNascimento">
+                        <input type="date" name="dtealtnascimento" id="altNascimento">
                     </div>
                     <div class="cadCampo">
                         <label>Nome do Administrador: </label>
-                        <input type="text" name="txtapelido" id="altApelido">
+                        <input type="text" name="txtaltapelido" id="altApelido">
                     </div>
                     <div class="cadCampo">
                         <label>Senha Antiga:</label>
-                        <input type="password" name="pwdsenhaantiga" id="altVelhaSenha">    
+                        <input type="password" name="pwdaltsenhaantiga" id="altVelhaSenha">    
                     </div>
                     <div class="cadCampo">
                         <label>Nova Senha: </label>
-                        <input type="password" name="pwdsenhanova" id="altNovaSenha">
+                        <input type="password" name="pwdaltsenhanova" id="altNovaSenha">
                     </div>
                     <div class="cadCampo">
                         <label>Confirmar Nova Senha: </label>
-                        <input type="password" name="pwdconfsenhanova" id="altConfSenha">
+                        <input type="password" name="pwdaltconfsenhanova" id="altConfSenha">
                     </div>
                     <div class="cadBotoes">
                         <button type="submit">Enviar</button>

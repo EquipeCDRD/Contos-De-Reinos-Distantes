@@ -41,11 +41,14 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 
 	public Usuario buscarPorValor(String valor, String tipo) {
 		String comando = "SELECT * FROM usuarios"
-			+ " WHERE "+ tipo +" = '" + valor + "'";
+			+ " WHERE ? = '?'";
 		Usuario usuario = new Usuario();
+		PreparedStatement p;
 		try {
-			java.sql.Statement stmt = conexao.createStatement();
-			ResultSet rs = stmt.executeQuery(comando);
+			p = this.conexao.prepareStatement(comando);
+			p.setString(1, tipo);
+			p.setString(2, valor);
+			ResultSet rs = p.executeQuery(comando);
 			while (rs.next()) {
 				String id = rs.getString("id");
 				String login = rs.getString("usuario");
@@ -97,12 +100,13 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 		return true;
 	}
 
-	public boolean deletar(String id) {
+	public boolean deletar(String login) {
 		String comando = "DELETE FROM usuarios"
-				+ " WHERE id = '" + id +"'";
-		Statement p;
+				+ " WHERE usuario = '?'";
+		PreparedStatement p;
 		try {
-			p = this.conexao.createStatement();
+			p = this.conexao.prepareStatement(comando);
+			p.setString(1, login);
 			p.execute(comando);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,10 +130,15 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 			comando += "(nome LIKE '%" + busca + "%' OR usuario LIKE '%" + busca + "%' OR email LIKE '" + busca + "%' OR id LIKE '" + busca + "')";
 		}
 		List<Usuario> listUsuario = new ArrayList<Usuario>();
-		
+		PreparedStatement p;
 		try {
-			Statement stmt = conexao.createStatement(); 
-			ResultSet rs = stmt.executeQuery(comando);
+			p = this.conexao.prepareStatement(comando);
+			p.setString(1, nivel);
+			p.setString(2, busca);
+			p.setString(3, busca);
+			p.setString(4, busca);
+			p.setString(5, busca);
+			ResultSet rs = p.executeQuery(comando);
 			while (rs.next()) {
 				Usuario usuario = new Usuario();
 				String id = rs.getString("id");

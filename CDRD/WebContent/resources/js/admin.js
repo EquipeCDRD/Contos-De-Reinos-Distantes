@@ -8,12 +8,13 @@ $( function() {
     $( "#admPaginas" ).tabs();
   } );
 
-
+var PATH = "../../"
   
   //se os campos estao preenchidos pede confirmação, se sim, envia.
-  function deletarUsuario(tipouser){//Parâmetro para ver se foi chamado por gerenciar contas ou adm.
+deletarUsuario = function (tipouser){//Parâmetro para ver se foi chamado por gerenciar contas ou adm.
     var conf = false;
-    var id = ($("input[name=txt]").val());
+    var usuario = ($("input[name=txtadmin]").val());
+    console.log(usuario);
     if(tipouser==1){
         if($("input[name=txtusuario").val()!=""){
             if($("textarea[name=txamotivo]").val()!=""){
@@ -43,7 +44,7 @@ $( function() {
     		$.ajax({
     			type:"POST",
     			url: PATH + "DeletaUsuario",
-    			data: "id="+id,
+    			data: "usuario="+usuario,
     			success: function(msg){
     				alert(msg.msg);
     			},
@@ -129,7 +130,7 @@ listaAdm = function(lista) {
     return dados;
 };
 
-deletaAdm = function(id){
+function deletaAdm(id){
 	$.ajax({
 		type:"POST",
 		url: PATH + "DeletaUsuario",
@@ -212,45 +213,45 @@ $(function escolherAdmin(){
 
 function validaMinhaConta(){
     var conf = false;
-    if($("input[name=txtnome]").val()!=""){
-        if($("input[name=txtemail]").val()!=""){
-            if($("input[name=dtenascimento]").val()!=""){
-                if($("input[name=txtapelido]").val()!=""){
-                    if($("input[name=pwdsenhaantiga]").val()!=""){
-                        if($("input[name=pwdsenhanova]").val()!=""){
-                            if($("input[name=pwdconfsenhanova]").val()!=""){
-                                if($("input[name=pwdsenhanova]").val()==$("input[name=pwdconfsenhanova]").val()){
+    if($("input[name=txtaltnome]").val()!=""){
+        if($("input[name=txtaltemail]").val()!=""){
+            if($("input[name=dtealtnascimento]").val()!=""){
+                if($("input[name=txtaltapelido]").val()!=""){
+                    if($("input[name=pwdaltsenhaantiga]").val()!=""){
+                        if($("input[name=pwdaltsenhanova]").val()!=""){
+                            if($("input[name=pwdaltconfsenhanova]").val()!=""){
+                                if($("input[name=pwdaltsenhanova]").val()==$("input[name=pwdaltconfsenhanova]").val()){
                                     conf = confirm("Tem certeza que deseja alterar informações de sua conta?");
                                 }else{
                                     alert("As senhas não coincidem.");
                                 }
                             }else{
                                 alert("Preencha a confirmação de senha.");
-                                $("input[name=pwdconfsenhanova]").focus();
+                                $("input[name=pwdaltconfsenhanova]").focus();
                             }
                         }else{
                             alert("Preencha a senha nova.");
-                            $("input[name=pwdsenhanova]").focus();
+                            $("input[name=pwdaltsenhanova]").focus();
                         }
                     }else{
                         alert("Preencha a senha antiga.");
-                        $("input[name=pwdsenhavelha]").focus();
+                        $("input[name=pwdaltsenhavelha]").focus();
                     }
                 }else{
                     alert("Preencha o nome de usuário.");
-                    $("input[name=txtapelido]").focus();
+                    $("input[name=txtaltapelido]").focus();
                 }
             }else{
                 alert("Preencha a data de nascimento.");
-                $("input[name=dtenascimento]").focus();
+                $("input[name=dtealtnascimento]").focus();
             }
         }else{
             alert("Preencha o e-mail.");
-            $("input[name=txtemail]").focus();
+            $("input[name=txtaltemail]").focus();
         }
     }else{
         alert("Preencha o nome.");
-        $("input[name=txtnome]").focus();
+        $("input[name=txtaltnome]").focus();
     }
     return conf;
 }
@@ -292,5 +293,57 @@ function validaMinhaConta(){
     return conf;   
 }
 
+  //consulta
+  buscaAdmParaEditar = function(id){
+	  $.ajax({
+		  type: "POST",
+		  url: PATH + "BuscaUsuarioPorValor",
+		  data: "valor="+id+"&tipo=id",
+		  success: function(nome){
+			  $("#altNome").val(contato.nome);
+			  $("#altEmail").val(contato.email);
+			  $("#altNascimento").val(contato.nascimento);
+			  $("#altApelido").val(contato.login);
+			  $("#altVelhaSenha").val("");
+			  $("#altNovaSenha").val("");
+			  $("#altConfSenha").val("");
+		  },
+			error: function(rest){
+				alert("Erro ao encontrar o usuário a ser alterado.");
+			}
+			});
+  };
+  
+  //deixausuario alterado
+  alteraUsuario = function(){
+		var nome = document.frmadminedit.txtaltnome.value;
+		var email = document.frmadminedit.txtaltemail.value;
+		var nascimento = document.frmadminedit.dtealtnascimento.value;
+		var login = document.frmadminedit.txtaltlogin.value;
+		var senhaatual = document.frmadminedit.pwdaltsenhaantiga.value;
+		var novasenha = document.frmadminedit.pwdaltnovasenha.value;
+		var confsenha = document.frmadminedit.pwdaltconfsenha.value;
+		if((senhaatual=="")||(novasenha=="")||(nome=="")||(email=="")||(nascimento=="")){
+			alert("Não deixa nada vazio, meu!");
+		} else if (novasenha!=confsenha){ 
+			alert("Repete as duas senhas, né, meu!");
+		} else {
+			$.ajax({
+				type: "POST",
+				url: PATH + "AlteraUsuario",
+				data: $("#editarConta").serialize(),
+				success: function (msg) {
+					alert(msg.msg);
+					if(!msg.erro)
+						carregaPagina();
+				},
+				error: function (info) {
+					alert("Erro ao alterar os dados: "+ info.status + " - " + info.statusText);		   
+				}
+			});
+		}
+  };
+
+  
 
 
