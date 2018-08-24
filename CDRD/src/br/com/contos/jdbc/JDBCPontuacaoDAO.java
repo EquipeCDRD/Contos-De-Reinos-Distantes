@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 /*==================Pacotes==================*/
 import br.com.contos.classes.Pontuacao;
-import br.com.contos.interfaces.PontuacaoDAO;
+import br.com.contos.jdbcinterfaces.PontuacaoDAO;
 
 public class JDBCPontuacaoDAO implements PontuacaoDAO {
 
