@@ -38,21 +38,32 @@ public class Login extends HttpServlet {
     		throws ServletException, IOException {
     	
     	try {
+    		
     		Conexao conec = new Conexao();
     		Connection conexao = conec.abrirConexao();
+    		
     		JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
     		Usuario usuario = jdbcUsuario.buscarPorValor(request.getParameter("login"),"usuario");
+    		
     		Map<String, String> msg = new HashMap<String, String>();
+    		
     		if (request.getParameter("login").equals(usuario.getLogin())) {
+    		
     			String senhaFormCript = Criptografia.criptografaSenha(request.getParameter("senha")); 
+    			
     			if (senhaFormCript.equals(usuario.getSenha())) {
+    			
     				HttpSession sessao = request.getSession();
     				sessao.setAttribute("login", usuario.getLogin());
     				sessao.setAttribute("permissao", usuario.getPermissao());
+    				
     				if(sessao.getAttribute("permissao").equals("0")) {
+    					
     					System.out.println("admin logando");
     					msg.put("url", "pages/admin/index.html");
+    				
     				} else {
+    					
     					System.out.println("player logando");
     					msg.put("url", "pages/player/index.html");
     				}

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;    
 
 /*==================Libs para servlets==================*/
 import javax.servlet.ServletException;
@@ -52,9 +55,15 @@ public class InserirPontuacao extends HttpServlet{
 			//recolhimento dos dados da frontend
 			pontuacao.setId(request.getParameter("hdid"));
 			pontuacao.setScore(request.getParameter("txtpontuacao"));
-			pontuacao.setDataCriacao(request.getParameter("txtdatacriacao"));
 			pontuacao.setIdentificadorTabela(request.getParameter("hdidentificador"));
 			pontuacao.setUsuarioId(request.getParameter("usuarioid"));
+			
+			//recolhimento da data de criação da pontuação
+			DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDate dataCriacao = LocalDate.now();
+			
+			//passagem da data a um objeto de pontuacao
+			pontuacao.setDataCriacao(formatoData.format(dataCriacao));
 			
 			//instanciamento de Conexao abertura da conexao com o banco
 			Conexao con = new Conexao();
