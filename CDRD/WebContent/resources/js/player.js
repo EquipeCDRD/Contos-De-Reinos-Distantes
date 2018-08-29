@@ -58,7 +58,7 @@ $(document).ready(function(){
         /**
          * variável que contem a última pontuação atingida pelo jogador que será enviada ao servidor
          */
-        usuarioLogado.pontuacao = 10 //será trocado pelo campo que irá conter a pontuação
+        usuarioLogado.pontuacao = $("text[id=inputPontuacaoTemp]");
         
         $.ajax({
         
@@ -83,4 +83,9 @@ $(document).ready(function(){
             }
         });
     }
+    
+    //Cai fora fdp!
+    sair = function(){
+		alert("oi!");
+	}
 });
