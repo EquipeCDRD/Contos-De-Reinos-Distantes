@@ -55,7 +55,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
     
     //Método responsável pela deleção de pontuações já salvas no banco
     @Override
-	public boolean deletarPontuacao(String  usuarioId) {
+	public boolean deletarPontuacao(String usuarioId) {
     	
     	//query para deleção de TODAS as pontuações de determinado jogador
     	String sqlQuery = "DELETE * FROM pontuacoes WHERE usuarios_id=?";
@@ -96,7 +96,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         	//Criação da query que será executada para carregamento da lista de scores pessoais
         	String sqlQuery = "SELECT * FROM pontuacoes "
     						+ "WHERE usuarios_id=? "
-    						+ "ORDER BY pontuacao DESC";//ordena os resultados da pesquisa em ordem decrescente
+    						+ "ORDER BY pontuacoes.pontuacao DESC";//ordena os resultados da pesquisa em ordem decrescente
 			         
             try {
                
@@ -110,6 +110,8 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
 
                     //Se estiver maior que cinco vai dizer que deu merda
                     if (listaDePontuacoes.size() > 4) {
+                    	//se tiver maior que devia estar, zera todas as pontuações (pode dar ruin? CLARO QUE SIM POURA!)
+                    	deletarPontuacao(usuarioId);
                         throw new SQLException("Deu merda no tamnho da lista."
                                 + "Mais de 5 itens numa lista cujo maximo É 5");
                     }
@@ -165,7 +167,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         		String sqlQuery = "SELECT id, usuarios_id, data_criacao,"
         				 + "MAX(pontuacao) AS pontuacao_ranking FROM pontuacoes"
         				 + "GROUP BY usuarios_id"
-        				 + "ORDER BY pontuacao_ranking DESC";
+        				 + "ORDER BY pontuacao_ranking DESC LIMIT(10)";
         		PreparedStatement statement = conexao.prepareStatement(sqlQuery);
         		ResultSet result = statement.executeQuery(sqlQuery);
         		
@@ -200,7 +202,10 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         		//se der caca retorna a lista nula
         		listaDePontuacoes = null;
         	}
-        }
+        }else {
+			System.out.println("Deu ruin com o identificador da tabela");
+			listaDePontuacoes = null;
+		}
         
        //devolve a lista de pontuações ao método que fez a chamada ( UMA LISTA != DE null )
         return listaDePontuacoes;

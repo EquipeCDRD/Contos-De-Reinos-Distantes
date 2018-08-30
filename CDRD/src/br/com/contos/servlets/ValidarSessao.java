@@ -20,7 +20,7 @@ import br.com.contos.conexao.Conexao;
 /**
  * Servlet implementation class ValidarSessao
  */
-@WebServlet("/validarSessao")
+@WebServlet("/ValidarSessao")
 public class ValidarSessao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

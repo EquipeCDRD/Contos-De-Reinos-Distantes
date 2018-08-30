@@ -27,7 +27,7 @@ import br.com.contos.jdbc.JDBCPontuacaoDAO;
 import com.google.gson.Gson;
 
 //Anotação que indica a URL da servlet
-@WebServlet("/inserirPontuacao")
+@WebServlet("/InserirPontuacao")
 public class InserirPontuacao extends HttpServlet{
 	
 	public static final long serialVersionUID = 1L;
@@ -56,13 +56,15 @@ public class InserirPontuacao extends HttpServlet{
 			pontuacao.setId(request.getParameter("hdid"));
 			pontuacao.setScore(request.getParameter("txtpontuacao"));
 			pontuacao.setIdentificadorTabela(request.getParameter("hdidentificador"));
+			System.out.println(pontuacao.getIdentificadorTabela());
 			pontuacao.setUsuarioId(request.getParameter("usuarioid"));
 			
 			//recolhimento da data de criação da pontuação
 			DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-			LocalDate dataCriacao = LocalDate.now();
+			LocalDateTime dataCriacao = LocalDateTime.now();
 			
 			//passagem da data a um objeto de pontuacao
+			
 			pontuacao.setDataCriacao(formatoData.format(dataCriacao));
 			
 			//instanciamento de Conexao abertura da conexao com o banco
@@ -77,10 +79,7 @@ public class InserirPontuacao extends HttpServlet{
 			 * que ser� atribuida a var listaDePontuacoes
 			 */
 			List<Pontuacao> listaDePontuacoes = new ArrayList<Pontuacao>();
-			listaDePontuacoes = jdbcPontuacao.buscarPontuacao(pontuacao.getIdentificadorTabela(),pontuacao.getUsuarioId());
-			
-			//fechamento da conexao com o banco
-			con.fecharConexao();
+			listaDePontuacoes = jdbcPontuacao.buscarPontuacao(pontuacao.getUsuarioId(),pontuacao.getIdentificadorTabela());
 			
 			//Criação da mensagem de retorno 
 			Map<String, String> msg = new HashMap<String, String>();
@@ -98,7 +97,8 @@ public class InserirPontuacao extends HttpServlet{
 				Boolean retorno = null;
 				
 				//Se não tiver pontuação salva
-				if(listaDePontuacoes.size()!=4) {
+				System.out.println("Tamanho da lista de pontuações do feladapota: " + listaDePontuacoes.size());
+				if((listaDePontuacoes.size() < 4)||(listaDePontuacoes.isEmpty())) {//Problema com número de pontuações 
 					
 					//Chama o método para inserção da nova pontuação
 					retorno = jdbcPontuacao.inserirPontuacao(pontuacao);
@@ -121,6 +121,8 @@ public class InserirPontuacao extends HttpServlet{
 					msg.put("msg", "Não atualizou a pontuação não fion...");
 				}
 				
+				//fechamento da conexao com o banco
+				con.fecharConexao();	
 				//Criação da string json que irá conter a mensagem de resposta
 				String json = new Gson().toJson(msg);
 				
@@ -128,8 +130,6 @@ public class InserirPontuacao extends HttpServlet{
 				response.setCharacterEncoding("UTF-8");
 				response.getWriter().write(json);
 			}
-			
-			
 			
 		}catch(IOException e) {
 			e.printStackTrace();

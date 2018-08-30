@@ -10,7 +10,14 @@ $(document).ready(function(){
     /**
      * armazena os dados do usuário logado
      */
-    var usuarioLogado;
+    var usuarioLogado = {
+    		id: 9,
+    	    login: "Manzana_22",
+    	    email: "dinheiros@email.com",
+    	    nome: "Estevão Trabalhos",
+    	    nascimento: "12-01-1650"
+    		
+    };
     
     /**
      * especifica o caminho a ser trilhado pela função até a chamada da mesma
@@ -19,8 +26,8 @@ $(document).ready(function(){
     var PATH = "../../";
     
     /*--------------------------------------Geral-----------------------------------------*/
-	
-	verificaUsuario = function(){
+    
+    verificaUsuario = function(){
 		$.ajax({
 			type: "POST",
 			url: PATH + "ValidarSessao",
@@ -46,24 +53,23 @@ $(document).ready(function(){
 	/**
      * chama a função afim de checar se o usuário está logado corretamente
      */
-	verificaUsuario();
-
+	
     /*--------------------------------------InseriPontuacao-----------------------------------------*/
 
     /**
      * função ajax que chama a servlet de inserção de pontuações 
      */
-    inserirPontuaca0 = function(){
+    inserirPontuacao = function(){
         
         /**
          * variável que contem a última pontuação atingida pelo jogador que será enviada ao servidor
          */
-        usuarioLogado.pontuacao = $("text[id=inputPontuacaoTemp]");
+        usuarioLogado.pontuacao = $("#inputPontuacaoTemp").val();
         
         $.ajax({
         
             type: "POST",
-            url: PATH + "inserirPontuacao",
+            url: PATH + "InserirPontuacao",
         
             data: "usuarioid="+usuarioLogado.id+
                   /**
@@ -71,16 +77,18 @@ $(document).ready(function(){
                    * nesse caso, o identificador é pessoal pq é preciso checar as pontuações de um
                    * jogador em específico
                    */
-                  "&txtidentificador=pessoal"+
-                  "&hidid=null"+
+                  "&hdidentificador=pessoal"+
+                  "&hdid=null"+
                   "&txtpontuacao="+usuarioLogado.pontuacao,
             
+            success: function (msg) {
+                alert(msg);
+            },
             
-            success: function (response) {
-                
-
-                
+            error: function(msg){
+            	alert("Deu bosta na hora de inserir. "+info.status+" - "+info.statusText);
             }
+        
         });
     }
     
