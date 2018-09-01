@@ -86,7 +86,7 @@ $(document).ready(function(){
             },
             
             error: function(msg){
-            	alert("Deu bosta na hora de inserir. "+info.status+" - "+info.statusText);
+            	alert(msg);
             }
         
         });

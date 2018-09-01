@@ -80,17 +80,5 @@ public class Pontuacao implements Serializable{
 	public void setPosicaoRanking(String posicaoRanking) {
 		this.posicaoRanking = posicaoRanking;
 	}
-	/*===================== conversão de datas =====================*/
-	public String dataParaDB(String dataCriacao){
-		String[] dataDividida = dataCriacao.split("/");
-		String dataParaDB = dataDividida[2]+"-"+dataDividida[1]+"-"+dataDividida[0];
-		return dataParaDB;
-	}
-	
-	public String dataParaFrontEnd(String dataCriacao) {
-		String[] dataDividida = dataCriacao.split("-");
-		String dataParaFrontEnd = dataDividida[2]+"/"+dataDividida[1]+"/"+dataDividida[0];
-		return dataParaFrontEnd;
-	}
 	
 }

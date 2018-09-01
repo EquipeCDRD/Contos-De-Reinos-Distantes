@@ -56,17 +56,17 @@ public class InserirPontuacao extends HttpServlet{
 			pontuacao.setId(request.getParameter("hdid"));
 			pontuacao.setScore(request.getParameter("txtpontuacao"));
 			pontuacao.setIdentificadorTabela(request.getParameter("hdidentificador"));
-			System.out.println(pontuacao.getIdentificadorTabela());
 			pontuacao.setUsuarioId(request.getParameter("usuarioid"));
 			
+			System.out.println("Tipo de identificador da tabela: "+pontuacao.getIdentificadorTabela());
 			//recolhimento da data de criação da pontuação
-			DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 			LocalDateTime dataCriacao = LocalDateTime.now();
 			
 			//passagem da data a um objeto de pontuacao
-			
 			pontuacao.setDataCriacao(formatoData.format(dataCriacao));
 			
+			System.out.println("Data da pontuação: "+pontuacao.getDataCriacao());
 			//instanciamento de Conexao abertura da conexao com o banco
 			Conexao con = new Conexao();
 			Connection conexao = con.abrirConexao();
@@ -98,7 +98,7 @@ public class InserirPontuacao extends HttpServlet{
 				
 				//Se não tiver pontuação salva
 				System.out.println("Tamanho da lista de pontuações do feladapota: " + listaDePontuacoes.size());
-				if((listaDePontuacoes.size() < 4)||(listaDePontuacoes.isEmpty())) {//Problema com número de pontuações 
+				if((listaDePontuacoes.size() < 5)||(listaDePontuacoes.isEmpty())) {//Problema com número de pontuações 
 					
 					//Chama o método para inserção da nova pontuação
 					retorno = jdbcPontuacao.inserirPontuacao(pontuacao);

@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /*==================Pacotes==================*/
 import br.com.contos.classes.Pontuacao;
@@ -58,13 +59,13 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
 	public boolean deletarPontuacao(String usuarioId) {
     	
     	//query para deleção de TODAS as pontuações de determinado jogador
-    	String sqlQuery = "DELETE * FROM pontuacoes WHERE usuarios_id=?";
-    	//preparedstatement p/ evitar sql injection
-    	PreparedStatement statement;
+    	String sqlQuery = "DELETE FROM pontuacoes WHERE usuarios_id=?";
     	
     	try {
-    		statement = this.conexao.prepareStatement(sqlQuery);
-    		statement.executeQuery();
+    		PreparedStatement statement = conexao.prepareStatement(sqlQuery);
+    		statement.setString(1, usuarioId);
+    		statement.execute();
+    		
     	}catch(SQLException e) {
     		//se der merda...
     		e.printStackTrace();
@@ -96,16 +97,17 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         	//Criação da query que será executada para carregamento da lista de scores pessoais
         	String sqlQuery = "SELECT * FROM pontuacoes "
     						+ "WHERE usuarios_id=? "
-    						+ "ORDER BY pontuacoes.pontuacao DESC";//ordena os resultados da pesquisa em ordem decrescente
+    						+ "ORDER BY pontuacao DESC";//ordena os resultados da pesquisa em ordem decrescente
 			         
             try {
                
                 //validação da query (serve para evitar SQL Injections(^-^))
-                PreparedStatement statement = conexao.prepareStatement(sqlQuery);
+            	PreparedStatement statement = conexao.prepareStatement(sqlQuery);
                 statement.setString(1, usuarioId);
-                ResultSet result = statement.executeQuery(sqlQuery);
-
-                //enquanto houver pontuações com a id do usuario...
+                statement.execute();
+            	ResultSet result = statement.executeQuery();
+               
+            	//enquanto houver pontuações com a id do usuario...
                 while (result.next()) {
 
                     //Se estiver maior que cinco vai dizer que deu merda
@@ -127,7 +129,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                     //aquisição dos dados...
                     String id = result.getString("id");
                     String score = result.getString("pontuacao");
-                    String dataCriacao = pontuacao.dataParaFrontEnd(result.getString("data_criacao"));
+                    String dataCriacao = result.getString("data_criacao");
                     
                     //foge dos padrões somente porque já há uma variável com esse nome
                     String posicaoRanking;
@@ -165,10 +167,10 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         		
         		//query que seleciona a maior pontuação   
         		String sqlQuery = "SELECT id, usuarios_id, data_criacao,"
-        				 + "MAX(pontuacao) AS pontuacao_ranking FROM pontuacoes"
-        				 + "GROUP BY usuarios_id"
+        				 + "MAX(pontuacao) AS pontuacao_ranking FROM pontuacoes "
+        				 + "GROUP BY usuarios_id "
         				 + "ORDER BY pontuacao_ranking DESC LIMIT(10)";
-        		PreparedStatement statement = conexao.prepareStatement(sqlQuery);
+        		Statement statement = conexao.createStatement();
         		ResultSet result = statement.executeQuery(sqlQuery);
         		
         		while(result.next()) {
@@ -178,7 +180,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         			//aquisição dos dados...
                     String id = result.getString("id");
                     String score = result.getString("pontuacao");
-                    String dataCriacao = pontuacao.dataParaFrontEnd(result.getString("data_criacao"));
+                    String dataCriacao = result.getString("data_criacao");
                     //foge dos padrões somente porque já há uma variável com esse nome
                     String idUser = result.getString("usuarios_id");
                     String posicaoRanking;
@@ -260,25 +262,22 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
     //Método utilizado para encontrar a posição do carinha no ranking
     private String encontraPosicao() {
     	
-    	//Query para pegar todos as pontuações do banco
-    	String sqlQuery = "SELECT MAX(pontuacao) AS pontuacao_ranking FROM pontuacoes "
-    					+ "GROUP BY usuarios_id"
+    	//Query para pegar todos as maiores pontuações do banco
+    	String sqlQuery = "SELECT MAX(pontuacao) AS pontuacao_ranking, usuarios_id, id FROM pontuacoes "
+    					+ "GROUP BY usuarios_id "
     					+ "ORDER BY pontuacao_ranking DESC";
     	
     	//String onde a posição do jogador no ranking será salva
     	String posicaoRanking = "";
     	
-    	//indice do array
-    	int index=0;
-    	
-    	//Var onde será salva a maior pontução do carinha, que então poderá se usada para determinar sua posição no ranking
-    	int[] maiorPontuacao = new int[index];
-    	
+    	//Lista que conterrá todas as as mairos pontuações
     	List<Pontuacao> listaDePontuacoes = new ArrayList<Pontuacao>();
-		try {
+		
+    	try {
         
-	    	PreparedStatement statement = conexao.prepareStatement(sqlQuery);
-	        ResultSet result = statement.executeQuery(sqlQuery);
+			PreparedStatement statement = conexao.prepareStatement(sqlQuery);
+			statement.execute();
+			ResultSet result = statement.executeQuery();
 	        
 	        
 	        //Enquanto tiver pontuações...
@@ -287,9 +286,10 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
 	        	Pontuacao pontuacao = new Pontuacao();
 	        	
 	        	//aquisição dos dados...
-                String id = result.getString("id");
-                String score = result.getString("pontuacao");
+	        	String score = result.getString("pontuacao_ranking");
                 String idUser = result.getString("usuarios_id");
+                String id = result.getString("id");
+                
                 
                 //salvamento dos dados no objeto...
                 pontuacao.setId(id);
@@ -299,11 +299,18 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                 //adiciona o objeto à listaDePontuacoes
                 listaDePontuacoes.add(pontuacao);
                 
-                //salva a pontuacao num array que servirá como referencial
-                maiorPontuacao[index] = Integer.parseInt(score);
+	        }
+	      //indice do array
+	    	int index=0;
+	    	
+	    	//Var onde será salva a maior pontução do carinha, que então poderá se usada para determinar sua posição no ranking
+	    	int[] maiorPontuacao = new int[listaDePontuacoes.size()];
+
+	        for(int i=0; i>listaDePontuacoes.size(); i++) {
+	        	//salva a pontuacao num array que servirá como referencial
+                maiorPontuacao[index] = Integer.parseInt(listaDePontuacoes.get(i).getScore());
                 index++;
 	        }
-	        
 	        /*
 	         * 	Loop onde são checadas as pontuações do jogador comparando as mesmas com o
 	         * 	array de referência
