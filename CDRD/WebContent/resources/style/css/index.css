@@ -140,7 +140,7 @@ html{
 #containerPlacaIndex{
 	position: relative;
 	top: -150px;
-	left: 0px;
+	left: 0;
 	background-image: url("../images/log.png");
 	background-repeat: no-repeat;
 }
