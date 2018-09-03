@@ -21,7 +21,7 @@ public class Pontuacao implements Serializable{
 	 * 	pessoal - carrega os 5 maiores scores PESSOAIS do jogador, no quarto da teverna, e
 	 * 
 	 * 	ranking - carrega o MELHOR escore dentre os 5 scores pessoais do jogador,
-	 * 	e repete a operação para TODOS os jogadores cadastrados
+	 * 	e repete a operação para todos os jogadores cadastrados
 	 */
 	private String identificadorTabela;
 	/*
