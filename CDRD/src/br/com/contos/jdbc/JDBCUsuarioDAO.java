@@ -41,14 +41,12 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 
 	public Usuario buscarPorValor(String valor, String tipo) {
 		String comando = "SELECT * FROM usuarios"
-			+ " WHERE ? = '?'";
+			+ " WHERE "+tipo+" = "+valor;
 		Usuario usuario = new Usuario();
-		PreparedStatement p;
 		try {
-			p = this.conexao.prepareStatement(comando);
-			p.setString(1, tipo);
-			p.setString(2, valor);
-			ResultSet rs = p.executeQuery(comando);
+
+			Statement stmt = conexao.createStatement(); 
+			ResultSet rs = stmt.executeQuery(comando);
 			while (rs.next()) {
 				String id = rs.getString("id");
 				String login = rs.getString("usuario");
@@ -86,7 +84,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 		PreparedStatement p;
 		try {
 			p = this.conexao.prepareStatement(comando);
-			p.setString(3, usuario.getLogin());
+			p.setString(1, usuario.getLogin());
 			p.setString(2, Criptografia.criptografaSenha(usuario.getSenha()));//
 			p.setString(3, usuario.getNome());
 			p.setString(4, usuario.getNascimento());
@@ -130,15 +128,9 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 			comando += "(nome LIKE '%" + busca + "%' OR usuario LIKE '%" + busca + "%' OR email LIKE '" + busca + "%' OR id LIKE '" + busca + "')";
 		}
 		List<Usuario> listUsuario = new ArrayList<Usuario>();
-		PreparedStatement p;
 		try {
-			p = this.conexao.prepareStatement(comando);
-			p.setString(1, nivel);
-			p.setString(2, busca);
-			p.setString(3, busca);
-			p.setString(4, busca);
-			p.setString(5, busca);
-			ResultSet rs = p.executeQuery(comando);
+			Statement stmt = conexao.createStatement(); 
+			ResultSet rs = stmt.executeQuery(comando);
 			while (rs.next()) {
 				Usuario usuario = new Usuario();
 				String id = rs.getString("id");
