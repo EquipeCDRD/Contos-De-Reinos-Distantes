@@ -130,7 +130,7 @@ $(document).ready(function(){
 		});
 	}
 	
-	/*------------------------Log de acesso--------------------------------*/
+/*------------------------Log de acesso--------------------------------*/
 	
 	insereLogDeAcesso = function(){
 		var usuarioId = 1;//usuarioLogado.id;
@@ -183,5 +183,9 @@ $(document).ready(function(){
 		}
 		return dados;
 	}
+
+/*------------------------Gráficos--------------------------------*/	
+
 	
+
 })

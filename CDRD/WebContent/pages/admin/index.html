@@ -8,11 +8,23 @@
     <meta name="creation-date" content="2018/06/05">
     <meta name="last-modified" content="2018/06/06">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link rel="stylesheet" type="text/css" href="../../resources/style/css/admin.css" />
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="../../resources/js/admin.js"></script>
-    <script src="../../resources/js/adminServlet.js"></script>
+    
+    <!--Libs-->
+        
+        <!--JQuery-->
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        
+        <!--Google Charts-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!--Scripts próprios-->
+        
+        <script src="../../resources/js/admin.js"></script>
+        <script src="../../resources/js/adminServlet.js"></script>
+
 </head>
 <body>
     <div id="admPaginas">
@@ -110,24 +122,6 @@
         <div class="conteudo" id="admPaginas-3"> <!--Logs de Acesso-->
             <h2 class="tituloTabela">Logs de acesso:</h2>
             <div id=listLogDeAcesso></div>
-          <!--<table class="tabelaGeral" id="tabelaLogs">
-                <tr>
-                    <th>Usuário</th>
-                    <th>Data - Horário</th>
-                </tr>
-                <tr>
-                    <td>Jão</td>
-                    <td>2018/09/16 - 06:21</td>
-                </tr>
-                <tr>
-                     <td>Weiss</td>
-                    <td>2018/09/14 - 13:37</td>
-                </tr>
-                <tr>
-                    <td>Henings</td>
-                    <td>2018/09/13 - 16:20</td>
-                </tr>
-            </table>-->  
             <div class="paginacao">
                     <a href="">&#8810; anterior</a>
                     <a href="pg1">1</a>
@@ -165,10 +159,23 @@
         </div>
         <div class="conteudo" id="admPaginas-5"> <!--Gráficos-->
             <h2>Gráficos</h2>
-            <div class="divGrafico graficoEsq" id="graficoIdade">AQUI HAVERÁ O GRÁFICO DE USUÁRIOS POR FAIXA ETÁRIA</div>
-            <div class="divGrafico graficoDir" id="graficoTempoPorIdade">AQUI HAVERÁ O GRÁFICO DE USO POR FAIXA ETÁRIA</div>
-            <div class="divGrafico graficoEsq" id="graficoTempoPorFase">AQUI HAVERÁ O GRÁFICO DE TEMPO MÉDIO POR FASE</div>
-            <div class="divGrafico graficoDir" id="graficoDerrotas">AQUI HAVERÁ O GRÁFICO DE DERROTAS POR FASE</div>
+            
+            <div class="divGrafico graficoEsq" id="graficoIdade">
+                AQUI HAVERÁ O GRÁFICO DE USUÁRIOS POR FAIXA ETÁRIA
+            </div>
+            
+            <div class="divGrafico graficoDir" id="graficoTempoPorIdade">
+                AQUI HAVERÁ O GRÁFICO DE USO POR FAIXA ETÁRIA
+            </div>
+            
+            <div class="divGrafico graficoEsq" id="graficoTempoPorFase">
+                AQUI HAVERÁ O GRÁFICO DE TEMPO MÉDIO POR FASE
+            </div>
+            
+            <div class="divGrafico graficoDir" id="graficoDerrotas">
+                AQUI HAVERÁ O GRÁFICO DE DERROTAS POR FASE
+            </div>
+
         </div>
         <div class="conteudo" id="admPaginas-6"> <!--Gerenciard Admin-->
             <div class="divListaContasAdmin comBorda quaseCheio">
