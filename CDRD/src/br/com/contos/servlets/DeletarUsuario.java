@@ -17,19 +17,12 @@ import br.com.contos.conexao.Conexao;
 import br.com.contos.jdbc.JDBCUsuarioDAO;
 
 
-/**
- * Servlet implementation class DeletaUsuario
- */
 @WebServlet("/DeletarUsuario")
 public class DeletarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public DeletarUsuario() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) 
@@ -54,19 +47,11 @@ public class DeletarUsuario extends HttpServlet {
     	response.getWriter().write(json);
     }    
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		process(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		process(request, response);
 	}
 
