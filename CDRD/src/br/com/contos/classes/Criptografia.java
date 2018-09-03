@@ -21,7 +21,6 @@ public class Criptografia {
             senhaCriptografada = hexString.toString();
             
         } catch (Exception e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
             }
             return senhaCriptografada;
