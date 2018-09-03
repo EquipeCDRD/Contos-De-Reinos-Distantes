@@ -1,7 +1,6 @@
 package br.com.contos.servlets;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +12,9 @@ import java.util.Map;
 import java.util.HashMap;
 import com.google.gson.Gson;
 
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
+
 import br.com.contos.classes.Notificacao;
 import br.com.contos.jdbc.JDBCNotificacaoDAO;
 import br.com.contos.conexao.Conexao;
@@ -20,14 +22,15 @@ import br.com.contos.conexao.Conexao;
 /**
  * Servlet implementation class InsereNotificacao
  */
-@WebServlet("/InsereNotificacao")
-public class InsereNotificacao extends HttpServlet {
+@WebServlet("/InserirNotificacao")
+public class InserirNotificacao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public InsereNotificacao() {
+    public InserirNotificacao() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -37,9 +40,13 @@ public class InsereNotificacao extends HttpServlet {
     	Notificacao notificacao = new Notificacao();
     	
     	try	{
-    		notificacao.setNotificacao(request.getParameter("txacompnotificacao"));
-    		notificacao.setDataCriacao(request.getParameter("data"));//ISSO PRECISA PEGAR A DATA ENVIADA DO JS;
-    		notificacao.setUsuarioId(request.getParameter(""));//Pegar usuario_id?
+    		notificacao.setNotificacao(request.getParameter("notificacao"));
+    		
+    		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+    		LocalDateTime now = LocalDateTime.now();  
+    		
+    		notificacao.setDataCriacao(dtf.format(now));
+    		notificacao.setUsuarioId(request.getParameter("usuario_id"));//Pelo ajax, pegar id do usuario logado.
     		Conexao conec = new Conexao();
     		Connection conexao = conec.abrirConexao();
     		JDBCNotificacaoDAO jdbcNotificacao = new JDBCNotificacaoDAO(conexao);
@@ -66,6 +73,7 @@ public class InsereNotificacao extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		process(request, response);
 	}
 
@@ -73,6 +81,8 @@ public class InsereNotificacao extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		process(request, response);
-	}	
+	}
+
 }

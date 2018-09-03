@@ -1,20 +1,17 @@
 package br.com.contos.jdbc;
 
+/*==================Libs do java==================*/
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.Arrays;
-import java.util.Collection;
-
-import br.com.contos.classes.Pontuacao;
-import br.com.contos.classes.Usuario;
-import br.com.contos.conexao.Conexao;
-import br.com.contos.interfaces.PontuacaoDAO;
 import java.sql.SQLException;
-import static java.util.Collections.reverseOrder;
+import java.sql.Statement;
+
+/*==================Pacotes==================*/
+import br.com.contos.classes.Pontuacao;
+import br.com.contos.jdbcinterfaces.PontuacaoDAO;
 
 public class JDBCPontuacaoDAO implements PontuacaoDAO {
 
@@ -28,73 +25,164 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
     
     //Método responsável pela inserção de novas pontuações
     @Override
-    public boolean inserirPontuacao(Pontuacao pontuacao, List<Pontuacao> listaDePontuacoes) {
+    public boolean inserirPontuacao(Pontuacao pontuacao) {
         
-    	//Insere a nova pontuação onde o campo de 
+		//Query de inserção
+    	String sqlQuery = "INSERT INTO pontuacoes (pontuacao, data_criacao, usuarios_id)"
+    					+ "VALUES (?, ?, ?)";
+    	//para evitar injeções de sql
+    	PreparedStatement statement;
     	
+    	try {
+    		
+    		//inserção dos dados no banco
+    		statement = conexao.prepareStatement(sqlQuery);	
+    		statement.setString(1, pontuacao.getScore());
+    		statement.setString(2, pontuacao.getDataCriacao());
+    		statement.setString(3, pontuacao.getUsuarioId());
+    		statement.execute();
+    		
+    	}catch(SQLException e){
+    		//se der caca...
+    		e.printStackTrace();
+    		return false;
+    	}
+    	
+    	//senão...
+    	return true;
     }
     
     /*=============================================inserirPontuacao()=======================================================*/
     
     //Método responsável pela deleção de pontuações já salvas no banco
     @Override
-	public boolean deletarPontuacao(int pontuacao, int usuarioId) {
-		
-		return false;
-	}
+	public boolean deletarPontuacao(String usuarioId) {
+    	
+    	//query para deleção de TODAS as pontuações de determinado jogador
+    	String sqlQuery = "DELETE FROM pontuacoes WHERE usuarios_id=?";
+    	
+    	try {
+    		PreparedStatement statement = conexao.prepareStatement(sqlQuery);
+    		statement.setString(1, usuarioId);
+    		statement.execute();
+    		
+    	}catch(SQLException e) {
+    		//se der merda...
+    		e.printStackTrace();
+    		return false;
+    	}
+    	
+    	//se der tudo certo...
+    	return true;
+    }
     
-/*=============================================buscarPontuacao()=======================================================*/
+    /*=============================================buscarPontuacao()=======================================================*/
     
-    //Método responsável pela realização da busca de pontuações salvas no banco (FEITO)
+    //Método responsável pela realização da busca de pontuações salvas no banco
     @Override
     public List<Pontuacao> buscarPontuacao(String usuarioId, String identificadorTabela) {
 
-        //Criação da query que será executada
-        String sqlQuery = "SELECT * FROM pontuacoes";
-
         //Criação da lista de pontuações que será retornada
         List<Pontuacao> listaDePontuacoes = new ArrayList<Pontuacao>();
+        
         //Instanciamento de Pontuacao e Usuario e nulifica��o das mesmas
         Pontuacao pontuacao = null;
-        Usuario usuario = null;
+        
         /*
                 No if abaixo é checado o parâmetro de identificação da tabela,
                 para então prosseguir mediante ao valor do mesmo
          */
         if (identificadorTabela.equals("pessoal")) {
-
-            //Continuação da query para carregamento da lista de scores pessoais
-            sqlQuery += "WHERE usuarios_id=?";
-
+        	
+        	//Criação da query que será executada para carregamento da lista de scores pessoais
+        	String sqlQuery = "SELECT * FROM pontuacoes "
+    						+ "WHERE usuarios_id=? "
+    						+ "ORDER BY pontuacao DESC";//ordena os resultados da pesquisa em ordem decrescente
+			         
             try {
+               
                 //validação da query (serve para evitar SQL Injections(^-^))
-                PreparedStatement statement = conexao.prepareStatement(sqlQuery);
+            	PreparedStatement statement = conexao.prepareStatement(sqlQuery);
                 statement.setString(1, usuarioId);
-                ResultSet result = statement.executeQuery(sqlQuery);
-
-                //enquanto houver pontuações com a id do usuario...
+                statement.execute();
+            	ResultSet result = statement.executeQuery();
+               
+            	//enquanto houver pontuações com a id do usuario...
                 while (result.next()) {
 
                     //Se estiver maior que cinco vai dizer que deu merda
                     if (listaDePontuacoes.size() > 4) {
+                    	//se tiver maior que devia estar, zera todas as pontuações (pode dar ruin? CLARO QUE SIM POURA!)
+                    	deletarPontuacao(usuarioId);
                         throw new SQLException("Deu merda no tamnho da lista."
                                 + "Mais de 5 itens numa lista cujo maximo É 5");
                     }
+                    
                     /*
-                            Nova instancia de Pontuacao, que ira armazenar os dados individuais de cada
-                            score (data de criação, a pontuação em si, etc) conforme necessário no loop.
-                            Vale destacar que se a lista estiver com mais de 5 itens é pq deu merda em 
-                            algum lugar
+                     	Nova instancia de Pontuacao, que ira armazenar os dados individuais de cada
+                        score (data de criação, a pontuação em si, etc) conforme necessário no loop.
+                        Vale destacar que se a lista estiver com mais de 5 itens é pq deu merda em 
+                        algum lugar
                      */
                     pontuacao = new Pontuacao();
-                    usuario = new Usuario();
-              
+                    
                     //aquisição dos dados...
                     String id = result.getString("id");
                     String score = result.getString("pontuacao");
-                    String dataCriacao = pontuacao.dataParaFrontEnd(result.getString("data_criacao"));
+                    String dataCriacao = result.getString("data_criacao");
+                    
                     //foge dos padrões somente porque já há uma variável com esse nome
-                    String idUser = result.getString(usuario.getId());
+                    String posicaoRanking;
+                    
+                    //chamada do método que encontra a posição do carinha no ranking
+                    posicaoRanking = encontraPosicao();
+                    
+                    //salvamento dos dados no objeto...
+                    pontuacao.setId(id);
+                    pontuacao.setScore(score);
+                    pontuacao.setDataCriacao(dataCriacao);
+                    pontuacao.setPosicaoRanking(posicaoRanking);
+                    pontuacao.setUsuarioId(usuarioId);
+
+                    //adição do objeto recém criado à lista de pontuações
+                    listaDePontuacoes.add(pontuacao);
+                }
+            
+            } catch (SQLException e) {
+                //Printa o stack no console do eblipse
+            	e.printStackTrace();
+                //Se der caca a lista volta nula
+                listaDePontuacoes = null;
+            }
+        //Se o identificador for para o ranking global...
+        }else if(identificadorTabela.equals("ranking")) {
+        	  	
+        	try {
+        		
+        		//Se estiver maior que cinco vai dizer que deu merda
+                if (listaDePontuacoes.size() > 4) {
+                    throw new SQLException("Deu merda no tamnho da lista."
+                            + "Mais de 5 itens numa lista cujo maximo É 5");
+                }
+        		
+        		//query que seleciona a maior pontuação   
+        		String sqlQuery = "SELECT id, usuarios_id, data_criacao,"
+        				 + "MAX(pontuacao) AS pontuacao_ranking FROM pontuacoes "
+        				 + "GROUP BY usuarios_id "
+        				 + "ORDER BY pontuacao_ranking DESC LIMIT(10)";
+        		Statement statement = conexao.createStatement();
+        		ResultSet result = statement.executeQuery(sqlQuery);
+        		
+        		while(result.next()) {
+        		
+        			pontuacao = new Pontuacao();
+        			
+        			//aquisição dos dados...
+                    String id = result.getString("id");
+                    String score = result.getString("pontuacao");
+                    String dataCriacao = result.getString("data_criacao");
+                    //foge dos padrões somente porque já há uma variável com esse nome
+                    String idUser = result.getString("usuarios_id");
                     String posicaoRanking;
                     
                     //chamada do método que encontra a posição do carinha no ranking
@@ -109,88 +197,17 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
 
                     //adição do objeto recém criado à lista de pontuações
                     listaDePontuacoes.add(pontuacao);
-                }
-            
-            } catch (SQLException e) {
-                //Printa o stack no console do eblipse
-            	e.printStackTrace();
-                //Se der caca a lista volta nula
-                listaDePontuacoes = null;
-            }
-        //Se o identificador for para o ranking global...
-        }else if(identificadorTabela.equals("ranking")) {
-        	 
-        	try {
-                 //validação da query (serve para evitar SQL Injections(^-^))
-                 PreparedStatement statement = conexao.prepareStatement(sqlQuery);
-                 statement.setString(1, usuarioId);
-                 ResultSet result = statement.executeQuery(sqlQuery);
-
-                 //enquanto houver pontuações...
-                 while (result.next()) {
-                	 
-                     //Se estiver maior que cinco vai dizer que deu merda
-                     if (listaDePontuacoes.size() > 4) {
-                         throw new SQLException("Deu merda no tamnho da lista."
-                                 + "Mais de 5 itens numa lista cujo maximo É 5");
-                     }
-                   //Yep, eu copiei de econtraPosicao(). Dont u fuging dare judgin me(^-^)
-                     /*
- 	        		Neste array serão salvas as pontuações, que irão, posteriormente, 
- 	        		serem organizadas em ordem decrescente, permitindo assim que seja possível
- 	        		identificar a maior pontuação do jogador em questão e atribuí-la ao placar
-	 	            */
-	 	            Integer[] arrayPontuacoes = new Integer[5]; 
-	                     
-                     /*
-                     Nova instancia de Pontuacao, que ira armazenar os dados individuais de cada
-                     score (data de criação, a pontuação em si, etc) conforme necessário no loop.
-                     Vale destacar que se a lista estiver com mais de 5 itens é pq deu merda em 
-                     algum lugar
-                     */
-                     pontuacao = new Pontuacao();
-                     usuario = new Usuario();
-
-                     //aquisição dos dados...
-                     String id = result.getString("id");
-                     String dataCriacao = pontuacao.dataParaFrontEnd(result.getString("data_criacao"));
-                     //foge dos padrões somente porque já há uma variável com esse nome
-                     String idUser = result.getString(usuario.getId());
-                     String posicaoRanking;
-                     String maiorPontuacao;
-                     
-                     //Yep, eu copiei a copia onde eu falei que havia copado de econtraPosicao(). Dont u fuging dare judgin me, again(^-^)
-                     //for onde são salvas as 5 pontuações
-                     for (int i = 0; i < 4; i++) {
-                         arrayPontuacoes[i] = Integer.parseInt(result.getString("pontuacao"));
-                     }
-                     
-                     //sorting que irá organizar o array em ordem decrescente (portanto, a maior pontuação estará na posição 0)
-                     Arrays.sort(arrayPontuacoes,reverseOrder());
-                     
-                     //passagem da maior pontuacao para variável
-                     maiorPontuacao = String.valueOf(arrayPontuacoes[0]);
-                     
-                     //chamada do método que encontra a posição do carinha no ranking
-                     posicaoRanking = encontraPosicao();
-                     
-                     //passagem dos dados obtidos a um objeto de Pontuacoes
-                     pontuacao.setId(id);
-                     pontuacao.setScore(maiorPontuacao);//note que está sendo usada a maior pontuação do feladapota
-                     pontuacao.setDataCriacao(dataCriacao);
-                     pontuacao.setUsuarioId(idUser);
-                     pontuacao.setPosicaoRanking(posicaoRanking);
-                     
-                     //adição do objeto recém criado à lista de pontuações
-                     listaDePontuacoes.add(pontuacao);
-                 }
-        
+        		
+        		}
         	}catch(SQLException e) {
         		e.printStackTrace();
         		//se der caca retorna a lista nula
         		listaDePontuacoes = null;
         	}
-        }
+        }else {
+			System.out.println("Deu ruin com o identificador da tabela");
+			listaDePontuacoes = null;
+		}
         
        //devolve a lista de pontuações ao método que fez a chamada ( UMA LISTA != DE null )
         return listaDePontuacoes;
@@ -215,11 +232,16 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
 				try {
 					
 					//criação da query de atualização da pontuação 
-					String sqlQuery = "UPDATE pontuacoes SET pontuacao=? WHERE id=?";
+					String sqlQuery = "UPDATE pontuacoes SET pontuacao=?, "
+									+ "data_criacao=?, usuarios_id=? WHERE id=?";
 					
 					PreparedStatement statement = conexao.prepareStatement(sqlQuery);
+					
 					statement.setString(1, pontuacao.getScore());
+					statement.setString(2, pontuacao.getDataCriacao());
 					statement.setString(2, pontuacao.getUsuarioId());
+					//id da linha que deve ser alterada
+					statement.setString(4, listaDePontuacoes.get(i).getId());
 					statement.executeUpdate();
 					
 				}catch(SQLException e) {
@@ -237,71 +259,91 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
 	
     /*=============================================encontraPosicao()=======================================================*/
     
-    //Método utilizado para encontrar a posição do carinha no ranking (FEITO)
+    //Método utilizado para encontrar a posição do carinha no ranking
     private String encontraPosicao() {
     	
-    	//Query para pegar todos as pontuações do banco
-    	String sqlQuery = "SELECT * FROM pontuacoes";
+    	//Query para pegar todos as maiores pontuações do banco
+    	String sqlQuery = "SELECT MAX(pontuacao) AS pontuacao_ranking, usuarios_id, id FROM pontuacoes "
+    					+ "GROUP BY usuarios_id "
+    					+ "ORDER BY pontuacao_ranking DESC";
     	
     	//String onde a posição do jogador no ranking será salva
     	String posicaoRanking = "";
     	
-    	//String onde será salva a maior pontução do carinha, que então poderá se usada para determinar sua posição no ranking
-    	int maiorPontuacao = 0;
-    	
-    	//Array int com as maiores pontuações e seu index 
-    	int index = 0;
-    	Integer[] arrayMaioresPontuacoes = new Integer[index];
-    
+    	//Lista que conterrá todas as as mairos pontuações
+    	List<Pontuacao> listaDePontuacoes = new ArrayList<Pontuacao>();
+		
     	try {
-            
-        	PreparedStatement statement = conexao.prepareStatement(sqlQuery);
-            ResultSet result = statement.executeQuery(sqlQuery);
-            
-            
-            //Enquanto tiver pontuações...
-            while (result.next()) {
-            	
-	            /*
-	        		Neste array serão salvas as pontuações, que irão, posteriormente, 
-	        		serem organizadas em ordem decrescente, permitindo assim que seja possível
-	        		identificar a maior pontuação do jogador em questão e atribuí-la ao placar
-	            */
-	            Integer[] arrayPontuacoes = new Integer[4];
-	            
-                //for onde são salvas as 5 pontuações
-                for (int i = 0; i < 4; i++) {
-                    arrayPontuacoes[i] = Integer.parseInt(result.getString("pontuacao"));
-                }
+        
+			PreparedStatement statement = conexao.prepareStatement(sqlQuery);
+			statement.execute();
+			ResultSet result = statement.executeQuery();
+	        
+	        
+	        //Enquanto tiver pontuações...
+	        while (result.next()) {
+	        	
+	        	Pontuacao pontuacao = new Pontuacao();
+	        	
+	        	//aquisição dos dados...
+	        	String score = result.getString("pontuacao_ranking");
+                String idUser = result.getString("usuarios_id");
+                String id = result.getString("id");
                 
-                //sorting que irá organizar o array em ordem decrescente (portanto, a maior pontuação estará na posição 0)
-                Arrays.sort(arrayPontuacoes,reverseOrder());
                 
-                //passagem da maior pontuacao para variável
-                maiorPontuacao = arrayPontuacoes[0];
+                //salvamento dos dados no objeto...
+                pontuacao.setId(id);
+                pontuacao.setScore(score);
+                pontuacao.setUsuarioId(idUser);
                 
-                /*
-                 * Atribuição da maior pontuação do jogador ao array de maiores pontuações, assim como 
-                 * a sua organição em ordem decrescente e incremento de seu index 
-                 */
-                arrayMaioresPontuacoes[index] = maiorPontuacao;
-                Arrays.sort(arrayMaioresPontuacoes,reverseOrder());
+                //adiciona o objeto à listaDePontuacoes
+                listaDePontuacoes.add(pontuacao);
+                
+	        }
+	      //indice do array
+	    	int index=0;
+	    	
+	    	//Var onde será salva a maior pontução do carinha, que então poderá se usada para determinar sua posição no ranking
+	    	int[] maiorPontuacao = new int[listaDePontuacoes.size()];
+
+	        for(int i=0; i>listaDePontuacoes.size(); i++) {
+	        	//salva a pontuacao num array que servirá como referencial
+                maiorPontuacao[index] = Integer.parseInt(listaDePontuacoes.get(i).getScore());
                 index++;
-            }
-            
-            //loop para checagem da posição do player
-            Boolean condition = true;
-            while(condition){
-            	if(maiorPontuacao>arrayMaioresPontuacoes[index]) {
-            		posicaoRanking = String.valueOf(index+1);//pq arrays começam em zero
-            		 condition = true;
-            	}else {
-            		index++;
-            		condition = false;
-            	}
-            }
-            
-        } catch(SQLException e) {
+	        }
+	        /*
+	         * 	Loop onde são checadas as pontuações do jogador comparando as mesmas com o
+	         * 	array de referência
+	         */
+	        
+	        //condição para o loop abaixo 
+	        Boolean condition = true;
+	        //index da lista
+	        int iLista = 0;
+	        
+	        //enquanto for verdadeiro 
+	        while(condition) {
+	        	
+	        	//para cada item da lista de pontuação
+	        	for(int i=0; i>listaDePontuacoes.size();i++) {
+		        	/*
+	        		 * 	comparação de todas as pontuações do array de referência 
+	        		 * 	com a do objeto de pontuação em questão. Se a pontuação do
+	        		 * 	objeto for a mesma do array de referência, a contadora do for
+	        		 * 	é usada para indicar a posição do feladapota no ranking   
+	        		 */
+		        	if(maiorPontuacao[i]==(Integer.parseInt(listaDePontuacoes.get(iLista).getScore()))){
+		        		posicaoRanking = String.valueOf(i+1);
+		        		condition = false;
+		        	}else {
+		        		iLista++;
+		        	}
+		        	
+		        }
+	        }
+	        
+	        
+		} catch(SQLException e) {
         	e.printStackTrace();
         }
         return posicaoRanking;

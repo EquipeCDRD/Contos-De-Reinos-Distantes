@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 	}
 	
 	public boolean inserir(Usuario usuario) {
-		String comando = "INSERT INTO usuarios (usuario, senha, email, nome, data_nascimento, data_criacao, permissao) VALUES (?,?,?,?,?,?,?)";
+		String comando = "INSERT INTO usuarios (usuario, senha, email, nome, data_nascimento, data_criacao, permissao) VALUES (?,?,?,?,?,NOW(),?)";
 		PreparedStatement p;
 		try {
 			p = this.conexao.prepareStatement(comando);
@@ -31,8 +30,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 			p.setString(3, usuario.getEmail());
 			p.setString(4, usuario.getNome());
 			p.setString(5, usuario.getNascimento());
-			p.setString(6, usuario.getDataCriacao());
-			p.setString(7, usuario.getPermissao());
+			p.setString(6, usuario.getPermissao());
 			p.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,15 +39,19 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 		return true;
 	}
 
-	public Usuario buscarPorId(String id) {
+	public Usuario buscarPorValor(String valor, String tipo) {
 		String comando = "SELECT * FROM usuarios"
-			+ " WHERE id = '" + id + "'";
+			+ " WHERE ? = '?'";
 		Usuario usuario = new Usuario();
+		PreparedStatement p;
 		try {
-			java.sql.Statement stmt = conexao.createStatement();
-			ResultSet rs = stmt.executeQuery(comando);
+			p = this.conexao.prepareStatement(comando);
+			p.setString(1, tipo);
+			p.setString(2, valor);
+			ResultSet rs = p.executeQuery(comando);
 			while (rs.next()) {
-				String login = rs.getString("login");
+				String id = rs.getString("id");
+				String login = rs.getString("usuario");
 				String senha = rs.getString("senha");
 				String email = rs.getString("email");
 				String nome = rs.getString("nome");
@@ -57,6 +59,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 				String dataCriacao = rs.getString("data_criacao");
 				String permissao = rs.getString("permissao");
 				
+				usuario.setId(id);
 		        usuario.setLogin(login);
 		        usuario.setSenha(senha);
 		        usuario.setEmail(email);
@@ -74,18 +77,17 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 
 	public boolean atualizar(Usuario usuario) {
 		String comando = "UPDATE usuarios SET"
-				+ " login=?,"
+				+ " usuario=?,"
 				+ " senha=?,"
 				+ " nome=?,"
 				+ " nascimento=?,"
 				+ " email=?"
 				+ " WHERE id=?";
 		PreparedStatement p;
-		Criptografia criptografia = new Criptografia();
 		try {
 			p = this.conexao.prepareStatement(comando);
 			p.setString(3, usuario.getLogin());
-			p.setString(2, criptografia.criptografar(usuario.getSenha()));//
+			p.setString(2, Criptografia.criptografaSenha(usuario.getSenha()));//
 			p.setString(3, usuario.getNome());
 			p.setString(4, usuario.getNascimento());
 			p.setString(5, usuario.getEmail());
@@ -98,12 +100,13 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 		return true;
 	}
 
-	public boolean deletar(String id) {
+	public boolean deletar(String login) {
 		String comando = "DELETE FROM usuarios"
-				+ " WHERE id = '" + id +"'";
-		Statement p;
+				+ " WHERE usuario = '?'";
+		PreparedStatement p;
 		try {
-			p = this.conexao.createStatement();
+			p = this.conexao.prepareStatement(comando);
+			p.setString(1, login);
 			p.execute(comando);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,15 +127,22 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 			}
 		}
 		if(!busca.equals("")) {
-			comando += "(nome LIKE '%" + busca + "%' OR login LIKE '%" + busca + "%' OR email = '" + busca + "%' OR id = '" + busca + "')";
+			comando += "(nome LIKE '%" + busca + "%' OR usuario LIKE '%" + busca + "%' OR email LIKE '" + busca + "%' OR id LIKE '" + busca + "')";
 		}
 		List<Usuario> listUsuario = new ArrayList<Usuario>();
-		Usuario usuario = null;
+		PreparedStatement p;
 		try {
-			Statement stmt = conexao.createStatement(); 
-			ResultSet rs = stmt.executeQuery(comando);
+			p = this.conexao.prepareStatement(comando);
+			p.setString(1, nivel);
+			p.setString(2, busca);
+			p.setString(3, busca);
+			p.setString(4, busca);
+			p.setString(5, busca);
+			ResultSet rs = p.executeQuery(comando);
 			while (rs.next()) {
-				String login = rs.getString("login");
+				Usuario usuario = new Usuario();
+				String id = rs.getString("id");
+				String login = rs.getString("usuario");
 				String senha = rs.getString("senha");
 				String email = rs.getString("email");
 				String nome = rs.getString("nome");
@@ -140,6 +150,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 				String dataCriacao = rs.getString("data_criacao");
 				String permissao = rs.getString("permissao");
 				
+				usuario.setId(id);
 		        usuario.setLogin(login);
 		        usuario.setSenha(senha);
 		        usuario.setEmail(email);
