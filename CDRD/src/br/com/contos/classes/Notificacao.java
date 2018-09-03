@@ -31,6 +31,7 @@ private static final long serialVersionUID = 1L;
 	public void setDataCriacao(String dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
+
 	public String getUsuarioId() {
 		return usuarioId;
 	}
@@ -38,15 +39,16 @@ private static final long serialVersionUID = 1L;
 		this.usuarioId = usuarioId;
 	}
 	
-	public String converteNascimentoParaBD() {
-		String[] nascimentoDividido = dataCriacao.split("/");
-		String nascimentoConvertido = nascimentoDividido[2] + "-" + nascimentoDividido[1] + "-" + nascimentoDividido[0];
-		return nascimentoConvertido;
+	
+	public String converteCriacaoParaBD() {
+		String[] criacaoDividida = dataCriacao.split("/");
+		String criacaoConvertida = criacaoDividida[2] + "-" + criacaoDividida[1] + "-" + criacaoDividida[0];
+		return criacaoConvertida;
 	}
 	
-	public String converteNascimentoParaFrontend(String dataCriacao) {
-		String[] nascimentoDividido = dataCriacao.split("-");
-		String nascimentoConvertido = nascimentoDividido[2] + "/" + nascimentoDividido[1] + "/" + nascimentoDividido[0];
-		return nascimentoConvertido;
+	public String converteCriacaoParaFrontend(String datacriacao) {
+		String[] criacaoDividida = datacriacao.split("-");
+		String criacaoConvertida = criacaoDividida[2] + "/" + criacaoDividida[1] + "/" + criacaoDividida[0];
+		return criacaoConvertida;
 	}
 }

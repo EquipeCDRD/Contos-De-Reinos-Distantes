@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class JDBCNotificacaoDAO implements NotificacaoDAO{
 	}
 	
 	public boolean inserir(Notificacao notificacao){
-		String comando = "INSERT INTO notificacacoes (notificacao, data_criacao, usuario_id) VALUES (?,?,?)";
+		String comando = "INSERT INTO notificacoes (notificacao, data_criacao, usuarios_id) VALUES (?,?,?)";
 		PreparedStatement p;
 		try{
 			p = this.conexao.prepareStatement(comando);
@@ -36,13 +35,14 @@ public class JDBCNotificacaoDAO implements NotificacaoDAO{
 		return true;
 		}
 	
-	public boolean atualizar(Notificacao notificacao){
+	public boolean alterar(Notificacao notificacao){
 		String comando = "UPDATE notificacoes SET notificacao=?";
 		comando += " WHERE id=?";
 		PreparedStatement p;
 		try {
 			p = this.conexao.prepareStatement(comando);
 			p.setString(1, notificacao.getNotificacao());
+			p.setString(2, notificacao.getId());
 			p.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,8 +51,8 @@ public class JDBCNotificacaoDAO implements NotificacaoDAO{
 		return true;
 	}
 	
-	public boolean deletar(Notificacao notificacao) {
-		String comando = "DELETE FROM notificacoes WHERE notificacao = '" + notificacao +"'";
+	public boolean deletar(String id) {
+		String comando = "DELETE FROM notificacoes WHERE id = '" + id +"'";
 		Statement p;
 		try {
 			p = this.conexao.createStatement();
@@ -64,8 +64,8 @@ public class JDBCNotificacaoDAO implements NotificacaoDAO{
 		return true;
 	}
 	
-	public List<Notificacao> buscar(String busca) {
-		String comando = "SELECT * FROM notificacoes";
+	public List<Notificacao> buscar() {
+		String comando = "SELECT * FROM notificacoes ORDER BY data_criacao DESC";
 		System.out.println(comando);
 		List<Notificacao> listNotificacao = new ArrayList<Notificacao>();
 		Notificacao notificacao = null;
@@ -74,9 +74,11 @@ public class JDBCNotificacaoDAO implements NotificacaoDAO{
 			ResultSet rs = stmt.executeQuery(comando);
 			while (rs.next()) {
 				notificacao = new Notificacao();
+				String id = rs.getString("id");
 				String notif = rs.getString("notificacao");
-				String datacriacao = notificacao.converteNascimentoParaFrontend(rs.getString("dataCriacao"));
-				String usuarioid = rs.getString("usuarioId");				
+				String datacriacao = rs.getString("data_criacao");
+				String usuarioid = rs.getString("usuarios_id");	
+				notificacao.setId(id);
 				notificacao.setNotificacao(notif);
 				notificacao.setDataCriacao(datacriacao);
 				notificacao.setUsuarioId(usuarioid);

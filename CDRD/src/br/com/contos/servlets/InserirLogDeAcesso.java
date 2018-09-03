@@ -1,6 +1,7 @@
 package br.com.contos.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,43 +11,43 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.util.Map;
 import java.util.HashMap;
+
 import com.google.gson.Gson;
 
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
 
-import br.com.contos.classes.Notificacao;
-import br.com.contos.jdbc.JDBCNotificacaoDAO;
+import br.com.contos.classes.LogDeAcesso;
+import br.com.contos.jdbc.JDBCLogDeAcessoDAO;
 import br.com.contos.conexao.Conexao;
 
-@WebServlet("/InserirNotificacao")
-public class InserirNotificacao extends HttpServlet {
+@WebServlet("/InserirLogDeAcesso")
+public class InserirLogDeAcesso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public InserirNotificacao() {
+       
+    public InserirLogDeAcesso() {
         super();
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException{
     	
-    	Notificacao notificacao = new Notificacao();
+    	LogDeAcesso logDeAcesso = new LogDeAcesso();
     	
     	try	{
-    		notificacao.setNotificacao(request.getParameter("notificacao"));
     		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
     		LocalDateTime now = LocalDateTime.now();  
-    		notificacao.setDataCriacao(dtf.format(now));
-    		notificacao.setUsuarioId(request.getParameter("usuario_id"));
+    		logDeAcesso.setDataCriacao(dtf.format(now));
+    		logDeAcesso.setUsuarioId(request.getParameter("usuario_id"));
     		Conexao conec = new Conexao();
     		Connection conexao = conec.abrirConexao();
-    		JDBCNotificacaoDAO jdbcNotificacao = new JDBCNotificacaoDAO(conexao);
+    		JDBCLogDeAcessoDAO jdbcLogDeAcesso = new JDBCLogDeAcessoDAO(conexao);
     		Map<String, String> msg = new HashMap<String, String>();
-    		boolean retorno = jdbcNotificacao.inserir(notificacao);
+    		boolean retorno = jdbcLogDeAcesso.inserir(logDeAcesso);
     		if(retorno){
-    			msg.put("msg", "Notificação enviada com sucesso.");
+    			msg.put("msg", "Log de acesso da sess�o de administrador salvo.");
     		}else{
-    			msg.put("msg", "Não foi possível enviar a notificação.");
+    			msg.put("msg", "Ocorreu um erro ao salvar o log de acesso");
     		}
     		conec.fecharConexao();
 	    	System.out.println(msg);

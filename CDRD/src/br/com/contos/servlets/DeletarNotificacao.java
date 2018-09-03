@@ -18,19 +18,12 @@ import br.com.contos.jdbc.JDBCNotificacaoDAO;
 import br.com.contos.conexao.Conexao;
 
 
-/**
- * Servlet implementation class DeletaNotificacao
- */
 @WebServlet("/DeletarNotificacao")
 public class DeletarNotificacao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public DeletarNotificacao() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response)
@@ -44,9 +37,9 @@ public class DeletarNotificacao extends HttpServlet {
     	
     	Map<String, String> msg = new HashMap<String, String>();
     	if (retorno) {
-    		msg.put("msg", "Notificação deletada com sucesso.");
+    		msg.put("msg", "NotificaÃ§Ã£o deletada com sucesso.");
     	} else {
-    		msg.put("msg", "Não foi possível deletar a no.");
+    		msg.put("msg", "NÃ£o foi possÃ­vel deletar a no.");
     	}
     	String json = new Gson().toJson(msg);
     	response.setContentType("application/json");
@@ -55,19 +48,11 @@ public class DeletarNotificacao extends HttpServlet {
     	
     }
     
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		process(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		process(request, response);
 	}
 

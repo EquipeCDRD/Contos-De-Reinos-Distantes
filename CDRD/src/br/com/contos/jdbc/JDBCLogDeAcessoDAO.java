@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +19,13 @@ public class JDBCLogDeAcessoDAO implements LogDeAcessoDAO{
 		this.conexao = conexao;
 	}
 	
-	public boolean inserir(LogDeAcesso log){
+	public boolean inserir(LogDeAcesso logDeAcesso){
 		String comando = "INSERT INTO logs_de_acesso (data_criacao, usuarios_id) VALUES (?,?)";
 		PreparedStatement p;
 		try{
 			p = this.conexao.prepareStatement(comando);
-			p.setString(1, log.getDataCriacao());
-			p.setString(2, log.getUsuarioId());
+			p.setString(1, logDeAcesso.getDataCriacao());
+			p.setString(2, logDeAcesso.getUsuarioId());
 			p.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -35,7 +34,7 @@ public class JDBCLogDeAcessoDAO implements LogDeAcessoDAO{
 		return true;
 		}
 	
-	public boolean deletar(LogDeAcesso log) {
+	public boolean deletar(String data_criacao) {
 		String comando = "DELETE FROM logs_de_acesso WHERE data_criacao = '" + 1/*Data?*/ +"'"; //deletar maior que 30 dias;
 		Statement p;
 		try {
@@ -48,21 +47,21 @@ public class JDBCLogDeAcessoDAO implements LogDeAcessoDAO{
 		return true;
 	}
 	
-	public List<LogDeAcesso> buscar(String busca) {
-		String comando = "SELECT * FROM logs_de_acesso";
+	public List<LogDeAcesso> buscar(){
+		String comando = "SELECT * FROM logs_de_acesso ORDER BY data_criacao DESC";
 		System.out.println(comando);
 		List<LogDeAcesso> listLog = new ArrayList<LogDeAcesso>();
-		LogDeAcesso log = null;
+		LogDeAcesso logDeAcesso = null;
 		try {
 			Statement stmt = conexao.createStatement(); 
 			ResultSet rs = stmt.executeQuery(comando);
 			while (rs.next()) {
-				log = new LogDeAcesso();
-				String datacriacao = log.converteNascimentoParaFrontend(rs.getString("dataCriacao"));
-				String usuarioid = rs.getString("usuarioId");				
-				log.setDataCriacao(datacriacao);
-				log.setUsuarioId(usuarioid);
-				listLog.add(log);
+				logDeAcesso = new LogDeAcesso();
+				String datacriacao = rs.getString("data_criacao");
+				String usuarioid = rs.getString("usuarios_id");				
+				logDeAcesso.setDataCriacao(datacriacao);
+				logDeAcesso.setUsuarioId(usuarioid);
+				listLog.add(logDeAcesso);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
