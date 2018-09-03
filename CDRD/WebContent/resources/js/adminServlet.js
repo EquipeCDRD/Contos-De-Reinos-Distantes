@@ -30,12 +30,16 @@ $(document).ready(function(){
 	
 	verificaUsuario();
 	
+	sair = function(){
+		alert("oi!");
+	}
+	
 /*------------------------Notificação------------------------------------*/
 	
 	$(function buscaNotificacao(){
 		var html = "<table class='tabelaNotificacoes'>" +
 		"<tr>" +
-		"<th>Data:</th>" +
+		"<th>Data - Horário:</th>" +
 		"<th class='colMeio'>Mensagem:</th>" +
 		"<th>Opções</th>" +
 		"</tr>";
@@ -126,7 +130,58 @@ $(document).ready(function(){
 		});
 	}
 	
-	sair = function(){
-		alert("oi!");
+	/*------------------------Log de acesso--------------------------------*/
+	
+	insereLogDeAcesso = function(){
+		var usuarioId = 1;//usuarioLogado.id;
+		$.ajax({
+			type: "POST",
+			url: PATH + "InserirLogDeAcesso",
+			data: "usuario_id="+usuarioId,
+			success: function (msg) {
+				alert(msg.msg);
+			},
+			error: function (info) {
+				alert("Erro ao cadastrar uma nova notificação: "+ info.status + " - " + info.statusText);		   
+			}
+		});
 	}
+	
+	$(function buscaLogDeAcesso(){
+		var html = "<table class='tabelaGeral'>" +
+		"<tr>" +
+		"<th>Usuário:</th>" +
+		"<th>Data - Horário</th>" +
+		"</tr>";
+		
+		$.ajax({
+			type: "POST",
+			url: PATH + "BuscarLogDeAcesso",
+			data: null,
+			success: function(dados){
+				html += geraTabelaLogDeAcesso(dados);
+				html += "</table>";
+				$("#listLogDeAcesso").html(html);
+			},
+			error: function(info){
+				alert("Erro ao carregar as tabelas: "+ info.status + " - " + info.statusText);
+			}
+		})
+	});
+	
+	geraTabelaLogDeAcesso = function(listLog){
+		var dados = "";
+		if (listLog != undefined && listLog.length > 0){
+			for (var i=0; i<listLog.length; i++){
+				dados += "<tr>" +
+						"<td><span>"+listLog[i].usuarioId+"</span></td>" +
+						"<td><span>"+listLog[i].dataCriacao+"</span></td>" +
+						"</tr>"
+			}
+		} else if (listNotificacao == ""){
+			dados += "<tr><td colspan='2'>Nenhum registro encontrado</td></tr>";
+		}
+		return dados;
+	}
+	
 })

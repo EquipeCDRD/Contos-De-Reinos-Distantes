@@ -57,10 +57,10 @@ $( function() {
   })
   //Função para quando o usuário clicar em editar, descarregar a div ComporNotificacoes e carregar
   //a div EditarNotificacoes no lugar.                
-  function editarNotificacao(){
+  /*function editarNotificacao(){
       $(".divComporNotificacoes").hide();
-      $("#divEditarNotificacoes").show();
-  }
+      $("#divEditarNotificacoes").show();	 ESTA FUNCAO AGORA ESTA NO ADMINSERVLET, NO MÉTODO alterarNotificacao
+  }*/ 
   //Funcao para descarregar EditarNotificacoes e recarregar ComporNotificacoes quando clicar em cancelar
   function cancelarEdicao(){
       $(".divComporNotificacoes").show();
@@ -72,6 +72,9 @@ $( function() {
     if(compedit==0){
         if($("textarea[name=txacompnotificacao]").val()!=""){
             conf = confirm("Você tem certeza que deseja postar uma notificação?");
+            if(conf==true){
+            	insereNotificacao();
+            }
         }else{
             alert("Escreva uma notificação.");
             $("textarea[name=txacompnotificacao]").focus();
@@ -79,12 +82,15 @@ $( function() {
     }else if(compedit==1){
         if($("textarea[name=txaeditnotificacao]").val()!=""){
             conf = confirm("Você tem certeza que deseja editar uma notificação?");
+            if(conf==true){
+            	alteraNotificacao();
+            }
         }else{
             alert("Escreva uma notificação.");
             $("textarea[name=txaeditnotificacao]").focus();
         }
     }
-    return conf;   
+    //return conf;
 }
 
 //--------------------------------Gerenciar Admins--------------------------------------------
@@ -103,7 +109,7 @@ function validaCadastroAdm(){
                                 alert("As senhas não coincidem.");
                             }
                         }else{
-                            alert("Preencha a validação de senha.");
+                            alert("Preencha a confirmação de senha.");
                             $("input[name=pwdconfsenhaadm]").focus();
                         }
                     }else{
@@ -163,7 +169,7 @@ function validaMinhaConta(){
                         }
                     }else{
                         alert("Preencha a senha antiga.");
-                        $("input[name=pwdsenhavelha]").focus();
+                        $("input[name=pwdsenhaantiga]").focus();
                     }
                 }else{
                     alert("Preencha o nome de usuário.");
