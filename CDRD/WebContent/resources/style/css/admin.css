@@ -14,13 +14,13 @@ body{
 .admMenu{
     height: 100px;
     width: auto;
-    margin: 0px auto 0px;
+    margin: 0 auto 0;
     padding: 0;
     overflow: hidden;
     text-align: center;
     border-style: solid;
     border-color: darkolivegreen;
-    border-width: 0px 3px 3px 3px;
+    border-width: 0 3px 3px 3px;
     background-color: darkseagreen;
 }
 
@@ -39,7 +39,7 @@ body{
 .admMenu div{
     float: left;
     display: block;
-    padding: 0px 0.5%;
+    padding: 0 0.5%;
     margin: 0;
     height: 100px;
     width: auto;
@@ -125,7 +125,7 @@ body{
 
 .divSelecionarContas h2{
     display: inline-block;
-    margin: 0%;
+    margin: 0;
     height: 31px;
 }
 
@@ -317,4 +317,3 @@ body{
     width: 95%;
     margin: 0 auto 20px;
 }
-
