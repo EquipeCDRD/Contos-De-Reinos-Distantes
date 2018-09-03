@@ -37,7 +37,7 @@ public class ValidarSessao extends HttpServlet {
         		Connection conexao = conec.abrirConexao();
         		JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao); 
         		
-        		Usuario usuario = jdbcUsuario.buscarPorLogin(sessao.getAttribute("login").toString());
+        		Usuario usuario = jdbcUsuario.buscarPorValor(sessao.getAttribute("login").toString(),"usuario");
         		
         		conec.fecharConexao();
         		
