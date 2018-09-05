@@ -10,21 +10,18 @@
     <!--============== importação dos scripts e folhas de estilo ==============-->
 
     <!--=== libs ===-->
-
+    
         <!--JQuery-->
-        <script src="resources/js/libs/jquery-3.3.1.js"></script>
-
-        <!--JQueryUI js & css-->
-        <script src="resources/js/libs/jquery-ui.js"></script>
-
-        <link rel="stylesheet" href="resources/style/css/jquery-ui.css  ">
-
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        
         <!--DetectJS-->
-        <script src="resources/js/libs/detect.js"></script>
-
+        <script src="https://raw.githubusercontent.com/darcyclarke/Detect.js/master/build/detect.js"></script>
+    
     <!--=== scripts próprios ===-->
+        
         <script src="resources/js/index.js"></script>
-        <script src="resources/js/modais_index.js"></script>
+        <script src="resources/js/indexServlet.js"></script>
 
     <!--=== folhas de estilo ===-->
         <link rel="stylesheet" type="text/css" media="screen" href="resources/style/css/index.css" />
@@ -196,7 +193,7 @@
             <!-- Login -->
 
             <div id="login">
-            <form name="frmlogin" onsubmit="return validaLogin()">
+            <form name="frmlogin">
             <table class="intTable"> <!--Tabela de interações-->
                 <tr>
                 <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
@@ -209,15 +206,15 @@
                             </tr>
                             <tr>
                             <td class="intCadOptions1">Usuário:</td>
-                            <td><input class="intInput1" type="text" name="txtuser"></td>
+                            <td><input class="intInput1" type="text" name="txtlogin"></td>
                             </tr>
                             <tr>
                             <td class="intCadOptions1">Senha:</td>
-                            <td><input class="intInput1" type="password" name="pwdpassword"></td>
+                            <td><input class="intInput1" type="password" name="pwdsenha"></td>
                             </tr>
                             <tr>
                             <td><input type="reset" value="Limpar" class="intCadButton"></td>
-                            <td><input type="submit" value="Enviar" class="intCadButton2"></td>
+                            <td><input type="button" value="Enviar" class="intCadButton2" onclick="validaLogin()"></td>
                             </tr>
                         </table><!--Fim da tabela da fala-->
                     </td><!--Fim da td das falas do Personagem-->
@@ -280,7 +277,7 @@
                 </tr>
                 <tr>
                     <td class="intRow vAlign"><!--Td das falas do Personagem-->
-                        <form name="frmcadastro" onsubmit="return validaCadastro()">
+                        <form name="frmcadastro">
                         <table><!--Tabela da fala-->
                             <tr>
                             <td colspan="2" class="intCadRow intDialogue">Então vamos mudar isso! Preencha esta folha com seus dados:</td><!--Falas do Personagem-->
@@ -311,7 +308,7 @@
                             </tr>
                             <tr>
                             <td><input type="reset" value="Limpar" class="intCadButton3"></td>
-                            <td><input type="submit" value="Enviar" class="intCadButton4"></td>
+                            <td><input type="button" value="Enviar" class="intCadButton4" onclick="validaCadastro()"></td>
                             </tr>
                         </table><!--Fim da tabela da fala-->
                         </form>
@@ -338,7 +335,7 @@
                 </tr>
                 <tr>
                     <td class="intRow vAlign"><!--Td das falas do Personagem-->
-                        <form name="frmesqueci" onsubmit="return validaEsqueciSenha()">
+                        <form name="frmesqueci">
                         <table><!--Tabela da fala-->
                             <tr>
                             <td colspan="2" class="intCadRow intDialogue">Isso é mais comum do que você imagina, até criamos um plano para lidar com esse tipo de problema! Enviaremos um pombo correio para sua casa. (Você receberá um e-mail com o link para redefinição de senha)</td><!--Falas do Personagem-->
@@ -349,7 +346,7 @@
                             </tr>
                             <tr>
                             <td><input type="reset" value="Limpar" class="intCadButton3"></td>
-                            <td><input type="submit" value="Enviar" class="intCadButton4"></td>
+                            <td><input type="button" value="Enviar" class="intCadButton4" onclick="validaEsqueciSenha()"></td>
                             </tr>
                         </table><!--Fim da tabela da fala-->
                         </form>
