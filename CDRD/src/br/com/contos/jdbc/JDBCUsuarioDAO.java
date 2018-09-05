@@ -41,8 +41,9 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 
 	public Usuario buscarPorValor(String valor, String tipo) {
 		String comando = "SELECT * FROM usuarios"
-			+ " WHERE "+tipo+" = "+valor;
+			+ " WHERE "+tipo+" = '"+valor+"'";
 		Usuario usuario = new Usuario();
+		System.out.println(comando);
 		try {
 
 			Statement stmt = conexao.createStatement(); 

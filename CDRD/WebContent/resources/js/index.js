@@ -100,45 +100,44 @@ function validaLogin(){
 }
   
 function validaCadastro(){
-
-    if($("input[name=txtname]").val()!=""){
-        if($("input[name=txtemail]").val()!=""){
-        if($("input[name=dtedate]").val()!=""){
-            if($("input[name=txtusuario]").val()!=""){
+    
+    if($("input[name=txtnome]").val()!=""){
+      if($("input[name=txtemail]").val()!=""){
+        if($("input[name=dtenascimento]").val()!=""){
+          if($("input[name=txtapelido]").val()!=""){
             if($("input[name=pwdsenha]").val()!=""){
-                if($("input[name=pwdconfsenha]").val()!=""){
+              if($("input[name=pwdconfsenha]").val()!=""){
                 if($("input[name=pwdsenha]").val()==$("input[name=pwdconfsenha]").val()){
                     cadastrar();
                 }else{
-                    alert('O campo "Confirmar Senha" deve ser igual ao campo "Senha"');
-                    $("input[name=pwdconfsenha]").focus();
+                  alert('O campo "Confirmar Senha" deve ser igual ao campo "Senha"');
+                  $("input[name=pwdconfsenha]").focus();
                 }
-                }else{
+              }else{
                 alert('Preencha o campo "Confirmar Senha"');
                 $("input[name=pwdconfsenha]").focus();
-                }
+              }
             }else{
-                alert('Preencha o campo "Senha"');
-                $("input[name=pwdsenha]").focus();
+              alert('Preencha o campo "Senha"');
+              $("input[name=pwdsenha]").focus();
             }
-            }else{
+          }else{
             alert('Preencha o campo "Usuário"');
-            $("input[name=txtusuario]").focus();
-            }
+            $("input[name=txtname]").focus();
+          }
         }else{
-            alert('Preencha o campo "Data de Nascimento"');
-            $("input[name=dtedate]").focus();
+          alert('Preencha o campo "Data de Nascimento"');
+          $("input[name=dtenascimento]").focus();
         }
-        }else{
+      }else{
         alert('Preencha o campo "E-mail"');
         $("input[name=txtemail]").focus();
-        }
+      }
     }else{
-        alert('Preencha o campo "Nome"');
-        $("input[name=txtname]").focus();
+      alert('Preencha o campo "Nome');
+      $("input[name=txtnome]").focus();
     }
 }
-
 function validaEsqueciSenha(){
 
     if($("input[name=txtmail]").val()!=""){

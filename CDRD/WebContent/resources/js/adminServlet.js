@@ -4,7 +4,10 @@ $(document).ready(function(){
 	
 /*--------------------------------------Geral-----------------------------------------*/
 	
-	verificaUsuario = function(){
+//inicialização de funções AJAX
+
+	//validar sessão
+	$(function(){
 		$.ajax({
 			type: "POST",
 			url: PATH + "ValidarSessao",
@@ -12,12 +15,12 @@ $(document).ready(function(){
 			success: function (usuario) {
 				if (usuario.login!=null){
 					usuarioLogado = new Object();
-					usuarioLogado.id= usuario.id;
+					usuarioLogado.id = usuario.id;
 					usuarioLogado.login = usuario.login;
 					usuarioLogado.email = usuario.email;
 					usuarioLogado.nome = usuario.nome;
 					usuarioLogado.nascimento = usuario.nascimento;
-					carregaPagina();
+					buscaAdmParaEditar(usuarioLogado.id);
 				} else {
 					sair();
 				}	
@@ -26,12 +29,38 @@ $(document).ready(function(){
 				sair();
 			}
 		});
-	}
+	});
 	
-	verificaUsuario();
+	//buscar usuarios para lista
+	$(function lista(){
+		var html;
+		$.ajax({
+			type: "POST",
+			url: PATH + "BuscarUsuariosParaLista",
+			data: "permissao=0&valorBusca=",
+			success: function(dados){
+				html = listaAdm(dados);
+				$("#listaAdm").html(html);
+			},
+			error: function(info){
+				alert("Erro ao consultar os contatos: "+ info.status + " - " + info.statusText);
+			}
+		});
+		
+	});
+
 	
 	sair = function(){
-		alert("oi!");
+		$.ajax({
+			type: "POST",
+			url: PATH + "Logout",
+			success: function (data) {
+				window.location.href = (PATH+"index.html");	
+			},
+			error: function (info) {
+				alert("Erro ao tentar encerrar sua sessão: "+ info.status + " - " + info.statusText);	
+			}
+		});
 	}
 	
 /*------------------------Notificação------------------------------------*/
@@ -184,8 +213,113 @@ $(document).ready(function(){
 		return dados;
 	}
 
-/*------------------------Gráficos--------------------------------*/	
+/*------------------------Gerenciar ADM--------------------------------*/
 
+	//usa a servlet BuscaUsuariosParaLista para fazer bem isso
+	buscaAdm = function(){
+		var valorBusca = $("input[name=txtbuscaadm]").val();
+		var html;
+		$.ajax({
+			type: "POST",
+			url: PATH + "BuscarUsuariosParaLista",
+			data: "permissao=0&valorBusca="+valorBusca,
+			success: function(dados){
+				html = listaAdm(dados);
+				$("#listaAdm").html(html);
+			},
+			error: function(info){
+				alert("Erro ao consultar os contatos: "+ info.status + " - " + info.statusText);
+			}
+		});
+		
+	};
+
+	//lista usuarios de uma lista
+	listaAdm = function(lista) {
+		var dados="";
+		if (lista==""){
+			dados = "<h2>Nada por aqui.</h2>";
+		}else{
+			dados += "<ul class='listaContas' id='listaAdmins'>";
+			if (lista != undefined && lista.length > 0){
+				for (var i=0; i<lista.length; i++){
+					dados +="<li name='txt"+lista[i].login+" value='"+lista[i].id+"'>"+lista[i].login+"</li>";
+				}
+			}
+			dados+="</ul>";
+		}
+		return dados;
+	};
+
+	function deletaAdm(id){
+		$.ajax({
+			type:"POST",
+			url: PATH + "DeletarUsuario",
+			data: "id="+id,
+			success: function(msg){
+				alert(msg.msg);
+			},
+			error: function(info){
+				alert("Erro ao deletar contato: "+ info.status + " - " + info.statusText);
+			}
+		});
+	};
 	
+	//faz o cadastro
+	function cadastraAdm(){
+		if (validaCadastroAdm()==true){
+			$.ajax({
+				type: "POST",
+				url: PATH + "InserirUsuario",
+				data: $("#cadastrarAdmin").serialize()+"&p=0",
+				success: function (msg) {
+					alert(msg.msg);
+				},
+				error: function (info) {
+					alert("Erro ao cadastrar um novo jogador: "+ info.status + " - " + info.statusText);		   
+				}
+			});
+		}
+	}
+	
+	//consulta
+	buscaAdmParaEditar = function(id){
+		$.ajax({
+			type: "POST",
+			url: PATH + "BuscarUsuario",
+			data: "id="+id,
+			success: function(usuario){
+				$("#altId").val(usuario.id);
+				$("#altNome").val(usuario.nome);
+				$("#altEmail").val(usuario.email);
+				$("#altNascimento").val(usuario.nascimento);
+				$("#altLogger").val(usuario.login);
+				$("#altVelhaSenha").val("");
+				$("#altNovaSenha").val("");
+				$("#altConfSenha").val("");
+			},
+			  error: function(rest){
+				  alert("Erro ao encontrar o usuário a ser alterado.");
+			  }
+			  });
+	};
+/*------------------------Gerenciar Contas--------------------------------*/
+	
+	//deixausuario alterado
+	alteraUsuario = function(){
+		if(validaMinhaConta()){
+			$.ajax({
+				type: "POST",
+				url: PATH + "AlterarUsuario",
+				data: $("#editarConta").serialize(),
+				success: function (msg) {
+					alert(msg.msg);
+				},
+				error: function (info) {
+					alert("Erro ao alterar os dados: "+ info.status + " - " + info.statusText);		   
+				}
+			});
+		}
+  };
 
 })
