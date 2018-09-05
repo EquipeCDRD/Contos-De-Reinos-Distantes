@@ -13,33 +13,32 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import br.com.contos.classes.Notificacao;
-import br.com.contos.jdbc.JDBCNotificacaoDAO;
+import br.com.contos.classes.LogDeAcesso;
+import br.com.contos.jdbc.JDBCLogDeAcessoDAO;
 import br.com.contos.conexao.Conexao;
-
 /**
- * Servlet implementation class BuscarNotificacao
+ * Servlet implementation class BuscarLogDeAcesso
  */
-@WebServlet("/BuscarNotificacao")
-public class BuscarNotificacao extends HttpServlet {
+@WebServlet("/BuscarLogDeAcesso")
+public class BuscarLogDeAcesso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BuscarNotificacao() {
+    public BuscarLogDeAcesso() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
+
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	List<Notificacao> notificacoes = new ArrayList<Notificacao>();
+    	List<LogDeAcesso> logsDeAcesso = new ArrayList<LogDeAcesso>();
     	Conexao conec = new Conexao();
     	Connection conexao = conec.abrirConexao();
-    	JDBCNotificacaoDAO jdbcNotificacao = new JDBCNotificacaoDAO(conexao);
-    	notificacoes = jdbcNotificacao.buscar();
+    	JDBCLogDeAcessoDAO jdbcLogDeAcesso = new JDBCLogDeAcessoDAO(conexao);
+    	logsDeAcesso = jdbcLogDeAcesso.buscar();
     	conec.fecharConexao();
-    	String json = new Gson().toJson(notificacoes);
+    	String json = new Gson().toJson(logsDeAcesso);
     	try {
     		response.setContentType("application/json");
     		response.setCharacterEncoding("UTF-8");
@@ -48,7 +47,7 @@ public class BuscarNotificacao extends HttpServlet {
     		e.printStackTrace();
     	}
     }
-
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -8,47 +8,51 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+import br.com.contos.conexao.Conexao;
+import br.com.contos.jdbc.JDBCLogDeAcessoDAO;
 
 import com.google.gson.Gson;
 
-import br.com.contos.classes.Notificacao;
-import br.com.contos.jdbc.JDBCNotificacaoDAO;
-import br.com.contos.conexao.Conexao;
-
 /**
- * Servlet implementation class BuscarNotificacao
+ * Servlet implementation class DeletarLogDeAcesso
  */
-@WebServlet("/BuscarNotificacao")
-public class BuscarNotificacao extends HttpServlet {
+@WebServlet("/DeletarLogDeAcesso")
+public class DeletarLogDeAcesso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BuscarNotificacao() {
+    public DeletarLogDeAcesso() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	List<Notificacao> notificacoes = new ArrayList<Notificacao>();
+
+    private void process(HttpServletRequest request, HttpServletResponse response)
+    		throws ServletException, IOException{
+    	String dataCriacao = request.getParameter("data_criacao");
     	Conexao conec = new Conexao();
     	Connection conexao = conec.abrirConexao();
-    	JDBCNotificacaoDAO jdbcNotificacao = new JDBCNotificacaoDAO(conexao);
-    	notificacoes = jdbcNotificacao.buscar();
+    	JDBCLogDeAcessoDAO jdbcLogDeAcesso = new JDBCLogDeAcessoDAO(conexao);
+    	boolean retorno = jdbcLogDeAcesso.deletar(dataCriacao);
     	conec.fecharConexao();
-    	String json = new Gson().toJson(notificacoes);
-    	try {
-    		response.setContentType("application/json");
-    		response.setCharacterEncoding("UTF-8");
-    		response.getWriter().write(json);
-    	} catch (IOException e) {
-    		e.printStackTrace();
+    	
+    	Map<String, String> msg = new HashMap<String, String>();
+    	if (retorno) {
+    		msg.put("msg", "Notificação deletada com sucesso.");
+    	} else {
+    		msg.put("msg", "Não foi possível deletar a no.");
     	}
+    	String json = new Gson().toJson(msg);
+    	response.setContentType("application/json");
+    	response.setCharacterEncoding("UTF-8");
+    	response.getWriter().write(json);
+    	
     }
-
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
