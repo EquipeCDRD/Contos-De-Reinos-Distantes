@@ -21,19 +21,12 @@ import br.com.contos.classes.LogDeAcesso;
 import br.com.contos.jdbc.JDBCLogDeAcessoDAO;
 import br.com.contos.conexao.Conexao;
 
-/**
- * Servlet implementation class InserirLogDeAcesso
- */
 @WebServlet("/InserirLogDeAcesso")
 public class InserirLogDeAcesso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public InserirLogDeAcesso() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +45,7 @@ public class InserirLogDeAcesso extends HttpServlet {
     		Map<String, String> msg = new HashMap<String, String>();
     		boolean retorno = jdbcLogDeAcesso.inserir(logDeAcesso);
     		if(retorno){
-    			msg.put("msg", "Log de acesso da sess„o de administrador salvo.");
+    			msg.put("msg", "Log de acesso da sess√£o de administrador salvo.");
     		}else{
     			msg.put("msg", "Ocorreu um erro ao salvar o log de acesso");
     		}
@@ -68,19 +61,11 @@ public class InserirLogDeAcesso extends HttpServlet {
     	}  		
     }
     
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		process(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		process(request, response);
 	}
 
