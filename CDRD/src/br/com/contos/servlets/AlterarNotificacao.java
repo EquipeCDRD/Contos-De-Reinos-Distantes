@@ -17,19 +17,12 @@ import br.com.contos.conexao.Conexao;
 
 import com.google.gson.Gson;
 
-/**
- * Servlet implementation class AtualizarNotificacao
- */
 @WebServlet("/AlterarNotificacao")
 public class AlterarNotificacao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public AlterarNotificacao() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) 
@@ -45,9 +38,9 @@ public class AlterarNotificacao extends HttpServlet {
     	    boolean retorno = jdbcNotificacao.alterar(notificacao);
     		conec.fecharConexao();    	
     			if (retorno) {
-    				msg.put("msg", "Notificação editada com sucesso.");
+    				msg.put("msg", "NotificaÃ§Ã£o editada com sucesso.");
     		    } else {
-    		    	msg.put("msg", "Não foi possível editar a notificação.");
+    		    	msg.put("msg", "NÃ£o foi possÃ­vel editar a notificaÃ§Ã£o.");
     		    	msg.put("erro", "true");
     		    }
     		conec.fecharConexao();
@@ -60,19 +53,11 @@ public class AlterarNotificacao extends HttpServlet {
     	}
     }
     
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		process(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		process(request, response);
 	}
 

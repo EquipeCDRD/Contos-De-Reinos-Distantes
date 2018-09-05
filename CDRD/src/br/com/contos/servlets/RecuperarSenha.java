@@ -15,19 +15,12 @@ import br.com.contos.classes.Criptografia;
 import br.com.contos.classes.Email;
 import br.com.contos.jdbc.JDBCUsuarioDAO;
 
-/**
- * Servlet implementation class RecuperaSenha
- */
 @WebServlet("/RecuperarSenha")
 public class RecuperarSenha extends HttpServlet {
     private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public RecuperarSenha() {
         super();
-        // TODO Auto-generated constructor stub
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
