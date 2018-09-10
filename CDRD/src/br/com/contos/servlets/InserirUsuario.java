@@ -35,14 +35,17 @@ public class InserirUsuario extends HttpServlet {
     		usuario.setNascimento(request.getParameter("dtenascimento"));
     		usuario.setLogin(request.getParameter("txtapelido"));
     		usuario.setSenha(Criptografia.criptografaSenha(request.getParameter("pwdsenha")));
-    		usuario.setPermissao(request.getParameter("hdpermissao"));
+    		usuario.setPermissao(request.getParameter("p"));
     		Conexao conec = new Conexao();
     		Connection conexao = conec.abrirConexao();
     		JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
     		Usuario usuariobd=jdbcUsuario.buscarPorValor(usuario.getLogin(), "usuario");
     		String loginbd = usuariobd.getLogin();
+    		String login = usuario.getLogin();
     		Map<String, String> msg = new HashMap<String, String>();
-    		if (usuario.getLogin().equals(loginbd)) {
+    		System.out.println(login);
+    		System.out.println(loginbd);
+    		if (login.equals(loginbd)) {
     			msg.put("msg", "Esse login já existe.");
     		} else {	
 	    		boolean retorno = jdbcUsuario.inserir(usuario);

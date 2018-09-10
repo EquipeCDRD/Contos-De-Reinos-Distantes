@@ -87,18 +87,20 @@ function carregaModais(){
 function validaLogin(){
     
     if($("input[name=txtlogin]").val()!=""){
-      if($("input[name=pwdsenha]").val()!=""){
+      if($("input[name=pwdsenhalogger]").val()!=""){
+        
         login();
-      }else{
+      
+    }else{
         alert('Preencha o campo Senha');
-        $("input[name=pwdsenha]").focus();
+        $("input[name=pwdsenhalogger]").focus();
       }
     }else{
       alert('Preencha o campo "Usuário"');
       $("input[name=txtlogin]").focus();
     }
 }
-  
+
 function validaCadastro(){
     
     if($("input[name=txtnome]").val()!=""){
@@ -138,6 +140,7 @@ function validaCadastro(){
       $("input[name=txtnome]").focus();
     }
 }
+
 function validaEsqueciSenha(){
 
     if($("input[name=txtmail]").val()!=""){

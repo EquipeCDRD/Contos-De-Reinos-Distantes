@@ -16,7 +16,11 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         
         <!--DetectJS-->
-        <script src="https://raw.githubusercontent.com/darcyclarke/Detect.js/master/build/detect.js"></script>
+        <!--
+            Por enquanto o Detect.js fica sendo puxado desta biblioteca local,
+            mas o ideal é utilizar a biblioteca online
+        -->
+        <script src="resources/js/libs/detect.js"></script>
     
     <!--=== scripts próprios ===-->
         
@@ -55,7 +59,7 @@
 
         <!--janela da taverna-->
         <div class="containerJanela" id="containerJanelaIndex1">
-            <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg" alt="janela da taverna n° 1" class="janela">
+            <img src="resources/style/images/bardo.gif" alt="janela da taverna n° 1" class="janela">
         </div>
 
         <!--container da porta-->
@@ -210,7 +214,7 @@
                             </tr>
                             <tr>
                             <td class="intCadOptions1">Senha:</td>
-                            <td><input class="intInput1" type="password" name="pwdsenha"></td>
+                            <td><input class="intInput1" type="password" name="pwdsenhalogger"></td>
                             </tr>
                             <tr>
                             <td><input type="reset" value="Limpar" class="intCadButton"></td>
@@ -277,7 +281,7 @@
                 </tr>
                 <tr>
                     <td class="intRow vAlign"><!--Td das falas do Personagem-->
-                        <form name="frmcadastro">
+                        <form name="frmcadastro" id="cadastrarJogador">
                         <table><!--Tabela da fala-->
                             <tr>
                             <td colspan="2" class="intCadRow intDialogue">Então vamos mudar isso! Preencha esta folha com seus dados:</td><!--Falas do Personagem-->

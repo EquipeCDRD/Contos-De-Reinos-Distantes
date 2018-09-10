@@ -5,16 +5,16 @@
  * 			  processamento da requisição.
  */
 
-function login(){
-	var login = $("input[name=txtlogin]").val();
-	var senha = $("input[name=pwdsenha]").val();
-	if((login=="")||(senha=="")){
-		alert("Preencha tudo aí, meu!");
-	} else {
+ $(document).ready(function(){
+
+	login = function(){
+		var login = $("input[name=txtlogin]").val();
+		var pwdsenhalogger = $("input[name=pwdsenhalogger]").val();
+		console.log("senha do feladapota:" + pwdsenhalogger);
 		$.ajax({
 			type: "POST",
 			url: "Login",
-			data: "login="+login+"&senha="+senha,
+			data: "login="+login+"&senha="+pwdsenhalogger,
 			success: function (msg) {
 				if (msg.msg!=null)
 					alert(msg.msg);
@@ -26,10 +26,8 @@ function login(){
 			}
 		});
 	}
-}
-
-function cadastra(){
-	if (validaCadastroJgr()){
+	
+	cadastrar = function(){
 		$.ajax({
 			type: "POST",
 			url: "InserirUsuario",
@@ -43,4 +41,4 @@ function cadastra(){
 			}
 		});
 	}
-}  
+ })
