@@ -1,17 +1,44 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <title>Contos de Reinos Distantes - Taberna</title>
-    <meta name="author" content="Equipe CRD">
-    <meta name="description" content="Página da Taberna do Contos de Reinos Distantes">
-    <meta name="creation-date" content="2018/07/04">
-    <meta name="last-modified" content="2018/07/04">
-    <link rel="stylesheet" type="text/css" href="../../resources/style/css/taberna.css" />
-    <link rel="stylesheet" type="text/css" href="../../resources/style/css/jquery-ui.css" />
-    <script src="../../resources/js/libs/jquery-3.3.1.js"></script>
-    <script src="../../resources/js/taberna.js"></script>
-  </head>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- O que ser isso? -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="author" content="Equipe CRD">
+        <meta name="description" content="Página da Taberna do Contos de Reinos Distantes">
+        <meta name="creation-date" content="2018/07/04">
+        
+        <title>Contos de Reinos Distantes - Taberna</title>
+        
+        <!--============== importação dos scripts e folhas de estilo ==============-->
+
+        <!--=== libs ===-->
+        
+            <!--JQuery-->
+            <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            
+            <!--DetectJS-->
+            <!--
+                Por enquanto o Detect.js fica sendo puxado desta biblioteca local,
+                mas o ideal é utilizar a biblioteca online
+            -->
+            <script src="../../resources/js/libs/detect.js"></script>
+        
+        <!--=== scripts próprios ===-->
+
+            <script src="../../resources/js/taberna.js"></script>
+            <script src="../../resources/js/indexServlet.js"></script>
+        
+        <!--=== folhas de estilo ===-->
+
+            <link rel="stylesheet" type="text/css" href="../../resources/style/css/taberna.css" />
+        
+    </head>
+  
   <body id="bodyTaberna">
     <div id="paredeQuartos">
       <div id="paredeQuarto">
@@ -486,4 +513,5 @@
           </table>
         </div>
   </body>
+
 </html>

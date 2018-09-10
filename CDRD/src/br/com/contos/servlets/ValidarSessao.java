@@ -27,17 +27,17 @@ public class ValidarSessao extends HttpServlet {
     
     private void process(HttpServletRequest request, HttpServletResponse response) 
     		throws ServletException, IOException {
-    	System.out.println("validando sessão");
+    	System.out.println("validando sessão...");
     	try {
     		HttpSession sessao = request.getSession();
     		
     		if (request.getParameter("p").equals(sessao.getAttribute("permissao"))) {
-    			System.out.println("sessão OK");
+    			System.out.println("sessão OK!");
     			Conexao conec = new Conexao();
         		Connection conexao = conec.abrirConexao();
         		JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao); 
         		
-        		Usuario usuario = jdbcUsuario.buscarPorValor(sessao.getAttribute("login").toString(),"usuario");
+        		Usuario usuario = jdbcUsuario.buscarPorValor(sessao.getAttribute("login").toString(), "usuario");
         		
         		conec.fecharConexao();
         		
@@ -47,7 +47,7 @@ public class ValidarSessao extends HttpServlet {
             	response.getWriter().write(json);
             	
     		} else {
-    			System.out.println("p�gina:"+request.getParameter("p")+" e sess�o:"+sessao.getAttribute("permissao"));
+    			System.out.println("Página:"+request.getParameter("p")+" e sessão:"+sessao.getAttribute("permissao"));
     		}
     			
 
@@ -63,5 +63,4 @@ public class ValidarSessao extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		process(request, response);
 	}
-
 }

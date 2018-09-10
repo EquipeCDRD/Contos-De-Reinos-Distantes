@@ -1,383 +1,385 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- O que ser isso? -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- O que ser isso? -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Contos de Reinos Distantes</title>
-    <!--============== importação dos scripts e folhas de estilo ==============-->
-
-    <!--=== libs ===-->
-    
-        <!--JQuery-->
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         
-        <!--DetectJS-->
+        <meta name="author" content="Equipe CRD">
+        <meta name="description" content="Página inicial do jogo">
+        <meta name="creation-date" content="2018-06-21">
+        
+        <title>Contos de Reinos Distantes</title>
+        
+        <!--============== importação dos scripts e folhas de estilo ==============-->
+
+        <!--=== libs ===-->
+        
+            <!--JQuery-->
+            <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            
+            <!--DetectJS-->
+            <!--
+                Por enquanto o Detect.js fica sendo puxado desta biblioteca local,
+                mas o ideal é utilizar a biblioteca online
+            -->
+            <script src="resources/js/libs/detect.js"></script>
+        
+        <!--=== scripts próprios ===-->
+            
+            <script src="resources/js/index.js"></script>
+            <script src="resources/js/indexServlet.js"></script>
+
+        <!--=== folhas de estilo ===-->
+            <link rel="stylesheet" type="text/css" media="screen" href="resources/style/css/index.css" />
+            <link rel="stylesheet" type="text/css" media="screen" href="resources/style/css/modais_index.css">
+
+    </head>
+
+    <!--======================== início conteúdo ========================-->
+
+    <!--
+        div que contem todo o conteúdo da index.html, exceto a div
+        reservada para as janelas de interação com usuário (login,
+        Cadastro, etc)
+    -->
+    <body id="contentIndex">
+
+        <!--======================== início paredeTaverna ========================-->
+
         <!--
-            Por enquanto o Detect.js fica sendo puxado desta biblioteca local,
-            mas o ideal é utilizar a biblioteca online
+            div que contem a parede da taverna, onde estão
+            localizadas duas janelas, cada uma em uma das extremidades,
+            uma porta e um guarda, sendo os dois últimos maneiras pelas quais
+            os usuáros podem logar no site.
         -->
-        <script src="resources/js/libs/detect.js"></script>
+        <div id="paredeTaverna">
+
+            <!--janela da taverna-->
+            <div class="containerJanela" id="containerJanelaIndex1">
+                <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg" alt="janela da taverna n° 1" class="janela">
+            </div>
+
+            <!--container da porta-->
+            <div class="containerPorta" id="containerPortaIndex" onclick="abrirModal('containerModaisIndex')"> <!--chamada de função de abertura de prompt de log in-->
+                <img src="https://s-media-cache-ak0.pinimg.com/originals/49/47/0a/49470a8ac53138b1e9a20e71ebbd1a17.jpg" alt="porta da taverna" class="porta">
+            </div>
+
+            <!--container do guarda-->
+            <div class="containerNPC" id="containerGuardaIndex">
+                <img src="https://images.cdn2.stockunlimited.net/preview1300/pixel-art-army_1959068.jpg" alt="guarda preguiçoso" class="NPCInterativo"
+                    id="guardaIndex" onclick=""> <!--chamada de função de abertura de prompt de log in-->
+            </div>
+
+            <!--container de janelas-->
+            <div class="containerJanela" id="containerJanelaIndex2">
+                <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg" alt="janela da taverna n° 1" class="janela" >
+            </div>
+
+        </div>
+
+        <!--======================== fim paredeTaverna ========================-->
+
+        <!--======================== início muroTaverna ========================-->
+
+        <!--
+            div que contem o muro frontal da taverna, onde estarão presentes a placa
+            da taverna e o quadro de ranking
+        -->
+        <div id="muroTaverna">
+
+            <!--mureta-->
+            <div class="containerMuro" id="containerMuro1">
+                <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg" alt="mureta da taverna" class="muro">
+            </div>
+
+            <!--placa da taverna-->
+            <div class="containerPlaca" id="containerPlacaIndex">
+                <img src="resources/style/images/McNaldos.jpg" alt="placa da taverna O Siri Cotocos" class="placaTaverna">
+            </div>
+
+            <!--mureta-->
+            <div class="containerMuro" id="containerMuro2">
+                <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg" alt="mureta da taverna" class="muro">
+            </div>
+
+            <!--quadro de ranking-->
+            <div class="containerRanking" id="containerRankingIndex">
+            <table id="tabela"> <!--Tabela de Ranking-->
+                <tr>
+                    <th colspan="3" class="tdTabela"><h2 class="tituloTabela">MELHORES GUERREIROS DO REINO</h2></th>
+                </tr>
+                <tr>
+                    <th class="tdTabela">Posição</th>
+                    <th class="tdTabela">Usuário</th>
+                    <th class="tdTabela">Pontuação</th>
+                </tr>
+                <tr>
+                    <td class="tdTabela">1</td>
+                    <td class="tdTabela">xXHackerman1337Xx</td>
+                    <td class="tdTabela">9999999e</td>
+                </tr>
+                <tr>
+                    <td class="tdTabela">2</td>
+                    <td class="tdTabela">jogador2</td>
+                    <td class="tdTabela">193456</td>
+                </tr>
+                <tr>
+                    <td class="tdTabela">3</td>
+                    <td class="tdTabela">jogador3</td>
+                    <td class="tdTabela">182432</td>
+                </tr>
+                <tr>
+                    <td class="tdTabela">4</td>
+                    <td class="tdTabela">jogador4</td>
+                    <td class="tdTabela">132356</td>
+                </tr>
+                <tr>
+                    <td class="tdTabela">5</td>
+                    <td class="tdTabela">jogador5</td>
+                    <td class="tdTabela">10509</td>
+                </tr>
+            </table>
+            </div>
+        </div>
+
+        <!--======================== fim muroTaverna ========================-->
+
+        <!--======================== início containerModais ========================-->
+
+        <!--
+            esta div irá ficar oculta até o usuário interagir com algo, e quando isso
+            ocorrer, esta div fica sobre o condeúdo da página, esmaecendo o fundo e exibindo
+            as possíveis interações do usuário mediante a opção selecionada pelo usuário
+            dentro
+        -->
+        <div class="containerModais" id="containerModaisIndex">
+
+            <!-- content is supposed to be injected in here dynamicaly as the user interacts with the page... -->
+
+            <!--========================Iníco modais (autor: Gustavo Stein)========================-->
+
+            <!--Balão de interação com personagens-->
+            <div id="intPerso">
+
+                <!-- Primeira Fala do Guarda -->
+
+                <div id="guard_1">
+                <table class="intTable"> <!--Tabela de interações-->
+                    <tr>
+                        <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
+                    </tr>
+                    <tr>
+                        <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                            <table><!--Tabela da fala-->
+                                <tr>
+                                <td class="intCadRow intDialogue">Para entrar você precisa estar na lista!</td><!--Falas do Personagem-->
+                                </tr>
+                            </table><!--Fim da tabela da fala-->
+                        </td><!--Fim da td das falas do Personagem-->
+                        <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                        <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                            <input type="button" class="intButton loginBtn" value="Eu estou na lista. (Login)">
+                            <input type="button" class="intButton redesBtn" value="Tenho uma carteirinha do Sindicato dos Taberneiros. (Logar por redes sociais)">
+                            <input type="button" class="registrarBtn intButton" value="Que lista? Acho que não estou nela. (Registrar)">
+                            <input type="button" class="intButton sairBtn" value="Acho que vim ao lugar errado. (Sair)">
+                        </div><!--Fim do agrupamento dos botões-->
+                        </td><!--Fim da td dos botões-->
+                    </tr>
+                </table>
+                </div>
+
+                <!-- Login -->
+
+                <div id="login">
+                <form name="frmlogin">
+                <table class="intTable"> <!--Tabela de interações-->
+                    <tr>
+                    <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
+                    </tr>
+                    <tr>
+                        <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                            <table><!--Tabela da fala-->
+                                <tr>
+                                <td colspan="2" class="intCadRow intDialogue">Vamos ver então... Qual seu nome?</td><!--Falas do Personagem-->
+                                </tr>
+                                <tr>
+                                <td class="intCadOptions1">Usuário:</td>
+                                <td><input class="intInput1" type="text" name="txtlogin"></td>
+                                </tr>
+                                <tr>
+                                <td class="intCadOptions1">Senha:</td>
+                                <td><input class="intInput1" type="password" name="pwdsenhalogger"></td>
+                                </tr>
+                                <tr>
+                                <td><input type="reset" value="Limpar" class="intCadButton"></td>
+                                <td><input type="button" value="Enviar" class="intCadButton2" onclick="validaLogin()"></td>
+                                </tr>
+                            </table><!--Fim da tabela da fala-->
+                        </td><!--Fim da td das falas do Personagem-->
+                        <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                        <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                            <input type="button" class="intButton registrarBtn" value="Na verdade, eu não estou na lista. (Registrar)">
+                            <input type="button" class="intButton esqueciBtn" value="Ah... E se eu esqueci o meu nome? (Esqueci minha senha)">
+                            <input type="button" class="intButton redesBtn" value="Tenho uma carteirinha do Sindicato dos Taberneiros! (Logar por redes sociais)">
+                            <input type="button" class="intButton sairBtn" value="Outra hora eu volto. (Sair)">
+                        </div><!--Fim do agrupamento dos botões-->
+                        </td><!--Fim da td dos botões-->
+                    </tr>
+                </table>
+                </form>
+                </div>
+
+                <!-- Login por Redes Sociais -->
+
+                <div id="login_redes"> <!--Balão de interação com personagens-->
+                <table class="intTable"> <!--Tabela de interações-->
+                    <tr>
+                    <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
+                    </tr>
+                    <tr>
+                        <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                            <table><!--Tabela da fala-->
+                                <tr>
+                                <td class="intCadRow intDialogue">Hmmm, carteirinha hein? Muito bem, me mostre essa tal carteirinha.</td><!--Falas do Personagem-->
+                                </tr>
+                                <tr>
+                                <td><input type="button" value="Facebook" class="intButtonRedes"></td>
+                                </tr>
+                                <tr>
+                                <td><input type="button" value="Google" class="intButtonRedes"></td>
+                                </tr>
+                            </table><!--Fim da tabela da fala-->
+                        </td><!--Fim da td das falas do Personagem-->
+                        <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                        <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                            <input type="button" class="intButton loginBtn" value="Devo ter deixado em casa, mas estou na lista. (Login)">
+                            <input type="button" class="intButton sairBtn" value="Outra hora eu volto. (Sair)">
+                        </div><!--Fim do agrupamento dos botões-->
+                        </td><!--Fim da td dos botões-->
+                    </tr>
+                </table>
+                </div>
+
+                <!-- Registrar -->
+
+                <div id="registrar">
+                <table class="intTable"> <!--Tabela de interações-->
+                    <tr>
+                        <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
+                    </tr>
+                    <tr>
+                        <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                            <form name="frmcadastro" id="cadastrarJogador">
+                            <table><!--Tabela da fala-->
+                                <tr>
+                                <td colspan="2" class="intCadRow intDialogue">Então vamos mudar isso! Preencha esta folha com seus dados:</td><!--Falas do Personagem-->
+                                </tr>
+                                <tr>
+                                <td class="intCadOptions">Nome Completo:</td>
+                                <td class="tdInput" ><input type="text" name="txtnome" value="" class="intInput" maxlength="100"></td>
+                                </tr>
+                                <tr>
+                                <td class="intCadOptions">E-mail:</td>
+                                <td class="tdInput" ><input type="text" name="txtemail" value="" class="intInput" maxlength="100"></td>
+                                </tr>
+                                <tr>
+                                <td class="intCadOptions">Data de Nascimento:</td>
+                                <td class="tdInput" ><input type="date" name="dtenascimento" value="" class="intInput"></td>
+                                </tr>
+                                <tr>
+                                <td class="intCadOptions">Usuário:</td>
+                                <td class="tdInput" ><input type="text" name="txtapelido" value="" class="intInput" maxlength="16"></td>
+                                </tr>
+                                <tr>
+                                <td class="intCadOptions">Senha:</td>
+                                <td class="tdInput" ><input type="password" name="pwdsenha" value="" class="intInput" maxlength="32"></td>
+                                </tr>
+                                <tr>
+                                <td class="intCadOptions">Confirmar Senha:</td>
+                                <td class="tdInput" ><input type="password" name="pwdconfsenha" value="" class="intInput" maxlength="32"></td>
+                                </tr>
+                                <tr>
+                                <td><input type="reset" value="Limpar" class="intCadButton3"></td>
+                                <td><input type="button" value="Enviar" class="intCadButton4" onclick="validaCadastro()"></td>
+                                </tr>
+                            </table><!--Fim da tabela da fala-->
+                            </form>
+                        </td>
+                    <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+                    </tr>
+                    <tr>
+                    <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                        <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                        <input type="button" class="loginBtn intButton" value="Espere! Lembrei que estou na lista! (Login)">
+                        <input type="button" class="intButton sairBtn" value="Outra hora eu volto. (Sair)">
+                        </div><!--Fim do agrupamento dos botões-->
+                    </td><!--Fim da td dos botões-->
+                    </tr>
+                </table>
+                </div>
+
+                <!-- Esqueci a Senha -->
+
+                <div id="esqueci_senha">
+                <table class="intTable"> <!--Tabela de interações-->
+                    <tr>
+                        <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
+                    </tr>
+                    <tr>
+                        <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                            <form name="frmesqueci">
+                            <table><!--Tabela da fala-->
+                                <tr>
+                                <td colspan="2" class="intCadRow intDialogue">Isso é mais comum do que você imagina, até criamos um plano para lidar com esse tipo de problema! Enviaremos um pombo correio para sua casa. (Você receberá um e-mail com o link para redefinição de senha)</td><!--Falas do Personagem-->
+                                </tr>
+                                <tr>
+                                <td class="intCadOptions">Endereço de E-mail:</td>
+                                <td class="tdInput" ><input type="text" name="txtmail" value="" class="intInput" maxlength="100"></td>
+                                </tr>
+                                <tr>
+                                <td><input type="reset" value="Limpar" class="intCadButton3"></td>
+                                <td><input type="button" value="Enviar" class="intCadButton4" onclick="validaEsqueciSenha()"></td>
+                                </tr>
+                            </table><!--Fim da tabela da fala-->
+                            </form>
+                        </td><!--Fim da td das falas do Personagem-->
+                        <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                        <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                            <input type="button" class="intButton loginBtn" value="Acabei de lembrar o meu nome! (Login)">
+                            <input type="button" class="intButton sairBtn" value="Acho que vim ao lugar errado. (Sair)">
+                        </div><!--Fim do agrupamento dos botões-->
+                        </td><!--Fim da td dos botões-->
+                    </tr>
+                </table>
+                </div>
+
+
+            </div>
+
+            <!--========================Fim modais (autor: Gustavo Stein)========================-->
+
+        </div>
+        <!--======================== fim containerModais ========================-->
+
+
+    </body>
+
+    <!--======================== fim conteúdo ========================-->
     
-    <!--=== scripts próprios ===-->
-        
-        <script src="resources/js/index.js"></script>
-        <script src="resources/js/indexServlet.js"></script>
-
-    <!--=== folhas de estilo ===-->
-        <link rel="stylesheet" type="text/css" media="screen" href="resources/style/css/index.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="resources/style/css/modais_index.css">
-
-    <!--============== restante dos metadados ==============-->
-    <meta name="author" content="Equipe CRD">
-    <meta name="creation-date" content="2018-06-21-15:43PM">
-    <meta name="last-modified" content="2018-06-21-15:43PM">
-
-</head>
-
-<!--======================== início conteúdo ========================-->
-
-<!--
-    div que contem todo o conteúdo da index.html, exceto a div
-    reservada para as janelas de interação com usuário (login,
-    Cadastro, etc)
--->
-<body id="contentIndex">
-
-    <!--======================== início paredeTaverna ========================-->
-
-    <!--
-        div que contem a parede da taverna, onde estão
-        localizadas duas janelas, cada uma em uma das extremidades,
-        uma porta e um guarda, sendo os dois últimos maneiras pelas quais
-        os usuáros podem logar no site.
-    -->
-    <div id="paredeTaverna">
-
-        <!--janela da taverna-->
-        <div class="containerJanela" id="containerJanelaIndex1">
-            <img src="resources/style/images/bardo.gif" alt="janela da taverna n° 1" class="janela">
-        </div>
-
-        <!--container da porta-->
-        <div class="containerPorta" id="containerPortaIndex" onclick="abrirModal('containerModaisIndex')"> <!--chamada de função de abertura de prompt de log in-->
-            <img src="https://s-media-cache-ak0.pinimg.com/originals/49/47/0a/49470a8ac53138b1e9a20e71ebbd1a17.jpg" alt="porta da taverna" class="porta">
-        </div>
-
-        <!--container do guarda-->
-        <div class="containerNPC" id="containerGuardaIndex">
-            <img src="https://images.cdn2.stockunlimited.net/preview1300/pixel-art-army_1959068.jpg" alt="guarda preguiçoso" class="NPCInterativo"
-                 id="guardaIndex" onclick=""> <!--chamada de função de abertura de prompt de log in-->
-        </div>
-
-        <!--container de janelas-->
-        <div class="containerJanela" id="containerJanelaIndex2">
-            <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg" alt="janela da taverna n° 1" class="janela" >
-        </div>
-
-    </div>
-
-    <!--======================== fim paredeTaverna ========================-->
-
-    <!--======================== início muroTaverna ========================-->
-
-    <!--
-        div que contem o muro frontal da taverna, onde estarão presentes a placa
-        da taverna e o quadro de ranking
-    -->
-    <div id="muroTaverna">
-
-        <!--mureta-->
-        <div class="containerMuro" id="containerMuro1">
-            <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg" alt="mureta da taverna" class="muro">
-        </div>
-
-        <!--placa da taverna-->
-        <div class="containerPlaca" id="containerPlacaIndex">
-            <img src="resources/style/images/McNaldos.jpg" alt="placa da taverna O Siri Cotocos" class="placaTaverna">
-        </div>
-
-        <!--mureta-->
-        <div class="containerMuro" id="containerMuro2">
-            <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg" alt="mureta da taverna" class="muro">
-        </div>
-
-        <!--quadro de ranking-->
-        <div class="containerRanking" id="containerRankingIndex">
-          <table id="tabela"> <!--Tabela de Ranking-->
-              <tr>
-                <th colspan="3" class="tdTabela"><h2 class="tituloTabela">MELHORES GUERREIROS DO REINO</h2></th>
-              </tr>
-              <tr>
-                  <th class="tdTabela">Posição</th>
-                  <th class="tdTabela">Usuário</th>
-                  <th class="tdTabela">Pontuação</th>
-              </tr>
-              <tr>
-                  <td class="tdTabela">1</td>
-                  <td class="tdTabela">xXHackerman1337Xx</td>
-                  <td class="tdTabela">9999999e</td>
-              </tr>
-              <tr>
-                  <td class="tdTabela">2</td>
-                  <td class="tdTabela">jogador2</td>
-                  <td class="tdTabela">193456</td>
-              </tr>
-              <tr>
-                  <td class="tdTabela">3</td>
-                  <td class="tdTabela">jogador3</td>
-                  <td class="tdTabela">182432</td>
-              </tr>
-              <tr>
-                  <td class="tdTabela">4</td>
-                  <td class="tdTabela">jogador4</td>
-                  <td class="tdTabela">132356</td>
-              </tr>
-              <tr>
-                  <td class="tdTabela">5</td>
-                  <td class="tdTabela">jogador5</td>
-                  <td class="tdTabela">10509</td>
-              </tr>
-          </table>
-        </div>
-    </div>
-
-    <!--======================== fim muroTaverna ========================-->
-
-    <!--======================== início containerModais ========================-->
-
-    <!--
-        esta div irá ficar oculta até o usuário interagir com algo, e quando isso
-        ocorrer, esta div fica sobre o condeúdo da página, esmaecendo o fundo e exibindo
-        as possíveis interações do usuário mediante a opção selecionada pelo usuário
-        dentro
-    -->
-    <div class="containerModais" id="containerModaisIndex">
-
-        <!-- content is supposed to be injected in here dynamicaly as the user interacts with the page... -->
-
-        <!--========================Iníco modais (autor: Gustavo Stein)========================-->
-
-        <!--Balão de interação com personagens-->
-        <div id="intPerso">
-
-            <!-- Primeira Fala do Guarda -->
-
-            <div id="guard_1">
-            <table class="intTable"> <!--Tabela de interações-->
-                <tr>
-                    <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
-                </tr>
-                <tr>
-                    <td class="intRow vAlign"><!--Td das falas do Personagem-->
-                        <table><!--Tabela da fala-->
-                            <tr>
-                            <td class="intCadRow intDialogue">Para entrar você precisa estar na lista!</td><!--Falas do Personagem-->
-                            </tr>
-                        </table><!--Fim da tabela da fala-->
-                    </td><!--Fim da td das falas do Personagem-->
-                    <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
-                </tr>
-                <tr>
-                    <td colspan="2" class="intTdButton"><!--Td dos botões-->
-                    <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
-                        <input type="button" class="intButton loginBtn" value="Eu estou na lista. (Login)">
-                        <input type="button" class="intButton redesBtn" value="Tenho uma carteirinha do Sindicato dos Taberneiros. (Logar por redes sociais)">
-                        <input type="button" class="registrarBtn intButton" value="Que lista? Acho que não estou nela. (Registrar)">
-                        <input type="button" class="intButton sairBtn" value="Acho que vim ao lugar errado. (Sair)">
-                    </div><!--Fim do agrupamento dos botões-->
-                    </td><!--Fim da td dos botões-->
-                </tr>
-            </table>
-            </div>
-
-            <!-- Login -->
-
-            <div id="login">
-            <form name="frmlogin">
-            <table class="intTable"> <!--Tabela de interações-->
-                <tr>
-                <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
-                </tr>
-                <tr>
-                    <td class="intRow vAlign"><!--Td das falas do Personagem-->
-                        <table><!--Tabela da fala-->
-                            <tr>
-                            <td colspan="2" class="intCadRow intDialogue">Vamos ver então... Qual seu nome?</td><!--Falas do Personagem-->
-                            </tr>
-                            <tr>
-                            <td class="intCadOptions1">Usuário:</td>
-                            <td><input class="intInput1" type="text" name="txtlogin"></td>
-                            </tr>
-                            <tr>
-                            <td class="intCadOptions1">Senha:</td>
-                            <td><input class="intInput1" type="password" name="pwdsenhalogger"></td>
-                            </tr>
-                            <tr>
-                            <td><input type="reset" value="Limpar" class="intCadButton"></td>
-                            <td><input type="button" value="Enviar" class="intCadButton2" onclick="validaLogin()"></td>
-                            </tr>
-                        </table><!--Fim da tabela da fala-->
-                    </td><!--Fim da td das falas do Personagem-->
-                    <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
-                </tr>
-                <tr>
-                    <td colspan="2" class="intTdButton"><!--Td dos botões-->
-                    <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
-                        <input type="button" class="intButton registrarBtn" value="Na verdade, eu não estou na lista. (Registrar)">
-                        <input type="button" class="intButton esqueciBtn" value="Ah... E se eu esqueci o meu nome? (Esqueci minha senha)">
-                        <input type="button" class="intButton redesBtn" value="Tenho uma carteirinha do Sindicato dos Taberneiros! (Logar por redes sociais)">
-                        <input type="button" class="intButton sairBtn" value="Outra hora eu volto. (Sair)">
-                    </div><!--Fim do agrupamento dos botões-->
-                    </td><!--Fim da td dos botões-->
-                </tr>
-            </table>
-            </form>
-            </div>
-
-            <!-- Login por Redes Sociais -->
-
-            <div id="login_redes"> <!--Balão de interação com personagens-->
-            <table class="intTable"> <!--Tabela de interações-->
-                <tr>
-                <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
-                </tr>
-                <tr>
-                    <td class="intRow vAlign"><!--Td das falas do Personagem-->
-                        <table><!--Tabela da fala-->
-                            <tr>
-                            <td class="intCadRow intDialogue">Hmmm, carteirinha hein? Muito bem, me mostre essa tal carteirinha.</td><!--Falas do Personagem-->
-                            </tr>
-                            <tr>
-                            <td><input type="button" value="Facebook" class="intButtonRedes"></td>
-                            </tr>
-                            <tr>
-                            <td><input type="button" value="Google" class="intButtonRedes"></td>
-                            </tr>
-                        </table><!--Fim da tabela da fala-->
-                    </td><!--Fim da td das falas do Personagem-->
-                    <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
-                </tr>
-                <tr>
-                    <td colspan="2" class="intTdButton"><!--Td dos botões-->
-                    <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
-                        <input type="button" class="intButton loginBtn" value="Devo ter deixado em casa, mas estou na lista. (Login)">
-                        <input type="button" class="intButton sairBtn" value="Outra hora eu volto. (Sair)">
-                    </div><!--Fim do agrupamento dos botões-->
-                    </td><!--Fim da td dos botões-->
-                </tr>
-            </table>
-            </div>
-
-            <!-- Registrar -->
-
-            <div id="registrar">
-            <table class="intTable"> <!--Tabela de interações-->
-                <tr>
-                    <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
-                </tr>
-                <tr>
-                    <td class="intRow vAlign"><!--Td das falas do Personagem-->
-                        <form name="frmcadastro" id="cadastrarJogador">
-                        <table><!--Tabela da fala-->
-                            <tr>
-                            <td colspan="2" class="intCadRow intDialogue">Então vamos mudar isso! Preencha esta folha com seus dados:</td><!--Falas do Personagem-->
-                            </tr>
-                            <tr>
-                            <td class="intCadOptions">Nome Completo:</td>
-                            <td class="tdInput" ><input type="text" name="txtnome" value="" class="intInput" maxlength="100"></td>
-                            </tr>
-                            <tr>
-                            <td class="intCadOptions">E-mail:</td>
-                            <td class="tdInput" ><input type="text" name="txtemail" value="" class="intInput" maxlength="100"></td>
-                            </tr>
-                            <tr>
-                            <td class="intCadOptions">Data de Nascimento:</td>
-                            <td class="tdInput" ><input type="date" name="dtenascimento" value="" class="intInput"></td>
-                            </tr>
-                            <tr>
-                            <td class="intCadOptions">Usuário:</td>
-                            <td class="tdInput" ><input type="text" name="txtapelido" value="" class="intInput" maxlength="16"></td>
-                            </tr>
-                            <tr>
-                            <td class="intCadOptions">Senha:</td>
-                            <td class="tdInput" ><input type="password" name="pwdsenha" value="" class="intInput" maxlength="32"></td>
-                            </tr>
-                            <tr>
-                            <td class="intCadOptions">Confirmar Senha:</td>
-                            <td class="tdInput" ><input type="password" name="pwdconfsenha" value="" class="intInput" maxlength="32"></td>
-                            </tr>
-                            <tr>
-                            <td><input type="reset" value="Limpar" class="intCadButton3"></td>
-                            <td><input type="button" value="Enviar" class="intCadButton4" onclick="validaCadastro()"></td>
-                            </tr>
-                        </table><!--Fim da tabela da fala-->
-                        </form>
-                    </td>
-                <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
-                </tr>
-                <tr>
-                <td colspan="2" class="intTdButton"><!--Td dos botões-->
-                    <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
-                    <input type="button" class="loginBtn intButton" value="Espere! Lembrei que estou na lista! (Login)">
-                    <input type="button" class="intButton sairBtn" value="Outra hora eu volto. (Sair)">
-                    </div><!--Fim do agrupamento dos botões-->
-                </td><!--Fim da td dos botões-->
-                </tr>
-            </table>
-            </div>
-
-            <!-- Esqueci a Senha -->
-
-            <div id="esqueci_senha">
-            <table class="intTable"> <!--Tabela de interações-->
-                <tr>
-                    <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
-                </tr>
-                <tr>
-                    <td class="intRow vAlign"><!--Td das falas do Personagem-->
-                        <form name="frmesqueci">
-                        <table><!--Tabela da fala-->
-                            <tr>
-                            <td colspan="2" class="intCadRow intDialogue">Isso é mais comum do que você imagina, até criamos um plano para lidar com esse tipo de problema! Enviaremos um pombo correio para sua casa. (Você receberá um e-mail com o link para redefinição de senha)</td><!--Falas do Personagem-->
-                            </tr>
-                            <tr>
-                            <td class="intCadOptions">Endereço de E-mail:</td>
-                            <td class="tdInput" ><input type="text" name="txtmail" value="" class="intInput" maxlength="100"></td>
-                            </tr>
-                            <tr>
-                            <td><input type="reset" value="Limpar" class="intCadButton3"></td>
-                            <td><input type="button" value="Enviar" class="intCadButton4" onclick="validaEsqueciSenha()"></td>
-                            </tr>
-                        </table><!--Fim da tabela da fala-->
-                        </form>
-                    </td><!--Fim da td das falas do Personagem-->
-                    <td class="intTdImg"><img src="resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
-                </tr>
-                <tr>
-                    <td colspan="2" class="intTdButton"><!--Td dos botões-->
-                    <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
-                        <input type="button" class="intButton loginBtn" value="Acabei de lembrar o meu nome! (Login)">
-                        <input type="button" class="intButton sairBtn" value="Acho que vim ao lugar errado. (Sair)">
-                    </div><!--Fim do agrupamento dos botões-->
-                    </td><!--Fim da td dos botões-->
-                </tr>
-            </table>
-            </div>
-
-
-        </div>
-
-        <!--========================Fim modais (autor: Gustavo Stein)========================-->
-
-    </div>
-    <!--======================== fim containerModais ========================-->
-
-
-</body>
-
-<!--======================== fim conteúdo ========================-->
 </html>

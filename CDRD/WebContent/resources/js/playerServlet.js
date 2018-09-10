@@ -6,41 +6,29 @@
 
 //Main
 $(document).ready(function(){
-
-    /**
-     * armazena os dados do usuário logado
-     */
-    var usuarioLogado = {
-    		id: 9,
-    	    login: "Manzana_22",
-    	    email: "dinheiros@email.com",
-    	    nome: "Estevão Trabalhos",
-    	    nascimento: "12-01-1650"
-    		
-    };
+    /*--------------------------------------Geral-----------------------------------------*/
     
     /**
      * especifica o caminho a ser trilhado pela função até a chamada da mesma
      * na raiz do projeto
      */
     var PATH = "../../";
-    
-    /*--------------------------------------Geral-----------------------------------------*/
-    
-    verificaUsuario = function(){
+
+    //validar sessão
+	$(function(){
 		$.ajax({
 			type: "POST",
 			url: PATH + "ValidarSessao",
-			data: "p=1",
+			data: "p=0",
 			success: function (usuario) {
 				if (usuario.login!=null){
 					usuarioLogado = new Object();
-					usuarioLogado.id= usuario.id;
+					usuarioLogado.id = usuario.id;
 					usuarioLogado.login = usuario.login;
 					usuarioLogado.email = usuario.email;
 					usuarioLogado.nome = usuario.nome;
 					usuarioLogado.nascimento = usuario.nascimento;
-					carregaPagina();
+					buscaAdmParaEditar(usuarioLogado.id);
 				} else {
 					sair();
 				}	
@@ -49,11 +37,22 @@ $(document).ready(function(){
 				sair();
 			}
 		});
+	});
+    
+    //Cai fora fdp!
+    sair = function(){
+		$.ajax({
+			type: "POST",
+			url: PATH + "Logout",
+			success: function (data) {
+				window.location.href = (PATH+"index.html");	
+			},
+			error: function (info) {
+				alert("Erro ao tentar encerrar sua sessão: "+ info.status + " - " + info.statusText);	
+			}
+		});
 	}
-	/**
-     * chama a função afim de checar se o usuário está logado corretamente
-     */
-	
+
     /*--------------------------------------InseriPontuacao-----------------------------------------*/
 
     /**
@@ -92,8 +91,4 @@ $(document).ready(function(){
         });
     }
     
-    //Cai fora fdp!
-    sair = function(){
-		alert("oi!");
-	}
 });
