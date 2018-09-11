@@ -1,4 +1,24 @@
+/**
+ * Author: Equipe CRD
+ * Creation date: 28/06/2018
+ * Descrição: Arquivo js com funções relacionadas às janelas modais da taberna e 
+ *            e interações do jogador com as mesmas
+ */
+
 $(document).ready(function(){
+
+  //Detect o navegador e muda o tipo de renderização de imagem (pixelated ou crisp edges)
+  var ua = detect.parse(navigator.userAgent);
+
+  if(ua.browser.family == "Chrome"){
+      $("html").css("image-rendering","pixelated");
+  }else if(ua.browser.family == "Firefox"){
+      $("html").css("image-rendering","-moz-crisp-edges");
+  }else{
+      alert("Infelizmente o navegador " + ua.browser.family + " não é suportado por nossa aplicação. Lamentamos o inconveninete ( ; _ ; ). Atualmente, somente o Chrome e Firefox são suportados.");
+  }
+
+  //========
 
   carregaModais();
   $("#quartoTaverneiro").css("filter","brightness(50%)");
@@ -17,12 +37,6 @@ $(window).bind('mousewheel DOMMouseScroll', function (event) {/*Desabilita o zoo
        event.preventDefault();
        }
 });
-
-  /* Sair */
-function portaSair(){
-    window.location = href="../../index.html";
-}
-
 
 function abrirModal(i){
     $("#taberna").css("filter","brightness(50%)");

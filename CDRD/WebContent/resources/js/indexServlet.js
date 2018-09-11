@@ -10,7 +10,6 @@
 	login = function(){
 		var login = $("input[name=txtlogin]").val();
 		var pwdsenhalogger = $("input[name=pwdsenhalogger]").val();
-		console.log("senha do feladapota:" + pwdsenhalogger);
 		$.ajax({
 			type: "POST",
 			url: "Login",
@@ -34,7 +33,6 @@
 			data: $("#cadastrarJogador").serialize()+"&p=1",
 			success: function (msg) {
 				alert(msg.msg);
-				location.reload();
 			},
 			error: function (info) {
 				alert("Erro ao cadastrar um novo jogador: "+ info.status + " - " + info.statusText);

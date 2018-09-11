@@ -1,8 +1,6 @@
-
 /*
     Author: Equipe CRD
     Creation date: 23/06/2018
-    Last modified:
 */
 
 /*=================================== resets e aplicação de outras configurações universais ===================================*/
@@ -27,6 +25,14 @@ html{
 	image-rendering: -webkit-pixelated; /* evita que as imagens pixeladas virem borrões.
 		Funciona apenas no Chrome, sendo utilizaddo um script para suporte do Firefox */
 }
+
+body{ /*Desabilita scroll*/
+    position: fixed;
+    overflow-y: scroll;
+    width: 100%;
+    overflow:hidden;
+}
+
 /*=============================================== classes ===============================================*/
 
 /*

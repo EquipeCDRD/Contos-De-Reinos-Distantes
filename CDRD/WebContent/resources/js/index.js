@@ -1,5 +1,6 @@
 /*
  * Autor: Equipe CDRD
+ * Creation date: 18/06/2018
  * Descrição: Arquivo js relacionado à index.html (raiz do projeto). Contem funções de carregamento
  * 			  das janelas e validação dos forms da página
  */

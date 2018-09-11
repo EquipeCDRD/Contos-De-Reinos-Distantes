@@ -19,7 +19,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: "POST",
 			url: PATH + "ValidarSessao",
-			data: "p=0",
+			data: "p=1",
 			success: function (usuario) {
 				if (usuario.login!=null){
 					usuarioLogado = new Object();

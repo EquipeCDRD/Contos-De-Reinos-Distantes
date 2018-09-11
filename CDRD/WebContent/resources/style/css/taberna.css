@@ -4,20 +4,21 @@
 }
 
 *, *::after, *::before {
-	font-family: pixel font;
+	margin:	0;
+	padding:0;
+	border:0;
+	vertical-align: baseline;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font: normal 24px/1em "pixel font";
 }
-
 
 body{ /*Desabilita scroll*/
     position: fixed;
     overflow-y: scroll;
     width: 100%;
     overflow:hidden;
-}
-
-img, table, th, td{
-
-	image-rendering: pixelated;
 }
 
 /*-----------------Remoção da margem da body-----------------*/
@@ -60,7 +61,7 @@ img, table, th, td{
   #portaQuarto{
     height: 125px;
     padding: 5px 0;
-    image-rendering: pixelated;
+    
     cursor: pointer;
     transition: 0.2s;
   }
@@ -146,7 +147,7 @@ img, table, th, td{
   #portaQuartoT{
     height: 125px;
     padding: 5px 0;
-    image-rendering: pixelated;
+    
   }
 
 /*-----------------Piso da Taberna-----------------*/
@@ -214,7 +215,7 @@ img, table, th, td{
   padding: 5px 0;
   cursor: pointer;
   transition: 0.2s;
-  image-rendering: pixelated;
+  
 }
 
 
