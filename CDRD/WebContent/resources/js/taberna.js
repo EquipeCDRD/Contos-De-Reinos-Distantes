@@ -20,7 +20,7 @@ $(document).ready(function(){
 
   //========
 
-  carregaModais();
+carregaModais();
   $("#quartoTaverneiro").css("filter","brightness(50%)");
   $("#paredeQuartoT").css("filter","brightness(50%)");
   $("#balcao").css("pointer-events","none");

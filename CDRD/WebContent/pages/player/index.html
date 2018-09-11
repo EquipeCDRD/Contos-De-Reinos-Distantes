@@ -29,9 +29,10 @@
             <script src="../../resources/js/libs/detect.js"></script>
         
         <!--=== scripts próprios ===-->
-
+			
+			<script src="../../resources/js/playerServlet.js"></script>
             <script src="../../resources/js/taberna.js"></script>
-            <script src="../../resources/js/indexServlet.js"></script>
+            
         
         <!--=== folhas de estilo ===-->
 
@@ -120,8 +121,8 @@
 
         <!--Fim Bardo-->
         <div id="paredeInferior"><!--Div para programação da "Porta de Saida" e seus hovers-->
-          <div id="divSair"><!--Porta de Saída-->
-            <a><img src="../../resources/style/images/door.png" alt="img" id="portaSair" onclick="sair()"></a>
+          <div id="divSair" onclick="sair()"><!--Porta de Saída-->
+            <a><img src="../../resources/style/images/door.png" alt="img" id="portaSair"></a>
           </div>
         </div>
       </div>
