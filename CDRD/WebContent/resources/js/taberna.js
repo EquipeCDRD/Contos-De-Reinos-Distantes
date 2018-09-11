@@ -7,7 +7,7 @@
 
 $(document).ready(function(){
 
-  //Detect o navegador e muda o tipo de renderização de imagem (pixelated ou crisp edges)
+  //Detecta o navegador e muda o tipo de renderização de imagem (pixelated ou crisp edges)
   var ua = detect.parse(navigator.userAgent);
 
   if(ua.browser.family == "Chrome"){
@@ -20,10 +20,15 @@ $(document).ready(function(){
 
   //========
 
-carregaModais();
+  carregaModais();
   $("#quartoTaverneiro").css("filter","brightness(50%)");
   $("#paredeQuartoT").css("filter","brightness(50%)");
   $("#balcao").css("pointer-events","none");
+  $(".sairBtn").hover(function(){
+    $(this).attr("src", "../../resources/style/images/xHover.png");
+    }, function(){
+    $(this).attr("src", "../../resources/style/images/x.png");
+  });
 });
 
 $(document).keydown(function(event) {
@@ -37,6 +42,12 @@ $(window).bind('mousewheel DOMMouseScroll', function (event) {/*Desabilita o zoo
        event.preventDefault();
        }
 });
+
+  /* Sair */
+function portaSair(){
+    window.location = href="../../index.html";
+}
+
 
 function abrirModal(i){
     $("#taberna").css("filter","brightness(50%)");
@@ -181,6 +192,14 @@ function carregaModais(i){
       $("#taberna").css("filter","brightness(100%)");
   });
   /*     Alterar Dados      */
+    if (i==5) {
+      $("#alterarDados").show();
+    }$(".sairBtn").click(function(){
+      $("#alterarDados").hide();
+      $("#taberna").css("pointer-events", "auto");
+      $("#portaQuarto").css("pointer-events", "auto");
+      $("#taberna").css("filter","brightness(100%)");
+    });
 }
 
 

@@ -171,7 +171,7 @@ $(document).ready(function(){
 				alert(msg.msg);
 			},
 			error: function (info) {
-				alert("Erro ao cadastrar uma nova notificação: "+ info.status + " - " + info.statusText);		   
+				alert("Erro ao cadastrar log de acesso "+ info.status + " - " + info.statusText);		   
 			}
 		});
 	}

@@ -28,7 +28,7 @@ $(document).ready(function(){
 					usuarioLogado.email = usuario.email;
 					usuarioLogado.nome = usuario.nome;
 					usuarioLogado.nascimento = usuario.nascimento;
-					buscaAdmParaEditar(usuarioLogado.id);
+					//função para carregar dados do maluco para editar
 				} else {
 					sair();
 				}	
@@ -53,6 +53,10 @@ $(document).ready(function(){
 		});
 	}
 
+    /*--------------------------------------Gerenciar-----------------------------------------*/
+
+    
+    
     /*--------------------------------------InseriPontuacao-----------------------------------------*/
 
     /**

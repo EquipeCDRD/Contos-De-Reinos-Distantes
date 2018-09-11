@@ -43,10 +43,10 @@ public class Login extends HttpServlet {
     				sessao.setAttribute("login", usuario.getLogin());
     				sessao.setAttribute("permissao", usuario.getPermissao());
     				if(sessao.getAttribute("permissao").equals("0")) {
-    					System.out.println("admin logando");
+    					System.out.println("admin logando...");
     					msg.put("url", "pages/admin/index.html");
     				} else {
-    					System.out.println("player logando");
+    					System.out.println("player logando...");
     					msg.put("url", "pages/player/index.html");
     				}
 	    		} else {

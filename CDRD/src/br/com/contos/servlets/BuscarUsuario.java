@@ -15,7 +15,7 @@ import br.com.contos.classes.Usuario;
 import br.com.contos.conexao.Conexao;
 import br.com.contos.jdbc.JDBCUsuarioDAO;
 
-@WebServlet("/BuscaUsuario")
+@WebServlet("/BuscarUsuario")
 public class BuscarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
