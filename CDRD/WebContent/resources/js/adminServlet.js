@@ -126,11 +126,10 @@ $(document).ready(function(){
 	
 	insereNotificacao = function(){
 		var notificacao = $("textarea[name=txacompnotificacao]").val();
-		var usuarioId = 1;//usuarioLogado.id;
 		$.ajax({
 			type: "POST",
 			url: PATH + "InserirNotificacao",
-			data: "notificacao="+notificacao+"&usuario_id="+usuarioId,
+			data: "notificacao="+notificacao+"&usuario_id="+usuarioLogado.id,
 			success: function (msg) {
 				alert(msg.msg);
 			},
