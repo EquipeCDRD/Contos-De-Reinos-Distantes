@@ -1,13 +1,18 @@
-
 @font-face{
 	font-family: pixel font;
 	src: url("../pixel_font7.ttf");
 }
 
 *, *::after, *::before {
-	font-family: pixel font;
+	margin:	0;
+	padding:0;
+	border:0;
+	vertical-align: baseline;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font: normal 24px/1em "pixel font";
 }
-
 
 body{ /*Desabilita scroll*/
     position: fixed;
@@ -56,6 +61,7 @@ body{ /*Desabilita scroll*/
   #portaQuarto{
     height: 125px;
     padding: 5px 0;
+    
     cursor: pointer;
     transition: 0.2s;
   }
@@ -237,6 +243,7 @@ body{ /*Desabilita scroll*/
   display: inline-block;
   position: relative;
   background: url(../images/paredeQuarto.png);
+
 }
 #paredeQuartoT{
   width: 535px;
@@ -332,17 +339,14 @@ body{ /*Desabilita scroll*/
 }
 .tdConta{
   text-align: right;
-  width: 300px;
-	font-size: 20px;
-	padding-right: 10px;
+  width: 200px;
 }
 .iptConta{
   width: 250px;
 }
-
 /*    -----Tabela-----   */
 
-#intTaverneiro, #intBardo, #ranking, #avisos{ /*Bordas externas da tabela*/
+#intTaverneiro, #intBardo, #ranking, #avisos, #alterarDados{ /*Bordas externas da tabela*/
   border: 1px solid #532700;
   border-collapse: collapse;
   width: 800px;
@@ -383,31 +387,15 @@ body{ /*Desabilita scroll*/
 #alterarDados{
 	display: none;
 	z-index: 4;
-	width: 800px;
-	bottom: 920px;
-	left: 300px;
+	width: 1170px;
+	bottom: 970px;
+	left: 100px;
 	position: relative;
 	height: 450px;
-	border: 3+px solid #532700;
-  border-collapse: collapse;
-  border-radius: 5px;
-  background-color: #BD7938;
-}
-#alterarImg{
-	display: block;
-	margin: auto;
-	border: 3px solid black;
 }
 #tableAlterar{
 	width: 100%;
 	height: 100%;
-}
-#alterarBtn{
-	display: block;
-	margin: auto;
-	width: 150px;
-	height: 50px;
-	font-size: 20px;
 }
 #tableRanking{
 	width: 100%;
@@ -416,7 +404,7 @@ body{ /*Desabilita scroll*/
 	font-size: 20px;
 	padding-top: 5px;
 }
-.tituloRanking, #tituloAlterar{
+.tituloRanking{
 	font-size: 30px;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -425,9 +413,6 @@ body{ /*Desabilita scroll*/
 	width: 100px;
 	float: right;
 	padding: 15px;
-}
-#fechar, #fecharAvisos, #fecharAlterar:hover{
-	cursor: pointer;
 }
 #fechar{
 	position: relative;
@@ -438,11 +423,6 @@ body{ /*Desabilita scroll*/
 	position: relative;
 	bottom: 375px;
 	left: 560px;
- }
- #fecharAlterar{
-	 position: relative;
-	 bottom: 445px;
-	 left: 765px;
  }
 #avisos{
 	border: 4px solid #532700;

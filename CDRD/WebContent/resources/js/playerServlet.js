@@ -1,5 +1,5 @@
 /**
- * Autor: Equipe CDRD
+ * Autor: kalyl henings
  * Data de criação: 2018-21-08
  * Desc: Arquivo contendo as funções relativas às servlets do jogador
  */
@@ -28,7 +28,7 @@ $(document).ready(function(){
 					usuarioLogado.email = usuario.email;
 					usuarioLogado.nome = usuario.nome;
 					usuarioLogado.nascimento = usuario.nascimento;
-					//função para carregar dados do maluco para editar
+					buscaAdmParaEditar(usuarioLogado.id);
 				} else {
 					sair();
 				}	
@@ -53,10 +53,6 @@ $(document).ready(function(){
 		});
 	}
 
-    /*--------------------------------------Gerenciar-----------------------------------------*/
-
-    
-    
     /*--------------------------------------InseriPontuacao-----------------------------------------*/
 
     /**

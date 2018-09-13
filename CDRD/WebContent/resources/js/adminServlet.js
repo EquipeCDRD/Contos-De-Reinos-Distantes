@@ -7,7 +7,7 @@ $(document).ready(function(){
 //inicialização de funções AJAX
 
 	//validar sessão
-	$(function(){
+	$(function (){
 		$.ajax({
 			type: "POST",
 			url: PATH + "ValidarSessao",
@@ -31,10 +31,8 @@ $(document).ready(function(){
 		});
 	});
 	
-	buscaAdmParaEditar();
-	
 	//buscar usuarios para lista
-	$(function lista(){
+	$(function listaAdmin(){
 		var html;
 		$.ajax({
 			type: "POST",
@@ -43,6 +41,23 @@ $(document).ready(function(){
 			success: function(dados){
 				html = listaAdm(dados);
 				$("#listaAdm").html(html);
+			},
+			error: function(info){
+				alert("Erro ao consultar os contatos: "+ info.status + " - " + info.statusText);
+			}
+		});
+		
+	});
+
+	$(function listaUsuario(){
+		var html;
+		$.ajax({
+			type: "POST",
+			url: PATH + "BuscarUsuariosParaLista",
+			data: "permissao=1&valorBusca=",
+			success: function(dados){
+				html = listaUsr(dados);
+				$("#listaUsr").html(html);
 			},
 			error: function(info){
 				alert("Erro ao consultar os contatos: "+ info.status + " - " + info.statusText);
@@ -173,7 +188,7 @@ $(document).ready(function(){
 				alert(msg.msg);
 			},
 			error: function (info) {
-				alert("Erro ao cadastrar log de acesso "+ info.status + " - " + info.statusText);		   
+				alert("Erro ao cadastrar uma nova notificação: "+ info.status + " - " + info.statusText);		   
 			}
 		});
 	}
@@ -245,7 +260,7 @@ $(document).ready(function(){
 			dados += "<ul class='listaContas' id='listaAdmins'>";
 			if (lista != undefined && lista.length > 0){
 				for (var i=0; i<lista.length; i++){
-					dados +="<li name='txt"+lista[i].login+" value='"+lista[i].id+"'>"+lista[i].login+"</li>";
+					dados +="<li name='txtadm"+lista[i].login+" value='"+lista[i].id+"'>"+lista[i].login+"</li>";
 				}
 			}
 			dados+="</ul>";
@@ -305,6 +320,20 @@ $(document).ready(function(){
 			  }
 			  });
 	};
+	
+	$(function escolherAdmin(){
+	    $("#listaAdm").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
+	            $("input[name=txtadmin]").val($(this).text());
+	        
+	    })
+	});
+	
+	$(function escolherUsuario(){
+	    $("#listaUsr").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
+	            $("input[name=txtusuario]").val($(this).text());
+	        
+	    })
+	});
 /*------------------------Gerenciar Contas--------------------------------*/
 	
 	//deixausuario alterado
@@ -325,3 +354,41 @@ $(document).ready(function(){
   };
 
 })
+
+
+//coisa nova
+
+//usa a servlet BuscaUsuariosParaLista para fazer bem isso	buscaUsr = function(){
+	buscaUsr = function(){
+		var valorBusca = $("input[name=txtbuscausr]").val();
+		var html;
+		$.ajax({
+			type: "POST",
+			url: PATH + "BuscarUsuariosParaLista",
+			data: "permissao=1&valorBusca="+valorBusca,
+			success: function(dados){
+				html = listaUsr(dados);
+				$("#listaUsr").html(html);
+			},
+			error: function(info){
+				alert("Erro ao consultar os contatos: "+ info.status + " - " + info.statusText);
+			}
+		});
+		};
+
+	//lista usuarios de uma lista
+	listaUsr = function(lista) {
+		var dados="";
+		if (lista==""){
+			dados = "<h2>Nada por aqui.</h2>";
+		}else{
+			dados += "<ul class='listaContas' id='listaUsuarios'>";
+			if (lista != undefined && lista.length > 0){
+				for (var i=0; i<lista.length; i++){
+					dados +="<li name='txtusr"+lista[i].login+" value='"+lista[i].id+"'>"+lista[i].login+"</li>";
+				}
+			}
+			dados+="</ul>";
+		}
+		return dados;
+	};
