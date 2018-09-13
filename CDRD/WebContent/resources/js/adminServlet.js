@@ -31,6 +31,8 @@ $(document).ready(function(){
 		});
 	});
 	
+	buscaAdmParaEditar();
+	
 	//buscar usuarios para lista
 	$(function lista(){
 		var html;

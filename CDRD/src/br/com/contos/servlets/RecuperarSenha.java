@@ -37,7 +37,7 @@ public class RecuperarSenha extends HttpServlet {
         try {
             Conexao conec = new Conexao();
             String senha = ""+Math.random();                            //Primeiro passo: númraero aleatório;
-            String senha2 = Criptografia.criptografaSenha(senha);        //Segundo passo: criptografg esse;
+            String senha2 = Criptografia.criptografaSenha(senha);        //Segundo passo: criptografa esse;
             String senha3 = senha2.substring(0,7);                        //Terceiro passo: encurta pra 8 dígitos;
             String senha4 = Criptografia.criptografaSenha(senha3);        //Quarto passo: criptografa esse também
             Connection conexao = conec.abrirConexao();
