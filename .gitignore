@@ -1,0 +1,5 @@
+#ignora as pastas do eclipse
+
+.metadata/
+
+RemoteSystemTempFiles/	

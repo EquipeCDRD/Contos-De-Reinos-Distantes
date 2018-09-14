@@ -1,5 +1,4 @@
 package br.com.contos.servlets;
-//aserfeito
 
 import java.io.IOException;
 import java.sql.Connection;
