@@ -11,6 +11,7 @@ import java.util.Map;
 /*==================Libs para servlets==================*/
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,8 +23,10 @@ import br.com.contos.jdbc.JDBCPontuacaoDAO;
 /*==================Lib do Google que convert um objeto p/ Json==================*/
 import com.google.gson.Gson;
 
-@WebServlet("/buscarPontuacao")
-public class BuscarPontuacao {
+@WebServlet("/BuscarPontuacao")
+public class BuscarPontuacao extends HttpServlet{
+
+	private static final long serialVersionUID = 1L;
 
 	//método construtor
 	public BuscarPontuacao() {}
@@ -56,33 +59,27 @@ public class BuscarPontuacao {
 			
 			//Chamada do método de busca de pontuação do jdbc
 			listaDePontuacoes = jdbcPontuacao.buscarPontuacao(request.getParameter("usuarioid"), 
-															  request.getParameter("hdidentificador"));
+															  request.getParameter("identificador"));
 			
 			//fechamento da conexao
 			con.fecharConexao();
 			
-			//criação da mensagem de retorno
-			Map<String,String> msg = new HashMap<String,String>();
-			
 			//Se a lista voltar nula, significa que deu merda em algum ponto
 			if(listaDePontuacoes == null) {
 				
-				//Atualização da msg dizendo que deu merda
-				msg.put("msg","Deu m*rda na hora de buscar nossos registros. Lamentamos pelo inconveniente");
+				throw new IOException("Não foi possível carregar os dados, lista nula");
 			
 			//Se não tiver dado problema até aqui...
 			}else {
-				msg.put("msg", "Deu tudo certin");
+				
+				//Criação da string json que irá conter a mensagem de resposta
+				String json = new Gson().toJson(listaDePontuacoes);
+				System.out.println(json);
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(json);
+				
 			}
-
-			
-			//Criação da string json que irá conter a mensagem de resposta
-			String json = new Gson().toJson(msg);
-			
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write(json);
-		
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

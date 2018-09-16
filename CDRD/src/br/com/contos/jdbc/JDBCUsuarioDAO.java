@@ -79,7 +79,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 				+ " usuario=?,"
 				+ " senha=?,"
 				+ " nome=?,"
-				+ " nascimento=?,"
+				+ " data_nascimento=?,"
 				+ " email=?"
 				+ " WHERE id=?";
 		PreparedStatement p;

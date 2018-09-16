@@ -52,12 +52,11 @@ public class InserirPontuacao extends HttpServlet{
 		try {
 			
 			//recolhimento dos dados da frontend
-			pontuacao.setId(request.getParameter("hdid"));
+			pontuacao.setId(request.getParameter("id"));
 			pontuacao.setScore(request.getParameter("txtpontuacao"));
-			pontuacao.setIdentificadorTabela(request.getParameter("hdidentificador"));
+			pontuacao.setIdentificadorTabela(request.getParameter("identificador"));
 			pontuacao.setUsuarioId(request.getParameter("usuarioid"));
 			
-			System.out.println("Tipo de identificador da tabela: "+pontuacao.getIdentificadorTabela());
 			//recolhimento da data de criação da pontuação
 			DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 			LocalDateTime dataCriacao = LocalDateTime.now();

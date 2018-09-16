@@ -81,7 +81,9 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
     //Método responsável pela realização da busca de pontuações salvas no banco
     @Override
     public List<Pontuacao> buscarPontuacao(String usuarioId, String identificadorTabela) {
-
+    	
+    	System.out.println("Tipo de pesquisa de pontuação: "+ identificadorTabela);
+    	
         //Criação da lista de pontuações que será retornada
         List<Pontuacao> listaDePontuacoes = new ArrayList<Pontuacao>();
         
@@ -143,7 +145,13 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                     pontuacao.setDataCriacao(dataCriacao);
                     pontuacao.setPosicaoRanking(posicaoRanking);
                     pontuacao.setUsuarioId(usuarioId);
-
+                    
+                    System.out.println("id: " + pontuacao.getId());
+                    System.out.println("score: " + pontuacao.getScore());
+                    System.out.println("data de criação: " + pontuacao.getDataCriacao());
+                    System.out.println("posição no ranking: " + pontuacao.getPosicaoRanking());
+                    System.out.println("id do usuário: " + pontuacao.getUsuarioId());
+                    
                     //adição do objeto recém criado à lista de pontuações
                     listaDePontuacoes.add(pontuacao);
                 }
@@ -156,7 +164,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
             }
         //Se o identificador for para o ranking global...
         }else if(identificadorTabela.equals("ranking")) {
-        	  	
+        	
         	try {
         		
         		//Se estiver maior que cinco vai dizer que deu merda
@@ -169,32 +177,47 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         		String sqlQuery = "SELECT id, usuarios_id, data_criacao,"
         				 + "MAX(pontuacao) AS pontuacao_ranking FROM pontuacoes "
         				 + "GROUP BY usuarios_id "
-        				 + "ORDER BY pontuacao_ranking DESC LIMIT(10)";
+        				 + "ORDER BY pontuacao_ranking DESC LIMIT 5";
         		Statement statement = conexao.createStatement();
         		ResultSet result = statement.executeQuery(sqlQuery);
-        		
+        		int i = 0;
         		while(result.next()) {
-        		
+        			i++;
         			pontuacao = new Pontuacao();
         			
         			//aquisição dos dados...
                     String id = result.getString("id");
-                    String score = result.getString("pontuacao");
+                    String score = result.getString("pontuacao_ranking");
                     String dataCriacao = result.getString("data_criacao");
                     //foge dos padrões somente porque já há uma variável com esse nome
                     String idUser = result.getString("usuarios_id");
-                    String posicaoRanking;
-                    
-                    //chamada do método que encontra a posição do carinha no ranking
-                    posicaoRanking = encontraPosicao();
-                    
+                    String posicaoRanking = ""+i;
+                   
                     //salvamento dos dados no objeto...
                     pontuacao.setId(id);
                     pontuacao.setScore(score);
                     pontuacao.setDataCriacao(dataCriacao);
                     pontuacao.setPosicaoRanking(posicaoRanking);
                     pontuacao.setUsuarioId(idUser);
-
+                    
+                    //seleçao do nome de usuario do usuario		
+                    String sqlQuery2 = "SELECT usuario FROM usuarios WHERE id="+idUser;
+                    PreparedStatement statement2 = conexao.prepareStatement(sqlQuery2);
+        			statement2.execute();
+        			ResultSet result2 = statement2.executeQuery(sqlQuery2);
+        			
+        			while(result2.next()) {
+        				pontuacao.setNomeDeUsuario(result2.getString("usuario"));
+        			}
+        			
+        			//Para testes
+        			System.out.println("============pontuacao==========");
+                    System.out.println("id: " + pontuacao.getId());
+                    System.out.println("score: " + pontuacao.getScore());
+                    System.out.println("data de criação: " + pontuacao.getDataCriacao());
+                    System.out.println("posição no ranking: " + pontuacao.getPosicaoRanking());
+                    System.out.println("id do usuário: " + pontuacao.getUsuarioId());
+                    
                     //adição do objeto recém criado à lista de pontuações
                     listaDePontuacoes.add(pontuacao);
         		
@@ -216,7 +239,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
     /*=============================================inserirPontuacao()=======================================================*/
     
     //Método responsável pela alteração dos scores do jogador
-	@Override
+    @Override
 	public boolean alterarPontuacao(Pontuacao pontuacao, List<Pontuacao> listaDePontuacoes) {
 		
 		/*
@@ -260,6 +283,8 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
     /*=============================================encontraPosicao()=======================================================*/
     
     //Método utilizado para encontrar a posição do carinha no ranking
+    //Preciso refazer parte do código (ele não precisa ser tão fudido assim)
+    
     private String encontraPosicao() {
     	
     	//Query para pegar todos as maiores pontuações do banco
@@ -289,8 +314,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
 	        	String score = result.getString("pontuacao_ranking");
                 String idUser = result.getString("usuarios_id");
                 String id = result.getString("id");
-                
-                
+               
                 //salvamento dos dados no objeto...
                 pontuacao.setId(id);
                 pontuacao.setScore(score);
@@ -348,6 +372,4 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         }
         return posicaoRanking;
    }
-
-	
 }

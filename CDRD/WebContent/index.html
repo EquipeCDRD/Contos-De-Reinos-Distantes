@@ -24,7 +24,7 @@
             <!--DetectJS-->
             <!--
                 Por enquanto o Detect.js fica sendo puxado desta biblioteca local,
-                mas o ideal é utilizar a biblioteca online
+                mas o ideal (e exigido pela comissão do Challenge) é utilizar a biblioteca online
             -->
             <script src="resources/js/libs/detect.js"></script>
             
@@ -35,13 +35,12 @@
         
         <!--=== scripts próprios ===-->
             
-            <script src="resources/js/index.js"></script>
-            <script src="resources/js/indexServlet.js"></script>
+            <script src="resources/js/inicio.js"></script>
+            <script src="resources/js/inicioServlet.js"></script>
 
         <!--=== folhas de estilo ===-->
-            <link rel="stylesheet" type="text/css" media="screen" href="resources/style/css/index.css" />
-            <link rel="stylesheet" type="text/css" media="screen" href="resources/style/css/modais_index.css">
-
+            <link rel="stylesheet" type="text/css" media="screen" href="resources/style/css/inicio.css" />
+       
     </head>
 
     <!--======================== início conteúdo ========================-->
@@ -65,12 +64,15 @@
 
             <!--janela da taverna-->
             <div class="containerJanela" id="containerJanelaIndex1">
-                <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg" alt="janela da taverna n° 1" class="janela">
+                <img src="resources/style/images/gif/janelaExterna.gif" alt="janela da taverna n° 1" class="janela">
             </div>
 
             <!--container da porta-->
             <div class="containerPorta" id="containerPortaIndex" onclick="abrirModal('containerModaisIndex')"> <!--chamada de função de abertura de prompt de log in-->
-                <img src="https://s-media-cache-ak0.pinimg.com/originals/49/47/0a/49470a8ac53138b1e9a20e71ebbd1a17.jpg" alt="porta da taverna" class="porta">
+                <img src="resources/style/images/estatico/portaExternaTavernaFechada.png" 
+                     alt="porta da taverna" 
+                     id="portaIndex" 
+                     class="porta">
             </div>
 
             <!--container do guarda-->
@@ -81,7 +83,7 @@
 
             <!--container de janelas-->
             <div class="containerJanela" id="containerJanelaIndex2">
-                <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg" alt="janela da taverna n° 1" class="janela" >
+                <img src="resources/style/images/gif/janelaExterna.gif" alt="janela da taverna n° 1" class="janela" >
             </div>
 
         </div>
@@ -98,7 +100,7 @@
 
             <!--mureta-->
             <div class="containerMuro" id="containerMuro1">
-                <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg" alt="mureta da taverna" class="muro">
+                <img src="resources/style/images/estatico/muroExterno.png" alt="mureta da taverna" class="muro">
             </div>
 
             <!--placa da taverna-->
@@ -108,46 +110,14 @@
 
             <!--mureta-->
             <div class="containerMuro" id="containerMuro2">
-                <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg" alt="mureta da taverna" class="muro">
+                <img src="resources/style/images/estatico/muroExternoRanking.png" alt="mureta da taverna" class="muro">
             </div>
 
             <!--quadro de ranking-->
             <div class="containerRanking" id="containerRankingIndex">
-            <table id="tabela"> <!--Tabela de Ranking-->
-                <tr>
-                    <th colspan="3" class="tdTabela"><h2 class="tituloTabela">MELHORES GUERREIROS DO REINO</h2></th>
-                </tr>
-                <tr>
-                    <th class="tdTabela">Posição</th>
-                    <th class="tdTabela">Usuário</th>
-                    <th class="tdTabela">Pontuação</th>
-                </tr>
-                <tr>
-                    <td class="tdTabela">1</td>
-                    <td class="tdTabela">xXHackerman1337Xx</td>
-                    <td class="tdTabela">9999999e</td>
-                </tr>
-                <tr>
-                    <td class="tdTabela">2</td>
-                    <td class="tdTabela">jogador2</td>
-                    <td class="tdTabela">193456</td>
-                </tr>
-                <tr>
-                    <td class="tdTabela">3</td>
-                    <td class="tdTabela">jogador3</td>
-                    <td class="tdTabela">182432</td>
-                </tr>
-                <tr>
-                    <td class="tdTabela">4</td>
-                    <td class="tdTabela">jogador4</td>
-                    <td class="tdTabela">132356</td>
-                </tr>
-                <tr>
-                    <td class="tdTabela">5</td>
-                    <td class="tdTabela">jogador5</td>
-                    <td class="tdTabela">10509</td>
-                </tr>
-            </table>
+            
+                <!-- conteúdo inserido dinamicamente -->
+            
             </div>
         </div>
 
@@ -244,7 +214,7 @@
                 </form>
                 </div>
 
-                <!-- Login por Redes Sociais -->
+                <!-- Login por Redes Sociais (Provalvelmente será eliminado) -->
 
                 <div id="login_redes"> <!--Balão de interação com personagens-->
                 <table class="intTable"> <!--Tabela de interações-->
@@ -348,15 +318,26 @@
                             <form name="frmesqueci">
                             <table><!--Tabela da fala-->
                                 <tr>
-                                <td colspan="2" class="intCadRow intDialogue">Isso é mais comum do que você imagina, até criamos um plano para lidar com esse tipo de problema! Enviaremos um pombo correio para sua casa. (Você receberá um e-mail com o link para redefinição de senha)</td><!--Falas do Personagem-->
+                                <td colspan="2" class="intCadRow intDialogue">
+                                    Isso é mais comum do que você imagina, até criamos um plano para lidar com 
+                                    esse tipo de problema! Enviaremos um pombo correio 
+                                    para sua casa. (Você receberá um e-mail com o link com sua nova senha)</td><!--Falas do Personagem-->
                                 </tr>
                                 <tr>
                                 <td class="intCadOptions">Endereço de E-mail:</td>
-                                <td class="tdInput" ><input type="text" name="txtmail" value="" class="intInput" maxlength="100"></td>
+                                <td class="tdInput" >
+                                    <input type="text" name="txtmail" 
+                                           value="" class="intInput" maxlength="100">
+                                </td>
                                 </tr>
                                 <tr>
-                                <td><input type="reset" value="Limpar" class="intCadButton3"></td>
-                                <td><input type="button" value="Enviar" class="intCadButton4" onclick="validaEsqueciSenha()"></td>
+                                <td>
+                                    <input type="reset" value="Limpar" class="intCadButton3">
+                                </td>
+                                <td>
+                                    <input type="button" value="Enviar" 
+                                           class="intCadButton4" onclick="validaEsqueciSenha()">
+                                </td>
                                 </tr>
                             </table><!--Fim da tabela da fala-->
                             </form>

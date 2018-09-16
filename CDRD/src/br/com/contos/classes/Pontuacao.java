@@ -11,6 +11,7 @@ public class Pontuacao implements Serializable{
 	private String score;
 	private String dataCriacao;
 	private String usuarioId;
+	private String nomeDeUsuario;
 	/*
 	 * O identificador irá indicar para qual formulário a pontuação deverá ser enviada 
 	 * (um set completo das melhores pontuações dos melhores usuario e/ou o score pessoal,
@@ -55,7 +56,9 @@ public class Pontuacao implements Serializable{
 		return posicaoRanking;
 	}
 	
-	
+	public String getNomeDeUsuario() {
+		return nomeDeUsuario;
+	}
 	/*===================== setters =====================*/
 	public void setId(String id) {
 		this.id = id;
@@ -79,6 +82,10 @@ public class Pontuacao implements Serializable{
 	
 	public void setPosicaoRanking(String posicaoRanking) {
 		this.posicaoRanking = posicaoRanking;
+	}
+	
+	public void setNomeDeUsuario(String nomeDeUsuario) {
+		this.nomeDeUsuario = nomeDeUsuario;
 	}
 	
 }

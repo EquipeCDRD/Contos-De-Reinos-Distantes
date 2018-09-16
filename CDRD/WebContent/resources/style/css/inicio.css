@@ -1,0 +1,355 @@
+/*
+    Author: Equipe CRD
+		Creation date: 23/06/2018
+		Observação: Algumas (muitas) regras das regras abaixo estão se referenciando à "index", 
+								isso porque antes esse arquivo e o arquivo de js original eram index.algumacoisa,
+								porém seus nomes foram trocados para inicio.algumacoisa, para não dar confusão. 
+*/
+
+/*=================================== resets e aplicação de outras configurações universais ===================================*/
+
+@font-face{
+	font-family: pixel font;
+	src: url("../pixel_font7.ttf");
+}
+
+*, *::after, *::before {
+	margin:	0;
+	padding:0;
+	border:0;
+	vertical-align: baseline;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font: normal 24px/1em "pixel font";
+}
+
+body{ /*Desabilita scroll*/
+    position: fixed;
+    overflow-y: scroll;
+    width: 100%;
+    overflow:hidden;
+}
+
+/*=============================================== classes ===============================================*/
+
+/*
+	Os planos de fundo servem apenas para demarcar a posição dos elementos. Futuramente, todos serão substituídos
+	pela arte do jogo
+*/
+.containerJanela{
+	background-attachment: fixed;
+	height: 175px;
+	width: 200px;
+}
+
+.containerPorta{
+	background-attachment: fixed;
+	height: 325px;
+	width: 250px;
+}
+
+.containerNPC{
+	
+	height: 275px;
+	width: 275px;
+	background-color: brown;
+}
+
+.containerMuro{
+	background-attachment: fixed;
+	height: 150px;
+	width: 300px;
+}
+
+.containerPlaca{
+	height: 400px;
+	width: 250px;
+}
+
+.containerRanking{
+	height: 200px;
+	width: 400px;
+}
+
+.containerModais{
+	display: block;
+	z-index: 4; /* esse valor é por causa do plano de fundo (que ainda não existe kkkk)*/
+	/*opacity: 0;
+	transition: opacity 0.5s ease-in-out;*/
+	height: 484px;
+	width: 800px;
+	position: absolute;
+	top: 15%;
+	right: 22%;
+}
+
+.janela, .porta, .NPCInterativo, .muro, .placaTaverna{
+	max-width: 100%;
+	max-height: 100%;
+	height: auto;
+	background-repeat: no-repeat;
+}
+/*=============================================== estilização index	 ===============================================*/
+
+/*=== geral ===*/
+#contentIndex, #contentIndex{
+	height: 100%;
+	width: 100%;
+	background-attachment: fixed;
+	background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVUoYhTXJQCKy_GvkhvW9v_FMkfwCulUUWpxJcRo630SeXeLF7');
+}
+
+/* === estilização de paredTaverna e filhos ===*/
+#paredeTaverna{
+	  height: 325px;
+    background: url("../images/estatico/paredeExterna.png");
+	}
+
+#containerJanelaIndex1{    
+	position: fixed;
+	top: 30px;
+	left: 30px;
+	width: 250px;
+	height: 250px;
+}
+
+#containerJanelaIndex2{
+	position: fixed;
+	top: 30px;
+	right: 30px;
+	width: 250px;
+	height: 250px;
+}
+
+#containerJanelaIndex1 img, #containerJanelaIndex2 img, #containerPortaIndex img{
+	height: 100%;
+	width: 100%;
+} 
+
+#containerPortaIndex{
+	height: 300px;
+	width: 300px;
+	position: fixed;
+	right: 50%;
+	top: 25px;
+}
+
+#containerGuardaIndex{
+	height: 250px;
+	width: 250px;
+	position: fixed;
+	left: 50%;
+	top: 75px;
+}
+
+/* === estilização de paredTaverna e filhos ===*/
+#muroTaverna{
+	display: flex;
+	height: 250px;
+	width: 100%;
+	padding: 0;	
+}
+
+#containerMuro1 img, #containerMuro2 img{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: 0;
+}
+
+#containerPlacaIndex{
+	position: relative;
+	top: -200px;
+	left: 0;
+	background-image: url("../images/log.png");
+	background-repeat: no-repeat;
+}
+
+#containerMuro1{
+	position: absolute;
+	left: -35px;
+	bottom: -10;
+	height: 600px;
+	width: 600px;
+}
+
+#containerMuro2{
+	position: absolute;
+	right: -35px;
+	bottom: -10;
+	height: 600px;
+	width: 600px;
+}
+
+#containerRankingIndex{
+	z-index: 1;
+	position: fixed;
+	bottom: 20px;
+	right: 39px;
+}
+
+#tabelaVisitante{
+	height: 100%;
+}
+
+#tabelaVisitante, .tdTabela{
+	border: 3px solid transparent;
+  width: 400px;
+  font-size: 12px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.tdTabela{
+	vertical-align: middle;
+}
+
+/*    ---------------------------------Tabela---------------------------------------   */
+
+#intPerso{ /*Bordas externas da tabela*/
+	border: 1px solid #532700;
+	border-collapse: collapse;
+	width: 800px;
+	border-radius: 5px;
+	background-color: #BD7938;
+  }
+  .intTable, .intRow{ /*Bordas internas da tabela*/
+	border: 3px solid #532700;
+	border-collapse: collapse;
+  }
+  .intRow{
+	font-size: 30px;
+  }
+  .vAlign{
+	vertical-align: text-top;
+  }
+  /*--------Images e Falas----------*/
+  .intImg{
+	height: 100%;
+  }
+  .intTdImg{
+	background-color: #BD7938;
+	vertical-align: bottom;
+	height: 313px;
+	width: 300px;
+  }
+  .intArrow{
+	width: 100px;
+  }
+  .intTdArrow{
+	background-color: #BD7938;
+  }
+  .intDialogue{ /*Falas do Personagem*/
+	width: 100%;
+  }
+  .intAlerta{
+	border-bottom: 0;
+  }
+  .intRow{
+	background-color: #BD7938;
+	color: white;
+  }
+  .intIcn{
+	width: 50px;
+  }
+  
+  /* ----Inputs------*/
+  .intButton, .intGroupButton, .intGroupCadButton{ /* Botões */
+	width: 100%;
+	height: 35px;
+	background-color: #BD7938;
+	border: 1px solid #8D4421;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+	transition: 0.3s;
+  }
+  .intButton:hover, .intCadButton:hover, .intCadButton2:hover, .intCadButton3:hover, .intCadButton4:hover{
+	background-color: #8D4421;
+	transition: 0.3s;
+  }
+  .intTdButton{ /* Td do Botão */
+	height: 35px;
+	border: 3px solid #532700;
+	border-collapse: collapse;
+  }
+  .intInput{
+	width: 200px;
+	padding: 0;
+  }
+  .tdInput{
+	width: 200px;
+	position: relative;
+	bottom: 3px;
+  }
+  /*-- TIRAR BORDA DE 1px--*/
+  .intTdButton, .intTdImg{
+	padding: 0;
+  }
+  
+  /*---------------------TABELA DE CADASTRO---------------------*/
+  .intCad{
+	padding-top: 20px;
+  }
+  .intCadRow{
+	color: white;
+  }
+  .intCadOptions{
+	color: white;
+	font-size: 20px;
+	width: 40%;
+	text-align: right;
+	padding: 0;
+  }
+  .intCadOptions1{
+	text-align: right;
+	position: relative;
+  }
+  .intCadOptions1, .intCadButton, .intCadButton2{
+	position: relative;
+	top:60px;
+  }
+  .intInput1{
+	position: relative;
+	top: 57px;
+	font-size: 20px;
+  }
+  .intCadPadding{
+	padding-top: 15px;
+  }
+  .intCadButton, .intCadButton2, .intCadButton3, .intCadButton4{
+	position: relative;
+	left: 100px;
+	width: 120px;
+	background-color: #BD7938;
+	border: 1px solid #8D4421;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+	transition: 0.3s;
+  }
+  .intCadButton2, .intCadButton4{
+	left: 84px;
+  }
+  .primeiroCad{
+	border-top: 3px solid black;
+	border-collapse: collapse;
+  }
+  .intButtonRedes{
+	width: 250px;
+	height: 100px;
+	border: 3px solid black;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.3s;
+  }
+  .intButtonRedes:hover{
+	-webkit-filter: invert(25%);
+	filter: invert(25%);
+	transition: 0.3s;
+  }
