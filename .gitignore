@@ -1,5 +1,7 @@
 #ignora as pastas do eclipse
 
-.metadata/
-
-RemoteSystemTempFiles/	
+/.metadata/
+/.vscode/
+/RemoteSystemTempFiles/
+/Servers/	
+/.recomenders/
