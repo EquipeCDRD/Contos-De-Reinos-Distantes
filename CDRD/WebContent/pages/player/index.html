@@ -8,8 +8,8 @@
     <meta name="creation-date" content="2018/07/04">
     <meta name="last-modified" content="2018/07/04">
     <link rel="stylesheet" type="text/css" href="../../resources/style/css/taberna.css" />
-    <link rel="stylesheet" type="text/css" href="../../resources/style/css/jquery-ui.css" />
-    <script src="../../resources/js/libs/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../../resources/js/taberna.js"></script>
   </head>
   <body id="bodyTaberna">
@@ -461,29 +461,30 @@
         <div id="alterarDados">
           <table id="tableAlterar">
             <tr>
-              <th colspan="2">FOLHA DE CADASTRO</th>
+              <th colspan="2" id="tituloAlterar">FOLHA DE CADASTRO</th>
             </tr>
             <tr>
-              <td><img></td>
-              <td><button type="button">Alterar Dados</button>
+              <td><img src="../../resources/style/images/player.png" alt="img" id="alterarImg"/></td>
+              <td><button type="button" id="alterarBtn">Alterar Dados</button>
             </tr>
             <tr>
-              <td>Nome:</td>
-              <td>xXDJMarquinhosXx</td>
+              <td class="tdConta">Nome:</td>
+              <td><span id="tdNome">xXDJMarquinhosXx</span></td>
             </tr>
             <tr>
-              <td>Data de Nascimento:</td>
-              <td>05/11/2000</td>
+              <td class="tdConta">Data de Nascimento:</td>
+              <td><span id="tdData">05/11/2000</span></td>
             </tr>
             <tr>
-              <td>E-mail:</td>
-              <td>djmarquinhos123@gmail.com</td>
+              <td class="tdConta">E-mail:</td>
+              <td><span id="tdEmail">djmarquinhos123@gmail.com</span></td>
             </tr>
             <tr>
-              <td>Senha:</td>
-              <td>***********</td>
+              <td class="tdConta">Senha:</td>
+              <td><span id="tdSenha">***********</span></td>
             </tr>
           </table>
+            <td><img src="../../resources/style/images/x.png" alt="img" id="fecharAlterar" class="sairBtn" /></td>
         </div>
   </body>
 </html>
