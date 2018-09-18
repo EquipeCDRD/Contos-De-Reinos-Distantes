@@ -103,7 +103,7 @@
 			},
 			error: function(){
 				alert("Não foi possível enviar o email: " + info.status + " - " + info.statusText);
-				$(this).delay(5000).location.reload();
+			
 			}
 		})
 	}
