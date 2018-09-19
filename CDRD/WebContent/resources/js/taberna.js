@@ -23,12 +23,6 @@ $(window).bind('mousewheel DOMMouseScroll', function (event) {/*Desabilita o zoo
        }
 });
 
-  /* Sair */
-function portaSair(){
-    window.location = href="../../index.html";
-}
-
-
 function abrirModal(i){
     $("#taberna").css("filter","brightness(50%)");
     $("#paredeQuartos").css("filter","brightness(50%)");

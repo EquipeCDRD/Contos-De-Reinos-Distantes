@@ -169,7 +169,7 @@ body{ /*Desabilita scroll*/
 #containerMuro1{
 	position: absolute;
 	left: -35px;
-	bottom: -10;
+	bottom: -140px;
 	height: 600px;
 	width: 600px;
 }

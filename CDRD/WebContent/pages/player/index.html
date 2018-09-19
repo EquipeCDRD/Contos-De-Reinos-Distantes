@@ -7,11 +7,13 @@
     <meta name="description" content="Página da Taberna do Contos de Reinos Distantes">
     <meta name="creation-date" content="2018/07/04">
     <meta name="last-modified" content="2018/07/04">
-    <link rel="stylesheet" type="text/css" href="../../resources/style/css/taberna.css" />
+     <link rel="stylesheet" type="text/css" href="../../resources/style/css/taberna.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../../resources/js/libs/detect.js"></script>
     <script src="../../resources/js/taberna.js"></script>
-  </head>
+    <script src="../../resources/js/tabernaServlet.js"></script>  
+</head>
   <body id="bodyTaberna">
     <div id="paredeQuartos">
       <div id="paredeQuarto">
@@ -40,31 +42,7 @@
         </div>
 
         <div id="quadroRanking" onclick="abrirModal(3)">
-          <table id="tabela"> <!--Tabela de Ranking-->
-              <tr>
-                <th colspan="3" class="tdTabela" id="tabelaTitulo">MELHORES GUERREIROS DO REINO</th>
-              </tr>
-              <tr>
-                  <th class="tdTabela" id="rkgPosicao">Posição</th>
-                  <th class="tdTabela" id="rkgUsuario">Usuário</th>
-                  <th class="tdTabela" id="rkgPontuacao">Pontuação</th>
-              </tr>
-              <tr>
-                  <td class="tdTabela1">1</td>
-                  <td class="tdTabela1">MMMMMMMMMMMMMMMM</td>
-                  <td class="tdTabela1">9999999e</td>
-              </tr>
-              <tr>
-                  <td class="tdTabela2">2</td>
-                  <td class="tdTabela2">jogador2</td>
-                  <td class="tdTabela2">193456</td>
-              </tr>
-              <tr>
-                  <td class="tdTabela3">3</td>
-                  <td class="tdTabela3">jogador3</td>
-                  <td class="tdTabela3">182432</td>
-              </tr>
-          </table>
+            <!--Conteúdo injetado dinamicamente-->
         </div>
 
         <div id="divLogo">
@@ -82,7 +60,8 @@
           <img src="../../resources/style/images/avisos.png" alt="img" id="avisosImg" onclick="abrirModal(4)">
         </div>
 
-        <img src="../../resources/style/images/mesaHerois.gif" alt="img" id="imgMesa" onclick="alert('jogo')">
+        <a href="jogo.html"><img src="../../resources/style/images/mesaHerois.gif" alt="img" id="imgMesa"></a>
+        
         <!--Taverneiro-->
         <img src="../../resources/style/images/taverneiro.gif" alt="img" id="imgTaverneiro" onclick="abrirModal(1)">
         <div id="balcao"></div>
@@ -94,7 +73,7 @@
         <!--Fim Bardo-->
         <div id="paredeInferior"><!--Div para programação da "Porta de Saida" e seus hovers-->
           <div id="divSair"><!--Porta de Saída-->
-            <a><img src="../../resources/style/images/door.png" alt="img" id="portaSair" onclick="portaSair()"></a>
+            <a><img src="../../resources/style/images/door.png" alt="img" id="portaSair" onclick="sair()"></a>
           </div>
         </div>
       </div>
@@ -105,12 +84,12 @@
     <div id="pisoExterno">
     </div>
 
-
+    
 
       </div>
     </div>
     <div class="containerModais" id="containerModaisTaverneiro">
-      <div id="intTaverneiro">
+    <div id="intTaverneiro">
         <div id="taverneiro">
         <table class="intTable"> <!--Tabela de interações-->
             <tr>
@@ -229,7 +208,7 @@
       </div>
     </div>
 
-        <div class="containerModais" id="containerModaisBardo">
+    <div class="containerModais" id="containerModaisBardo">
           <div id="intBardo"><!--Sufixo "B" indica "bardo"-->
           <div id="bardo">
           <table class="intTable"> <!--Tabela de interações-->
@@ -355,80 +334,7 @@
         </div>
 
         <div id="ranking">
-          <form id="formRanking">
-            <table id="tableRanking" class="intRowRanking">
-              <tr>
-                <th class="intRowRanking tituloRanking" colspan="3">MELHORES AVENTUREIROS DO REINO</th>
-              </tr>
-              <tr>
-                <th class="intRowRanking tituloRanking">POSIÇÃO</th>
-                <th class="intRowRanking tituloRanking">USUÁRIO</th>
-                <th class="intRowRanking tituloRanking">PONTUAÇÃO</th>
-              </tr>
-              <tr>
-                <td class="intRowRanking">1</td>
-                <td class="intRowRanking">MMMMMMMMMMMMMMMM</td>
-                <td class="intRowRanking">999999e8</td>
-              </tr>
-              <tr>
-                <td class="intRowRanking">2</td>
-                <td class="intRowRanking">BRADESGO</td>
-                <td class="intRowRanking">999999</td>
-              </tr>
-              <tr>
-                <td class="intRowRanking">3</td>
-                <td class="intRowRanking">BITAU</td>
-                <td class="intRowRanking">999998</td>
-              </tr>
-              <tr>
-                <td class="intRowRanking">4</td>
-                <td class="intRowRanking">BANTANDER</td>
-                <td class="intRowRanking">999997</td>
-              </tr>
-              <tr>
-                <td class="intRowRanking">5</td>
-                <td class="intRowRanking">PIRAGANJUBA</td>
-                <td class="intRowRanking">999996</td>
-              </tr>
-              <tr>
-                <td class="intRowRanking">6</td>
-                <td class="intRowRanking">ROGERINHO GAMES</td>
-                <td class="intRowRanking">999994</td>
-              </tr>
-              <tr>
-                <td class="intRowRanking">7</td>
-                <td class="intRowRanking">TIMRA BEI</td>
-                <td class="intRowRanking">999993</td>
-              </tr>
-              <tr>
-                <td class="intRowRanking">8</td>
-                <td class="intRowRanking">JACINTO PAULA DE</td>
-                <td class="intRowRanking">999992</td>
-              </tr>
-              <tr>
-                <td class="intRowRanking">9</td>
-                <td class="intRowRanking">TAVINHO KONESKI</td>
-                <td class="intRowRanking">999991</td>
-              </tr>
-              <tr>
-                <td class="intRowRanking">10</td>
-                <td class="intRowRanking">MEUPA UDEASA</td>
-                <td class="intRowRanking">999990</td>
-              </tr>
-              <tr>
-                <td><img src="../../resources/style/images/x.png" alt="img" id="fechar" class="sairBtn" /></td>
-                <td colspan="2"><img src="../../resources/style/images/flecha.png" alt="img" id="flecha"/></td>
-              </tr>
-              <tr>
-                <th class="intRowRanking tituloRanking" colspan="3">SUA PONTUAÇAO</th>
-              </tr>
-              <tr>
-                <td class="intRowRanking">13803</td>
-                <td class="intRowRanking">DjRogerinho</td>
-                <td class="intRowRanking">9</td>
-              </tr>
-            </table>
-          </form>
+        
         </div>
 
         <div id="avisos">
