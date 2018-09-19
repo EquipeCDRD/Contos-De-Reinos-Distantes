@@ -177,21 +177,6 @@ $(document).ready(function(){
 	
 /*------------------------Log de acesso--------------------------------*/
 	
-	insereLogDeAcesso = function(){
-		var usuarioId = 1;//usuarioLogado.id;
-		$.ajax({
-			type: "POST",
-			url: PATH + "InserirLogDeAcesso",
-			data: "usuario_id="+usuarioId,
-			success: function (msg) {
-				alert(msg.msg);
-			},
-			error: function (info) {
-				alert("Erro ao cadastrar uma nova notificação: "+ info.status + " - " + info.statusText);		   
-			}
-		});
-	}
-	
 	$(function buscaLogDeAcesso(){
 		var html = "<table class='tabelaGeral'>" +
 		"<tr>" +
@@ -219,7 +204,7 @@ $(document).ready(function(){
 		if (listLog != undefined && listLog.length > 0){
 			for (var i=0; i<listLog.length; i++){
 				dados += "<tr>" +
-						"<td><span>"+listLog[i].usuarioId+"</span></td>" +
+						"<td><span>"+listLog[i].usuario+"</span></td>" +
 						"<td><span>"+listLog[i].dataCriacao+"</span></td>" +
 						"</tr>"
 			}
