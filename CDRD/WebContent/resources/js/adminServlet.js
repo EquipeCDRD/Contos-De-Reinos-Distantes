@@ -1,4 +1,4 @@
-$(document).ready(function(){	
+	$(document).ready(function(){	
 	var usuarioLogado;
 	var PATH = "../../";
 	
@@ -300,6 +300,9 @@ $(document).ready(function(){
 	
 	//consulta
 	buscaAdmParaEditar = function(id){
+		if(id==undefined){
+			id = $("#altId").val();
+		}
 		$.ajax({
 			type: "POST",
 			url: PATH + "BuscarUsuario",

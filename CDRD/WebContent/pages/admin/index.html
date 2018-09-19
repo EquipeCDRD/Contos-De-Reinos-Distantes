@@ -250,12 +250,12 @@
                     </div>
                     <div class="cadCampo">
                         <label>Confirmar Nova Senha: </label>
-                        <input type="password" name="pwdaltconfsenhanova" id="altConfSenha">
+                        <input type="password" name="pwdaltconfsenha" id="altConfSenha">
                     </div>
                     <div class="cadBotoes">
                     	<input type="hidden" name="hdid" id="altId">
-                        <button onclick="alteraUsuario()">Enviar</button>
-                        <button onclick="buscaAdmParaEditar('#altId.value')">Limpar</button>
+                        <input type="button" onclick="alteraUsuario()" value="Enviar">
+                        <input type="button" onclick="buscaAdmParaEditar()" value="Limpar">
                     </div>
                 </form>
             </div>
