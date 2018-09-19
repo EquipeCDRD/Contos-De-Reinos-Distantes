@@ -31,17 +31,18 @@ public class AlterarUsuario extends HttpServlet {
     		Conexao conec = new Conexao();
     		Connection conexao = conec.abrirConexao();
     		JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
-    		Usuario usuariobd = jdbcUsuario.buscarPorValor(request.getParameter("txtapelido"), "usuario");
+    		System.out.println(request.getParameter("txtaltlogger"));
+    		Usuario usuariobd = jdbcUsuario.buscarPorValor(request.getParameter("txtaltlogger"), "usuario");
     		Map<String, String> msg = new HashMap<String, String>();
-    		if (request.getParameter("txtapelido").equals(usuariobd.getLogin())) {
-    			String senhaAtualCript = Criptografia.criptografaSenha(request.getParameter("txtsenhaatual")); 
+    		if (request.getParameter("txtaltlogger").equals(usuariobd.getLogin())) {
+    			String senhaAtualCript = Criptografia.criptografaSenha(request.getParameter("pwdaltsenhaantiga")); 
     			if (senhaAtualCript.equals(usuariobd.getSenha())) {
     				Usuario usuario = new Usuario();
-    	    		usuario.setLogin(request.getParameter("txtapelido"));
-    	    		usuario.setSenha(request.getParameter("txtnovasenha"));
-    	    		usuario.setNome(request.getParameter("txtnome"));
-    	    		usuario.setNascimento(request.getParameter("dtenascimento"));
-    	    		usuario.setEmail(request.getParameter("txtemail"));
+    	    		usuario.setLogin(request.getParameter("txtaltlogger"));
+    	    		usuario.setSenha(request.getParameter("pwdaltnovasenha"));
+    	    		usuario.setNome(request.getParameter("txtaltnome"));
+    	    		usuario.setNascimento(request.getParameter("dtealtnascimento"));
+    	    		usuario.setEmail(request.getParameter("txtaltemail"));
     	    		boolean retorno = jdbcUsuario.atualizar(usuario);
     		    	conec.fecharConexao();
     		    	

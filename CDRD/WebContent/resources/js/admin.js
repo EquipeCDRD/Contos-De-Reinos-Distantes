@@ -147,45 +147,45 @@ $(function escolherAdmin(){
 
 function validaMinhaConta(){
     var conf = false;
-    if($("input[name=txtnome]").val()!=""){
-        if($("input[name=txtemail]").val()!=""){
-            if($("input[name=dtenascimento]").val()!=""){
-                if($("input[name=txtapelido]").val()!=""){
-                    if($("input[name=pwdsenhaantiga]").val()!=""){
-                        if($("input[name=pwdsenhanova]").val()!=""){
-                            if($("input[name=pwdconfsenha]").val()!=""){
-                                if($("input[name=pwdsenhanova]").val()==$("input[name=pwdconfsenha]").val()){
+    if($("input[name=txtaltnome]").val()!=""){
+        if($("input[name=txtalteemail]").val()!=""){
+            if($("input[name=dtealtnascimento]").val()!=""){
+                if($("input[name=txtaltlogger]").val()!=""){
+                    if($("input[name=pwdaltsenhaantiga]").val()!=""){
+                        if($("input[name=pwdaltsenhanova]").val()!=""){
+                            if($("input[name=pwdaltconfsenha]").val()!=""){
+                                if($("input[name=pwdaltsenhanova]").val()==$("input[name=pwdaltconfsenha]").val()){
                                     conf = confirm("Tem certeza que deseja alterar informações de sua conta?");
                                 }else{
                                     alert("As senhas não coincidem.");
                                 }
                             }else{
                                 alert("Preencha a confirmação de senha.");
-                                $("input[name=pwdconfsenha]").focus();
+                                $("input[name=pwdaltconfsenha]").focus();
                             }
                         }else{
                             alert("Preencha a senha nova.");
-                            $("input[name=pwdsenhanova]").focus();
+                            $("input[name=pwdaltsenhanova]").focus();
                         }
                     }else{
                         alert("Preencha a senha antiga.");
-                        $("input[name=pwdsenhaantiga]").focus();
+                        $("input[name=pwdaltsenhaantiga]").focus();
                     }
                 }else{
                     alert("Preencha o nome de usuário.");
-                    $("input[name=txtapelido]").focus();
+                    $("input[name=txtaltlogger]").focus();
                 }
             }else{
                 alert("Preencha a data de nascimento.");
-                $("input[name=dtenascimento]").focus();
+                $("input[name=dtealtnascimento]").focus();
             }
         }else{
             alert("Preencha o e-mail.");
-            $("input[name=txtemail]").focus();
+            $("input[name=txtaltemail]").focus();
         }
     }else{
         alert("Preencha o nome.");
-        $("input[name=txtnome]").focus();
+        $("input[name=txtaltnome]").focus();
     }
     return conf;
 }
