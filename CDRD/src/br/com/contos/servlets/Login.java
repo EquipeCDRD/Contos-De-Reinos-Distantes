@@ -16,7 +16,9 @@ import com.google.gson.Gson;
 
 import br.com.contos.classes.Criptografia;
 import br.com.contos.classes.Usuario;
+import br.com.contos.classes.LogDeAcesso;
 import br.com.contos.conexao.Conexao;
+import br.com.contos.jdbc.JDBCLogDeAcessoDAO;
 import br.com.contos.jdbc.JDBCUsuarioDAO;
 
 @WebServlet("/Login")
@@ -42,6 +44,18 @@ public class Login extends HttpServlet {
     				HttpSession sessao = request.getSession();
     				sessao.setAttribute("login", usuario.getLogin());
     				sessao.setAttribute("permissao", usuario.getPermissao());
+    	
+    				LogDeAcesso logDeAcesso = new LogDeAcesso();
+    				logDeAcesso.setUsuario("login");
+    				logDeAcesso.setUsuarioId(usuario.getId());
+    				JDBCLogDeAcessoDAO jdbcLogDeAcesso = new JDBCLogDeAcessoDAO(conexao);
+    	    		boolean retorno = jdbcLogDeAcesso.inserir(logDeAcesso);
+    	    		if(retorno){
+    	    			System.out.println("Log registrado");
+    	    		}else{
+    	    			System.out.println("Um erro ocorreu ao registrar log");
+    	    		}
+    	    		
     				if(sessao.getAttribute("permissao").equals("0")) {
     					System.out.println("admin logando");
     					msg.put("url", "pages/admin/index.html");
