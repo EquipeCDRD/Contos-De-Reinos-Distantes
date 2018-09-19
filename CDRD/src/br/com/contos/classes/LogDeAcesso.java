@@ -1,7 +1,6 @@
 package br.com.contos.classes;
 
 import java.io.Serializable;
-import br.com.contos.classes.Usuario;
 
 public class LogDeAcesso implements Serializable{
 	
@@ -10,7 +9,7 @@ private static final long serialVersionUID = 1L;
 	private String id;
 	private String dataCriacao;
 	private String usuarioId;
-	private Usuario usuario;
+	private String usuario;
 	
 	public String getId(){
 		return id;
@@ -26,10 +25,10 @@ private static final long serialVersionUID = 1L;
 		this.dataCriacao = dataCriacao;
 	}
 	
-	public Usuario getUsuario() {
+	public String getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 	public String getUsuarioId() {
