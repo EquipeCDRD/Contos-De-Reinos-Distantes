@@ -27,31 +27,30 @@ function abrirModal(i){
     $("#taberna").css("filter","brightness(50%)");
     $("#paredeQuartos").css("filter","brightness(50%)");
     $("#taberna").css("pointer-events","none");
+    $("#portaQuarto").css("pointer-events","none");
 
 
     if (i==1) {
       $("#containerModaisTaverneiro").show();
       $("#intTaverneiro").show();
       $("#taverneiro").show();
-      $("#portaQuarto").css("pointer-events","none");
     }
     if (i==2) {
       $("#containerModaisBardo").show();
       $("#intBardo").show();
       $('#bardo').show();
-      $("#portaQuarto").css("pointer-events","none");
     }
     if (i==3) {
       $("ranking").show();
-      $("#portaQuarto").css("pointer-events","none");
     }
     if (i==4) {
       $("#avisos").show();
-      $("#portaQuarto").css("pointer-events","none");
     }
     if (i==5) {
       $("#alterarDados").show();
-      $("#portaQuarto").css("pointer-events","none");
+    }
+    if (i==6) {
+      $("#rankingPessoal").show();
     }
     carregaModais(i);
 }
@@ -151,29 +150,41 @@ function carregaModais(i){
     }
     if (i==3) {
       $("#ranking").show();
-    }$(".sairBtn").click(function(){
-      $("#ranking").hide();
-      $("#taberna").css("pointer-events", "auto");
-      $("#portaQuarto").css("pointer-events", "auto");
-      $("#taberna").css("filter","brightness(100%)");
-  });
+      $(".sairBtn").click(function(){
+        $("#ranking").hide();
+        $("#taberna").css("pointer-events", "auto");
+        $("#portaQuarto").css("pointer-events", "auto");
+        $("#taberna").css("filter","brightness(100%)");
+      });
+    }
     if (i==4) {
       $("#avisos").show();
-    }$(".sairBtn").click(function(){
-      $("#avisos").hide();
-      $("#taberna").css("pointer-events", "auto");
-      $("#portaQuarto").css("pointer-events", "auto");
-      $("#taberna").css("filter","brightness(100%)");
-  });
+      $(".sairBtn").click(function(){
+        $("#avisos").hide();
+        $("#taberna").css("pointer-events", "auto");
+        $("#portaQuarto").css("pointer-events", "auto");
+        $("#taberna").css("filter","brightness(100%)");
+      });
+    }
   /*     Alterar Dados      */
     if (i==5) {
       $("#alterarDados").show();
-    }$(".sairBtn").click(function(){
-      $("#alterarDados").hide();
+      $(".sairBtn").click(function(){
+        $("#alterarDados").hide();
+        $("#taberna").css("pointer-events", "auto");
+        $("#portaQuarto").css("pointer-events", "auto");
+        $("#taberna").css("filter","brightness(100%)");
+      });
+    }
+  if (i==6) {
+    $("#rankingPessoal").show();
+    $(".sairBtn").click(function(){
+      $("#rankingPessoal").hide();
       $("#taberna").css("pointer-events", "auto");
       $("#portaQuarto").css("pointer-events", "auto");
       $("#taberna").css("filter","brightness(100%)");
     });
+  }
 }
 
 

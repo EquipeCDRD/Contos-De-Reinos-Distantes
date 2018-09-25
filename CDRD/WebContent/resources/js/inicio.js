@@ -60,13 +60,15 @@ function carregaModais(){
 
     /* Login */
     $("#login").hide();
-    $(".loginBtn").click(function(){
-        $("#guard_1").hide();
-        $("#login_redes").hide();
-        $("#registrar").hide();
-        $("#esqueci_senha").hide();
-        $("#login").show();
-    });
+    $(".loginBtn").click(function fazcoisa());
+    
+    function fazcoisa(){
+            $("#guard_1").hide();
+            $("#login_redes").hide();
+            $("#registrar").hide();
+            $("#esqueci_senha").hide();
+            $("#login").show();
+    } 
 
     /*Redes Sociais*/
     $("#login_redes").hide();
