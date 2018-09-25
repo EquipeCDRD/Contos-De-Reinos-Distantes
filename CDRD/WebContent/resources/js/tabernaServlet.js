@@ -132,8 +132,8 @@ $(document).ready(function(){
 								 "</tr>"
 					}
 					dados += "<tr>"+ 
-                				"<td><img src='../../resources/style/images/x.png' title='fechar tabela' alt='clique para fechar' id='fechar' class='sairBtn' /></td>"+
-								"<td colspan='2'><img src='../../resources/style/images/flecha.png' title='flecha' alt='proximos valores' id='flecha'/></td>"+
+                				"<td><img src='../../resources/style/images/estatico/x.png' title='fechar tabela' alt='clique para fechar' id='fechar' class='sairBtn' /></td>"+
+								"<td colspan='2'><img src='../../resources/style/images/estatico/flecha.png' title='flecha' alt='proximos valores' id='flecha'/></td>"+
 							"</tr>"+
 							"<tr>"+
 								"<th class='intRowRanking tituloRanking' colspan='3'>SUA PONTUAÇAO</th>"+
@@ -145,7 +145,7 @@ $(document).ready(function(){
 							 "</tr>";
 					break;
 				case 2:
-				for (var i=0; i<listaRanking.length; i++){
+				for (var i=0; i<3; i++){
 					dados += "<tr>" +
 								"<td class='tdTabela'>"+listaRanking[i].posicaoRanking+"</td>" +
 								"<td class='tdTabela'>"+listaRanking[i].nomeDeUsuario	+"</td>" +

@@ -33,10 +33,6 @@ body{ /*Desabilita scroll*/
 
 /*=============================================== classes ===============================================*/
 
-/*
-	Os planos de fundo servem apenas para demarcar a posição dos elementos. Futuramente, todos serão substituídos
-	pela arte do jogo
-*/
 .containerJanela{
 	background-attachment: fixed;
 	height: 175px;
@@ -74,10 +70,7 @@ body{ /*Desabilita scroll*/
 
 .containerModais{
 	display: block;
-	z-index: 4; /* esse valor é por causa do plano de fundo (que ainda não existe kkkk)*/
-	/*opacity: 0;
-	transition: opacity 0.5s ease-in-out;*/
-	height: 484px;
+	z-index: 4; height: 484px;
 	width: 800px;
 	position: absolute;
 	top: 15%;
@@ -146,7 +139,7 @@ body{ /*Desabilita scroll*/
 /* === estilização de paredTaverna e filhos ===*/
 #muroTaverna{
 	display: flex;
-	height: 250px;
+	height: 350px;
 	width: 100%;
 	padding: 0;	
 }
@@ -295,12 +288,8 @@ body{ /*Desabilita scroll*/
 	position: relative;
 	bottom: 3px;
   }
-  /*-- TIRAR BORDA DE 1px--*/
-  .intTdButton, .intTdImg{
-	padding: 0;
-  }
-  
-  /*---------------------TABELA DE CADASTRO---------------------*/
+	
+	/*---------------------TABELA DE CADASTRO---------------------*/
   .intCad{
 	padding-top: 20px;
   }
@@ -362,4 +351,19 @@ body{ /*Desabilita scroll*/
 	-webkit-filter: invert(25%);
 	filter: invert(25%);
 	transition: 0.3s;
-  }
+	}
+	/*-- TIRAR BORDA DE 1px--*/
+  .intTdButton, .intTdImg{
+		padding: 0;
+	}
+/* ================ Background das janelas =======================*/
+
+	#background{
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+		color: rgba(100, 100, 100, 0.8);
+		z-index: 3;
+	}
