@@ -61,7 +61,7 @@ $(document).ready(function(){
 		switch(opcao){
 			//Quadro grandão	
 			case 1: 
-				html = "<table id='tableRanking' class='intRowRanking'>"
+				html = "<table class='tableRanking' class='intRowRanking'>"
                 + "<tr>"
                 + 	"<th class='intRowRanking tituloRanking' colspan='3'>MELHORES AVENTUREIROS DO REINO</th>"
                 + "</tr>"
