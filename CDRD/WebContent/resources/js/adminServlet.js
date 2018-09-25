@@ -244,7 +244,7 @@
 			dados += "<ul class='listaContas' id='listaAdmins'>";
 			if (lista != undefined && lista.length > 0){
 				for (var i=0; i<lista.length; i++){
-					dados +="<li name='txtadm"+lista[i].login+" value='"+lista[i].id+"'>"+lista[i].login+"</li>";
+					dados +="<li name='adm"+lista[i].login+"' value='"+lista[i].id+"'>"+lista[i].login+"</li>";
 				}
 			}
 			dados+="</ul>";
@@ -252,7 +252,8 @@
 		return dados;
 	};
 
-	function deletaAdm(id){
+	function deletaUsuario(){
+		//var id = li[name=txtadmin].val(); consertar isso
 		$.ajax({
 			type:"POST",
 			url: PATH + "DeletarUsuario",
@@ -307,20 +308,6 @@
 			  }
 			  });
 	};
-	
-	$(function escolherAdmin(){
-	    $("#listaAdm").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
-	            $("input[name=txtadmin]").val($(this).text());
-	        
-	    })
-	});
-	
-	$(function escolherUsuario(){
-	    $("#listaUsr").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
-	            $("input[name=txtusuario]").val($(this).text());
-	        
-	    })
-	});
 /*------------------------Gerenciar Contas--------------------------------*/
 	
 	//deixausuario alterado
@@ -372,7 +359,7 @@
 			dados += "<ul class='listaContas' id='listaUsuarios'>";
 			if (lista != undefined && lista.length > 0){
 				for (var i=0; i<lista.length; i++){
-					dados +="<li name='txtusr"+lista[i].login+" value='"+lista[i].id+"'>"+lista[i].login+"</li>";
+					dados +="<li name='usr"+lista[i].login+"' value='"+lista[i].id+"'>"+lista[i].login+"</li>";
 				}
 			}
 			dados+="</ul>";
