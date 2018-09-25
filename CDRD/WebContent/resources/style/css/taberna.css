@@ -438,8 +438,8 @@ img, table, th, td{
 }
 #fechar{
 	position: relative;
-	bottom: 393px;
-	left: 995px;
+	bottom: 225px;
+	left: 990px;
 }
 #fecharAvisos{
 	position: relative;
@@ -488,7 +488,7 @@ img, table, th, td{
 .intAlerta{
   border-bottom: 0;
 }
-.intRow, .intRowRanking{
+.intRow, .intRow  {
   background-color: #BD7938;
   color: white;
 }
