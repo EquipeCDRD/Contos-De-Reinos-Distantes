@@ -98,6 +98,7 @@
                 <form name="frmdeletarconta">
                     <h3>Usuário selecionado:</h3>
                     <input readonly id="input1" type="text" name="txtusuario" placeholder="Nenhum usuário selecionado">
+                    <input type="hidden" name="hdusuario">
                     <h3 id="tituloMotivo">Motivo:</h3>
                     <textarea name="txamotivo" id="txa1"></textarea>
                     <div class="divBotoesDeletar">
@@ -208,9 +209,10 @@
                 
                 <div class="divDeletarContas comBorda">
                     <h2>Deletar administrador:</h2>
-                    <form name="frmdeletarcontaadm" onsubmit="deletarUsuario(0)">
+                    <form name="frmdeletarcontaadm">
                         <h3>Admin selecionado:</h3>
                         <input readonly type="text" name="txtadmin" placeholder="Nenhum administrador selecionado">
+                        <input type="hidden" name="hdadmin" value="">
                         <h3 class="tituloMotivo">Motivo:</h3>
                         <textarea name="txamotivoadm"></textarea>
                         <div class="divBotoesDeletar">
