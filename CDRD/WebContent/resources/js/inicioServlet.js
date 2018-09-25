@@ -64,7 +64,6 @@
 			url: "Login",
 			data: "login="+login+"&senha="+pwdsenhalogger,
 			success: function (msg) {
-				fazcoisa();
 				if (msg.msg!=null)
 					alert(msg.msg);
 				else
@@ -84,7 +83,6 @@
 			success: function (msg) {
 				console.log(msg);
 				alert(msg.msg);
-				fazcoisa();
 				$(this).delay(5000).location.reload();
 			},
 			error: function (info) {

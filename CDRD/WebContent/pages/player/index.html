@@ -29,7 +29,7 @@
           <img src="../../resources/style/images/bed.png" alt="img" id="cama">
           <img src="../../resources/style/images/bed.png" alt="img" id="ajustaQuarto">
           <div id="criadoMudo"></div>
-          <img src="../../resources/style/images/trofeus.jpg" alt="img" id="trofeus" onclick="abrirModal(6)">
+          <img src="../../resources/style/images/trofeus.jpg" alt="img" id="trofeus">
           <img src="../../resources/style/images/mesaQuarto.png" alt="img" id="mesaQuarto" onclick="abrirModal(5)">
           <img src="../../resources/style/images/cadeiraQuarto.png" alt="img" id="cadeiraQuarto">
         </div>
@@ -209,40 +209,39 @@
     </div>
 
     <div class="containerModais" id="containerModaisBardo">
-        <div id="intBardo"><!--Sufixo "B" indica "bardo"-->
-        <div id="bardo">
-        <table class="intTable"> <!--Tabela de interações-->
-            <tr>
-                <th class="intRow intPersonagem" colspan="2">Bardo</th> <!--Nome do personagem que está falando-->
-            </tr>
-            <tr>
-                <td class="intRow vAlign"><!--Td das falas do Personagem-->
-                    <table><!--Tabela da fala-->
-                        <tr>
-                            <td class="intCadRow intDialogue">
-                                "2,3,4,5,meia,7,8<br>
-                                Tá na hora de matar o orc afoito<br>
-                                Eu quebro osso mas eu não me canso
-                                Tá na hora de matar o elfo tanso..."<br><br>
-                                Oh! Olá aventureiro, gostaria de propor um tema para minha próxima música?
-                            </td><!--Falas do Personagem-->
-                        </tr>
-                    </table><!--Fim da tabela da fala-->
-                </td><!--Fim da td das falas do Personagem-->
-                <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
-            </tr>
-            <tr>
-                <td colspan="2" class="intTdButton"><!--Td dos botões-->
-                    <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
-                        <input type="button" class="intButton reinosBBtn" value="Cante sobre os reinos.">
-                        <input type="button" class="intButton guerraBBtn" value="Cante sobre a guerra.">
-                        <input type="button" class="intButton criaturasBBtn" value="Cante sobre as criaturas sombrias.">
-                        <input type="button" class="intButton sairBtn" value="Não obrigado, deixa pra lá. (Sair)">
-                    </div><!--Fim do agrupamento dos botões-->
-                </td><!--Fim da td dos botões-->
-            </tr>
-        </table>
-        </div>
+          <div id="intBardo"><!--Sufixo "B" indica "bardo"-->
+          <div id="bardo">
+          <table class="intTable"> <!--Tabela de interações-->
+              <tr>
+                  <th class="intRow intPersonagem" colspan="2">Bardo</th> <!--Nome do personagem que está falando-->
+              </tr>
+              <tr>
+                  <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                      <table><!--Tabela da fala-->
+                          <tr>
+                          <td class="intCadRow intDialogue">
+                            "2,3,4,5,meia,7,8<br>
+                             Tá na hora de matar o orc afoito<br>
+                             Eu quebro osso mas eu não me canso
+                             Tá na hora de matar o elfo tanso..."<br><br>
+                            Oh! Olá aventureiro, gostaria de propor um tema para minha próxima música?</td><!--Falas do Personagem-->
+                          </tr>
+                      </table><!--Fim da tabela da fala-->
+                  </td><!--Fim da td das falas do Personagem-->
+                  <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
+              </tr>
+              <tr>
+                  <td colspan="2" class="intTdButton"><!--Td dos botões-->
+                  <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
+                      <input type="button" class="intButton reinosBBtn" value="Cante sobre os reinos.">
+                      <input type="button" class="intButton guerraBBtn" value="Cante sobre a guerra.">
+                      <input type="button" class="intButton criaturasBBtn" value="Cante sobre as criaturas sombrias.">
+                      <input type="button" class="intButton sairBtn" value="Não obrigado, deixa pra lá. (Sair)">
+                  </div><!--Fim do agrupamento dos botões-->
+                  </td><!--Fim da td dos botões-->
+              </tr>
+          </table>
+          </div>
 
           <!-- Sobre o jogo -->
 
@@ -335,7 +334,7 @@
         </div>
 
         <div id="ranking">
-            
+        
         </div>
 
         <div id="avisos">
@@ -393,35 +392,5 @@
           </table>
             <td><img src="../../resources/style/images/x.png" alt="img" id="fecharAlterar" class="sairBtn" /></td>
         </div>
-        <div id="rankingPessoal">
-            <table class="tableRanking" class="intRowRanking">
-                <tr>
-                  <th class="intRowRanking tituloRanking" colspan="3">SUAS MELHORES PONTUAÇÕES</th>
-                </tr>
-                <tr>
-                  <th class="intRowRanking tituloRanking">POSIÇÃO</th>
-                  <th class="intRowRanking tituloRanking">DATA</th>
-                  <th class="intRowRanking tituloRanking">PONTUAÇÃO</th>
-                </tr>
-                <tr>
-                  <td class="intRowRanking">1</td>
-                  <td class="intRowRanking">11/09/2001</td>
-                  <td class="intRowRanking">300</td>
-                </tr>
-                <tr>
-                  <td class="intRowRanking">2</td>
-                  <td class="intRowRanking">09/07/2006</td>
-                  <td class="intRowRanking">200</td>
-                </tr>
-                <tr>
-                  <td class="intRowRanking">3</td>
-                  <td class="intRowRanking">24/09/2017</td>
-                  <td class="intRowRanking">196</td>
-                </tr>
-                <tr>
-                  <td><img src="../../resources/style/images/x.png" alt="img" id="fecharPessoal" class="sairBtn" /></td>
-                </tr>
-            </table>
-          </div>
   </body>
 </html>
