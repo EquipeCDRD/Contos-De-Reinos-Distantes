@@ -1,38 +1,29 @@
 <!DOCTYPE html>
 
 <html lang="pt-br">
-    
-<head>
-        <meta charset="utf-8">
-        <title>Contos de Reinos Distantes - Taberna</title>
-        <meta name="author" content="Equipe CRD">
-        <meta name="description" content="Página da Taberna do Contos de Reinos Distantes">
-        <meta name="creation-date" content="2018/07/04">
-        <meta name="last-modified" content="2018/07/04">
-        
-        <link rel="stylesheet" type="text/css" href="../../resources/style/css/taberna.css" />
-        
-        <!--Libs-->
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="../../resources/js/libs/detect.js"></script>
-        
-        
-        <script src="../../resources/js/taberna.js"></script>
-        <script src="../../resources/js/tabernaServlet.js"></script>  
-    </head>
-    
-    <body id="bodyTaberna">
-    
-        <div id="paredeQuartos">
-            <div id="paredeQuarto">
-            </div>
-            <div id="divisoria">
-            </div>
-            <div id="paredeQuartoT">
-            </div>
-        </div>
-
+  <head>
+    <meta charset="utf-8">
+    <title>Contos de Reinos Distantes - Taberna</title>
+    <meta name="author" content="Equipe CRD">
+    <meta name="description" content="Página da Taberna do Contos de Reinos Distantes">
+    <meta name="creation-date" content="2018/07/04">
+    <meta name="last-modified" content="2018/07/04">
+     <link rel="stylesheet" type="text/css" href="../../resources/style/css/taberna.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../../resources/js/libs/detect.js"></script>
+    <script src="../../resources/js/taberna.js"></script>
+    <script src="../../resources/js/tabernaServlet.js"></script>  
+</head>
+  <body id="bodyTaberna">
+    <div id="paredeQuartos">
+      <div id="paredeQuarto">
+      </div>
+      <div id="divisoria">
+      </div>
+      <div id="paredeQuartoT">
+      </div>
+    </div>
         <div id=taberna>
            
             <div>
@@ -218,103 +209,6 @@
             </div>
 
         </div>
-        
-        <div class="containerModais" id="containerModaisBardo">
-           
-            <div id="intBardo"><!--Sufixo "B" indica "bardo"-->
-                <div id="bardo">
-                    <table class="intTable"> <!--Tabela de interações-->
-                        <tr>
-                            <th class="intRow intPersonagem" colspan="2">Bardo</th> <!--Nome do personagem que está falando-->
-                        </tr>
-                    </table><!--Fim da tabela da fala-->
-                </td><!--Fim da td das falas do Personagem-->
-                <td class="intTdImg"><img src="../../resources/style/images/taverneiro.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
-            </tr>
-            <tr>
-                <td colspan="2" class="intTdButton"><!--Td dos botões-->
-                <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
-                    <input type="button" class="intButton jogoTBtn" value="Conte-me sobre o mundo. (Jogo)">
-                    <input type="button" class="intButton projetoTBtn" value="Conte-me sobre a religião. (Projeto)">
-                    <input type="button" class="intButton equipeTBtn" value="Conte-me sobre os Criadores. (Equipe)">
-                    <input type="button" class="intButton sairBtn" value="Nada não. (Sair)">
-                </div><!--Fim do agrupamento dos botões-->
-                </td><!--Fim da td dos botões-->
-            </tr>
-        </table>
-        </div>
-
-                <!-- Sobre o jogo -->
-
-                <div id="reinosB">
-                    <table class="intTable"> <!--Tabela de interações-->
-                        <tr>
-                            <th class="intRow intPersonagem" colspan="2">Bardo</th> <!--Nome do personagem que está falando-->
-                        </tr>
-                    </table><!--Fim da tabela da fala-->
-                </td><!--Fim da td das falas do Personagem-->
-                <td class="intTdImg"><img src="../../resources/style/images/taverneiro.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
-            </tr>
-            <tr>
-                <td colspan="2" class="intTdButton"><!--Td dos botões-->
-                <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
-                    <input type="button" class="intButton projetoTBtn" value="Conte-me sobre a religião. (Projeto)">
-                    <input type="button" class="intButton equipeTBtn" value="Conte-me sobre os Criadores. (Equipe)">
-                    <input type="button" class="intButton sairBtn" value="Obrigado. (Sair)">
-                </div><!--Fim do agrupamento dos botões-->
-                </td><!--Fim da td dos botões-->
-            </tr>
-        </table>
-        </div>
-
-
-                <!-- Sobre o Projeto -->
-
-                <div id="guerraB">
-                    <table class="intTable"> <!--Tabela de interações-->
-                        <tr>
-                            <th class="intRow intPersonagem" colspan="2">Bardo</th> <!--Nome do personagem que está falando-->
-                        </tr>
-                    </table><!--Fim da tabela da fala-->
-                </td><!--Fim da td das falas do Personagem-->
-                <td class="intTdImg"><img src="../../resources/style/images/taverneiro.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
-            </tr>
-            <tr>
-                <td colspan="2" class="intTdButton"><!--Td dos botões-->
-                <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
-                    <input type="button" class="intButton jogoTBtn" value="Conte-me sobre o mundo. (Jogo)">
-                    <input type="button" class="intButton equipeTBtn" value="Conte-me sobre os Criadores. (Equipe)">
-                    <input type="button" class="intButton sairBtn" value="Obrigado. (Sair)">
-                </div><!--Fim do agrupamento dos botões-->
-                </td><!--Fim da td dos botões-->
-            </tr>
-        </table>
-        </div>
-
-                <!-- Sobre a equipe -->
-
-                <div id="criaturasB">
-                    <table class="intTable"> <!--Tabela de interações-->
-                        <tr>
-                            <th class="intRow intPersonagem" colspan="2">Bardo</th> <!--Nome do personagem que está falando-->
-                        </tr>
-                    </table><!--Fim da tabela da fala-->
-                </td><!--Fim da td das falas do Personagem-->
-                <td class="intTdImg"><img src="../../resources/style/images/taverneiro.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
-            </tr>
-            <tr>
-                <td colspan="2" class="intTdButton"><!--Td dos botões-->
-                <div class="intGroupButtons"><!--Agrupamento dos botões de interação-->
-                    <input type="button" class="intButton jogoTBtn" value="Conte-me sobre o mundo. (Jogo)">
-                    <input type="button" class="intButton projetoTBtn" value="Conte-me sobre a religião. (Projeto)">
-                    <input type="button" class="intButton sairBtn" value="Obrigado. (Sair)">
-                </div><!--Fim do agrupamento dos botões-->
-                </td><!--Fim da td dos botões-->
-            </tr>
-        </table>
-        </div>
-      </div>
-    </div>
 
     <div class="containerModais" id="containerModaisBardo">
         <div id="intBardo"><!--Sufixo "B" indica "bardo"-->
@@ -499,6 +393,8 @@
             </table>
             <img src="../../resources/style/images/estatico/x.png" alt="img" id="fecharAlterar" class="sairBtn" />
         </div>
+
+    </body>
         <div id="rankingPessoal">
             <table class="tableRanking" class="intRowRanking">
                 <tr>
