@@ -8,8 +8,19 @@
     <!--Scripts e CSS-->
     <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
     <script src="../../resources/js/jogo.js"></script>
+    <style>   
+    @font-face{
+        font-family: pixel font;
+        src: url("../../resources/style/pixel_font7.ttf");
+    }
+    .carregaFonte {
+         position: absolute;
+         left: -1000px;
+         visibility: hidden;
+      }
+    </style>
 </head>
 <body>
-    
+    <div class='carregaFonte' style='font-family: pixel font;'>-</div><!--Carrega um elemento escondido pq phaser é horrível-->
 </body>
 </html>
