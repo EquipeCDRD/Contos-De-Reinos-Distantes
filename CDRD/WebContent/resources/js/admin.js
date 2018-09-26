@@ -10,13 +10,21 @@ $( function() {
 
 //-----------------------------Gerenciar Contas-----------------
 
-  $(function escolherUsuario(){
-      $(".listaContas").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
-      if(!$(this).is(".carregarMais")){
-          $("input[name=txtusuario]").val($(this).text());
-      }
-      });
-  })
+  
+	
+	$(function escolherAdmin(){
+	    $("#listaAdm").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
+	            $("input[name=txtadmin]").val($(this).text());
+	            $("input[type=hidden][name=hdadmin]").val($(this).val());
+	    })
+	});
+	
+	$(function escolherUsuario(){
+	    $("#listaUsr").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
+	            $("input[name=txtusuario]").val($(this).text());
+	            $("input[type=hidden][name=hdusuario]").val($(this).val());
+	    })
+	});
   
   //se os campos estao preenchidos pede confirmação, se sim, envia.
   function deletarUsuario(tipouser){//Parâmetro para ver se foi chamado por gerenciar contas ou adm.
@@ -134,14 +142,6 @@ function validaCadastroAdm(){
     }
     return conf;
 }    
-
-$(function escolherAdmin(){
-    $("#listaAdmins").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
-    if(!$(this).is(".carregarMais")){
-        $("input[name=txtadmin]").val($(this).text());
-    }
-    });
-})
 
 //-------------------------------------Minha Conta------------------------------------------
 

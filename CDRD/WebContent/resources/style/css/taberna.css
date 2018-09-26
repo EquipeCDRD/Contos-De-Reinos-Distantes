@@ -1,11 +1,10 @@
-
 @font-face{
-	font-family: pixel font;
+	font-family: "pixel font";
 	src: url("../pixel_font7.ttf");
 }
 
 *, *::after, *::before {
-	font-family: pixel font;
+	font-family: "pixel font";
 }
 
 
@@ -14,11 +13,6 @@ body{ /*Desabilita scroll*/
     overflow-y: scroll;
     width: 100%;
     overflow:hidden;
-}
-
-img, table, th, td{
-
-	image-rendering: pixelated;
 }
 
 /*-----------------Remoção da margem da body-----------------*/
@@ -48,7 +42,7 @@ img, table, th, td{
     border-right: 0;
     height: 130px;
     margin-top: 18px;
-    background: url(../images/paredeTaverna.png);
+    background: url("../images/estatico/paredeTaverna.png");
   }
   /*Quarto*/
   #divQuarto{
@@ -61,7 +55,6 @@ img, table, th, td{
   #portaQuarto{
     height: 125px;
     padding: 5px 0;
-    image-rendering: pixelated;
     cursor: pointer;
     transition: 0.2s;
   }
@@ -73,7 +66,7 @@ img, table, th, td{
     position: relative;
     top: -30px;
     left: 90px;
-    background: url(../images/ranking.png);
+    background: url("../images/estatico/ranking.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -116,7 +109,7 @@ img, table, th, td{
     position: relative;
     left: 730px;
 		bottom: 200px;
-		z-index: 3px;
+		z-index: 3;
   }
   #avisosImg{
     height: 100%;
@@ -147,13 +140,12 @@ img, table, th, td{
   #portaQuartoT{
     height: 125px;
     padding: 5px 0;
-    image-rendering: pixelated;
   }
 
 /*-----------------Piso da Taberna-----------------*/
   #pisoTaberna{
     height: 481px;
-    background: url(../images/piso.png);
+    background: url("../images/estatico/piso.png");
   }
   #imgBardo{
     height: 170px;
@@ -170,7 +162,7 @@ img, table, th, td{
   #balcao{
     height: 420px;
     width: 500px;
-    background-image: url("../images/balcao.png");
+    background-image: url("../images/estatico/balcao.png");
 		background-repeat: no-repeat;
     position: relative;
     left: 868px;
@@ -215,7 +207,6 @@ img, table, th, td{
   padding: 5px 0;
   cursor: pointer;
   transition: 0.2s;
-  image-rendering: pixelated;
 }
 
 
@@ -242,7 +233,7 @@ img, table, th, td{
   border-right: 3px solid black;
   display: inline-block;
   position: relative;
-  background: url(../images/paredeQuarto.png);
+  background: url("../imaes/estatico/paredeQuarto.png");
 
 }
 #paredeQuartoT{
@@ -253,7 +244,7 @@ img, table, th, td{
   display: inline-block;
   position: fixed;
   filter: brightness(50%);
-  background: url(../images/paredeQuarto.png);
+  background: url("../images/estatico/paredeQuarto.png");
   margin-left: 18px;
 }
 #divisoria{
@@ -263,7 +254,7 @@ img, table, th, td{
   position:absolute;
   z-index: -1;
   display: inline-block;
-  background: url(../images/paredeTaverna.png);
+  background: url("../images/estatico/paredeTaverna.png");
 }
 #quarto{
   height: 220px;
@@ -272,7 +263,7 @@ img, table, th, td{
   border-bottom: 3px solid black;
   position: relative;
   display: inline-block;
-  background: url(../images/piso.png);
+  background: url("../images/estatico/piso.png");
 }
 #quartoTaverneiro{
   height: 220px;
@@ -281,7 +272,7 @@ img, table, th, td{
   border-bottom: 3px solid black;
   position: fixed;
   display: inline-flex;
-  background: url(../images/piso.png);
+  background: url("../images/estatico/piso.png");
   margin-left: 18px;
 }
 #cama{
@@ -405,7 +396,7 @@ img, table, th, td{
 	left: 300px;
 	position: relative;
 	height: 450px;
-	border: 3+px solid #532700;
+	border: 3px solid #532700;
   border-collapse: collapse;
   border-radius: 5px;
   background-color: #BD7938;

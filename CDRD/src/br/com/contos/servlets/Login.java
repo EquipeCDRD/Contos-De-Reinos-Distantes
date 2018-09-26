@@ -38,9 +38,12 @@ public class Login extends HttpServlet {
     		JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
     		Usuario usuario = jdbcUsuario.buscarPorValor(request.getParameter("login"),"usuario");
     		Map<String, String> msg = new HashMap<String, String>();
+    		
     		if (request.getParameter("login").equals(usuario.getLogin())) {
     			String senhaFormCript = Criptografia.criptografaSenha(request.getParameter("senha")); 
+    		
     			if (senhaFormCript.equals(usuario.getSenha())) {
+    			
     				HttpSession sessao = request.getSession();
     				sessao.setAttribute("login", usuario.getLogin());
     				sessao.setAttribute("permissao", usuario.getPermissao());
@@ -48,8 +51,10 @@ public class Login extends HttpServlet {
     				LogDeAcesso logDeAcesso = new LogDeAcesso();
     				logDeAcesso.setUsuario("login");
     				logDeAcesso.setUsuarioId(usuario.getId());
+    				
     				JDBCLogDeAcessoDAO jdbcLogDeAcesso = new JDBCLogDeAcessoDAO(conexao);
     	    		boolean retorno = jdbcLogDeAcesso.inserir(logDeAcesso);
+    	    		
     	    		if(retorno){
     	    			System.out.println("Log registrado");
     	    		}else{

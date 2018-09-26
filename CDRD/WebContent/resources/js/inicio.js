@@ -36,7 +36,14 @@ $(document).ready(function(){
  */
 function abrirModal(){
     $("#containerModaisIndex").show();
-    carregaModais();
+    
+    //Background e bloqueio de ações do visitante senão as da janela 
+    $("#paredeTaverna").css("filter","brightness(50%)");
+    $("#muroTaverna").css("filter","brightness(50%)");
+    $("#paredeTaverna").css("pointer-events","none");
+    $("#muroTaverna").css("pointer-events","none");
+
+    carregaModais()
     $("#intPerso").show();
     $("#guard_1").show();  
 }
@@ -49,6 +56,7 @@ function carregaModais(){
     
     /* Sair */
     $(".sairBtn").click(function(){
+        
         $("#intPerso").hide();
         $("#guard_1").hide();
         $("#login").hide();
@@ -56,19 +64,23 @@ function carregaModais(){
         $("#login_redes").hide();
         $("#esqueci_senha").hide();
         $("#containerModaisIndex").hide();
+        
+        //Retira o background e reativa os eventos da página
+        $("#paredeTaverna").css("filter","brightness(100%)");
+        $("#muroTaverna").css("filter","brightness(100%)");
+        $("#paredeTaverna").css("pointer-events","auto");
+        $("#paredeTaverna").css("pointer-events","auto");
     });
 
     /* Login */
     $("#login").hide();
-    $(".loginBtn").click(function fazcoisa());
-    
-    function fazcoisa(){
-            $("#guard_1").hide();
-            $("#login_redes").hide();
-            $("#registrar").hide();
-            $("#esqueci_senha").hide();
-            $("#login").show();
-    } 
+    $(".loginBtn").click(function(){
+        $("#guard_1").hide();
+        $("#login_redes").hide();
+        $("#registrar").hide();
+        $("#esqueci_senha").hide();
+        $("#login").show();
+    });
 
     /*Redes Sociais*/
     $("#login_redes").hide();
