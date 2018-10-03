@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="utf-8" />
     <title>Contos de Reinos Distantes - Página de Administrador</title>
@@ -8,42 +9,61 @@
     <meta name="creation-date" content="2018/06/05">
     <meta name="last-modified" content="2018/06/06">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="stylesheet" type="text/css" href="../../resources/style/css/admin.css" />
-    
+
     <!--Libs-->
-        
-        <!--JQuery-->
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        
-        <!--Google Charts-->
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!--Google Charts-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <!--Scripts próprios-->
-        
-        <script src="../../resources/js/admin.js"></script>
-        <script src="../../resources/js/adminServlet.js"></script>
+
+    <script src="../../resources/js/admin.js"></script>
+    <script src="../../resources/js/adminServlet.js"></script>
 
 </head>
+
 <body>
     <div id="admPaginas">
         <div class="admMenu">
             <ul>
                 <li><img src="../../resources/style/images/bgplaceholder.jpg" title="Contos de Reinos Distantes" alt="Logo"></li>
-                <li><a href="#admPaginas-1"><div onclick="location.href='#admPaginas-1';" style="cursor: pointer;">Ranking</div></a></li>
-                <li><a href="#admPaginas-2"><div>Gerenciar Contas</div></a></li>
-                <li><a href="#admPaginas-3"><div>Logs de Acesso</div></a></li>
-                <li><a href="#admPaginas-4"><div>Notificações</div></a></li>
-                <li><a href="#admPaginas-5"><div>Gráficos</div></a></li>
-                <li><a href="#admPaginas-6"><div>Gerenciar Admin</div></a></li>
-                <li><a href="#admPaginas-7"><div>Minha Conta</div></a></li>
-                <li><div onclick="sair()">Sair</div></li>
+                <li><a href="#admPaginas-1">
+                        <div onclick="location.href='#admPaginas-1';" style="cursor: pointer;">Ranking</div>
+                    </a></li>
+                <li><a href="#admPaginas-2">
+                        <div>Gerenciar Contas</div>
+                    </a></li>
+                <li><a href="#admPaginas-3">
+                        <div>Logs de Acesso</div>
+                    </a></li>
+                <li><a href="#admPaginas-4">
+                        <div>Notificações</div>
+                    </a></li>
+                <li><a href="#admPaginas-5">
+                        <div>Gráficos</div>
+                    </a></li>
+                <li><a href="#admPaginas-6">
+                        <div>Gerenciar Admin</div>
+                    </a></li>
+                <li><a href="#admPaginas-7">
+                        <div>Minha Conta</div>
+                    </a></li>
+                <li>
+                    <div onclick="sair()">Sair</div>
+                </li>
             </ul>
         </div>
-        <div class="conteudo" id="admPaginas-1"> <!--Ranking-->
+        <div class="conteudo" id="admPaginas-1">
+            <!--Ranking-->
             <h2 class="tituloTabela">Ranking:</h2>
-            <table class="tabelaGeral" id="tabelaRanking"> <!--Tabela de Ranking-->
+            <table class="tabelaGeral" id="tabelaRanking">
+                <!--Tabela de Ranking-->
                 <tr>
                     <th>Posição</th>
                     <th>Pontuação</th>
@@ -85,12 +105,14 @@
                 <a href="pg10">10</a>
                 <a href="">proximo &#8811;</a>
             </div>
-        </div>    
-        <div class="conteudo" id="admPaginas-2"> <!--Gerenciar Contas-->
+        </div>
+        <div class="conteudo" id="admPaginas-2">
+            <!--Gerenciar Contas-->
             <div class="divSelecionarContas comBorda">
                 <h2>Contas:</h2>
                 <input name="txtbuscausr" type="text" placeholder="search...">
-                <button type="button" onclick="buscaUsr()">Procurar</button><!--Botão para procurar contas-->
+                <button type="button" onclick="buscaUsr()">Procurar</button>
+                <!--Botão para procurar contas-->
                 <div id="listaUsr"></div>
             </div>
             <div class="divDeletarContas comBorda">
@@ -103,31 +125,35 @@
                     <textarea name="txamotivo" id="txa1"></textarea>
                     <div class="divBotoesDeletar">
                         <button type="reset" name="btnlimparmotivo">Limpar</button>
-                        <button name="btndeletarconta" type="button" onclick="deletarUsuario(0)">Deletar Conta</button> <!--Botão para deletar contas-->
+                        <button name="btndeletarconta" type="button" onclick="deletarUsuario(0)">Deletar Conta</button>
+                        <!--Botão para deletar contas-->
                     </div>
                 </form>
             </div>
         </div>
-        <div class="conteudo" id="admPaginas-3"> <!--Logs de Acesso-->
+        <div class="conteudo" id="admPaginas-3">
+            <!--Logs de Acesso-->
             <h2 class="tituloTabela">Logs de acesso:</h2>
             <div id=listLogDeAcesso></div>
             <div class="paginacao">
-                    <a href="">&#8810; anterior</a>
-                    <a href="pg1">1</a>
-                    <a href="pg2">2</a>
-                    <a href="pg3">3</a>
-                    <a href="pg4">4</a>
-                    <a href="pg5">5</a>
-                    <a href="pg10">10</a>
-                    <a href="">proximo &#8811;</a>
+                <a href="">&#8810; anterior</a>
+                <a href="pg1">1</a>
+                <a href="pg2">2</a>
+                <a href="pg3">3</a>
+                <a href="pg4">4</a>
+                <a href="pg5">5</a>
+                <a href="pg10">10</a>
+                <a href="">proximo &#8811;</a>
             </div>
         </div>
-        <div class="conteudo" id="admPaginas-4"> <!--Notificações-->
+        <div class="conteudo" id="admPaginas-4">
+            <!--Notificações-->
             <div class="divComporNotificacoes comBorda">
                 <form name="frmcompornotificacoes">
                     <h2>Compor nova notificação:</h2>
                     <textarea name="txacompnotificacao" cols="30" rows="7"></textarea>
-                    <div><button type="button" name="btnpostarnotificacao" id="botaoPostar" onclick="validaNotificacao(0)">Postar Notificação</button></div>
+                    <div><button type="button" name="btnpostarnotificacao" id="botaoPostar" onclick="validaNotificacao(0)">Postar
+                            Notificação</button></div>
                 </form>
             </div>
             <div class="divComporNotificacoes comBorda" id="divEditarNotificacoes">
@@ -136,7 +162,7 @@
                     <textarea name="txaeditnotificacao" cols="30" rows="7"></textarea>
                     <input type="hidden" name="idnotificacao">
                     <div class="divBotoesEditar">
-                        <button type="button"  onclick="validaNotificacao(1)">Editar Notificação</button>
+                        <button type="button" onclick="validaNotificacao(1)">Editar Notificação</button>
                         <button type="button" onclick="cancelarEdicao()">Cancelar</button>
                     </div>
                 </form>
@@ -146,27 +172,29 @@
                 <div id=listNotificacao></div>
             </div>
         </div>
-        <div class="conteudo" id="admPaginas-5"> <!--Gráficos-->
+        <div class="conteudo" id="admPaginas-5">
+            <!--Gráficos-->
             <h2>Gráficos</h2>
-            
+
             <div class="divGrafico graficoEsq" id="graficoIdade">
                 AQUI HAVERÁ O GRÁFICO DE USUÁRIOS POR FAIXA ETÁRIA
             </div>
-            
+
             <div class="divGrafico graficoDir" id="graficoTempoPorIdade">
                 AQUI HAVERÁ O GRÁFICO DE USO POR FAIXA ETÁRIA
             </div>
-            
+
             <div class="divGrafico graficoEsq" id="graficoTempoPorFase">
                 AQUI HAVERÁ O GRÁFICO DE TEMPO MÉDIO POR FASE
             </div>
-            
+
             <div class="divGrafico graficoDir" id="graficoDerrotas">
                 AQUI HAVERÁ O GRÁFICO DE DERROTAS POR FASE
             </div>
 
         </div>
-        <div class="conteudo" id="admPaginas-6"> <!--Gerenciard Admin-->
+        <div class="conteudo" id="admPaginas-6">
+            <!--Gerenciard Admin-->
             <div class="divListaContasAdmin comBorda quaseCheio">
                 <h2>Cadastro de Administrador</h2>
                 <form id="cadastrarAdmin" name="frmcadastraradm">
@@ -201,34 +229,37 @@
                 </form>
             </div>
             <div class="divSelecionarContas comBorda">
-                    <h2>Contas:</h2>
-                    <input type="text" name="txtbuscaadm" placeholder="search...">
-                   	<button onclick="buscaAdm()">Procurar</button><!--Botão para procurar contas-->
-                    <div id="listaAdm"></div>
+                <h2>Contas:</h2>
+                <input type="text" name="txtbuscaadm" placeholder="search...">
+                <button onclick="buscaAdm()">Procurar</button>
+                <!--Botão para procurar contas-->
+                <div id="listaAdm"></div>
+            </div>
+
+            <div class="divDeletarContas comBorda">
+                <h2>Deletar administrador:</h2>
+                <form name="frmdeletarcontaadm">
+                    <h3>Admin selecionado:</h3>
+                    <input readonly type="text" name="txtadmin" placeholder="Nenhum administrador selecionado">
+                    <input type="hidden" name="hdadmin" value="">
+                    <h3 class="tituloMotivo">Motivo:</h3>
+                    <textarea name="txamotivoadm"></textarea>
+                    <div class="divBotoesDeletar">
+                        <button type="reset" name="btnlimparmotivo">Limpar</button>
+                        <button type="button" name="btndeletarconta" onclick="deletarUsuario(0)">Deletar Conta</button>
+                        <!--Botão para deletar contas-->
                     </div>
-                
-                <div class="divDeletarContas comBorda">
-                    <h2>Deletar administrador:</h2>
-                    <form name="frmdeletarcontaadm">
-                        <h3>Admin selecionado:</h3>
-                        <input readonly type="text" name="txtadmin" placeholder="Nenhum administrador selecionado">
-                        <input type="hidden" name="hdadmin" value="">
-                        <h3 class="tituloMotivo">Motivo:</h3>
-                        <textarea name="txamotivoadm"></textarea>
-                        <div class="divBotoesDeletar">
-                            <button type="reset" name="btnlimparmotivo">Limpar</button>
-                            <button type="button" name="btndeletarconta" onclick="deletarUsuario(0)">Deletar Conta</button><!--Botão para deletar contas-->
-                        </div>
-                    </form>
-                </div>
-        	</div>
-        <div class="conteudo" id="admPaginas-7"> <!--Minha Conta-->
+                </form>
+            </div>
+        </div>
+        <div class="conteudo" id="admPaginas-7">
+            <!--Minha Conta-->
             <div class="divMinhaConta comBorda quaseCheio">
                 <h2>Minha Conta</h2>
                 <form name="frmminhaconta" id="editarConta">
                     <div class="cadCampo">
                         <label>Nome Completo: </label>
-                        <input type="text" name="txtaltnome" id="altNome"> 
+                        <input type="text" name="txtaltnome" id="altNome">
                     </div>
                     <div class="cadCampo">
                         <label>Email: </label>
@@ -244,7 +275,7 @@
                     </div>
                     <div class="cadCampo">
                         <label>Senha Antiga:</label>
-                        <input type="password" name="pwdaltsenhaantiga" id="altVelhaSenha">    
+                        <input type="password" name="pwdaltsenhaantiga" id="altVelhaSenha">
                     </div>
                     <div class="cadCampo">
                         <label>Nova Senha: </label>
@@ -255,13 +286,14 @@
                         <input type="password" name="pwdaltconfsenha" id="altConfSenha">
                     </div>
                     <div class="cadBotoes">
-                    	<input type="hidden" name="hdid" id="altId">
+                        <input type="hidden" name="hdid" id="altId">
                         <input type="button" onclick="alteraUsuario()" value="Enviar">
                         <input type="button" onclick="buscaAdmParaEditar()" value="Limpar">
                     </div>
                 </form>
             </div>
-       </div> 
+        </div>
     </div>
 </body>
+
 </html>
