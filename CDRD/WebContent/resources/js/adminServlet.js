@@ -1,13 +1,20 @@
-	$(document).ready(function(){	
+	$(document).ready(function(){
+	
+	
 	var usuarioLogado;
 	var PATH = "../../";
 	
+	
+	//p = permissao
+	//q = quem
 /*--------------------------------------Geral-----------------------------------------*/
 	
 //inicialização de funções AJAX
 
 	//validar sessão
 	$(function (){
+		busca(0,"Adm");
+		busca(1,"Jog");
 		$.ajax({
 			type: "POST",
 			url: PATH + "ValidarSessao",
@@ -31,41 +38,6 @@
 		});
 	});
 	
-	//buscar usuarios para lista
-	$(function listaAdmin(){
-		var html;
-		$.ajax({
-			type: "POST",
-			url: PATH + "BuscarUsuariosParaLista",
-			data: "permissao=0&valorBusca=",
-			success: function(dados){
-				html = listaAdm(dados);
-				$("#listaAdm").html(html);
-			},
-			error: function(info){
-				alert("Erro ao consultar os contatos: "+ info.status + " - " + info.statusText);
-			}
-		});
-		
-	});
-
-	$(function listaUsuario(){
-		var html;
-		$.ajax({
-			type: "POST",
-			url: PATH + "BuscarUsuariosParaLista",
-			data: "permissao=1&valorBusca=",
-			success: function(dados){
-				html = listaUsr(dados);
-				$("#listaUsr").html(html);
-			},
-			error: function(info){
-				alert("Erro ao consultar os contatos: "+ info.status + " - " + info.statusText);
-			}
-		});
-		
-	});
-
 	
 	sair = function(){
 		$.ajax({
@@ -217,16 +189,16 @@
 /*------------------------Gerenciar ADM--------------------------------*/
 
 	//usa a servlet BuscaUsuariosParaLista para fazer bem isso
-	buscaAdm = function(){
-		var valorBusca = $("input[name=txtbuscaadm]").val();
+	busca = function(p,q){
+		var valorBusca = $("input[name=txtbusca"+q+"]").val();
 		var html;
 		$.ajax({
 			type: "POST",
 			url: PATH + "BuscarUsuariosParaLista",
-			data: "permissao=0&valorBusca="+valorBusca,
+			data: "permissao="+p+"&valorBusca="+valorBusca,
 			success: function(dados){
-				html = listaAdm(dados);
-				$("#listaAdm").html(html);
+				html = lista(dados);
+				$("#lista"+q+"").html(html);
 			},
 			error: function(info){
 				alert("Erro ao consultar os contatos: "+ info.status + " - " + info.statusText);
@@ -234,17 +206,17 @@
 		});
 		
 	};
-
+//penisauro
 	//lista usuarios de uma lista
-	listaAdm = function(lista) {
+	lista = function(lista) {
 		var dados="";
 		if (lista==""){
 			dados = "<h2>Nada por aqui.</h2>";
 		}else{
-			dados += "<ul class='listaContas' id='listaAdmins'>";
+			dados += "<ul class='listaContas'>";
 			if (lista != undefined && lista.length > 0){
 				for (var i=0; i<lista.length; i++){
-					dados +="<li name='adm"+lista[i].login+"' value='"+lista[i].id+"'>"+lista[i].login+"</li>";
+					dados +="<li name='"+lista[i].login+"' value='"+lista[i].id+"'>"+lista[i].login+"</li>";
 				}
 			}
 			dados+="</ul>";
@@ -252,23 +224,29 @@
 		return dados;
 	};
 
-	function deletaUsuario(){
-		//var id = li[name=txtadmin].val(); consertar isso
-		$.ajax({
-			type:"POST",
-			url: PATH + "DeletarUsuario",
-			data: "id="+id,
-			success: function(msg){
-				alert(msg.msg);
-			},
-			error: function(info){
-				alert("Erro ao deletar contato: "+ info.status + " - " + info.statusText);
-			}
-		});
+	deletaUsuario = function(p,q){
+		if (validaDel(q)){
+			var id = ($("input[name=hd"+q+"]").val());
+			var motivo = ($("textarea[name=txamotivo"+q+"]").val());
+			$.ajax({
+				type:"POST",
+				url: PATH + "DeletarUsuario",
+				data: "id="+id+"&&motivo="+motivo,
+				success: function(msg){
+					alert(msg.msg);
+					$("input[name=txt"+q+"]").val("");
+					$("textarea[name=txamotivo"+q+"]").val("");
+					busca(p,q);
+				},
+				error: function(info){
+					alert("Erro ao deletar contato: "+ info.status + " - " + info.statusText);
+				}
+			});		
+		}
 	};
 	
 	//faz o cadastro
-	function cadastraAdm(){
+	cadastraAdm = function(){
 		if (validaCadastroAdm()==true){
 			$.ajax({
 				type: "POST",
@@ -333,7 +311,7 @@
 //coisa nova
 
 //usa a servlet BuscaUsuariosParaLista para fazer bem isso	buscaUsr = function(){
-	buscaUsr = function(){
+/*	buscaUsr = function(){
 		var valorBusca = $("input[name=txtbuscausr]").val();
 		var html;
 		$.ajax({
@@ -365,4 +343,4 @@
 			dados+="</ul>";
 		}
 		return dados;
-	};
+	};*/

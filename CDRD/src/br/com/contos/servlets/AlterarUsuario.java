@@ -39,14 +39,14 @@ public class AlterarUsuario extends HttpServlet {
     			if (senhaAtualCript.equals(usuariobd.getSenha())) {
     				Usuario usuario = new Usuario();
     	    		usuario.setLogin(request.getParameter("txtaltlogger"));
-    	    		usuario.setSenha(request.getParameter("pwdaltnovasenha"));
+    	    		usuario.setSenha(Criptografia.criptografaSenha(request.getParameter("pwdaltsenhanova")));
     	    		usuario.setNome(request.getParameter("txtaltnome"));
     	    		usuario.setNascimento(request.getParameter("dtealtnascimento"));
     	    		usuario.setEmail(request.getParameter("txtaltemail"));
     	    		boolean retorno = jdbcUsuario.atualizar(usuario);
     		    	conec.fecharConexao();
     		    	
-    		    	if (retorno) {
+    		    	if (retorno==true) {
     		    		msg.put("msg", "Usuário editado com sucesso.");
     		    	} else {
     		    		msg.put("msg", "Não foi possível editar o usuário.");

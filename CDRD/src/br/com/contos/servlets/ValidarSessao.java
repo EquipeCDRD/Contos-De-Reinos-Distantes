@@ -38,6 +38,7 @@ public class ValidarSessao extends HttpServlet {
         		JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao); 
         		
         		Usuario usuario = jdbcUsuario.buscarPorValor(sessao.getAttribute("login").toString(),"usuario");
+        		usuario.setSenha(null);
         		conec.fecharConexao();
         		
         		String json = new Gson().toJson(usuario);

@@ -8,53 +8,43 @@ $( function() {
     $( "#admPaginas" ).tabs();
   } );
 
+$(function (){
+});
+
 //-----------------------------Gerenciar Contas-----------------
 
   
 	
-	$(function escolherAdmin(){
-	    $("#listaAdm").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
-	            $("input[name=txtadmin]").val($(this).text());
-	            $("input[type=hidden][name=hdadmin]").val($(this).val());
+	$(function escolheUsuario(){
+		$("#listaAdm").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
+	            $("input[name=txtAdm]").val($(this).text());
+	            $("input[type=hidden][name=hdAdm]").val($(this).val());
 	    })
 	});
 	
-	$(function escolherUsuario(){
-	    $("#listaUsr").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
-	            $("input[name=txtusuario]").val($(this).text());
-	            $("input[type=hidden][name=hdusuario]").val($(this).val());
+	$(function escolheUsuario(){
+		$("#listaJog").on('click','li',function (){//Função para passar o nome da lista de usuários para o campo de deletar usuário.
+	            $("input[name=txtJog]").val($(this).text());
+	            $("input[type=hidden][name=hdJog]").val($(this).val());
 	    })
 	});
   
   //se os campos estao preenchidos pede confirmação, se sim, envia.
-  function deletarUsuario(tipouser){//Parâmetro para ver se foi chamado por gerenciar contas ou adm.
-    var conf = false;
-    if(tipouser==0){
-        if($("input[name=txtusuario").val()!=""){
-            if($("textarea[name=txamotivo]").val()!=""){
-                conf = confirm("Você tem certeza que deseja deletar o usuário?");
-            }else{
-              alert("Escreva o motivo para banimento.")
-              $("textarea[name=txamotivo]").focus();
-            }
-        }else{
-          alert("Selecione um usuário primeiro.");
-          $("input[name=txtusuario").focus();
-        }
-    }else if(tipouser==1){
-        if($("input[name=txtadmin").val()!=""){
-            if($("textarea[name=txamotivoadm]").val()!=""){
-                conf = confirm("Você tem certeza que deseja deletar o administrador?");
-            }else{
-              alert("Escreva o motivo para banimento.")
-              $("textarea[name=txamotivoadm]").focus();
-            }
-        }else{
-          alert("Selecione um administrador primeiro.");
-          $("input[name=txtadmin").focus();
-        }
-    }
-    return conf;
+
+function validaDel(q){
+	conf=false;
+		if($("input[name=txt"+q+"").val()!=""){
+			if($("textarea[name=txamotivo"+q+"]").val()!=""){	 
+				conf = confirm("Você tem certeza que deseja deletar o usuario? (um "+q+")");
+		  	}else{
+		  		alert("Escreva o motivo para banimento.")
+		  		$("textarea[name=txamotivo"+q+"]").focus();
+		  	}
+		}else{
+			alert("Selecione um usuário primeiro.");
+			$("input[name=txt"+q+"").focus();
+		}
+	return conf;	
 }
 
   

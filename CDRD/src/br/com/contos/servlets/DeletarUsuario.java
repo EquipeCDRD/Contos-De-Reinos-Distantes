@@ -30,16 +30,16 @@ public class DeletarUsuario extends HttpServlet {
 
     private void process(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String login = request.getParameter("usuario");
-        
+        String id = request.getParameter("id");
+        String motivo = request.getParameter("motivo");        
         Conexao conec = new Conexao();
         Connection conexao = conec.abrirConexao();
         JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
         Email enviar = new Email();
-        Usuario usuario = jdbcUsuario.buscarPorValor(login, "usuario");
-        boolean retorno = jdbcUsuario.deletar(login);
+        Usuario usuario = jdbcUsuario.buscarPorValor(id, "id");
+        boolean retorno = jdbcUsuario.deletar(id);
         conec.fecharConexao();
-        enviar.enviarEmail(usuario.getEmail(), "Contos de Reinos Distantes - Conta Deletada", "Caro "+usuario.getNome()+", sua conta no jogo Contos de Reinos Distantes foi deletada, e junto todos os seus dados em nossos registros." );
+        enviar.enviarEmail(usuario.getEmail(), "Contos de Reinos Distantes - Conta Deletada", "Caro "+usuario.getNome()+", sua conta no jogo Contos de Reinos Distantes foi deletada, e junto todos os seus dados em nossos registros. \n O motivo de seu banimento foi: "+motivo);	
         Map<String, String> msg = new HashMap<String, String>();
         if (retorno) {
             msg.put("msg", "Usuário deletado com sucesso.");

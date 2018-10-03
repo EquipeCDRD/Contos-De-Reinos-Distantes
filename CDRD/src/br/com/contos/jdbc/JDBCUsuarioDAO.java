@@ -86,7 +86,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 		try {
 			p = this.conexao.prepareStatement(comando);
 			p.setString(1, usuario.getLogin());
-			p.setString(2, Criptografia.criptografaSenha(usuario.getSenha()));//
+			p.setString(2, Criptografia.criptografaSenha(usuario.getSenha()));
 			p.setString(3, usuario.getNome());
 			p.setString(4, usuario.getNascimento());
 			p.setString(5, usuario.getEmail());
@@ -99,18 +99,18 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 		return true;
 	}
 
-	public boolean deletar(String login) {
-		String comando = "DELETE FROM usuarios"
-				+ " WHERE usuario = '?'";
-		PreparedStatement p;
-		try {
-			p = this.conexao.prepareStatement(comando);
-			p.setString(1, login);
-			p.execute(comando);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+	public boolean deletar(String id) {
+		String sqlQuery = "DELETE FROM usuarios WHERE id=?";
+    	
+    	try {
+    		PreparedStatement statement = conexao.prepareStatement(sqlQuery);
+    		statement.setString(1, id);
+    		statement.execute();
+    		
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    		return false;
+    	}
 		return true;
 	}
 	

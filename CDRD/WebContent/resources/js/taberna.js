@@ -5,10 +5,21 @@ $(document).ready(function(){
   $("#paredeQuartoT").css("filter","brightness(50%)");
   $("#balcao").css("pointer-events","none");
   $(".sairBtn").hover(function(){
-    $(this).attr("src", "../../resources/style/images/xHover.png");
+    $(this).attr("src", "../../resources/style/images/estatico/xHover.png");
     }, function(){
-    $(this).attr("src", "../../resources/style/images/x.png");
+    $(this).attr("src", "../../resources/style/images/estatico/x.png");
   });
+
+  //Detecta o navegador e renderiza as imagens de maneira adequada a cada navegador
+  var ua = detect.parse(navigator.userAgent);
+
+  if(ua.browser.family == "Chrome"){
+      $("html").css("image-rendering","pixelated");
+  }else if(ua.browser.family == "Firefox"){
+      $("html").css("image-rendering","-moz-crisp-edges");
+  }else{
+      alert("Infelizmente o navegador " + ua.browser.family + " não é suportado por nossa aplicação. Lamentamos o inconveninete ( ; _ ; ). Atualmente, somente o Chrome e Firefox são suportados.");
+  }
 });
 
 $(document).keydown(function(event) {
