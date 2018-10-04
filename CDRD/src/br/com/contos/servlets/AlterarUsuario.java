@@ -43,6 +43,7 @@ public class AlterarUsuario extends HttpServlet {
     	    		usuario.setNome(request.getParameter("txtaltnome"));
     	    		usuario.setNascimento(request.getParameter("dtealtnascimento"));
     	    		usuario.setEmail(request.getParameter("txtaltemail"));
+    	    		usuario.setId(request.getParameter("hdid"));
     	    		boolean retorno = jdbcUsuario.atualizar(usuario);
     		    	conec.fecharConexao();
     		    	
