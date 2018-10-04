@@ -4,15 +4,20 @@
  * Desc: Arquivo contendo as funções relativas às servlets do jogador
  */
 
+
+
+
 //Main
-$(document).ready(function(){
-    /*--------------------------------------Geral-----------------------------------------*/
-    
-    /**
-     * especifica o caminho a ser trilhado pela função até a chamada da mesma
-     * na raiz do projeto
-     */
-    var PATH = "../../";
+$(document).ready(function () {
+	/**
+	 * especifica o caminho a ser trilhado pela função até a chamada da mesma
+	 * na raiz do projeto
+	 */
+	var PATH = "../../";
+
+	//varável glbal que salva informações sobre o jogador
+	var usuarioLogado;
+	/*--------------------------------------Geral-----------------------------------------*/
 
     //validar sessão
 	$(function(){
@@ -36,18 +41,19 @@ $(document).ready(function(){
 				}	
 			},
 			error: function (info) {
+				alert("Não foi possível verificar sua sessão. Você será redirecionado à página de início /n " + info.status + " - " + info.statusText);
 				sair();
 			}
-		});
-	});
-    
-    //Cai fora fdp!
-    sair = function(){
+		})
+	})
+
+	//Cai fora fdp!
+	sair = function () {
 		$.ajax({
 			type: "POST",
 			url: PATH + "Logout",
-			success: function (data) {
-				window.location.href = (PATH+"index.html");	
+			success: function () {
+				window.location.href = (PATH + "index.html");
 			},
 			error: function (info) {
 				alert("Erro ao tentar encerrar sua sessão: "+ info.status + " - " + info.statusText);	
