@@ -6,29 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- O que ser isso? -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Recuperação de Senha</title>
+    <title>Recuperação de Senha</title>    
     <!--============== importação dos scripts e folhas de estilo ==============-->
-
+    
     <!--=== libs ===-->
+    
+        <!--JQuery-->
+        <script src="../../resources/js/libs/jquery-3.3.1.js"></script> 
+        
+        <!--JQueryUI js & css-->
+        <script src="../../resources/js/libs/jquery-ui.js"></script>
 
-    <!--JQuery-->
-    <script src="../../resources/js/libs/jquery-3.3.1.js"></script>
+        <link rel="stylesheet" href="../../resources/style/css/jquery-ui.css  ">
 
-    <!--JQueryUI js & css-->
-    <script src="../../resources/js/libs/jquery-ui.js"></script>
-
-    <link rel="stylesheet" href="../../resources/style/css/jquery-ui.css  ">
-
-    <!--DetectJS-->
-    <script src="../../resources/js/libs/detect.js"></script>
-
+        <!--DetectJS-->
+        <script src="../../resources/js/libs/detect.js"></script>
+        
     <!--=== scripts próprios ===-->
-    <script src="../../resources/js/index.js"></script>
-    <script src="../../resources/js/modais_index..js"></script>
-
+        <script src="../../resources/js/index.js"></script>
+        <script src="../../resources/js/modais_index..js"></script>
+    
     <!--=== folhas de estilo ===-->
-    <link rel="stylesheet" type="text/css" media="screen" href="../../resources/style/css/index.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../../resources/style/css/modais_index.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="../../resources/style/css/index.css" />   
+        <link rel="stylesheet" type="text/css" media="screen" href="../../resources/style/css/modais_index.css">
 
     <!--============== restante dos metadados ==============-->
     <meta name="author" content="Equipe CRD">
@@ -44,9 +44,8 @@
     reservada para as janelas de interação com usuário (login, 
     Cadastro, etc)
 -->
-
 <body id="contentIndex">
-
+    
     <!--======================== início paredeTaverna ========================-->
 
     <!--
@@ -55,36 +54,31 @@
         uma porta e um guarda, sendo os dois últimos maneiras pelas quais
         os usuáros podem logar no site.
     -->
-    <div id="paredeTaverna">
-
+    <div id="paredeTaverna">    
+        
         <!--janela da taverna-->
         <div class="containerJanela" id="containerJanelaIndex1">
-            <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg"
-                alt="janela da taverna n° 1" class="janela">
+            <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg" alt="janela da taverna n° 1" class="janela">
         </div>
-
+        
         <!--container da porta-->
-        <div class="containerPorta" id="containerPortaIndex" onclick="abrirModal('containerModaisIndex')">
-            <!--chamada de função de abertura de prompt de log in-->
-            <img src="https://s-media-cache-ak0.pinimg.com/originals/49/47/0a/49470a8ac53138b1e9a20e71ebbd1a17.jpg" alt="porta da taverna"
-                class="porta">
+        <div class="containerPorta" id="containerPortaIndex" onclick="abrirModal('containerModaisIndex')"> <!--chamada de função de abertura de prompt de log in-->
+            <img src="https://s-media-cache-ak0.pinimg.com/originals/49/47/0a/49470a8ac53138b1e9a20e71ebbd1a17.jpg" alt="porta da taverna" class="porta">
         </div>
 
         <!--container do guarda-->
         <div class="containerNPC" id="containerGuardaIndex">
-            <img src="https://images.cdn2.stockunlimited.net/preview1300/pixel-art-army_1959068.jpg" alt="guarda preguiçoso"
-                class="NPCInterativo" id="guardaIndex" onclick="">
-            <!--chamada de função de abertura de prompt de log in-->
+            <img src="https://images.cdn2.stockunlimited.net/preview1300/pixel-art-army_1959068.jpg" alt="guarda preguiçoso" class="NPCInterativo" 
+                 id="guardaIndex" onclick=""> <!--chamada de função de abertura de prompt de log in-->
         </div>
 
         <!--container de janelas-->
         <div class="containerJanela" id="containerJanelaIndex2">
-            <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg"
-                alt="janela da taverna n° 1" class="janela">
+            <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg" alt="janela da taverna n° 1" class="janela" >
         </div>
-
+       
     </div>
-
+     
     <!--======================== fim paredeTaverna ========================-->
 
     <!--======================== início muroTaverna ========================-->
@@ -97,8 +91,7 @@
 
         <!--mureta-->
         <div class="containerMuro" id="containerMuro1">
-            <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg"
-                alt="mureta da taverna" class="muro">
+            <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg" alt="mureta da taverna" class="muro">
         </div>
 
         <!--placa da taverna-->
@@ -108,10 +101,9 @@
 
         <!--mureta-->
         <div class="containerMuro" id="containerMuro2">
-            <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg"
-                alt="mureta da taverna" class="muro">
+            <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg" alt="mureta da taverna" class="muro">
         </div>
-
+        
         <!--quadro de ranking-->
         <div class="containerRanking" id="containerRankingIndex">
             <!-- o que vem aqui dentro, em termos de estrutura?-->
@@ -132,48 +124,38 @@
     <div class="containerModais" id="containerModaisIndex">
 
         <!-- content is supposed to be injected in here dynamicaly as the user interacts with the page... -->
-
+        
         <!--========================Iníco modais (autor: Gustavo Stein)========================-->
-        <div id="redefinicaoSenha">
-            <!---->
+        <div id="redefinicaoSenha"><!---->
             <form name="frmrecpwsd" onsubmit="return validaRecuperarSenha()">
-                <table class="intTable">
-                    <!--Tabela de interações-->
+                <table class="intTable"> <!--Tabela de interações-->
                     <tr>
-                        <th class="intRow" colspan="2">Guarda da Taverna</th>
-                        <!--Nome do personagem que está falando-->
+                    <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
                     </tr>
                     <tr>
-                        <td class="intRow vAlign">
-                            <!--Td das falas do Personagem-->
-                            <table>
-                                <!--Tabela da fala-->
+                        <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                            <table><!--Tabela da fala-->
                                 <tr>
-                                    <td colspan="2" class="intCadRow intDialogue">
-                                        Vejo que encontrou nosso pombo correio. Dessa vez eu permito que o senhor
-                                        troque
-                                        seu nome, mas na próxima deixe para beber depois de entrar na taverna!
-                                    </td>
-                                    <!--Falas do Personagem-->
+                                <td colspan="2" class="intCadRow intDialogue">
+                                    Vejo que encontrou nosso pombo correio. Dessa vez eu permito que o senhor troque 
+                                    seu nome, mas na próxima deixe para beber depois de entrar na taverna!
+                                </td><!--Falas do Personagem-->
                                 </tr>
                                 <tr>
-                                    <td class="intCadOptions1">Nova senha:</td>
-                                    <td><input class="intInput1" type="password" name="pwdnova"></td>
+                                <td class="intCadOptions1">Nova senha:</td>
+                                <td><input class="intInput1" type="password" name="pwdnova"></td>
                                 </tr>
                                 <tr>
-                                    <td class="intCadOptions1">Confirmar senha:</td>
-                                    <td><input class="intInput1" type="password" name="pwdnovaconf"></td>
+                                <td class="intCadOptions1">Confirmar senha:</td>
+                                <td><input class="intInput1" type="password" name="pwdnovaconf"></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="reset" value="Limpar" class="intCadButton"></td>
-                                    <td><input type="submit" value="Enviar" class="intCadButton2"></td>
+                                <td><input type="reset" value="Limpar" class="intCadButton"></td>
+                                <td><input type="submit" value="Enviar" class="intCadButton2"></td>
                                 </tr>
-                            </table>
-                            <!--Fim da tabela da fala-->
-                        </td>
-                        <!--Fim da td das falas do Personagem-->
-                        <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td>
-                        <!--Imagem do Personagem-->
+                            </table><!--Fim da tabela da fala-->
+                        </td><!--Fim da td das falas do Personagem-->
+                        <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
                     </tr>
                 </table>
             </form>
@@ -184,7 +166,7 @@
     </div>
     <!--======================== fim containerModais ========================-->
 
-
+    
 </body>
 
 <!--======================== fim conteúdo ========================-->
@@ -197,29 +179,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- O que ser isso? -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Recuperação de Senha</title>
+    <title>Recuperação de Senha</title>    
     <!--============== importação dos scripts e folhas de estilo ==============-->
-
+    
     <!--=== libs ===-->
+    
+        <!--JQuery-->
+        <script src="../../resources/js/libs/jquery-3.3.1.js"></script> 
+        
+        <!--JQueryUI js & css-->
+        <script src="../../resources/js/libs/jquery-ui.js"></script>
 
-    <!--JQuery-->
-    <script src="../../resources/js/libs/jquery-3.3.1.js"></script>
+        <link rel="stylesheet" href="../../resources/style/css/jquery-ui.css  ">
 
-    <!--JQueryUI js & css-->
-    <script src="../../resources/js/libs/jquery-ui.js"></script>
-
-    <link rel="stylesheet" href="../../resources/style/css/jquery-ui.css  ">
-
-    <!--DetectJS-->
-    <script src="../../resources/js/libs/detect.js"></script>
-
+        <!--DetectJS-->
+        <script src="../../resources/js/libs/detect.js"></script>
+        
     <!--=== scripts próprios ===-->
-    <script src="../../resources/js/index.js"></script>
-    <script src="../../resources/js/modais_index..js"></script>
-
+        <script src="../../resources/js/index.js"></script>
+        <script src="../../resources/js/modais_index..js"></script>
+    
     <!--=== folhas de estilo ===-->
-    <link rel="stylesheet" type="text/css" media="screen" href="../../resources/style/css/index.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../../resources/style/css/modais_index.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="../../resources/style/css/index.css" />   
+        <link rel="stylesheet" type="text/css" media="screen" href="../../resources/style/css/modais_index.css">
 
     <!--============== restante dos metadados ==============-->
     <meta name="author" content="Equipe CRD">
@@ -235,9 +217,8 @@
     reservada para as janelas de interação com usuário (login, 
     Cadastro, etc)
 -->
-
 <body id="contentIndex">
-
+    
     <!--======================== início paredeTaverna ========================-->
 
     <!--
@@ -246,36 +227,31 @@
         uma porta e um guarda, sendo os dois últimos maneiras pelas quais
         os usuáros podem logar no site.
     -->
-    <div id="paredeTaverna">
-
+    <div id="paredeTaverna">    
+        
         <!--janela da taverna-->
         <div class="containerJanela" id="containerJanelaIndex1">
-            <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg"
-                alt="janela da taverna n° 1" class="janela">
+            <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg" alt="janela da taverna n° 1" class="janela">
         </div>
-
+        
         <!--container da porta-->
-        <div class="containerPorta" id="containerPortaIndex" onclick="abrirModal('containerModaisIndex')">
-            <!--chamada de função de abertura de prompt de log in-->
-            <img src="https://s-media-cache-ak0.pinimg.com/originals/49/47/0a/49470a8ac53138b1e9a20e71ebbd1a17.jpg" alt="porta da taverna"
-                class="porta">
+        <div class="containerPorta" id="containerPortaIndex" onclick="abrirModal('containerModaisIndex')"> <!--chamada de função de abertura de prompt de log in-->
+            <img src="https://s-media-cache-ak0.pinimg.com/originals/49/47/0a/49470a8ac53138b1e9a20e71ebbd1a17.jpg" alt="porta da taverna" class="porta">
         </div>
 
         <!--container do guarda-->
         <div class="containerNPC" id="containerGuardaIndex">
-            <img src="https://images.cdn2.stockunlimited.net/preview1300/pixel-art-army_1959068.jpg" alt="guarda preguiçoso"
-                class="NPCInterativo" id="guardaIndex" onclick="">
-            <!--chamada de função de abertura de prompt de log in-->
+            <img src="https://images.cdn2.stockunlimited.net/preview1300/pixel-art-army_1959068.jpg" alt="guarda preguiçoso" class="NPCInterativo" 
+                 id="guardaIndex" onclick=""> <!--chamada de função de abertura de prompt de log in-->
         </div>
 
         <!--container de janelas-->
         <div class="containerJanela" id="containerJanelaIndex2">
-            <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg"
-                alt="janela da taverna n° 1" class="janela">
+            <img src="https://image.shutterstock.com/z/stock-vector-vector-pixel-art-window-isolated-1020244972.jpg" alt="janela da taverna n° 1" class="janela" >
         </div>
-
+       
     </div>
-
+     
     <!--======================== fim paredeTaverna ========================-->
 
     <!--======================== início muroTaverna ========================-->
@@ -288,8 +264,7 @@
 
         <!--mureta-->
         <div class="containerMuro" id="containerMuro1">
-            <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg"
-                alt="mureta da taverna" class="muro">
+            <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg" alt="mureta da taverna" class="muro">
         </div>
 
         <!--placa da taverna-->
@@ -299,10 +274,9 @@
 
         <!--mureta-->
         <div class="containerMuro" id="containerMuro2">
-            <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg"
-                alt="mureta da taverna" class="muro">
+            <img src="https://image.shutterstock.com/z/stock-vector-pixel-art-brick-wall-texture-with-old-and-cracked-bricks-541388599.jpg" alt="mureta da taverna" class="muro">
         </div>
-
+        
         <!--quadro de ranking-->
         <div class="containerRanking" id="containerRankingIndex">
             <!-- o que vem aqui dentro, em termos de estrutura?-->
@@ -323,48 +297,38 @@
     <div class="containerModais" id="containerModaisIndex">
 
         <!-- content is supposed to be injected in here dynamicaly as the user interacts with the page... -->
-
+        
         <!--========================Iníco modais (autor: Gustavo Stein)========================-->
-        <div id="redefinicaoSenha">
-            <!---->
+        <div id="redefinicaoSenha"><!---->
             <form name="frmrecpwsd" onsubmit="return validaRecuperarSenha()">
-                <table class="intTable">
-                    <!--Tabela de interações-->
+                <table class="intTable"> <!--Tabela de interações-->
                     <tr>
-                        <th class="intRow" colspan="2">Guarda da Taverna</th>
-                        <!--Nome do personagem que está falando-->
+                    <th class="intRow" colspan="2">Guarda da Taverna</th> <!--Nome do personagem que está falando-->
                     </tr>
                     <tr>
-                        <td class="intRow vAlign">
-                            <!--Td das falas do Personagem-->
-                            <table>
-                                <!--Tabela da fala-->
+                        <td class="intRow vAlign"><!--Td das falas do Personagem-->
+                            <table><!--Tabela da fala-->
                                 <tr>
-                                    <td colspan="2" class="intCadRow intDialogue">
-                                        Vejo que encontrou nosso pombo correio. Dessa vez eu permito que o senhor
-                                        troque
-                                        seu nome, mas na próxima deixe para beber depois de entrar na taverna!
-                                    </td>
-                                    <!--Falas do Personagem-->
+                                <td colspan="2" class="intCadRow intDialogue">
+                                    Vejo que encontrou nosso pombo correio. Dessa vez eu permito que o senhor troque 
+                                    seu nome, mas na próxima deixe para beber depois de entrar na taverna!
+                                </td><!--Falas do Personagem-->
                                 </tr>
                                 <tr>
-                                    <td class="intCadOptions1">Nova senha:</td>
-                                    <td><input class="intInput1" type="password" name="pwdnova"></td>
+                                <td class="intCadOptions1">Nova senha:</td>
+                                <td><input class="intInput1" type="password" name="pwdnova"></td>
                                 </tr>
                                 <tr>
-                                    <td class="intCadOptions1">Confirmar senha:</td>
-                                    <td><input class="intInput1" type="password" name="pwdnovaconf"></td>
+                                <td class="intCadOptions1">Confirmar senha:</td>
+                                <td><input class="intInput1" type="password" name="pwdnovaconf"></td>
                                 </tr>
                                 <tr>
-                                    <td><input type="reset" value="Limpar" class="intCadButton"></td>
-                                    <td><input type="submit" value="Enviar" class="intCadButton2"></td>
+                                <td><input type="reset" value="Limpar" class="intCadButton"></td>
+                                <td><input type="submit" value="Enviar" class="intCadButton2"></td>
                                 </tr>
-                            </table>
-                            <!--Fim da tabela da fala-->
-                        </td>
-                        <!--Fim da td das falas do Personagem-->
-                        <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td>
-                        <!--Imagem do Personagem-->
+                            </table><!--Fim da tabela da fala-->
+                        </td><!--Fim da td das falas do Personagem-->
+                        <td class="intTdImg"><img src="../../resources/style/images/guarda.png" alt="img" class="intImg"></td><!--Imagem do Personagem-->
                     </tr>
                 </table>
             </form>
@@ -375,7 +339,7 @@
     </div>
     <!--======================== fim containerModais ========================-->
 
-
+    
 </body>
 
 <!--======================== fim conteúdo ========================-->
