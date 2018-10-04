@@ -145,12 +145,12 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                     pontuacao.setDataCriacao(dataCriacao);
                     pontuacao.setPosicaoRanking(posicaoRanking);
                     
-                    //Para testes
-        			System.out.println("============pontuacao PESSOAL==========");
-                    System.out.println("\nid: " + pontuacao.getId());
-                    System.out.println("\nscore: " + pontuacao.getScore());
-                    System.out.println("\ndata de criação: " + pontuacao.getDataCriacao());
-                    System.out.println("\nposição no ranking: " + pontuacao.getPosicaoRanking());
+//                    //Para testes
+//        			System.out.println("============pontuacao PESSOAL==========");
+//                    System.out.println("\nid: " + pontuacao.getId());
+//                    System.out.println("\nscore: " + pontuacao.getScore());
+//                    System.out.println("\ndata de criação: " + pontuacao.getDataCriacao());
+//                    System.out.println("\nposição no ranking: " + pontuacao.getPosicaoRanking());
                     
                     //adição do objeto recém criado à lista de pontuações
                     listaDePontuacoes.add(pontuacao);
@@ -303,25 +303,32 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
 			PreparedStatement statement = conexao.prepareStatement(sqlQuery);
 			statement.execute();
 			ResultSet result = statement.executeQuery(sqlQuery);
-	        
+	        int contador=0;
 	        
 	        //Enquanto tiver pontuações...
 	        while (result.next()) {
 	        	
+	        	contador++;
 	        	Pontuacao pontuacao = new Pontuacao();
 	        	
 	        	//aquisição dos dados...
 				String id = result.getString("id");
                 String idUser = result.getString("usuarios_id");
                 String score = result.getString("pontuacao");
-               
+                
+                System.out.println("encontraPosicao");
+                System.out.println(" id da pontuação: "+id);
+                System.out.println(" id do carinha: "+idUser);
+                System.out.println(" pontuacao: "+score);
+                
                 //salvamento dos dados no objeto...
                 pontuacao.setId(id);
                 pontuacao.setScore(score);
                 pontuacao.setUsuarioId(idUser);
-                
+  
                 if(usuarioId.equals(idUser)) {
-                	posicaoRanking = id+1;
+                	posicaoRanking = ""+contador;
+                	System.out.println("posição do carinha no ranking: " +posicaoRanking);
                 	return posicaoRanking;
                 }
                 

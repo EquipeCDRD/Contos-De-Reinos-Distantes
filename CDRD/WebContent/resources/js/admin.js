@@ -65,7 +65,7 @@ function validaDel(q){
       $("#divEditarNotificacoes").hide();
   }
 
-  function validaNotificacaoX(compedit){//Recebe o parâmetro se o foi chamado pelo compor ou pelo editar.
+  function validaNotificacao(compedit){//Recebe o parâmetro se o foi chamado pelo compor ou pelo editar.
     var conf = false;
     if(compedit==0){
         if($("textarea[name=txacompnotificacao]").val()!=""){

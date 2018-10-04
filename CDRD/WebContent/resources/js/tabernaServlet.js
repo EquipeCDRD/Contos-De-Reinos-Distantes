@@ -4,18 +4,18 @@
  * Desc: Arquivo contendo as funções relativas às servlets do jogador
  */
 
+
+/**
+   * especifica o caminho a ser trilhado pela função até a chamada da mesma
+   * na raiz do projeto
+   */
+var PATH = "../../";
+
+//varável glbal que salva informações sobre o jogador
+var usuarioLogado;
+
 //Main
 $(document).ready(function () {
-
-	/**
- * especifica o caminho a ser trilhado pela função até a chamada da mesma
- * na raiz do projeto
- */
-	var PATH = "../../";
-
-	//varável glbal que salva informações sobre o jogador
-	var usuarioLogado;
-
 	/*--------------------------------------Geral-----------------------------------------*/
 
 	//validar sessão
@@ -32,30 +32,32 @@ $(document).ready(function () {
 					usuarioLogado.email = usuario.email;
 					usuarioLogado.nome = usuario.nome;
 					usuarioLogado.nascimento = usuario.nascimento;
-					carregaPontucaoPessoal();//Ranking quebra se o feladapota não tem pontuação
+					
+					//chamada da função para carregar os scores pessoais do jogador
+					//Ranking pessoal sem colocação no ranking global, e o mesmo quabra se não tiver pontuações
+					carregaPontucaoPessoal();
 
 					//chamada da função de carregamento das tabelas
 
-					carregaTabelaRanking(1);
-					carregaTabelaRanking(2);
-					carregaTabelaRanking(3);
+					carregaTabela(1);
+					carregaTabela(2);
+					carregaTabela(3);
 				} else {
 					sair();
 				}
 			},
 			error: function (info) {
-				alert("Não foi possível verificar sua sessão. Você será redirecionado à página de início /n " + info.status + " - " + info.statusText);
 				sair();
 			}
-		})
-	})
+		});
+	});
 
 	//Cai fora fdp!
 	sair = function () {
 		$.ajax({
 			type: "POST",
 			url: PATH + "Logout",
-			success: function () {
+			success: function (data) {
 				window.location.href = (PATH + "index.html");
 			},
 			error: function (info) {
@@ -102,7 +104,6 @@ $(document).ready(function () {
 					+ "<th class='intRowRanking tituloRanking'>DATA</th>"
 					+ "<th class='intRowRanking tituloRanking'>PONTUAÇÃO</th>"
 					+ "</tr>"
-
 				break;
 		}
 		return html;
@@ -110,7 +111,7 @@ $(document).ready(function () {
 
 	//Pesquisa e construção da tabela do ranking que aparece na taverna
 
-	carregaTabelaRanking = function (opcao) {
+	carregaTabela = function (opcao) {
 		var html = mudahtml(opcao);
 		var dados;
 		if (opcao == 3) {
@@ -123,7 +124,7 @@ $(document).ready(function () {
 			url: PATH + "BuscarPontuacao",
 			data: dados,
 			success: function (dados) {
-				html += geraTabelaRanking(dados, opcao);
+				html += geraTabela(dados, opcao);
 				switch (opcao) {
 					case 1:
 						$("#ranking").html(html);
@@ -146,7 +147,8 @@ $(document).ready(function () {
 		})
 	}
 
-	geraTabelaRanking = function (listaRanking, opcao) {
+	//realiza a construção da tabela mediante aos dados recebidos
+	geraTabela = function (listaRanking, opcao) {
 		var dados = "";
 		if (listaRanking != undefined && listaRanking.length > 0) {
 			console.log(listaRanking);
@@ -160,20 +162,20 @@ $(document).ready(function () {
 							"</tr>"
 					}
 					dados += "<tr>" +
-						"<td><img src='../../resources/style/images/x.png' title='fechar tabela' alt='clique para fechar' id='fechar' class='sairBtn' /></td>" +
-						"<td colspan='2'><img src='../../resources/style/images/flecha.png' title='flecha' alt='proximos valores' id='flecha'/></td>" +
+						"<td><img src='../../resources/style/images/estatico/x.png' title='fechar tabela' alt='clique para fechar' id='fechar' class='sairBtn' /></td>" +
+						"<td colspan='2'><img src='../../resources/style/images/estatico/flecha.png' title='flecha' alt='proximos valores' id='flecha'/></td>" +
 						"</tr>" +
 						"<tr>" +
 						"<th class='intRowRanking tituloRanking' colspan='3'>SUA PONTUAÇAO</th>" +
 						"</tr>" +
-						"<tr>" +
-						"<td class='intRowRanking'>" + usuarioLogado.posicaoRanking + "</td>" +
-						"<td class='intRowRanking'>" + usuarioLogado.login + "</td>";
+						"<tr>" 
 
 					if (usuarioLogado.pontuacoes != undefined) {
-						dados += "<td class='intRowRanking'>" + usuarioLogado.pontuacoes[0].score + "</td>"
+						dados += "<td class='intRowRanking'>" + usuarioLogado.posicaoRanking + "</td>" +
+								 "<td class='intRowRanking'>" + usuarioLogado.login + "</td>"+
+								 "<td class='intRowRanking'>" + usuarioLogado.pontuacoes[0].score + "</td>"
 					} else {
-						dados += "<td class='intRowRanking'> Você ainda não tem pontuações</td>"
+						dados += "<td class='intRowRanking'colspan='3'> Você ainda não tem pontuações</td>"
 					}
 					dados += "</tr>";
 
@@ -200,15 +202,26 @@ $(document).ready(function () {
 					}
 
 					dados += "</tr>"
-						+ "<tr>"
-						+ "<td><img src='../../resources/style/images/estatico/x.png' alt='img' id='fecharPessoal' class='sairBtn' /></td>"
-						+ "</tr>"
+							+ "<tr>"
+							+ 	"<td><img src='../../resources/style/images/estatico/x.png' alt='img' id='fecharPessoal' class='sairBtn' /></td>"
+							+ "</tr>"
 					break;
 			}
 
-		} else if (listaRanking == "") {
+		} else if ((listaRanking == "")&&(opcao==3)) {
+			
+			dados += "<tr>" 
+				  + 	"<td class='intRowRanking' colspan='2'> Você ainda não tem pontuações</td>"
+				  +  "</tr>"
+				  + "<tr>"
+				  + 	"<td><img src='../../resources/style/images/estatico/x.png' alt='img' id='fecharPessoal' class='sairBtn' /></td>"
+				  + "</tr>"
+
+		}else{
+
 			dados += "<tr><td colspan='2'>Nenhum registro encontrado</td></tr>";
-		}
+
+		}  
 		return dados;
 	}
 
@@ -232,13 +245,12 @@ $(document).ready(function () {
 						arrayPontuacoes[i].id = dados[i].id;
 						arrayPontuacoes[i].dataCriacao = dados[i].dataCriacao;
 						arrayPontuacoes[i].score = dados[i].score;
-						arrayPontuacoes[i].posicaoRanking = dados[i].posicaoRanking;
-
+						
 						console.log(arrayPontuacoes);
 					}
-
+					usuarioLogado.posicaoRanking = dados[0].posicaoRanking;
 					usuarioLogado.pontuacoes = arrayPontuacoes;
-					console.log(usuarioLogado.pontuacoes.length);
+					console.log(dados.posicaoRanking);
 				}
 			}
 		})
@@ -246,14 +258,15 @@ $(document).ready(function () {
 
 	/*--------------------------------------InseriPontuacao-----------------------------------------*/
 
-	/**
-	 * função ajax que chama a servlet de inserção de pontuações 
-	 */
+    /**
+     * função ajax que chama a servlet de inserção de pontuações 
+     */
 	inserirPontuacao = function () {
 
-		/**
-		 * variável que contem a última pontuação atingida pelo jogador que será enviada ao servidor
-		 */
+        /**
+         * variável que contem a última pontuação atingida pelo jogador que será enviada ao servidor
+		 * (placeholder)
+         */
 		usuarioLogado.pontuacao = $("#inputPontuacaoTemp").val();
 
 		$.ajax({

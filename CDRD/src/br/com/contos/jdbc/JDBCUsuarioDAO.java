@@ -91,6 +91,7 @@ public class JDBCUsuarioDAO implements UsuarioDAO{
 			p.setString(4, usuario.getNascimento());
 			p.setString(5, usuario.getEmail());
 			p.setString(6, usuario.getId());
+			System.out.println(p);
 			p.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

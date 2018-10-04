@@ -5,10 +5,21 @@ $(document).ready(function(){
   $("#paredeQuartoT").css("filter","brightness(50%)");
   $("#balcao").css("pointer-events","none");
   $(".sairBtn").hover(function(){
-    $(this).attr("src", "../../resources/style/images/xHover.png");
+    $(this).attr("src", "../../resources/style/images/estatico/xHover.png");
     }, function(){
-    $(this).attr("src", "../../resources/style/images/x.png");
+    $(this).attr("src", "../../resources/style/images/estatico/x.png");
   });
+
+  //Detecta o navegador e renderiza as imagens de maneira adequada a cada navegador
+  var ua = detect.parse(navigator.userAgent);
+
+  if(ua.browser.family == "Chrome"){
+      $("html").css("image-rendering","pixelated");
+  }else if(ua.browser.family == "Firefox"){
+      $("html").css("image-rendering","-moz-crisp-edges");
+  }else{
+      alert("Infelizmente o navegador " + ua.browser.family + " não é suportado por nossa aplicação. Lamentamos o inconveninete ( ; _ ; ). Atualmente, somente o Chrome e Firefox são suportados.");
+  }
 });
 
 $(document).keydown(function(event) {
@@ -213,4 +224,49 @@ function fecharQuartos(){
   $("#quarto").css("filter","brightness(50%)");
   $("#paredeQuarto").css("filter","brightness(50%)");
 
+}
+
+function validaMinhaConta(){
+    var conf = false;
+    if($("input[name=txtaltnome]").val()!=""){
+        if($("input[name=txtalteemail]").val()!=""){
+            if($("input[name=dtealtnascimento]").val()!=""){
+                if($("input[name=txtaltlogger]").val()!=""){
+                    if($("input[name=pwdaltsenhaantiga]").val()!=""){
+                        if($("input[name=pwdaltsenhanova]").val()!=""){
+                            if($("input[name=pwdaltconfsenha]").val()!=""){
+                                if($("input[name=pwdaltsenhanova]").val()==$("input[name=pwdaltconfsenha]").val()){
+                                    conf = confirm("Tem certeza que deseja alterar informações de sua conta?");
+                                }else{
+                                    alert("As senhas não coincidem.");
+                                }
+                            }else{
+                                alert("Preencha a confirmação de senha.");
+                                $("input[name=pwdaltconfsenha]").focus();
+                            }
+                        }else{
+                            alert("Preencha a senha nova.");
+                            $("input[name=pwdaltsenhanova]").focus();
+                        }
+                    }else{
+                        alert("Preencha a senha antiga.");
+                        $("input[name=pwdaltsenhaantiga]").focus();
+                    }
+                }else{
+                    alert("Preencha o nome de usuário.");
+                    $("input[name=txtaltlogger]").focus();
+                }
+            }else{
+                alert("Preencha a data de nascimento.");
+                $("input[name=dtealtnascimento]").focus();
+            }
+        }else{
+            alert("Preencha o e-mail.");
+            $("input[name=txtaltemail]").focus();
+        }
+    }else{
+        alert("Preencha o nome.");
+        $("input[name=txtaltnome]").focus();
+    }
+    return conf;
 }
