@@ -242,7 +242,7 @@ img, table, th, td{
   border-right: 3px solid black;
   display: inline-block;
   position: relative;
-  background: url(../images/paredeQuarto.png);
+  background: url("../images/estatico/paredeQuarto.png");
 
 }
 #paredeQuartoT{
@@ -448,8 +448,8 @@ img, table, th, td{
 }
 #fechar{
 	position: relative;
-	bottom: 225px;
-	left: 990px;
+	bottom: 295px;
+	left: 1025px;
 }
 #fecharAvisos{
 	position: relative;
@@ -463,8 +463,8 @@ img, table, th, td{
  }
  #fecharPessoal{
    position: relative;
-   bottom: 190px;
-   left: 970px;
+   bottom: 210px;
+   left: 129%;
  }
 #avisos{
 	border: 4px solid #532700;
