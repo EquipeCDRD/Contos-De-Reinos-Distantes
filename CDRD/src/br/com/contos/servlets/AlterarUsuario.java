@@ -39,10 +39,11 @@ public class AlterarUsuario extends HttpServlet {
     			if (senhaAtualCript.equals(usuariobd.getSenha())) {
     				Usuario usuario = new Usuario();
     	    		usuario.setLogin(request.getParameter("txtaltlogger"));
-    	    		usuario.setSenha(Criptografia.criptografaSenha(request.getParameter("pwdaltsenhanova")));
+    	    		usuario.setSenha(request.getParameter("pwdaltsenhanova"));
     	    		usuario.setNome(request.getParameter("txtaltnome"));
     	    		usuario.setNascimento(request.getParameter("dtealtnascimento"));
     	    		usuario.setEmail(request.getParameter("txtaltemail"));
+    	    		usuario.setId(request.getParameter("hdid"));
     	    		boolean retorno = jdbcUsuario.atualizar(usuario);
     		    	conec.fecharConexao();
     		    	

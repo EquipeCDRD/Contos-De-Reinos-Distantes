@@ -6,17 +6,18 @@
 								porém seus nomes foram trocados para inicio.algumacoisa, para não dar confusão. 
 */
 
+
 /*=================================== resets e aplicação de outras configurações universais ===================================*/
 
-@font-face{
+@font-face {
 	font-family: pixel font;
 	src: url("../pixel_font7.ttf");
 }
 
 *, *::after, *::before {
-	margin:	0;
-	padding:0;
-	border:0;
+	margin: 0;
+	padding: 0;
+	border: 0;
 	vertical-align: baseline;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -24,59 +25,54 @@
 	font: normal 24px/1em "pixel font";
 }
 
-body{ /*Desabilita scroll*/
-    position: fixed;
-    overflow-y: scroll;
-    width: 100%;
-    overflow:hidden;
+body {
+	/*Desabilita scroll*/
+	position: fixed;
+	overflow-y: scroll;
+	width: 100%;
+	overflow: hidden;
 }
+
 
 /*=============================================== classes ===============================================*/
 
-/*
-	Os planos de fundo servem apenas para demarcar a posição dos elementos. Futuramente, todos serão substituídos
-	pela arte do jogo
-*/
-.containerJanela{
+.containerJanela {
 	background-attachment: fixed;
 	height: 175px;
 	width: 200px;
 }
 
-.containerPorta{
+.containerPorta {
 	background-attachment: fixed;
 	height: 325px;
 	width: 250px;
 }
 
-.containerNPC{
-	
+.containerNPC {
 	height: 275px;
 	width: 275px;
 	background-color: brown;
 }
 
-.containerMuro{
+.containerMuro {
 	background-attachment: fixed;
 	height: 150px;
 	width: 300px;
 }
 
-.containerPlaca{
+.containerPlaca {
 	height: 400px;
 	width: 250px;
 }
 
-.containerRanking{
+.containerRanking {
 	height: 200px;
 	width: 400px;
 }
 
-.containerModais{
+.containerModais {
 	display: block;
-	z-index: 4; /* esse valor é por causa do plano de fundo (que ainda não existe kkkk)*/
-	/*opacity: 0;
-	transition: opacity 0.5s ease-in-out;*/
+	z-index: 4;
 	height: 484px;
 	width: 800px;
 	position: absolute;
@@ -84,29 +80,35 @@ body{ /*Desabilita scroll*/
 	right: 22%;
 }
 
-.janela, .porta, .NPCInterativo, .muro, .placaTaverna{
+.janela, .porta, .NPCInterativo, .muro, .placaTaverna {
 	max-width: 100%;
 	max-height: 100%;
 	height: auto;
 	background-repeat: no-repeat;
 }
+
+
 /*=============================================== estilização index	 ===============================================*/
 
+
 /*=== geral ===*/
-#contentIndex, #contentIndex{
+
+#contentIndex, #contentIndex {
 	height: 100%;
 	width: 100%;
 	background-attachment: fixed;
 	background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVUoYhTXJQCKy_GvkhvW9v_FMkfwCulUUWpxJcRo630SeXeLF7');
 }
 
-/* === estilização de paredTaverna e filhos ===*/
-#paredeTaverna{
-	  height: 325px;
-    background: url("../images/estatico/paredeExterna.png");
-	}
 
-#containerJanelaIndex1{    
+/* === estilização de paredTaverna e filhos ===*/
+
+#paredeTaverna {
+	height: 325px;
+	background: url("../images/estatico/paredeExterna.png");
+}
+
+#containerJanelaIndex1 {
 	position: fixed;
 	top: 30px;
 	left: 30px;
@@ -114,7 +116,7 @@ body{ /*Desabilita scroll*/
 	height: 250px;
 }
 
-#containerJanelaIndex2{
+#containerJanelaIndex2 {
 	position: fixed;
 	top: 30px;
 	right: 30px;
@@ -122,12 +124,12 @@ body{ /*Desabilita scroll*/
 	height: 250px;
 }
 
-#containerJanelaIndex1 img, #containerJanelaIndex2 img, #containerPortaIndex img{
+#containerJanelaIndex1 img, #containerJanelaIndex2 img, #containerPortaIndex img {
 	height: 100%;
 	width: 100%;
-} 
+}
 
-#containerPortaIndex{
+#containerPortaIndex {
 	height: 300px;
 	width: 300px;
 	position: fixed;
@@ -135,7 +137,7 @@ body{ /*Desabilita scroll*/
 	top: 25px;
 }
 
-#containerGuardaIndex{
+#containerGuardaIndex {
 	height: 250px;
 	width: 250px;
 	position: fixed;
@@ -143,22 +145,24 @@ body{ /*Desabilita scroll*/
 	top: 75px;
 }
 
+
 /* === estilização de paredTaverna e filhos ===*/
-#muroTaverna{
+
+#muroTaverna {
 	display: flex;
-	height: 250px;
+	height: 350px;
 	width: 100%;
-	padding: 0;	
+	padding: 0;
 }
 
-#containerMuro1 img, #containerMuro2 img{
+#containerMuro1 img, #containerMuro2 img {
 	height: 100%;
 	width: 100%;
 	position: absolute;
 	z-index: 0;
 }
 
-#containerPlacaIndex{
+#containerPlacaIndex {
 	position: relative;
 	top: -200px;
 	left: 0;
@@ -166,7 +170,7 @@ body{ /*Desabilita scroll*/
 	background-repeat: no-repeat;
 }
 
-#containerMuro1{
+#containerMuro1 {
 	position: absolute;
 	left: -35px;
 	bottom: -140px;
@@ -174,8 +178,8 @@ body{ /*Desabilita scroll*/
 	width: 600px;
 }
 
-@media screen and (max-height: 768px){
-	#containerMuro2{
+@media screen and (max-height: 768px) {
+	#containerMuro2 {
 		position: absolute;
 		right: -35px;
 		bottom: -140px;
@@ -184,7 +188,7 @@ body{ /*Desabilita scroll*/
 	}
 }
 
-#containerMuro2{
+#containerMuro2 {
 	position: absolute;
 	right: -35px;
 	bottom: -10;
@@ -192,80 +196,100 @@ body{ /*Desabilita scroll*/
 	width: 600px;
 }
 
-#containerRankingIndex{
+#containerRankingIndex {
 	z-index: 1;
 	position: fixed;
 	bottom: 20px;
 	right: 39px;
 }
 
-#tabelaVisitante{
+#tabelaVisitante {
 	height: 100%;
 }
 
-#tabelaVisitante, .tdTabela{
+#tabelaVisitante, .tdTabela {
 	border: 3px solid transparent;
-  width: 400px;
-  font-size: 12px;
-  color: #ffffff;
-  text-align: center;
+	width: 400px;
+	font-size: 12px;
+	color: #ffffff;
+	text-align: center;
 }
 
-.tdTabela{
+.tdTabela {
 	vertical-align: middle;
 }
 
+
 /*    ---------------------------------Tabela---------------------------------------   */
 
-#intPerso{ /*Bordas externas da tabela*/
+#intPerso {
+	/*Bordas externas da tabela*/
 	border: 1px solid #532700;
 	border-collapse: collapse;
 	width: 800px;
 	border-radius: 5px;
 	background-color: #BD7938;
-  }
-  .intTable, .intRow{ /*Bordas internas da tabela*/
+}
+
+.intTable, .intRow {
+	/*Bordas internas da tabela*/
 	border: 3px solid #532700;
 	border-collapse: collapse;
-  }
-  .intRow{
+}
+
+.intRow {
 	font-size: 30px;
-  }
-  .vAlign{
+}
+
+.vAlign {
 	vertical-align: text-top;
-  }
-  /*--------Images e Falas----------*/
-  .intImg{
+}
+
+
+/*--------Images e Falas----------*/
+
+.intImg {
 	height: 100%;
-  }
-  .intTdImg{
+}
+
+.intTdImg {
 	background-color: #BD7938;
 	vertical-align: bottom;
 	height: 313px;
 	width: 300px;
-  }
-  .intArrow{
+}
+
+.intArrow {
 	width: 100px;
-  }
-  .intTdArrow{
+}
+
+.intTdArrow {
 	background-color: #BD7938;
-  }
-  .intDialogue{ /*Falas do Personagem*/
+}
+
+.intDialogue {
+	/*Falas do Personagem*/
 	width: 100%;
-  }
-  .intAlerta{
+}
+
+.intAlerta {
 	border-bottom: 0;
-  }
-  .intRow{
+}
+
+.intRow {
 	background-color: #BD7938;
 	color: white;
-  }
-  .intIcn{
+}
+
+.intIcn {
 	width: 50px;
-  }
-  
-  /* ----Inputs------*/
-  .intButton, .intGroupButton, .intGroupCadButton{ /* Botões */
+}
+
+
+/* ----Inputs------*/
+
+.intButton, .intGroupButton, .intGroupCadButton {
+	/* Botões */
 	width: 100%;
 	height: 35px;
 	background-color: #BD7938;
@@ -276,61 +300,71 @@ body{ /*Desabilita scroll*/
 	display: inline-block;
 	cursor: pointer;
 	transition: 0.3s;
-  }
-  .intButton:hover, .intCadButton:hover, .intCadButton2:hover, .intCadButton3:hover, .intCadButton4:hover{
+}
+
+.intButton:hover, .intCadButton:hover, .intCadButton2:hover, .intCadButton3:hover, .intCadButton4:hover {
 	background-color: #8D4421;
 	transition: 0.3s;
-  }
-  .intTdButton{ /* Td do Botão */
+}
+
+.intTdButton {
+	/* Td do Botão */
 	height: 35px;
 	border: 3px solid #532700;
 	border-collapse: collapse;
-  }
-  .intInput{
+}
+
+.intInput {
 	width: 200px;
 	padding: 0;
-  }
-  .tdInput{
+}
+
+.tdInput {
 	width: 200px;
 	position: relative;
 	bottom: 3px;
-  }
-  /*-- TIRAR BORDA DE 1px--*/
-  .intTdButton, .intTdImg{
-	padding: 0;
-  }
-  
-  /*---------------------TABELA DE CADASTRO---------------------*/
-  .intCad{
+}
+
+
+/*---------------------TABELA DE CADASTRO---------------------*/
+
+.intCad {
 	padding-top: 20px;
-  }
-  .intCadRow{
+}
+
+.intCadRow {
 	color: white;
-  }
-  .intCadOptions{
+}
+
+.intCadOptions {
 	color: white;
 	font-size: 20px;
 	width: 40%;
 	text-align: right;
 	padding: 0;
-  }
-  .intCadOptions1{
+}
+
+.intCadOptions1 {
 	text-align: right;
 	position: relative;
-  }
-  .intCadOptions1, .intCadButton, .intCadButton2{
+}
+
+.intCadOptions1, .intCadButton, .intCadButton2 {
 	position: relative;
-	top:60px;
-  }
-  .intInput1{
+	top: 60px;
+}
+
+.intInput1 {
 	position: relative;
 	top: 57px;
 	font-size: 20px;
-  }
-  .intCadPadding{
+}
+
+.intCadPadding {
 	padding-top: 15px;
-  }
-  .intCadButton, .intCadButton2, .intCadButton3, .intCadButton4{
+}
+
+.intCadButton, .intCadButton2, .intCadButton3, .intCadButton4 {
 	position: relative;
 	left: 100px;
 	width: 120px;
@@ -342,24 +376,48 @@ body{ /*Desabilita scroll*/
 	display: inline-block;
 	cursor: pointer;
 	transition: 0.3s;
-  }
-  .intCadButton2, .intCadButton4{
+}
+
+.intCadButton2, .intCadButton4 {
 	left: 84px;
-  }
-  .primeiroCad{
+}
+
+.primeiroCad {
 	border-top: 3px solid black;
 	border-collapse: collapse;
-  }
-  .intButtonRedes{
+}
+
+.intButtonRedes {
 	width: 250px;
 	height: 100px;
 	border: 3px solid black;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: 0.3s;
-  }
-  .intButtonRedes:hover{
+}
+
+.intButtonRedes:hover {
 	-webkit-filter: invert(25%);
 	filter: invert(25%);
 	transition: 0.3s;
-  }
+}
+
+
+/*-- TIRAR BORDA DE 1px--*/
+
+.intTdButton, .intTdImg {
+	padding: 0;
+}
+
+
+/* ================ Background das janelas =======================*/
+
+#background {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	color: rgba(100, 100, 100, 0.8);
+	z-index: 3;
+}

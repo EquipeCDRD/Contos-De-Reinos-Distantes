@@ -34,8 +34,10 @@ public class DeletarUsuario extends HttpServlet {
         String motivo = request.getParameter("motivo");        
         Conexao conec = new Conexao();
         Connection conexao = conec.abrirConexao();
+        
         JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
         Email enviar = new Email();
+        
         Usuario usuario = jdbcUsuario.buscarPorValor(id, "id");
         boolean retorno = jdbcUsuario.deletar(id);
         conec.fecharConexao();
