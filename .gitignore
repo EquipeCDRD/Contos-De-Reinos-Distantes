@@ -1,10 +1,10 @@
 #ignora as pastas do eclipse
 
-/.metadata/
-/.vscode/
-/RemoteSystemsTempFiles/
-/Servers/	
-/.recommenders/
+.metadata/
+.vscode/
+RemoteSystemsTempFiles/
+Servers/	
+.recommenders/
 Servers/Tomcat v8.5 Server at localhost-config/web.xml
 Servers/Tomcat v8.5 Server at localhost-config/server.xml
 Servers/Tomcat v8.5 Server at localhost-config/context.xml
