@@ -4,7 +4,6 @@ package br.com.contos.classes;
 import java.util.Properties;
 
 /*==================Lib javax.mail==================*/
-import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -44,15 +43,13 @@ public class Email {
         try {
         	Message message = new MimeMessage(session);
         	message.setFrom(new InternetAddress("contosdereinosdistantes@gmail.com")); //Remetente
-        	Address[] toUser = InternetAddress //Destinatário(s)
-        			.parse(destinatario);  
-        	message.setRecipients(Message.RecipientType.TO, toUser);
+        	message.setRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));//Destinatário(s)
         	message.setSubject(assunto);//Assunto
         	message.setText(corpo);
         	
         	//Método para enviar a mensagem criada
         	Transport.send(message);
-        	System.out.println("Feito!!!");
+        	System.out.println("Enviada la mail!!!");
         	
         } catch (MessagingException e) {
         	return false;

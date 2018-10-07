@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +30,8 @@ public class AlterarUsuario extends HttpServlet {
     private void process(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException{
     	try {	
+    		boolean retorno;
+    		String texto = "";
     		Conexao conec = new Conexao();
     		Connection conexao = conec.abrirConexao();
     		JDBCUsuarioDAO jdbcUsuario = new JDBCUsuarioDAO(conexao);
@@ -37,32 +41,41 @@ public class AlterarUsuario extends HttpServlet {
     		if (request.getParameter("txtaltlogger").equals(usuariobd.getLogin())) {
     			String senhaAtualCript = Criptografia.criptografaSenha(request.getParameter("pwdaltsenhaantiga")); 
     			if (senhaAtualCript.equals(usuariobd.getSenha())) {
+    				String email = request.getParameter("txtaltemail");
+    				try {
+    					InternetAddress emailAddr = new InternetAddress(email);
+    					emailAddr.validate();
+    					System.out.println("O email inserido (" + email + ") é válido.");
+    				
     				Usuario usuario = new Usuario();
     	    		usuario.setLogin(request.getParameter("txtaltlogger"));
     	    		usuario.setSenha(request.getParameter("pwdaltsenhanova"));
     	    		usuario.setNome(request.getParameter("txtaltnome"));
     	    		usuario.setNascimento(request.getParameter("dtealtnascimento"));
-    	    		usuario.setEmail(request.getParameter("txtaltemail"));
+    	    		usuario.setEmail(email);
     	    		usuario.setId(request.getParameter("hdid"));
-    	    		boolean retorno = jdbcUsuario.atualizar(usuario);
+    	    		retorno = jdbcUsuario.atualizar(usuario);
     		    	conec.fecharConexao();
-    		    	
+    				} catch (AddressException e) {
+    					texto +=("O email inserido (" + email + ") não é válido.\n");
+        	    		retorno = false;
+    				}
     		    	if (retorno==true) {
-    		    		msg.put("msg", "Usuário editado com sucesso.");
+    	    			texto +=("Usuário editado com sucesso.");
     		    	} else {
-    		    		msg.put("msg", "Não foi possível editar o usuário.");
+    	    			texto +=("Não foi possível editar o usuário.");
     		    		msg.put("erro", "true");
     		    	}
 	    		} else {
-	    			msg.put("msg", "Senha não corresponde com o cadastro.");
+	    			texto +=("Senha não corresponde com o cadastro.");
 	    			msg.put("erro", "true");
 	    		}
     		} else {	
-	    		msg.put("msg", "Você não pode alterar seu usuário.");
+    			texto += ("Você não pode alterar seu usuário.");
 	    		msg.put("erro", "true");
     		}	
     		conec.fecharConexao();
-    		
+    		msg.put("msg", texto);
     		response.setContentType("application/json");
     	   	response.setCharacterEncoding("UTF-8");
     	   	response.getWriter().write(new Gson().toJson(msg));
