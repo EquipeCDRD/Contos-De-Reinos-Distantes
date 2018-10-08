@@ -1,0 +1,93 @@
+/*
+Author: Equipe CRD
+Creation date: 2018-10-08
+Descrição: Arquivo com código compartilhado por duas ou mais páginas
+*/
+
+/*===============================inicio e taberna===============================*/
+
+/*--------Images e Falas----------*/
+
+.intImg {
+	height: 100%;
+	vertical-align: bottom
+}
+
+.intTdImg {
+	background-color: #BD7938;
+	vertical-align: bottom;
+	height: 313px;
+	width: 300px;
+}
+
+.intArrow {
+	width: 100px;
+}
+
+.intTdArrow {
+	background-color: #BD7938;
+}
+
+.intDialogue {
+	/*Falas do Personagem*/
+	width: 100%;
+}
+
+.intAlerta {
+	border-bottom: 0;
+}
+
+.intRow {
+	background-color: #BD7938;
+	color: white;
+}
+
+.intIcn {
+	width: 50px;
+}
+
+
+/* ----Inputs------*/
+
+.intButton, .intGroupButton, .intGroupCadButton {
+	/* Botões */
+	width: 100%;
+	height: 35px;
+	background-color: #BD7938;
+	border: 1px solid #8D4421;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	display: inline-block;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.intButton:hover, .intCadButton:hover, .intCadButton2:hover, .intCadButton3:hover, .intCadButton4:hover {
+	background-color: #8D4421;
+	transition: 0.3s;
+}
+
+.intTdButton {
+	/* Td do Botão */
+	height: 35px;
+	border: 3px solid #532700;
+	border-collapse: collapse;
+}
+
+.intInput {
+	width: 200px;
+	padding: 0;
+}
+
+.tdInput {
+	width: 200px;
+	position: relative;
+	bottom: 3px;
+}
+
+/*-- TIRAR BORDA DE 1px--*/
+
+.intTdButton, .intTdImg {
+	padding: 0;
+}
