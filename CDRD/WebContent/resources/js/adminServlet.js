@@ -30,28 +30,12 @@ $(document).ready(function() {
         }
       },
       error: function(info) {
+        var msg = "Erro ao validar sua sessão"
+        alertaErro(msg,info);
         sair();
       }
     });
   });
-
-  sair = function() {
-    $.ajax({
-      type: "POST",
-      url: PATH + "Logout",
-      success: function(data) {
-        window.location.href = PATH + "index.html";
-      },
-      error: function(info) {
-        alert(
-          "Erro ao tentar encerrar sua sessão: " +
-            info.status +
-            " - " +
-            info.statusText
-        );
-      }
-    });
-  };
 
   /*------------------------Notificação------------------------------------*/
 
