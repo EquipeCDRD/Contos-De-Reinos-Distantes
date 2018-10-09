@@ -2,9 +2,9 @@ $(document).ready(function () {
   var usuarioLogado;
   var PATH = "../../";
 
-  // p = permissao
-  // q = quem
-  /*--------------------------------------Geral-----------------------------------------*/
+					// p = permissao (0, 1)
+					// q = quem (Adm, Jog)
+					/*--------------------------------------Geral-----------------------------------------*/
 
   // inicialização de funções AJAX
   // validar sessão
