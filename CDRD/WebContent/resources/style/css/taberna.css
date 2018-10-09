@@ -405,6 +405,7 @@ body {
 }
 
 #ranking, #avisos {
+	overflow-y: scroll;
 	display: none;
 	z-index: 4;
 	width: 1170px;
@@ -520,91 +521,9 @@ body {
 }
 
 .tabelaAvisos th, .tabelaAvisos td {
-	text-align: center;
-	border: 3px solid #532700;
-	width: 20%;
-	height: 30px;
-	margin-top: 1%;
-}
-
-/*--------Images e Falas----------*/
-.intImg {
-	height: 100%;
-	vertical-align: bottom;
-}
-
-.intTdImg {
-	background-color: #BD7938;
-	height: 313px;
-	width: 300px;
-}
-
-.intArrow {
-	width: 100px;
-}
-
-.intTdArrow {
-	background-color: #BD7938;
-}
-
-.intDialogue {
-	/*Falas do Personagem*/
-	width: 100%;
-}
-
-.intAlerta {
-	border-bottom: 0;
-}
-
-.intRow, .intRow {
-	background-color: #BD7938;
-	color: white;
-}
-
-.intIcn {
-	width: 50px;
-}
-
-/* ----Inputs------*/
-.intButton, .intGroupButton, .intGroupCadButton {
-	/* Botões */
-	width: 100%;
-	height: 35px;
-	background-color: #BD7938;
-	border: 1px solid #8D4421;
-	color: white;
-	font-size: 20px;
-	text-align: center;
-	display: inline-block;
-	cursor: pointer;
-	transition: 0.3s;
-}
-
-.intButton:hover, .intCadButton:hover, .intCadButton2:hover,
-	.intCadButton3:hover, .intCadButton4:hover {
-	background-color: #8D4421;
-	transition: 0.3s;
-}
-
-.intTdButton {
-	/* Td do Botão */
-	height: 35px;
-	border: 3px solid #532700;
-	border-collapse: collapse;
-}
-
-.intInput {
-	width: 200px;
-	padding: 0;
-}
-
-.tdInput {
-	width: 200px;
-	position: relative;
-	bottom: 3px;
-}
-
-/*-- TIRAR BORDA DE 1px--*/
-.intTdButton, .intTdImg {
-	padding: 0;
+  text-align: center;
+  border: 3px solid #532700;
+  width: 20%;
+  height: 30px;
+  margin-top: 1%;
 }

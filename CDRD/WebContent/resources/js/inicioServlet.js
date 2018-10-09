@@ -45,7 +45,7 @@ $(document).ready(function() {
   geraTabelaRanking = function(listaRanking) {
     var dados = "";
     if (listaRanking != undefined && listaRanking.length > 0) {
-      for (var i = 0; i < listaRanking.length; i++) {
+      for (var i = 0; i < 4; i++) {
         dados +=
           "<tr>" +
           "<td class='tdTabela'><span>" +

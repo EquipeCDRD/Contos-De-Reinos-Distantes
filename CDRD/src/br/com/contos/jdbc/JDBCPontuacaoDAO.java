@@ -175,14 +175,15 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
         		
         		//query que seleciona a maior pontuação   
         		String sqlQuery = "SELECT "+ 
-									"pontuacoes.id, "+ 
-									"usuarios.usuario, "+
-									"pontuacoes.data_criacao,"+ 
-									"pontuacoes.pontuacao "+ 
-								"FROM pontuacoes " + 	
-								"JOIN usuarios ON pontuacoes.usuarios_id = usuarios.id " + 
-								"GROUP BY pontuacoes.usuarios_id "+ 
-								"ORDER BY pontuacoes.pontuacao DESC";
+                        "pontuacoes.id, "+ 
+                        "usuarios.usuario, "+
+                        "pontuacoes.data_criacao,"+ 
+                        "pontuacoes.pontuacao "+ 
+                    "FROM pontuacoes " +
+                    "JOIN usuarios ON pontuacoes.usuarios_id = usuarios.id " + 
+                    "GROUP BY pontuacoes.usuarios_id "+ 
+                    "HAVING COUNT(pontuacoes.usuarios_id) >= 0 " +
+                    "ORDER BY pontuacoes.pontuacao DESC";
         		
         		System.out.println(sqlQuery);
         		Statement statement = conexao.createStatement();

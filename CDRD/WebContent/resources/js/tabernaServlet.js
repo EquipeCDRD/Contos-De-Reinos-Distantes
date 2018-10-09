@@ -31,17 +31,7 @@ $(document).ready(function() {
           usuarioLogado.nome = usuario.nome;
           usuarioLogado.nascimento = usuario.nascimento;
 
-          buscaUsrParaEditar(usuario.id);
-          // chamada da função para carregar
-          // os scores pessoais do jogador
-          // Ranking pessoal sem colocação no
-          // ranking global, e o mesmo quabra
-          // se não tiver pontuações
-          carregaPontucaoPessoal();
-
-          // chamada da função de carregamento
-          // das tabelas
-
+          //chamada da função de carregamento das tabelas
           carregaTabela(1);
           carregaTabela(2);
           carregaTabela(3);
@@ -50,6 +40,8 @@ $(document).ready(function() {
         }
       },
       error: function(info) {
+        var msg = "Erro ao tentar encerrar sua sessão: ";
+        alertaErro(msg, info);
         sair();
       }
     });
@@ -159,7 +151,8 @@ $(document).ready(function() {
           "<th class='intRowRanking tituloRanking'>PONTUAÇÃO</th>" +
           "</tr>";
         break;
-      // Quadro menor
+
+      //Quadro menor
       case 2:
         html =
           "<table id='tabela'> <!--Tabela de Ranking-->" +
@@ -192,50 +185,59 @@ $(document).ready(function() {
   // taverna
 
   carregaTabela = function(opcao) {
+    //variáveis e tomada de decisão quanto ao tipo de pesquisa
     var html = mudahtml(opcao);
     var dados;
     if (opcao == 3) {
-      dados = "usuarioid=" + usuarioLogado.id + "&identificador=pessoal";
+      //chamada da função para carregar os scores pessoais do jogador
+      //Ranking pessoal sem colocação no ranking global, e o mesmo quabra se não tiver pontuações
+      carregaPontucaoPessoal();
     } else {
       dados = "usuarioid=null&identificador=ranking";
-    }
-    $.ajax({
-      type: "POST",
-      url: PATH + "BuscarPontuacao",
-      data: dados,
-      success: function(dados) {
-        html += geraTabela(dados, opcao);
-        switch (opcao) {
-          case 1:
-            $("#ranking").html(html);
-            break;
-          case 2:
-            $("#quadroRanking").html(html);
-            break;
-          case 3:
-            $("#rankingPessoal").html(html);
-            break;
+      //Requisição dos dados via ajax
+      $.ajax({
+        type: "POST",
+        url: PATH + "BuscarPontuacao",
+        data: dados,
+        success: function(dados) {
+         
+          console.log(dados);
+          html += geraTabela(dados, opcao);
+        },
+        error: function(info) {
+          html +=
+            "<tr>" +
+            "<td class='tdTabela' colspan='3'> Erro ao carregar o ranking: " +
+            info.status +
+            " - " +
+            info.statusText +
+            "</td>" +
+            "</tr>";
         }
-      },
-      error: function(info) {
-        html +=
-          "<tr>" +
-          "<td class='tdTabela' colspan='3'> Erro ao carregar o ranking: " +
-          info.status +
-          " - " +
-          info.statusText +
-          "</td>" +
-          "</tr>";
-      }
-    });
+      });
+    }
+
+    console.log(html);
+    //inserção dos dados a partir da opcao escolhida
+    switch (opcao) {
+      case 1:
+        $("#ranking").html(html);
+        break;
+      case 2:
+        $("#quadroRanking").html(html);
+        break;
+      case 3:
+        $("#rankingPessoal").html(html);
+        break;
+    }
   };
 
   // realiza a construção da tabela mediante aos dados
   // recebidos
   geraTabela = function(listaRanking, opcao) {
+    console.log("listaRanking: "+listaRanking);
     var dados = "";
     if (listaRanking != undefined && listaRanking.length > 0) {
-      console.log(listaRanking);
       switch (opcao) {
         case 1:
           for (var i = 0; i < listaRanking.length; i++) {
@@ -251,6 +253,7 @@ $(document).ready(function() {
               listaRanking[i].score +
               "</td>" +
               "</tr>";
+              console.log("Dados geraTabela: "+dados);
           }
           dados +=
             "<tr>" +
@@ -342,8 +345,7 @@ $(document).ready(function() {
       url: PATH + "BuscarPontuacao",
       data: "usuarioid=" + usuarioLogado.id + "&identificador=pessoal",
       success: function(dados) {
-        console.log("Dados do Banco: " + dados);
-
+       
         if (dados == undefined || dados[0] == undefined) {
           usuarioLogado.pontuacoes == undefined;
         } else {
@@ -355,11 +357,9 @@ $(document).ready(function() {
             arrayPontuacoes[i].dataCriacao = dados[i].dataCriacao;
             arrayPontuacoes[i].score = dados[i].score;
 
-            console.log(arrayPontuacoes);
           }
           usuarioLogado.posicaoRanking = dados[0].posicaoRanking;
           usuarioLogado.pontuacoes = arrayPontuacoes;
-          console.log(dados.posicaoRanking);
         }
       }
     });
@@ -399,8 +399,9 @@ $(document).ready(function() {
         alert(msg);
       },
 
-      error: function(msg) {
-        alert(msg);
+      error: function(info) {
+        var msg = "Erro ao cadastrar pontuação: ";
+        alertaErro(msg), info;
       }
     });
   };
@@ -449,12 +450,8 @@ $(document).ready(function() {
         $("#avisos").html(html);
       },
       error: function(info) {
-        alert(
-          "Erro ao carregar as tabelas: " +
-            info.status +
-            " - " +
-            info.statusText
-        );
+        var msg = "Erro ao carregar as tabelas: ";
+        alertaErro(msg, info);
       }
     });
   });
