@@ -4,6 +4,7 @@ package br.com.contos.classes;
 import java.util.Properties;
 
 /*==================Lib javax.mail==================*/
+import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -19,7 +20,7 @@ public class Email {
 		//Ctrl+c & Ctrl+v do exemplo do Marlow (^-^)
 		
 		Properties props = new Properties();
-        /** Par√¢metros de conex√£o com servidor Gmail */
+        /** Par‚metros de conex„o com servidor Gmail */
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "587");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -33,23 +34,25 @@ public class Email {
         	}
         });
         
-        //ativa√ß√£o do debug da sess√£o
+        //ativaÁ„o do debug da sess„o
         session.setDebug(true);
         
         /*
-         *	Bloco de c√≥digo onde ser√° enviado o email, utilizando os par√¢metros recebidos,
+         *	Bloco de cÛdigo onde ser· enviado o email, utilizando os par‚metros recebidos,
          *	e retornando true se deu tudo certin ou false se deu merda em algum ponto
          */
         try {
         	Message message = new MimeMessage(session);
         	message.setFrom(new InternetAddress("contosdereinosdistantes@gmail.com")); //Remetente
-        	message.setRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));//Destinat√°rio(s)
+        	Address[] toUser = InternetAddress //Destinat·rio(s)
+        			.parse(destinatario);  
+        	message.setRecipients(Message.RecipientType.TO, toUser);
         	message.setSubject(assunto);//Assunto
         	message.setText(corpo);
         	
-        	//M√©todo para enviar a mensagem criada
+        	//MÈtodo para enviar a mensagem criada
         	Transport.send(message);
-        	System.out.println("Enviada la mail!!!");
+        	System.out.println("Feito!!!");
         	
         } catch (MessagingException e) {
         	return false;
