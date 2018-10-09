@@ -182,7 +182,7 @@ public class JDBCPontuacaoDAO implements PontuacaoDAO {
                     "FROM pontuacoes " +
                     "JOIN usuarios ON pontuacoes.usuarios_id = usuarios.id " + 
                     "GROUP BY pontuacoes.usuarios_id "+ 
-                    "HAVING COUNT(pontuacoes.usuarios_id) >= 0 " +
+                    "HAVING COUNT(*) " +
                     "ORDER BY pontuacoes.pontuacao DESC";
         		
         		System.out.println(sqlQuery);
