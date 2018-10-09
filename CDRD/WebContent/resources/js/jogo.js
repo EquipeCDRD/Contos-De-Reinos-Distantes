@@ -3,128 +3,147 @@
 /*-------------------------------------------------------------*/
 
 class sceneMenuPrincipal extends Phaser.Scene {
-  constructor() {
-    super({ key: "sceneMenuPrincipal" });
-  }
 
-  init() {}
+    constructor ()
+    {
+        super({ key: 'sceneMenuPrincipal' });
+    }
 
-  preload() {
-    this.load.image("bg", "../../resources/style/images/jogo/bgmenu.png");
-  }
+    init(){
 
-  create() {
-    this.bg = this.add.image(game.width, game.height, "bg").setOrigin(0, 0);
+    }
 
-    this.input.manager.enabled = true;
+    preload ()
+    {
+        this.load.image('bg', '../../resources/style/images/jogo/bgmenu.png');
+    }
 
-    const ButtonB = this.add.text(280, 270, "Jogar", {
-      fontSize: "50px",
-      fill: "#3333ff",
-      fontFamily: "pixel font"
-    });
-    ButtonB.setInteractive();
+    create ()
+    {
+        this.bg = this.add.image(game.width, game.height, 'bg').setOrigin(0, 0);
 
-    ButtonB.on(
-      "pointerdown",
-      function() {
-        console.log("From SceneC to SceneA");
-        this.scene.start("sceneMain");
-      },
-      this
-    );
+        this.input.manager.enabled = true;
 
-    const ButtonC = this.add.text(620, 270, "Ranking", {
-      fontSize: "50px",
-      fill: "#3333ff",
-      fontFamily: "pixel font"
-    });
-    ButtonC.setInteractive();
+        const ButtonB = this.add.text(110, 270, 'Jogar', {fontSize:'50px', fill: '#000000', fontFamily: 'pixel font'});
+        ButtonB.setInteractive();
 
-    ButtonC.on(
-      "pointerdown",
-      function() {
-        this.scene.start("sceneMain");
-      },
-      this
-    );
-  }
+        ButtonB.on('pointerdown', function(){
+            console.log('From SceneC to SceneA');
+            this.scene.start('sceneMain')
+        },this);
 
-  update() {}
+        const ButtonC = this.add.text(730, 270, 'Ranking', {fontSize:'50px', fill: '#000000', fontFamily: 'pixel font' });
+        ButtonC.setInteractive();
+
+        ButtonC.on('pointerdown', function(){
+            this.scene.start('sceneMain')
+        },this);
+    }
+
+    update ()
+    {
+        
+    }
+
 }
 
 class SceneMain extends Phaser.Scene {
-  constructor() {
-    super({ key: "sceneMain" });
-  }
 
-  init() {}
-
-  preload() {
-    var barraCarregamento = this.add.graphics();
-
-    this.load.image("logo", "../../resources/style/images/jogo/test.jpg");
-    for (var i = 0; i < 500; i++) {
-      this.load.image("logo" + i, "../../resources/style/images/jogo/test.jpg");
+    constructor ()
+    {
+        super({ key: 'sceneMain' });
     }
 
-    this.load.on("progress", function(value) {
-      console.log(value);
-      barraCarregamento.clear();
-      barraCarregamento.fillStyle(0x37ac26, 1);
-      barraCarregamento.fillRect(320, 280, 300 * value, 30);
-      percentText.setText(parseInt(value * 100) + "%");
-    });
+    init(){
 
-    this.load.on("fileprogress", function(file) {
-      console.log(file.src);
-    });
+    }
 
-    this.load.on("complete", function() {
-      console.log("complete");
-      barraCarregamento.destroy();
+    preload ()
+    {
+        var barraCarregamento = this.add.graphics();
 
-      textoCarregando.destroy();
-      percentText.destroy();
-    });
+        this.load.image('logo', '../../resources/style/images/jogo/test.jpg');
+        for (var i = 0; i < 100; i++) {
+            this.load.image('logo'+i, '../../resources/style/images/jogo/test.jpg');
+        }
 
-    var width = this.cameras.main.width;
-    var height = this.cameras.main.height;
-    var textoCarregando = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: "Carregando...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff"
-      }
-    });
-    textoCarregando.setOrigin(0.5, 0.5);
+        this.load.on('progress', function (value) {
+            console.log(value);
+            barraCarregamento.clear();
+            barraCarregamento.fillStyle(0x37ac26, 1);
+            barraCarregamento.fillRect(320, 280, 300 * value, 30);
+            percentText.setText(parseInt(value * 100) + '%');
+        });
+                    
+        this.load.on('fileprogress', function (file) {
+            console.log(file.src);
+        });
+         
+        this.load.on('complete', function () {
+            console.log('complete');
+            barraCarregamento.destroy();
 
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff"
-      }
-    });
-    percentText.setOrigin(0.5, 0.5);
-  }
+            textoCarregando.destroy();
+            percentText.destroy();
+        });
 
-  create() {
-    var logo = this.add.image(400, 300, "logo");
-  }
+        var width = this.cameras.main.width;
+        var height = this.cameras.main.height;
+        var textoCarregando = this.make.text({
+            x: width / 2,
+            y: height / 2 - 50,
+            text: 'Carregando...',
+            style: {
+                font: '20px monospace',
+                fill: '#ffffff'
+            }
+        });
+        textoCarregando.setOrigin(0.5, 0.5);
 
-  update() {}
+        var percentText = this.make.text({
+            x: width / 2,
+            y: height / 2 - 5,
+            text: '0%',
+            style: {
+                font: '18px monospace',
+                fill: '#ffffff'
+            }
+        });
+        percentText.setOrigin(0.5, 0.5);
+
+        /*-------------------Tiles-------------------------
+        this.load.image('tiles', '../../resources/style/assets/praia.png');
+        this.load.tilemapTiledJSON('praia1', '../../resources/style/assets/praia.json');
+        --------------------------------------------------*/
+    }
+
+    create ()
+    {
+        var logo = this.add.image(400, 300, 'logo');
+
+        
+        /*-------------------Tiles-------------------------
+        this.map = this.add.tilemap('praia1');
+
+        var tiles = this.map.addTilesetImage('praia', 'tiles');
+
+        this.backgroundLayer = this.map.createLayer('backgroundLayer', tileset);
+        --------------------------------------------------*/
+    }
+    
+    update ()
+    {
+        
+    }
+
 }
 
 var config = {
-  type: Phaser.AUTO,
-  width: 960,
-  height: 540,
-  scene: [sceneMenuPrincipal, SceneMain]
+    type: Phaser.AUTO,
+    width: 960,
+    height: 540,
+    pixelArt: true,
+    scene: [ sceneMenuPrincipal, SceneMain ]
 };
 
 var game = new Phaser.Game(config);
