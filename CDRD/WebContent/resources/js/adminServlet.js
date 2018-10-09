@@ -4,8 +4,8 @@ $(document)
 					var usuarioLogado;
 					var PATH = "../../";
 
-					// p = permissao
-					// q = quem
+					// p = permissao (0, 1)
+					// q = quem (Adm, Jog)
 					/*--------------------------------------Geral-----------------------------------------*/
 
 					// inicialização de funções AJAX
@@ -392,22 +392,3 @@ geraTabelaRanking = function(listaRanking) {
 	dados += "</table>";
 	return dados;
 };
-
-// coisa nova
-
-// usa a servlet BuscaUsuariosParaLista para fazer bem isso buscaUsr =
-// function(){
-/*
- * buscaUsr = function(){ var valorBusca = $("input[name=txtbuscausr]").val();
- * var html; $.ajax({ type: "POST", url: PATH + "BuscarUsuariosParaLista", data:
- * "permissao=1&valorBusca="+valorBusca, success: function(dados){ html =
- * listaUsr(dados); $("#listaUsr").html(html); }, error: function(info){
- * alert("Erro ao consultar os contatos: "+ info.status + " - " +
- * info.statusText); } }); };
- * 
- * //lista usuarios de uma lista listaUsr = function(lista) { var dados=""; if
- * (lista==""){ dados = "<h2>Nada por aqui.</h2>"; }else{ dados += "<ul class='listaContas' id='listaUsuarios'>";
- * if (lista != undefined && lista.length > 0){ for (var i=0; i<lista.length;
- * i++){ dados +="<li name='usr"+lista[i].login+"' value='"+lista[i].id+"'>"+lista[i].login+"</li>"; } }
- * dados+="</ul>"; } return dados; };
- */
