@@ -1,3 +1,11 @@
+/*
+Author: Equipe CRD
+Creation date: 23/06/2018
+Observação: Algumas (muitas) regras das regras abaixo estão se referenciando à "index", 
+isso porque antes esse arquivo e o arquivo de js original eram index.algumacoisa,
+porém seus nomes foram trocados para inicio.algumacoisa, para não dar confusão. 
+*/
+
 @font-face {
 	font-family: "pixel font";
 	src: url("../pixel_font7.ttf");

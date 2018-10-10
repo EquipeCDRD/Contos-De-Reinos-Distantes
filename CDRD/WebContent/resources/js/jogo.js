@@ -2,6 +2,8 @@
 /*           Contos de Reinos Distantes                        */
 /*-------------------------------------------------------------*/
 
+
+
 class sceneMenuPrincipal extends Phaser.Scene {
 
     constructor ()
@@ -19,7 +21,7 @@ class sceneMenuPrincipal extends Phaser.Scene {
     }
 
     create ()
-    {
+    {        
         this.bg = this.add.image(game.width, game.height, 'bg').setOrigin(0, 0);
 
         this.input.manager.enabled = true;
@@ -120,7 +122,7 @@ class SceneMain extends Phaser.Scene {
     create ()
     {
         var logo = this.add.image(400, 300, 'logo');
-
+        
         
         /*-------------------Tiles-------------------------
         this.map = this.add.tilemap('praia1');
@@ -142,6 +144,7 @@ var config = {
     type: Phaser.AUTO,
     width: 960,
     height: 540,
+	parent: 'jogo',
     pixelArt: true,
     scene: [ sceneMenuPrincipal, SceneMain ]
 };

@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <title>Contos de Reinos Distantes - Jogo</title>
-    <meta name="author" content="Equipe CRD">
-    <meta name="description" content="Página do jogo Contos de Reinos Distantes">
-    <!--Scripts e CSS-->
-    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
-    <script src="../../resources/js/jogo.js"></script>
-    <style>
-    @font-face{
-        font-family: pixel font;
-        src: url("../../resources/style/pixel_font7.ttf");
-    }
-    .carregaFonte {
-         position: absolute;
-         left: -1000px;
-         visibility: hidden;
-      }
-    </style>
+<meta charset="utf-8" />
+<title>Contos de Reinos Distantes - Jogo</title>
+<meta name="author" content="Equipe CRD">
+<meta name="description"
+	content="Página do jogo Contos de Reinos Distantes">
+<!--Scripts e CSS-->
+<script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+<script src="../../resources/js/jogo.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../../resources/style/css/jogo.css" />
+
+<style>
+@font-face {
+	font-family: pixel font;
+	src: url("../../resources/style/pixel_font7.ttf");
+}
+
+.carregaFonte {
+	position: absolute;
+	left: -1000px;
+	visibility: hidden;
+}
+</style>
 </head>
 <body>
-    <div class='carregaFonte' style='font-family: pixel font;'>-</div><!--Carrega um elemento escondido pq phaser é horrível-->
+	<div class='carregaFonte' style='font-family: pixel font;'>-</div>
+	<!--Carrega um elemento escondido pq phaser é horrível-->
+	<div id='jogo'></div>
 </body>
 </html>
