@@ -92,15 +92,24 @@ body {
 
 
 /*=== geral ===*/
-
-#contentIndex, #contentIndex {
+#contentIndex {
 	height: 100%;
 	width: 100%;
-	background-attachment: fixed;
-	background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVUoYhTXJQCKy_GvkhvW9v_FMkfwCulUUWpxJcRo630SeXeLF7');
 }
 
 
+.background{
+    color: #999999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-attachment: fixed;
+	background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVUoYhTXJQCKy_GvkhvW9v_FMkfwCulUUWpxJcRo630SeXeLF7');
+    
+	height: 100%;
+	width: 100%;
+    z-index: -100;
+}
 /* === estilização de paredTaverna e filhos ===*/
 
 #paredeTaverna {
