@@ -13,5 +13,5 @@ Coming Soon!
 # Manuais
 Coming Soon!
 
-#Duvidas?
+# Duvidas?
 Em caso de qualquer dúvida, envie um email para contosdereinosdistantes@gmail.com e reponderemos a você o mais brevemente possível
