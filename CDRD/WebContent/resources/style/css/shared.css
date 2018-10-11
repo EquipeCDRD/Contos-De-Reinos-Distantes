@@ -4,7 +4,9 @@ Creation date: 2018-10-08
 Descrição: Arquivo com código compartilhado por duas ou mais páginas
 */
 
+
 /*===============================inicio e taberna===============================*/
+
 
 /*--------Images e Falas----------*/
 
@@ -86,8 +88,14 @@ Descrição: Arquivo com código compartilhado por duas ou mais páginas
 	bottom: 3px;
 }
 
+
 /*-- TIRAR BORDA DE 1px--*/
 
 .intTdButton, .intTdImg {
 	padding: 0;
-}   
+}
+
+.final {
+	position: absolute;
+	bottom: 0;
+}
