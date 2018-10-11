@@ -15,13 +15,13 @@ $(document)
 
 					// varável glbal que salva informações sobre o jogador
 					var usuarioLogado;
-					
+					var ranking;
+
 					/*--------------------------------------Geral-----------------------------------------*/
 
 					// validar sessão
 					$(function() {
 
-						var pontuacoes = carregaTabela();
 						$
 								.ajax({
 									type : "POST",
@@ -29,7 +29,9 @@ $(document)
 									data : "p=1",
 									success : function(usuario) {
 										if (usuario.login != null) {
+
 											usuarioLogado = new Object();
+											ranking = new Object();
 											usuarioLogado.id = usuario.id;
 											usuarioLogado.login = usuario.login;
 											usuarioLogado.email = usuario.email;
@@ -38,15 +40,25 @@ $(document)
 											buscaUsrParaEditar(usuarioLogado.id);
 											// chamada da função de carregamento
 											// das tabelas
-											$.when(
-													)
-													.then(function() {
-														carregaPontuacaoPessoal();
-														
-														console.log(pontuacoes);
-														$("#ranking").html(mudahtml(1));
-														$("#quadroRanking").html(mudahtml(2)+geraTabela(pontuacoes, 2));
-													});
+											$
+													.when()
+													.then(
+															function() {
+																carregaPontuacaoPessoal();
+
+																console
+																		.log(ranking.pontuacoes);
+																$("#ranking")
+																		.html(
+																				mudahtml(1));
+																$(
+																		"#quadroRanking")
+																		.html(
+																				mudahtml(2)
+																						+ geraTabela(
+																								ranking.pontuacoes,
+																								2));
+															});
 
 										} else {
 											sair();
@@ -62,9 +74,6 @@ $(document)
 
 					/*--------------------------------------Tabelas de ranking-----------------------------------------*/
 
-
-					
-					
 					// seleciona qual tipo de tabela deverá ser gerada (a
 					// taberna possui 3 tipos)
 					function mudahtml(opcao) {
@@ -125,9 +134,8 @@ $(document)
 									url : PATH + "BuscarPontuacao",
 									data : "usuarioid=null&&identificador=ranking",
 									success : function(dados) {
-										
 										console.log(dados);
-										return dados;
+										ranking.pontuacoes = dados;
 									},
 									error : function(info) {
 										alert("Erro ao carregar o ranking: "
@@ -140,7 +148,6 @@ $(document)
 						// inserção dos dados a partir da opcao escolhida
 
 					};
-
 
 					// Carrega as pontuções pessoais do serumaniho
 					function carregaPontuacaoPessoal() {
@@ -235,13 +242,12 @@ $(document)
 										+ "<tr>"
 										+ "<td><img src='../../resources/style/images/estatico/x.png' alt='img' class='sairBtn fechar' /></td>"
 										+ "</tr>";
-								
+
 								break;
 							}
 							return dados;
 						}
 					};
-
 
 					/*--------------------------------------InseriPontuacao-----------------------------------------*/
 
