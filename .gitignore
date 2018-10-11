@@ -3,7 +3,7 @@
 .metadata/
 .vscode/
 RemoteSystemsTempFiles/
-Servers/	
+Servers/*	
 .recommenders/
 Servers/Tomcat v8.5 Server at localhost-config/web.xml
 Servers/Tomcat v8.5 Server at localhost-config/server.xml
@@ -12,5 +12,13 @@ Servers/Tomcat v8.5 Server at localhost-config/catalina.policy
 Servers/Tomcat v8.5 Server at localhost-config/catalina.properties
 Servers/Tomcat v8.5 Server at localhost-config/tomcat-users.xml
 *.class
+Servers/Tomcat v7.0 Server at localhost-config/catalina.properties
+Servers/Tomcat v7.0 Server at localhost-config/server.xml
+CDRD/build/classes/br/com/contos/jdbc/JDBCPontuacaoDAO.class
+Servers/Tomcat v7.0 Server at localhost-config/catalina.policy
+Servers/Tomcat v7.0 Server at localhost-config/catalina.properties
+Servers/Tomcat v7.0 Server at localhost-config/context.xml
+Servers/Tomcat v7.0 Server at localhost-config/tomcat-users.xml
+Servers/Tomcat v7.0 Server at localhost-config/web.xml
 *.class
 Contos-De-Reinos-Distantes-correcoesduplicacaoes.zip
