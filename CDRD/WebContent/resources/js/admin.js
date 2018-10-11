@@ -12,7 +12,7 @@ $(function() {});
 
 //-----------------------------Gerenciar Contas-----------------
 
-$(function () {
+$(function() {
   $("#listaAdm").on("click", "li", function() {
     //Função para passar o nome da lista de usuários para o campo de deletar usuário.
     $("input[name=txtAdm]").val($(this).text());
@@ -20,7 +20,7 @@ $(function () {
   });
 });
 
-$(function () {
+$(function() {
   $("#listaJog").on("click", "li", function() {
     //Função para passar o nome da lista de usuários para o campo de deletar usuário.
     $("input[name=txtJog]").val($(this).text());

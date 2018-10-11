@@ -49,8 +49,10 @@ function abrirModal() {
   //Background e bloqueio de ações do visitante senão as da janela
   $("#paredeTaverna").css("filter", "brightness(50%)");
   $("#muroTaverna").css("filter", "brightness(50%)");
+  $(".background").css("filter", "brightness(50%)");
   $("#paredeTaverna").css("pointer-events", "none");
   $("#muroTaverna").css("pointer-events", "none");
+  $(".background").css("pointer-events", "none");
 
   carregaModais();
   $("#intPerso").show();
@@ -75,8 +77,10 @@ function carregaModais() {
     //Retira o background e reativa os eventos da página
     $("#paredeTaverna").css("filter", "brightness(100%)");
     $("#muroTaverna").css("filter", "brightness(100%)");
+    $(".background").css("filter", "brightness(100%)");
     $("#paredeTaverna").css("pointer-events", "auto");
-    $("#paredeTaverna").css("pointer-events", "auto");
+    $("#muroTaverna").css("pointer-events", "auto");
+    $(".background").css("pointer-events", "auto");
   });
 
   /* Login */
