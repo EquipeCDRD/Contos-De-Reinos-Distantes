@@ -5,7 +5,6 @@ Observação: Algumas (muitas) regras das regras abaixo estão se referenciando 
 isso porque antes esse arquivo e o arquivo de js original eram index.algumacoisa,
 porém seus nomes foram trocados para inicio.algumacoisa, para não dar confusão. 
 */
-
 @font-face {
 	font-family: "pixel font";
 	src: url("../pixel_font7.ttf");
@@ -24,9 +23,7 @@ body {
 	overflow: hidden;
 }
 
-
 /*-----------------Remoção da margem da body-----------------*/
-
 #bodyTaberna {
 	margin: 0;
 	position: relative;
@@ -37,16 +34,12 @@ body {
 	bottom: 378px;
 }
 
-
 /*-----------------Taberna-----------------*/
-
 #taberna {
 	height: 100%;
 }
 
-
 /*-----------------Parede Superior-----------------*/
-
 #paredeSuperior {
 	border: 3px solid black;
 	border-left: 0;
@@ -56,9 +49,7 @@ body {
 	background: url("../images/estatico/paredeTaverna.png");
 }
 
-
 /*Quarto*/
-
 #divQuarto {
 	height: 130px;
 	width: 85.438px;
@@ -74,9 +65,7 @@ body {
 	transition: 0.2s;
 }
 
-
 /*Ranking*/
-
 #quadroRanking {
 	display: inline-block;
 	height: 91px;
@@ -128,9 +117,7 @@ body {
 	text-align: center;
 }
 
-
 /*Avisos*/
-
 #quadroAvisos {
 	display: inline-block;
 	width: 125px;
@@ -146,9 +133,7 @@ body {
 	width: 100%;
 }
 
-
 /*Logo*/
-
 #divLogo {
 	display: inline-block;
 	height: 100px;
@@ -163,9 +148,7 @@ body {
 	width: 100%;
 }
 
-
 /*Quarto Taberneiro*/
-
 #divQuartoT {
 	height: 130px;
 	width: 85.438px;
@@ -179,9 +162,7 @@ body {
 	padding: 5px 0;
 }
 
-
 /*-----------------Piso da Taberna-----------------*/
-
 #pisoTaberna {
 	height: 481px;
 	background: url("../images/estatico/piso.png");
@@ -196,8 +177,7 @@ body {
 
 #imgTaverneiro {
 	height: 170px;
-	position: relative;
-	;
+	position: relative;;
 	left: 800px;
 	bottom: 105px;
 }
@@ -220,16 +200,13 @@ body {
 	top: 100px;
 }
 
-
 /*Modais*/
-
-#containerModaisTaverneiro, #containerModaisBardo, #containerModaisAlterar, #ranking, #avisos, #rankingPessoal {
+#containerModaisTaverneiro, #containerModaisBardo,
+	#containerModaisAlterar, #ranking, #avisos, #rankingPessoal {
 	display: none;
 }
 
-
 /*-----------------Parede Inferior-----------------*/
-
 #paredeInferior {
 	border: 3px solid black;
 	border-left: 0;
@@ -242,9 +219,7 @@ body {
 	z-index: 0;
 }
 
-
 /*Porta Saída*/
-
 #divSair {
 	height: 130px;
 	width: 85.438px;
@@ -261,22 +236,18 @@ body {
 	transition: 0.2s;
 }
 
-
 /*-----------------Piso Externo-----------------*/
-
 #pisoExterno {
 	height: 18px;
 }
 
-
 /*-----------------Quartos-----------------*/
-
 #paredeQuartos {
 	width: 100%;
 	height: 130px;
 	display: inline-block;
 	position: relative;
-	top: 3.5px;
+	bottom: -7.5px;
 }
 
 #paredeQuarto {
@@ -295,7 +266,7 @@ body {
 	border: 3px solid black;
 	border-bottom: 0;
 	display: inline-block;
-	position: fixed;
+	position: absolute;
 	filter: brightness(50%);
 	background: url("../images/estatico/paredeQuarto.png");
 	margin-left: 18px;
@@ -326,7 +297,8 @@ body {
 	width: 536px;
 	border-left: 3px solid black;
 	border-bottom: 3px solid black;
-	position: fixed;
+	border-right: 3px solid black;
+	position: absolute;
 	display: inline-flex;
 	background: url("../images/estatico/piso.png");
 	margin-left: 18px;
@@ -379,9 +351,7 @@ body {
 	bottom: 50px;
 }
 
-
 /*Alterar Dados*/
-
 #perfil {
 	height: 200px;
 	position: relative;
@@ -405,9 +375,7 @@ body {
 	width: 250px;
 }
 
-
 /*    -----Tabela-----   */
-
 #intTaverneiro, #intBardo, #ranking, #avisos, #rankingPessoal {
 	/*Bordas externas da tabela*/
 	border: 1px solid #532700;
@@ -440,8 +408,9 @@ body {
 	z-index: 4;
 	width: 800px;
 	bottom: 550px;
-	left: 280px;
 	position: relative;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 #ranking, #avisos {
@@ -450,8 +419,9 @@ body {
 	z-index: 4;
 	width: 1170px;
 	bottom: 600px;
-	left: 100px;
 	position: relative;
+	margin-right: auto;
+	margin-left: auto;
 	text-align: center;
 	height: 450px;
 }
@@ -461,10 +431,12 @@ body {
 	z-index: 4;
 	width: 1170px;
 	bottom: 900px;
-	left: 100px;
 	position: relative;
+	margin-right: auto;
+	margin-left: auto;
 	text-align: center;
 	height: 450px;
+	text-align: center;
 }
 
 #alterarDados {
@@ -472,8 +444,9 @@ body {
 	z-index: 4;
 	width: 800px;
 	bottom: 920px;
-	left: 300px;
 	position: relative;
+	margin-right: auto;
+	margin-left: auto;
 	height: 450px;
 	border: 3px solid #532700;
 	border-collapse: collapse;
