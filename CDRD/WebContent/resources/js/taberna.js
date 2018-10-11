@@ -222,9 +222,6 @@ function abrirQuartos() {
   $("#paredeSuperior").css("pointer-events", "none");
   $("#paredeSuperior").css("filter", "brightness(50%)");
   $("#divisoria").css("filter", "brightness(50%)");
-  var b= document.createElement('p');
-  b.innerHTML = "voltar"; 
-  $("#portaQuarto").append(b);
   $("#portaQuarto").css("filter", "brightness(150%)");
   $("#portaQuarto").css("pointer-events", "auto");
   $("#quarto").css("filter", "brightness(100%)");

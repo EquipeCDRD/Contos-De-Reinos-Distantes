@@ -80,6 +80,7 @@ body {
 }
 
 #tabela {
+	margin-top:-2px;
 	height: 100%;
 	width: 360px;
 	font-size: 12px;
