@@ -15,7 +15,8 @@ $(document)
 
 					// varável glbal que salva informações sobre o jogador
 					var usuarioLogado;
-					var ranking;
+
+					var ranking = new Object;
 
 					/*--------------------------------------Geral-----------------------------------------*/
 
@@ -31,34 +32,81 @@ $(document)
 										if (usuario.login != null) {
 
 											usuarioLogado = new Object();
-											ranking = new Object();
 											usuarioLogado.id = usuario.id;
 											usuarioLogado.login = usuario.login;
 											usuarioLogado.email = usuario.email;
 											usuarioLogado.nome = usuario.nome;
 											usuarioLogado.nascimento = usuario.nascimento;
 											buscaUsrParaEditar(usuarioLogado.id);
+											$
+													.when(
+															$
+															.ajax({
+																type : "POST",
+																url : PATH + "BuscarPontuacao",
+																data : "usuarioid=" + usuarioLogado.id
+																		+ "&identificador=pessoal",
+																success : function(dados) {
+																	usuarioLogado.posicaoRanking = dados[0].posicaoRanking;
+																	usuarioLogado.pontuacoes = dados;
+
+																	$(
+																	"#rankingPessoal")
+																	.html(
+																			mudahtml(3)
+																					+ geraTabela(
+																							dados,
+																							3));
+																}
+															})
+															)
+													.then(
+															function(x) {
+																$
+																		.ajax({
+																			type : "POST",
+																			url : PATH
+																					+ "BuscarPontuacao",
+																			data : "usuarioid=null&&identificador=ranking",
+																			success : function(
+																					dados) {
+																				console
+																						.log(dados);
+																				ranking.pontuacoes = dados;
+																				console
+																						.log(ranking.pontuacoes);
+																				$(
+																						"#ranking")
+																						.html(
+																								mudahtml(1)
+																										+ geraTabela(
+																												dados,
+																												1));
+																				$(
+																						"#quadroRanking")
+																						.html(
+																								mudahtml(2)
+																										+ geraTabela(
+																												dados,
+																												2));
+																				
+																			},
+																			error : function(
+																					info) {
+																				alert("Erro ao carregar o ranking: "
+																						+ info.status
+																						+ " - "
+																						+ info.statusText);
+
+																			}
+																		});
+
+															});
+
+											console.log(ranking.pontuacoes);
+
 											// chamada da função de carregamento
 											// das tabelas
-											$
-													.when()
-													.then(
-															function() {
-																carregaPontuacaoPessoal();
-
-																console
-																		.log(ranking.pontuacoes);
-																$("#ranking")
-																		.html(
-																				mudahtml(1));
-																$(
-																		"#quadroRanking")
-																		.html(
-																				mudahtml(2)
-																						+ geraTabela(
-																								ranking.pontuacoes,
-																								2));
-															});
 
 										} else {
 											sair();
@@ -124,45 +172,8 @@ $(document)
 					// Pesquisa e construção da tabela do ranking que aparece na
 					// taverna
 
-					carregaTabela = function() {
-						// variáveis e tomada de decisão quanto ao tipo de
-						// pesquisa
-						// Requisição dos dados via ajax
-						$
-								.ajax({
-									type : "POST",
-									url : PATH + "BuscarPontuacao",
-									data : "usuarioid=null&&identificador=ranking",
-									success : function(dados) {
-										console.log(dados);
-										ranking.pontuacoes = dados;
-									},
-									error : function(info) {
-										alert("Erro ao carregar o ranking: "
-												+ info.status + " - "
-												+ info.statusText);
-
-									}
-								});
-
-						// inserção dos dados a partir da opcao escolhida
-
-					};
-
 					// Carrega as pontuções pessoais do serumaniho
-					function carregaPontuacaoPessoal() {
-						$
-								.ajax({
-									type : "POST",
-									url : PATH + "BuscarPontuacao",
-									data : "usuarioid=" + usuarioLogado.id
-											+ "&identificador=pessoal",
-									success : function(dados) {
-										usuarioLogado.posicaoRanking = dados[0].posicaoRanking;
-										usuarioLogado.pontuacoes = dados;
-									}
-								});
-					}
+					
 
 					// realiza a construção da tabela mediante aos dados
 					// recebidos
@@ -220,25 +231,28 @@ $(document)
 								}
 								break;
 							case 3:
-								html = mudahtml(3);
 								if (usuarioLogado.pontuacoes != undefined) {
-									for (var i = 0; i < usuarioLogado.pontuacoes.length; i++) {
-										html += "<tr>"
+									var l = usuarioLogado.pontuacoes.length;
+									if (usuarioLogado.pontuacoes.length > 5) {
+										l = 5;
+									}
+									for (var i = 0; i < l; i++) {
+										dados += "<tr>"
 												+ "<td class='intRowRanking' id='pontua"
-												+ usuarioLogado.pontuacoes[i].id
-												+ ">"
-												+ usuarioLogado.pontuacoes[i].dataCriacao
+												+ listaRanking[i].id
+												+ "'>"
+												+ listaRanking[i].dataCriacao
 												+ "</td>"
 												+ "<td class='intRowRanking'>"
-												+ usuarioLogado.pontuacoes[i].score
+												+ listaRanking[i].score
 												+ "</td>" + "</tr>";
 									}
 								} else {
 
-									html += "<td class='intRowRanking' colspan='2'> Você ainda não tem pontuações</td>";
+									var dados = "<td class='intRowRanking' colspan='2'> Você ainda não tem pontuações</td>";
 								}
 
-								html += "</tr>"
+								dados += "</tr>"
 										+ "<tr>"
 										+ "<td><img src='../../resources/style/images/estatico/x.png' alt='img' class='sairBtn fechar' /></td>"
 										+ "</tr>";
