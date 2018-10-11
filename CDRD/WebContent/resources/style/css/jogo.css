@@ -5,6 +5,7 @@ Observação: Algumas (muitas) regras das regras abaixo estão se referenciando 
 isso porque antes esse arquivo e o arquivo de js original eram index.algumacoisa,
 porém seus nomes foram trocados para inicio.algumacoisa, para não dar confusão. 
 */
+
 @font-face {
 	font-family: pixel font;
 	src: url("../../resources/style/pixel_font7.ttf");
@@ -16,12 +17,12 @@ porém seus nomes foram trocados para inicio.algumacoisa, para não dar confusã
 	visibility: hidden;
 }
 
-body{
+body {
 	background: #ff6;
 }
 
 canvas {
-    padding: 0;
-    margin: auto;
-    display: block;    
+	padding: 0;
+	margin: auto;
+	display: block;
 }

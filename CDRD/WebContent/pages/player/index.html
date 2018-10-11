@@ -4,41 +4,37 @@
 
 <head>
 
-<meta charset="utf-8">
-<title>Contos de Reinos Distantes - Taberna</title>
-<meta name="author" content="Equipe CRD">
-<meta name="description"
-	content="Página da Taberna do Contos de Reinos Distantes">
-<meta name="creation-date" content="2018/07/04">
-<meta name="last-modified" content="2018/07/04">
+	<meta charset="utf-8">
+	<title>Contos de Reinos Distantes - Taberna</title>
+	<meta name="author" content="Equipe CRD">
+	<meta name="description" content="Página da Taberna do Contos de Reinos Distantes">
+	<meta name="creation-date" content="2018/07/04">
+	<meta name="last-modified" content="2018/07/04">
 
-<link rel="stylesheet" type="text/css"
-	href="../../resources/style/css/taberna.css" />
-<link rel="stylesheet" type="text/css" media="screen"
-	href="../../resources/style/css/shared.css">
-<link rel="icon" type="image/png"
-	href="../../resources/style/images/estatico/magoEstatico_01.png">
+	<link rel="stylesheet" type="text/css" href="../../resources/style/css/taberna.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../resources/style/css/shared.css">
+	<link rel="icon" type="image/png" href="../../resources/style/images/estatico/magoEstatico_01.png">
 
-<!--Libs-->
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="../../resources/js/libs/detect.js"></script>
+	<!--Libs-->
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="../../resources/js/libs/detect.js"></script>
 
 
-<script src="../../resources/js/taberna.js"></script>
-<script src="../../resources/js/shared.js"></script>
-<script src="../../resources/js/tabernaServlet.js"></script>
+	<script src="../../resources/js/taberna.js"></script>
+	<script src="../../resources/js/shared.js"></script>
+	<script src="../../resources/js/tabernaServlet.js"></script>
 
 </head>
 
 <body id="bodyTaberna">
 
 	<?php
-print str_pad('',4096)."\n";
-ob_flush();
-flush();
-set_time_limit(45);
-?>
+		print str_pad('',4096)."\n";
+		ob_flush();
+		flush();
+		set_time_limit(45);
+	?>
 
 	<div id="paredeQuartos">
 		<div id="paredeQuarto"></div>
@@ -50,17 +46,12 @@ set_time_limit(45);
 
 		<div>
 			<div id="quarto">
-				<img src="../../resources/style/images/estatico/bed.png" alt="img"
-					id="cama"> <img
-					src="../../resources/style/images/estatico/bed.png" alt="img"
-					id="ajustaQuarto">
+				<img src="../../resources/style/images/estatico/bed.png" alt="img" id="cama"> <img src="../../resources/style/images/estatico/bed.png"
+				 alt="img" id="ajustaQuarto">
 				<div id="criadoMudo"></div>
-				<img src="../../resources/style/images/estatico/trofeus.png"
-					alt="img" id="trofeus" onclick="abrirModal(6)"> <img
-					src="../../resources/style/images/estatico/mesaQuarto.png"
-					alt="img" id="mesaQuarto" onclick="abrirModal(5)"> <img
-					src="../../resources/style/images/estatico/cadeiraQuarto.png"
-					alt="img" id="cadeiraQuarto">
+				<img src="../../resources/style/images/estatico/trofeus.png" alt="img" id="trofeus" onclick="abrirModal(6)"> <img
+				 src="../../resources/style/images/estatico/mesaQuarto.png" alt="img" id="mesaQuarto" onclick="abrirModal(5)"> <img
+				 src="../../resources/style/images/estatico/cadeiraQuarto.png" alt="img" id="cadeiraQuarto">
 			</div>
 			<div id="quartoTaverneiro"></div>
 		</div>
@@ -69,8 +60,7 @@ set_time_limit(45);
 			<!--Div para programação da "Porta do Quarto", "Ranking", "Avisos" e "Logo" e seus hovers-->
 			<div id="divQuarto">
 				<!--Porta do Quarto-->
-				<img src="../../resources/style/images/estatico/door.png" alt="img"
-					id="portaQuarto" onclick="abrirQuartos()">
+				<img src="../../resources/style/images/estatico/door.png" alt="img" id="portaQuarto" onclick="abrirQuartos()">
 			</div>
 
 			<div id="quadroRanking" onclick="abrirModal(3)">
@@ -78,13 +68,11 @@ set_time_limit(45);
 			</div>
 
 			<div id="divLogo">
-				<img src="../../resources/style/images/estatico/logo.png" alt="img"
-					id="logo">
+				<img src="../../resources/style/images/estatico/logo.png" alt="img" id="logo">
 			</div>
 
 			<div id="divQuartoT">
-				<img src="../../resources/style/images/estatico/door.png" alt="img"
-					id="portaQuartoT">
+				<img src="../../resources/style/images/estatico/door.png" alt="img" id="portaQuartoT">
 			</div>
 		</div>
 
@@ -93,31 +81,25 @@ set_time_limit(45);
 			<!--Mesa com heróis-->
 			<div id="quadroAvisos">
 				<!--Avisos-->
-				<img src="../../resources/style/images/estatico/avisos.png"
-					alt="img" id="avisosImg" onclick="abrirModal(4)">
+				<img src="../../resources/style/images/estatico/avisos.png" alt="img" id="avisosImg" onclick="abrirModal(4)">
 			</div>
 
-			<a href="jogo.html"><img
-				src="../../resources/style/images/gif/mesaHerois.gif" alt="img"
-				id="imgMesa"></a>
+			<a href="jogo.html"><img src="../../resources/style/images/gif/mesaHerois.gif" alt="img" id="imgMesa"></a>
 
 			<!--Taverneiro-->
-			<img src="../../resources/style/images/gif/taverneiro.gif" alt="img"
-				id="imgTaverneiro" onclick="abrirModal(1)">
+			<img src="../../resources/style/images/gif/taverneiro.gif" alt="img" id="imgTaverneiro" onclick="abrirModal(1)">
 			<div id="balcao"></div>
 
 			<!--Fim Taverneiro-->
 			<!--Bardo-->
-			<img src="../../resources/style/images/gif/bardo.gif" alt="img"
-				id="imgBardo" onclick="abrirModal(2)">
+			<img src="../../resources/style/images/gif/bardo.gif" alt="img" id="imgBardo" onclick="abrirModal(2)">
 
 			<!--Fim Bardo-->
 			<div id="paredeInferior">
 				<!--Div para programação da "Porta de Saida" e seus hovers-->
 				<div id="divSair">
 					<!--Porta de Saída-->
-					<a><img src="../../resources/style/images/estatico/door.png"
-						alt="img" id="portaSair" onclick="sair()"></a>
+					<a><img src="../../resources/style/images/estatico/door.png" alt="img" id="portaSair" onclick="sair()"></a>
 				</div>
 			</div>
 		</div>
@@ -148,12 +130,11 @@ set_time_limit(45);
 										que posso ajudá-lo?</td>
 									<!--Falas do Personagem-->
 								</tr>
-							</table> <!--Fim da tabela da fala-->
+							</table>
+							<!--Fim da tabela da fala-->
 						</td>
 						<!--Fim da td das falas do Personagem-->
-						<td class="intTdImg"><img
-							src="../../resources/style/images/estatico/taverneiro.png"
-							alt="img" class="intImg"></td>
+						<td class="intTdImg"><img src="../../resources/style/images/estatico/taverneiro.png" alt="img" class="intImg"></td>
 						<!--Imagem do Personagem-->
 					</tr>
 					<tr>
@@ -161,15 +142,11 @@ set_time_limit(45);
 							<!--Td dos botões-->
 							<div class="intGroupButtons">
 								<!--Agrupamento dos botões de interação-->
-								<input type="button" class="intButton jogoTBtn"
-									value="Conte-me sobre o mundo. (Jogo)"> <input
-									type="button" class="intButton projetoTBtn"
-									value="Conte-me sobre a religião. (Projeto)"> <input
-									type="button" class="intButton equipeTBtn"
-									value="Conte-me sobre os Criadores. (Equipe)"> <input
-									type="button" class="intButton sairBtn"
-									value="Nada não. (Sair)">
-							</div> <!--Fim do agrupamento dos botões-->
+								<input type="button" class="intButton jogoTBtn" value="Conte-me sobre o mundo. (Jogo)"> <input type="button"
+								 class="intButton projetoTBtn" value="Conte-me sobre a religião. (Projeto)"> <input type="button" class="intButton equipeTBtn"
+								 value="Conte-me sobre os Criadores. (Equipe)"> <input type="button" class="intButton sairBtn" value="Nada não. (Sair)">
+							</div>
+							<!--Fim do agrupamento dos botões-->
 						</td>
 						<!--Fim da td dos botões-->
 					</tr>
@@ -194,12 +171,11 @@ set_time_limit(45);
 									<td class="intCadRow intDialogue">blablabla</td>
 									<!--Falas do Personagem-->
 								</tr>
-							</table> <!--Fim da tabela da fala-->
+							</table>
+							<!--Fim da tabela da fala-->
 						</td>
 						<!--Fim da td das falas do Personagem-->
-						<td class="intTdImg"><img
-							src="../../resources/style/images/estatico/taverneiro.png"
-							alt="img" class="intImg"></td>
+						<td class="intTdImg"><img src="../../resources/style/images/estatico/taverneiro.png" alt="img" class="intImg"></td>
 						<!--Imagem do Personagem-->
 					</tr>
 					<tr>
@@ -207,13 +183,11 @@ set_time_limit(45);
 							<!--Td dos botões-->
 							<div class="intGroupButtons">
 								<!--Agrupamento dos botões de interação-->
-								<input type="button" class="intButton projetoTBtn"
-									value="Conte-me sobre a religião. (Projeto)"> <input
-									type="button" class="intButton equipeTBtn"
-									value="Conte-me sobre os Criadores. (Equipe)"> <input
-									type="button" class="intButton sairBtn"
-									value="Obrigado. (Sair)">
-							</div> <!--Fim do agrupamento dos botões-->
+								<input type="button" class="intButton projetoTBtn" value="Conte-me sobre a religião. (Projeto)"> <input type="button"
+								 class="intButton equipeTBtn" value="Conte-me sobre os Criadores. (Equipe)"> <input type="button" class="intButton sairBtn"
+								 value="Obrigado. (Sair)">
+							</div>
+							<!--Fim do agrupamento dos botões-->
 						</td>
 						<!--Fim da td dos botões-->
 					</tr>
@@ -239,12 +213,11 @@ set_time_limit(45);
 									<td class="intCadRow intDialogue">blablabla</td>
 									<!--Falas do Personagem-->
 								</tr>
-							</table> <!--Fim da tabela da fala-->
+							</table>
+							<!--Fim da tabela da fala-->
 						</td>
 						<!--Fim da td das falas do Personagem-->
-						<td class="intTdImg"><img
-							src="../../resources/style/images/estatico/taverneiro.png"
-							alt="img" class="intImg"></td>
+						<td class="intTdImg"><img src="../../resources/style/images/estatico/taverneiro.png" alt="img" class="intImg"></td>
 						<!--Imagem do Personagem-->
 					</tr>
 					<tr>
@@ -252,13 +225,11 @@ set_time_limit(45);
 							<!--Td dos botões-->
 							<div class="intGroupButtons">
 								<!--Agrupamento dos botões de interação-->
-								<input type="button" class="intButton jogoTBtn"
-									value="Conte-me sobre o mundo. (Jogo)"> <input
-									type="button" class="intButton equipeTBtn"
-									value="Conte-me sobre os Criadores. (Equipe)"> <input
-									type="button" class="intButton sairBtn"
-									value="Obrigado. (Sair)">
-							</div> <!--Fim do agrupamento dos botões-->
+								<input type="button" class="intButton jogoTBtn" value="Conte-me sobre o mundo. (Jogo)"> <input type="button"
+								 class="intButton equipeTBtn" value="Conte-me sobre os Criadores. (Equipe)"> <input type="button" class="intButton sairBtn"
+								 value="Obrigado. (Sair)">
+							</div>
+							<!--Fim do agrupamento dos botões-->
 						</td>
 						<!--Fim da td dos botões-->
 					</tr>
@@ -283,12 +254,11 @@ set_time_limit(45);
 									<td class="intCadRow intDialogue">blablabla</td>
 									<!--Falas do Personagem-->
 								</tr>
-							</table> <!--Fim da tabela da fala-->
+							</table>
+							<!--Fim da tabela da fala-->
 						</td>
 						<!--Fim da td das falas do Personagem-->
-						<td class="intTdImg"><img
-							src="../../resources/style/images/estatico/taverneiro.png"
-							alt="img" class="intImg"></td>
+						<td class="intTdImg"><img src="../../resources/style/images/estatico/taverneiro.png" alt="img" class="intImg"></td>
 						<!--Imagem do Personagem-->
 					</tr>
 					<tr>
@@ -296,13 +266,11 @@ set_time_limit(45);
 							<!--Td dos botões-->
 							<div class="intGroupButtons">
 								<!--Agrupamento dos botões de interação-->
-								<input type="button" class="intButton jogoTBtn"
-									value="Conte-me sobre o mundo. (Jogo)"> <input
-									type="button" class="intButton projetoTBtn"
-									value="Conte-me sobre a religião. (Projeto)"> <input
-									type="button" class="intButton sairBtn"
-									value="Obrigado. (Sair)">
-							</div> <!--Fim do agrupamento dos botões-->
+								<input type="button" class="intButton jogoTBtn" value="Conte-me sobre o mundo. (Jogo)"> <input type="button"
+								 class="intButton projetoTBtn" value="Conte-me sobre a religião. (Projeto)"> <input type="button" class="intButton sairBtn"
+								 value="Obrigado. (Sair)">
+							</div>
+							<!--Fim do agrupamento dos botões-->
 						</td>
 						<!--Fim da td dos botões-->
 					</tr>
@@ -335,12 +303,11 @@ set_time_limit(45);
 									</td>
 									<!--Falas do Personagem-->
 								</tr>
-							</table> <!--Fim da tabela da fala-->
+							</table>
+							<!--Fim da tabela da fala-->
 						</td>
 						<!--Fim da td das falas do Personagem-->
-						<td class="intTdImg"><img
-							src="../../resources/style/images/estatico/rafael_moura.png"
-							alt="img" class="intImg"></td>
+						<td class="intTdImg"><img src="../../resources/style/images/estatico/rafael_moura.png" alt="img" class="intImg"></td>
 						<!--Imagem do Personagem-->
 					</tr>
 					<tr>
@@ -348,14 +315,12 @@ set_time_limit(45);
 							<!--Td dos botões-->
 							<div class="intGroupButtons">
 								<!--Agrupamento dos botões de interação-->
-								<input type="button" class="intButton reinosBBtn"
-									value="Cante sobre os reinos."> <input type="button"
-									class="intButton guerraBBtn" value="Cante sobre a guerra.">
-								<input type="button" class="intButton criaturasBBtn"
-									value="Cante sobre as criaturas sombrias."> <input
-									type="button" class="intButton sairBtn"
-									value="Não obrigado, deixa pra lá. (Sair)">
-							</div> <!--Fim do agrupamento dos botões-->
+								<input type="button" class="intButton reinosBBtn" value="Cante sobre os reinos."> <input type="button" class="intButton guerraBBtn"
+								 value="Cante sobre a guerra.">
+								<input type="button" class="intButton criaturasBBtn" value="Cante sobre as criaturas sombrias."> <input type="button"
+								 class="intButton sairBtn" value="Não obrigado, deixa pra lá. (Sair)">
+							</div>
+							<!--Fim do agrupamento dos botões-->
 						</td>
 						<!--Fim da td dos botões-->
 					</tr>
@@ -380,12 +345,11 @@ set_time_limit(45);
 									<td class="intCadRow intDialogue">blablabla</td>
 									<!--Falas do Personagem-->
 								</tr>
-							</table> <!--Fim da tabela da fala-->
+							</table>
+							<!--Fim da tabela da fala-->
 						</td>
 						<!--Fim da td das falas do Personagem-->
-						<td class="intTdImg"><img
-							src="../../resources/style/images/estatico/rafael_moura.png"
-							alt="img" class="intImg"></td>
+						<td class="intTdImg"><img src="../../resources/style/images/estatico/rafael_moura.png" alt="img" class="intImg"></td>
 						<!--Imagem do Personagem-->
 					</tr>
 					<tr>
@@ -393,13 +357,10 @@ set_time_limit(45);
 							<!--Td dos botões-->
 							<div class="intGroupButtons">
 								<!--Agrupamento dos botões de interação-->
-								<input type="button" class="intButton guerraBBtn"
-									value="Cante sobre a guerra."> <input type="button"
-									class="intButton criaturasBBtn"
-									value="Cante sobre as criaturas sombrias."> <input
-									type="button" class="intButton sairBtn"
-									value="Obrigado pela música! (Sair)">
-							</div> <!--Fim do agrupamento dos botões-->
+								<input type="button" class="intButton guerraBBtn" value="Cante sobre a guerra."> <input type="button" class="intButton criaturasBBtn"
+								 value="Cante sobre as criaturas sombrias."> <input type="button" class="intButton sairBtn" value="Obrigado pela música! (Sair)">
+							</div>
+							<!--Fim do agrupamento dos botões-->
 						</td>
 						<!--Fim da td dos botões-->
 					</tr>
@@ -425,12 +386,11 @@ set_time_limit(45);
 									<td class="intCadRow intDialogue">blablabla</td>
 									<!--Falas do Personagem-->
 								</tr>
-							</table> <!--Fim da tabela da fala-->
+							</table>
+							<!--Fim da tabela da fala-->
 						</td>
 						<!--Fim da td das falas do Personagem-->
-						<td class="intTdImg"><img
-							src="../../resources/style/images/estatico/rafael_moura.png"
-							alt="img" class="intImg"></td>
+						<td class="intTdImg"><img src="../../resources/style/images/estatico/rafael_moura.png" alt="img" class="intImg"></td>
 						<!--Imagem do Personagem-->
 					</tr>
 					<tr>
@@ -438,13 +398,10 @@ set_time_limit(45);
 							<!--Td dos botões-->
 							<div class="intGroupButtons">
 								<!--Agrupamento dos botões de interação-->
-								<input type="button" class="intButton reinosBBtn"
-									value="Cante sobre os reinos."> <input type="button"
-									class="intButton criaturasBBtn"
-									value="Cante sobre as criaturas sombrias."> <input
-									type="button" class="intButton sairBtn"
-									value="Obrigado pela música! (Sair)">
-							</div> <!--Fim do agrupamento dos botões-->
+								<input type="button" class="intButton reinosBBtn" value="Cante sobre os reinos."> <input type="button" class="intButton criaturasBBtn"
+								 value="Cante sobre as criaturas sombrias."> <input type="button" class="intButton sairBtn" value="Obrigado pela música! (Sair)">
+							</div>
+							<!--Fim do agrupamento dos botões-->
 						</td>
 						<!--Fim da td dos botões-->
 					</tr>
@@ -469,12 +426,11 @@ set_time_limit(45);
 									<td class="intCadRow intDialogue">blablabla</td>
 									<!--Falas do Personagem-->
 								</tr>
-							</table> <!--Fim da tabela da fala-->
+							</table>
+							<!--Fim da tabela da fala-->
 						</td>
 						<!--Fim da td das falas do Personagem-->
-						<td class="intTdImg"><img
-							src="../../resources/style/images/estatico/rafael_moura.png"
-							alt="img" class="intImg"></td>
+						<td class="intTdImg"><img src="../../resources/style/images/estatico/rafael_moura.png" alt="img" class="intImg"></td>
 						<!--Imagem do Personagem-->
 					</tr>
 					<tr>
@@ -482,12 +438,11 @@ set_time_limit(45);
 							<!--Td dos botões-->
 							<div class="intGroupButtons">
 								<!--Agrupamento dos botões de interação-->
-								<input type="button" class="intButton reinosBBtn"
-									value="Cante sobre os reinos."> <input type="button"
-									class="intButton guerraBBtn" value="Cante sobre a guerra.">
-								<input type="button" class="intButton sairBtn"
-									value="Obrigado pela música! (Sair)">
-							</div> <!--Fim do agrupamento dos botões-->
+								<input type="button" class="intButton reinosBBtn" value="Cante sobre os reinos."> <input type="button" class="intButton guerraBBtn"
+								 value="Cante sobre a guerra.">
+								<input type="button" class="intButton sairBtn" value="Obrigado pela música! (Sair)">
+							</div>
+							<!--Fim do agrupamento dos botões-->
 						</td>
 						<!--Fim da td dos botões-->
 					</tr>
@@ -511,52 +466,40 @@ set_time_limit(45);
 
 	<div id="alterarDados">
 
-		<img src="../../resources/style/images/estatico/player.png" alt="img"
-			id="alterarImg" />
+		<img src="../../resources/style/images/estatico/player.png" alt="img" id="alterarImg" />
 		<form name="frmminhaconta" id="editarConta">
 			<div class=formAltera>
 				<h1>Minha Conta:</h1>
 				<div class="cadCampo">
-					<label>Nome Completo: </label> <input type="text" name="txtaltnome"
-						id="altNome">
+					<label>Nome Completo: </label> <input type="text" name="txtaltnome" id="altNome">
 				</div>
 				<div class="cadCampo">
-					<label>Email: </label> <input type="text" name="txtaltemail"
-						id="altEmail">
+					<label>Email: </label> <input type="text" name="txtaltemail" id="altEmail">
 				</div>
 				<div class="cadCampo">
-					<label>Data de Nascimento: </label> <input type="date"
-						name="dtealtnascimento" id="altNascimento">
+					<label>Data de Nascimento: </label> <input type="date" name="dtealtnascimento" id="altNascimento">
 				</div>
 				<div class="cadCampo">
-					<label>Apelido: </label> <input type="text" name="txtaltlogger"
-						id="altLogger">
+					<label>Apelido: </label> <input type="text" name="txtaltlogger" id="altLogger">
 				</div>
 				<div class="cadCampo">
-					<label>Senha Antiga:</label> <input type="password"
-						name="pwdaltsenhaantiga" id="altVelhaSenha">
+					<label>Senha Antiga:</label> <input type="password" name="pwdaltsenhaantiga" id="altVelhaSenha">
 				</div>
 				<div class="cadCampo">
-					<label>Nova Senha: </label> <input type="password"
-						name="pwdaltsenhanova" id="altNovaSenha">
+					<label>Nova Senha: </label> <input type="password" name="pwdaltsenhanova" id="altNovaSenha">
 				</div>
 				<div class="cadCampo">
-					<label>Confirmar Nova Senha: </label> <input type="password"
-						name="pwdaltconfsenha" id="altConfSenha">
+					<label>Confirmar Nova Senha: </label> <input type="password" name="pwdaltconfsenha" id="altConfSenha">
 				</div>
 				<div class="cadBotoes">
-					<input type="hidden" name="hdid" id="altId"> <input
-						type="button" class="altBtn" onclick="alteraUsuario()"
-						value="Enviar"> <input type="button" class="altBtn"
-						onclick="buscaUsrParaEditar()" value="Limpar"> <input
-						type="button" class="altBtn" onclick="deletaUsuario(1,'Jog')"
-						value="Deletar">
+					<input type="hidden" name="hdid" id="altId"> <input type="button" class="altBtn" onclick="alteraUsuario()" value="Enviar">
+					<input type="button" class="altBtn" onclick="buscaUsrParaEditar()" value="Limpar"> <input type="button" class="altBtn"
+					 onclick="deletaUsuario(1,'Jog')" value="Deletar">
 				</div>
 			</div>
 		</form>
 
-		<img src="../../resources/style/images/estatico/x.png" alt="img"
-			class="sairBtn fechar" />
+		<img src="../../resources/style/images/estatico/x.png" alt="img" class="sairBtn fechar" />
 	</div>
 
 	<div id="rankingPessoal">
@@ -564,7 +507,7 @@ set_time_limit(45);
 		<!--Conteúdo injetado dinâmicamente-->
 
 	</div>
-	
+
 </body>
 
 </html>

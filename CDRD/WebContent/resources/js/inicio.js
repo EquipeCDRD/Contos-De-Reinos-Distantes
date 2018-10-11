@@ -49,7 +49,7 @@ function abrirModal() {
   //Background e bloqueio de ações do visitante senão as da janela
   $("#paredeTaverna").css("filter", "brightness(50%)");
   $("#muroTaverna").css("filter", "brightness(50%)");
-  $(".background").css("filter", "brightness(50%)")
+  $(".background").css("filter", "brightness(50%)");
   $("#paredeTaverna").css("pointer-events", "none");
   $("#muroTaverna").css("pointer-events", "none");
   $(".background").css("pointer-events", "none");
