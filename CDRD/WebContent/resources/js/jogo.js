@@ -2,7 +2,8 @@
 /*           Contos de Reinos Distantes                        */
 /*-------------------------------------------------------------*/
 
-class sceneMenuPrincipal extends Phaser.Scene {
+//menu principal
+class SceneMenuPrincipal extends Phaser.Scene {
   constructor() {
     super({ key: "sceneMenuPrincipal" });
   }
@@ -53,6 +54,7 @@ class sceneMenuPrincipal extends Phaser.Scene {
   update() {}
 }
 
+//tela de carregamento
 class SceneMain extends Phaser.Scene {
   constructor() {
     super({ key: "sceneMain" });
@@ -121,6 +123,22 @@ class SceneMain extends Phaser.Scene {
   create() {
     var logo = this.add.image(400, 300, "logo");
 
+    const btnMontanha = this.add.text(110, 270, "Ir para Montanha", {
+      fontSize: "50px",
+      fill: "#ffffff",
+      fontFamily: "pixel font"
+    });
+    btnMontanha.setInteractive();
+
+    btnMontanha.on(
+      "pointerdown",
+      function() {
+        console.log("From SceneC to SceneA");
+        this.scene.start("sceneMontanha");
+      },
+      this
+    );
+
     /*-------------------Tiles-------------------------
         this.map = this.add.tilemap('praia1');
 
@@ -133,13 +151,55 @@ class SceneMain extends Phaser.Scene {
   update() {}
 }
 
+//montanha
+class SceneMontanha extends Phaser.Scene {
+  constructor() {
+    super({ key: "sceneMontanha" });
+  }
+
+  init() {}
+
+  preload() {
+    this.load.image(
+      "tilesetMontanha",
+      "../../resources/assets/tilesets/montanha1.png"
+    );
+    this.load.tilemapTiledJSON(
+      "mapa",
+      "../../resources/assets/json/montanha1.json"
+    ); 
+  }
+
+  create() {
+    this.mapa = this.make.tilemap({key:"mapa"})
+    
+    this.tileset = this.mapa.addTilesetImage(
+      "montanha1",
+      "tilesetMontanha"
+    );
+
+    this.planoFundo = this.mapa.createStaticLayer(
+      "piso",
+      this.tileset,
+      0,
+      0
+    );
+    this.objCenario = this.mapa.createStaticLayer(
+      "cousas",
+      this.tileset,
+      0,
+      0
+    );
+  }
+}
+
 var config = {
   type: Phaser.AUTO,
   width: 960,
   height: 540,
   parent: "jogo",
   pixelArt: true,
-  scene: [sceneMenuPrincipal, SceneMain]
+  scene: [SceneMenuPrincipal, SceneMain, SceneMontanha]
 };
 
 var game = new Phaser.Game(config);

@@ -22,3 +22,4 @@ Servers/Tomcat v7.0 Server at localhost-config/tomcat-users.xml
 Servers/Tomcat v7.0 Server at localhost-config/web.xml
 *.class
 Contos-De-Reinos-Distantes-correcoesduplicacaoes.zip
+*.code-workspace
