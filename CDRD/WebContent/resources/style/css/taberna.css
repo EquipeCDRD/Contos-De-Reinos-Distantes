@@ -350,16 +350,14 @@ body {
 #criadoMudo {
 	height: 70px;
 	width: 70px;
-	border: 3px solid black;
 	position: absolute;
 	bottom: 171px;
 	left: 120px;
-	background-color: yellow;
 }
 
 #trofeus {
 	height: 170px;
-	width: 250px;
+	width: 170px;
 	position: absolute;
 	bottom: 175px;
 	left: 320px;
@@ -374,10 +372,10 @@ body {
 }
 
 #cadeiraQuarto {
-	width: 50px;
+	width: 120px;
 	height: 150px;
 	position: absolute;
-	left: 640px;
+	left: 560px;
 	bottom: 50px;
 }
 
