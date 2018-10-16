@@ -3,143 +3,182 @@
 /*-------------------------------------------------------------*/
 
 class sceneMenuPrincipal extends Phaser.Scene {
-  constructor() {
-    super({ key: "sceneMenuPrincipal" });
-  }
 
-  init() {}
+    constructor ()
+    {
+        super({ key: 'sceneMenuPrincipal' });
+    }
 
-  preload() {
-    this.load.image("bg", "../../resources/style/images/jogo/bgmenu.png");
-  }
+    init(){
 
-  create() {
-    this.bg = this.add.image(game.width, game.height, "bg").setOrigin(0, 0);
+    }
 
-    this.input.manager.enabled = true;
+    preload ()
+    {
+        this.load.image('bg', '../../resources/style/images/jogo/bgmenu.png');
+    }
 
-    const ButtonB = this.add.text(110, 270, "Jogar", {
-      fontSize: "50px",
-      fill: "#000000",
-      fontFamily: "pixel font"
-    });
-    ButtonB.setInteractive();
+    create ()
+    {
+        this.bg = this.add.image(420, 300, 'bg');
 
-    ButtonB.on(
-      "pointerdown",
-      function() {
-        console.log("From SceneC to SceneA");
-        this.scene.start("sceneMain");
-      },
-      this
-    );
+        this.input.manager.enabled = true;
 
-    const ButtonC = this.add.text(730, 270, "Ranking", {
-      fontSize: "50px",
-      fill: "#000000",
-      fontFamily: "pixel font"
-    });
-    ButtonC.setInteractive();
+        const ButtonB = this.add.text(70, 270, 'Jogar', {fontSize:'50px', fill: '#000000', fontFamily: 'pixel font'});
+        ButtonB.setInteractive();
 
-    ButtonC.on(
-      "pointerdown",
-      function() {
-        this.scene.start("sceneMain");
-      },
-      this
-    );
-  }
+        ButtonB.on('pointerdown', function(){
+            this.scene.start('sceneMain')
+        },this);
 
-  update() {}
+        const ButtonC = this.add.text(700, 270, 'Ranking', {fontSize:'50px', fill: '#000000', fontFamily: 'pixel font' });
+        ButtonC.setInteractive();
+
+        ButtonC.on('pointerdown', function(){
+            this.scene.start('sceneMain')
+        },this);
+    }
+
+    update ()
+    {
+        
+    }
+
 }
 
 class SceneMain extends Phaser.Scene {
-  constructor() {
-    super({ key: "sceneMain" });
-  }
 
-  init() {}
-
-  preload() {
-    var barraCarregamento = this.add.graphics();
-
-    this.load.image("logo", "../../resources/style/images/jogo/test.jpg");
-    for (var i = 0; i < 100; i++) {
-      this.load.image("logo" + i, "../../resources/style/images/jogo/test.jpg");
+    constructor ()
+    {
+        super({ key: 'sceneMain' });
     }
 
-    this.load.on("progress", function(value) {
-      console.log(value);
-      barraCarregamento.clear();
-      barraCarregamento.fillStyle(0x37ac26, 1);
-      barraCarregamento.fillRect(320, 280, 300 * value, 30);
-      percentText.setText(parseInt(value * 100) + "%");
-    });
+    init(){
+    }
 
-    this.load.on("fileprogress", function(file) {
-      console.log(file.src);
-    });
+    preload ()
+    {
+        var barraCarregamento = this.add.graphics();
 
-    this.load.on("complete", function() {
-      console.log("complete");
-      barraCarregamento.destroy();
+        this.load.image('logo', '../../resources/style/images/jogo/test.jpg');
+        /*for (var i = 0; i < 100; i++) {
+            this.load.image('logo'+i, '../../resources/style/images/jogo/test.jpg');
+        }*/
 
-      textoCarregando.destroy();
-      percentText.destroy();
-    });
+        this.load.on('progress', function (value) {
+            console.log(value);
+            barraCarregamento.clear();
+            barraCarregamento.fillStyle(0x37ac26, 1);
+            barraCarregamento.fillRect(320, 280, 300 * value, 30);
+            percentText.setText(parseInt(value * 100) + '%');
+        });
+                    
+        this.load.on('fileprogress', function (file) {
+            console.log(file.src);
+        });
+         
+        this.load.on('complete', function () {
+            console.log('complete');
+            barraCarregamento.destroy();
 
-    var width = this.cameras.main.width;
-    var height = this.cameras.main.height;
-    var textoCarregando = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: "Carregando...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff"
-      }
-    });
-    textoCarregando.setOrigin(0.5, 0.5);
+            textoCarregando.destroy();
+            percentText.destroy();
+        });
 
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff"
-      }
-    });
-    percentText.setOrigin(0.5, 0.5);
+        var width = this.cameras.main.width;
+        var height = this.cameras.main.height;
+        var textoCarregando = this.make.text({
+            x: width / 2,
+            y: height / 2 - 50,
+            text: 'Carregando...',
+            style: {
+                font: '20px monospace',
+                fill: '#ffffff'
+            }
+        });
+        textoCarregando.setOrigin(0.5, 0.5);
 
-    /*-------------------Tiles-------------------------
-        this.load.image('tiles', '../../resources/style/assets/praia.png');
-        this.load.tilemapTiledJSON('praia1', '../../resources/style/assets/praia.json');
-        --------------------------------------------------*/
-  }
+        var percentText = this.make.text({
+            x: width / 2,
+            y: height / 2 - 5,
+            text: '0%',
+            style: {
+                font: '18px monospace',
+                fill: '#ffffff'
+            }
+        });
+        percentText.setOrigin(0.5, 0.5);
 
-  create() {
-    var logo = this.add.image(400, 300, "logo");
+        //-------------------Tiles-------------------------
+        this.load.image('tiles', '../../resources/style/assets/grass-tiles-2-small.png');
+        this.load.tilemapTiledJSON('map', '../../resources/style/assets/untitled.json');
+        //--------------------------------------------------
 
-    /*-------------------Tiles-------------------------
-        this.map = this.add.tilemap('praia1');
+        this.load.image('spot', '../../resources/style/assets/spot.png');
+    }
 
-        var tiles = this.map.addTilesetImage('praia', 'tiles');
+    create ()
+    {
+        //var logo = this.add.image(400, 300, 'logo');
+               
+        //-------------------Tiles-------------------------
+        this.map = this.make.tilemap({key: "map"});
 
-        this.backgroundLayer = this.map.createLayer('backgroundLayer', tileset);
-        --------------------------------------------------*/
-  }
+        this.tileset = this.map.addTilesetImage("grass", "tiles");
+        // layer = layer statico("NomeDoLayerNoJSON", this.vardoTileset,xOrigem, yOrigem)
+        this.belowLayer = this.map.createStaticLayer("layer1", this.tileset,0, 0);
+        //--------------------------------------------------
 
-  update() {}
+        this.arrayTabuleiro = [];
+        var tileSize = 40;
+        var ROW = 0;
+        var COL = 1;
+        for(var i = 0; i < 15; i++){
+            this.arrayTabuleiro[i] = [];
+            for(var j = 0; j < 15; j++){
+                //var spot = this.add.sprite(this.tileDestination(j, COL), this.tileDestination(i, ROW), "spot")
+                this.arrayTabuleiro[i][j] = {
+                    img : this.add.image((i*tileSize+20),(j*tileSize+20),'spot'),
+                    x: i,
+                    y: j
+                }
+            }
+        }
+
+        const ButtonA = this.add.text(70, 270, 'aqui', {fontSize:'50px', fill: '#000000', fontFamily: 'pixel font'});
+        ButtonA.setInteractive();
+
+        ButtonA.on('pointerdown', function(){
+            var x = prompt("digita x");
+            var y = prompt("digita y");
+            alert(x + " e " + y);
+            for(var i = 0; i < 15; i++){
+                alert(x + " e " + y + " e " + i +"e" + j);
+                for(var j = 0; j < 15; j++){
+                    alert(x + " e " + y + " e " + i +"e" + j);
+                    if((x==i)&&(y==j)){
+                        alert(x + " e " + y + " e " + i +"e" + j + "a");
+                        this.arrayTabuleiro[i][j].img = this.add.image(400, 300, 'logo');
+                    }
+                }
+            }
+        });
+
+    }
+    
+    update ()
+    {
+    }
+
 }
 
 var config = {
-  type: Phaser.AUTO,
-  width: 960,
-  height: 540,
-  parent: "jogo",
-  pixelArt: true,
-  scene: [sceneMenuPrincipal, SceneMain]
+    type: Phaser.AUTO,
+    width: 900,
+    height: 600,
+    parent: 'jogo',
+    pixelArt: true,
+    scene: [ sceneMenuPrincipal, SceneMain ]
 };
 
 var game = new Phaser.Game(config);
