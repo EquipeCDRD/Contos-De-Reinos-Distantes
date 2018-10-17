@@ -126,8 +126,8 @@ class SceneMain extends Phaser.Scene {
 
         this.tileset = this.map.addTilesetImage("praia", "tiles");
         // layer = layer statico("NomeDoLayerNoJSON", this.vardoTileset,xOrigem, yOrigem)
-        this.belowLayer = this.map.createStaticLayer("layer2", this.tileset,0, 0);
         this.belowLayer = this.map.createStaticLayer("layer3", this.tileset,0, 0);
+        this.belowLayer = this.map.createStaticLayer("layer2", this.tileset,0, 0);
         //--------------------------------------------------
 
         this.arrayTabuleiro = [];
