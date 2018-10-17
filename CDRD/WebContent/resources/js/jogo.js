@@ -139,11 +139,16 @@ class SceneMain extends Phaser.Scene {
                 //var spot = this.add.sprite(this.tileDestination(j, COL), this.tileDestination(i, ROW), "spot")
                 this.arrayTabuleiro[i][j] = {
                     img : this.add.image((i*tileSize+20),(j*tileSize+20),'spot'),
-                    x: i,
-                    y: j
+                    posx: i,
+                    posy: j
                 }
+                this.arrayTabuleiro[i][j].img.setInteractive();
+                this.arrayTabuleiro[i][j].img.on('pointerdown', function(){
+                    alert("x=" + this.x + " y=" + this.y);
+                })
             }
         }
+
 
         const ButtonA = this.add.text(70, 270, 'aqui', {fontSize:'50px', fill: '#000000', fontFamily: 'pixel font'});
         ButtonA.setInteractive();
