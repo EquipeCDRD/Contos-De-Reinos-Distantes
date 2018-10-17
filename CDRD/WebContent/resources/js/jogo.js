@@ -110,8 +110,8 @@ class SceneMain extends Phaser.Scene {
         percentText.setOrigin(0.5, 0.5);
 
         //-------------------Tiles-------------------------
-        this.load.image('tiles', '../../resources/style/assets/grass-tiles-2-small.png');
-        this.load.tilemapTiledJSON('map', '../../resources/style/assets/untitled.json');
+        this.load.image('tiles', '../../resources/style/assets/prainha.png');
+        this.load.tilemapTiledJSON('map', '../../resources/style/assets/mapa.json');
         //--------------------------------------------------
 
         this.load.image('spot', '../../resources/style/assets/spot.png');
@@ -124,21 +124,22 @@ class SceneMain extends Phaser.Scene {
         //-------------------Tiles-------------------------
         this.map = this.make.tilemap({key: "map"});
 
-        this.tileset = this.map.addTilesetImage("grass", "tiles");
+        this.tileset = this.map.addTilesetImage("praia", "tiles");
         // layer = layer statico("NomeDoLayerNoJSON", this.vardoTileset,xOrigem, yOrigem)
-        this.belowLayer = this.map.createStaticLayer("layer1", this.tileset,0, 0);
+        this.belowLayer = this.map.createStaticLayer("layer2", this.tileset,0, 0);
+        this.belowLayer = this.map.createStaticLayer("layer3", this.tileset,0, 0);
         //--------------------------------------------------
 
         this.arrayTabuleiro = [];
-        var tileSize = 40;
+        var tileSize = 32;
         var ROW = 0;
-        var COL = 1;
-        for(var i = 0; i < 15; i++){
+        var COL = -10000;
+        for(var i = 0; i < 20; i++){
             this.arrayTabuleiro[i] = [];
-            for(var j = 0; j < 15; j++){
+            for(var j = 0; j < 20; j++){
                 //var spot = this.add.sprite(this.tileDestination(j, COL), this.tileDestination(i, ROW), "spot")
                 this.arrayTabuleiro[i][j] = {
-                    img : this.add.image((i*tileSize+20),(j*tileSize+20),'spot'),
+                		//img : this.add.image((i*tileSize+16),(j*tileSize+16),'spot'),
                     x: i,
                     y: j
                 }

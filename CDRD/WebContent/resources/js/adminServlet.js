@@ -97,7 +97,7 @@ $(document).ready(function() {
           " onclick='enviaIdNotificacao($(this).val())'>Editar</button>" +
           "<button value=" +
           listNotificacao[i].id +
-          " onclick='deletaNotificacao($(this).val())' Excluir</button>" +
+          " onclick='deletaNotificacao($(this).val())'> Excluir</button>" +
           "</td>" +
           "</tr>";
       }

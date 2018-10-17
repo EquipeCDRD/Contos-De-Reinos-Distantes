@@ -45,7 +45,7 @@ $(document).ready(function() {
                 $("#rankingPessoal").html(mudahtml(3) + geraTabela(dados, 3));
               }
             })
-          ).then(function(x) {
+          ).then(function() {
             $.ajax({
               type: "POST",
               url: PATH + "BuscarPontuacao",
@@ -89,11 +89,11 @@ $(document).ready(function() {
   // seleciona qual tipo de tabela deverá ser gerada (a
   // taberna possui 3 tipos)
   function mudahtml(opcao) {
-    var html;
+    var html = "";
     switch (opcao) {
       // Quadro grandão
       case 1:
-        html =
+        html +=
           "<img src='../../resources/style/images/estatico/x.png' title='fechar tabela' alt='clique para fechar' class='sairBtn fechar' />" +
           "<table class='tableRanking' class='intRowRanking'>" +
           "<tr>" +
@@ -108,7 +108,7 @@ $(document).ready(function() {
 
       // Quadro menor
       case 2:
-        html =
+        html +=
           "<table id='tabela'> <!--Tabela de Ranking-->" +
           "<tr>" +
           "<th colspan='3' class='tdTabela' id='tabelaTitulo' >MELHORES GUERREIROS DO REINO</th>" +
@@ -121,7 +121,7 @@ $(document).ready(function() {
         break;
       // Tabela pessoal
       case 3:
-        html =
+        html +=
           "<img src='../../resources/style/images/estatico/x.png' title='fechar tabela' alt='clique para fechar' class='sairBtn fechar' />" +
           "<table class='tableRanking' class='intRowRanking'>" +
           "<tr>" +
@@ -238,6 +238,9 @@ $(document).ready(function() {
             "</tr>";
 
           break;
+      }
+      if (dados==undefined){
+    	  dados="";
       }
       return dados;
     }
