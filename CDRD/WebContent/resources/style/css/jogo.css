@@ -7,10 +7,15 @@ porém seus nomes foram trocados para inicio.algumacoisa, para não dar confusã
 */
 
 @font-face {
-	font-family: pixel font;
+	font-family: "pixel font";
 	src: url("../../resources/style/pixel_font7.ttf");
 }
 
+a,a:visited{
+	color: #000000;
+	text-decoration: none;
+	text-decoration-line: none;
+}
 .carregaFonte {
 	position: absolute;
 	left: -1000px;
@@ -18,6 +23,7 @@ porém seus nomes foram trocados para inicio.algumacoisa, para não dar confusã
 }
 
 body {
+	font: normal 24px/1em "pixel font";
 	background: #ff6;
 }
 

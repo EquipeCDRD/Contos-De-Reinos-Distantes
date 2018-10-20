@@ -42,7 +42,7 @@
 			<div id="quarto">
 				<img src="../../resources/style/images/estatico/bed.png" alt="img" id="cama"> <img src="../../resources/style/images/estatico/bed.png"
 				 alt="img" id="ajustaQuarto">
-				<div id="criadoMudo"></div>
+				<img src="../../resources/style/images/estatico/criado.png" id="criadoMudo">
 				<img src="../../resources/style/images/estatico/trofeus.png" alt="img" id="trofeus" onclick="abrirModal(6)"> <img
 				 src="../../resources/style/images/estatico/mesaQuarto.png" alt="img" id="mesaQuarto" onclick="abrirModal(5)"> <img
 				 src="../../resources/style/images/estatico/cadeiraQuarto.png" alt="img" id="cadeiraQuarto">
@@ -78,17 +78,22 @@
 				<img src="../../resources/style/images/estatico/avisos.png" alt="img" id="avisosImg" onclick="abrirModal(4)">
 			</div>
 
+			<!--Mesa com heróis -->
 			<a href="jogo.html"><img src="../../resources/style/images/gif/mesaHerois.gif" alt="img" id="imgMesa"></a>
+			<img src="" id="balaoJogar" class="balao">
+			<!--Fim Mesa com heróis-->
 
 			<!--Taverneiro-->
 			<img src="../../resources/style/images/gif/taverneiro.gif" alt="img" id="imgTaverneiro" onclick="abrirModal(1)">
+			<img src="" id="balaoTaverneiro" class="balao">
 			<div id="balcao"></div>
-
 			<!--Fim Taverneiro-->
+
 			<!--Bardo-->
 			<img src="../../resources/style/images/gif/bardo.gif" alt="img" id="imgBardo" onclick="abrirModal(2)">
-
+			<img src="" id="balaoBardo" class="balao">
 			<!--Fim Bardo-->
+
 			<div id="paredeInferior">
 				<!--Div para programação da "Porta de Saida" e seus hovers-->
 				<div id="divSair">
@@ -336,7 +341,13 @@
 							<table>
 								<!--Tabela da fala-->
 								<tr>
-									<td class="intCadRow intDialogue">blablabla</td>
+									<td class="intCadRow intDialogue">"Vivemos no continente de Alchenai, de onde não conseguimos sair<br>
+										Pois o Grande Mar nenhum herói conquistou, e nenhum vai conseguir.<br>
+										No continente, 7 reinos existem, cada qual com suas características<br>
+										Possuem ideologias e economias diferentes, e raças específicas<br>
+										O primeiro reino tomou posse da planície, e é nela em que cantamos<br>
+										Com seu poderio econômico e militar, este é o reino dos humanos.<br>
+									</td>
 									<!--Falas do Personagem-->
 								</tr>
 							</table>

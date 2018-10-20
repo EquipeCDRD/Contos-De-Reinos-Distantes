@@ -56,99 +56,134 @@ class SceneMenuPrincipal extends Phaser.Scene {
 
 //tela de carregamento
 class SceneMain extends Phaser.Scene {
-  constructor() {
-    super({ key: "sceneMain" });
-  }
 
-  init() {}
-
-  preload() {
-    var barraCarregamento = this.add.graphics();
-
-    this.load.image("logo", "../../resources/style/images/jogo/test.jpg");
-    for (var i = 0; i < 100; i++) {
-      this.load.image("logo" + i, "../../resources/style/images/jogo/test.jpg");
+    constructor ()
+    {
+        super({ key: 'sceneMain' });
     }
 
-    this.load.on("progress", function(value) {
-      console.log(value);
-      barraCarregamento.clear();
-      barraCarregamento.fillStyle(0x37ac26, 1);
-      barraCarregamento.fillRect(320, 280, 300 * value, 30);
-      percentText.setText(parseInt(value * 100) + "%");
-    });
+    init(){
+    }
 
-    this.load.on("fileprogress", function(file) {
-      console.log(file.src);
-    });
+    preload ()
+    {
+        var barraCarregamento = this.add.graphics();
 
-    this.load.on("complete", function() {
-      console.log("complete");
-      barraCarregamento.destroy();
+        this.load.image('logo', '../../resources/style/images/jogo/test.jpg');
+        /*for (var i = 0; i < 100; i++) {
+            this.load.image('logo'+i, '../../resources/style/images/jogo/test.jpg');
+        }*/
 
-      textoCarregando.destroy();
-      percentText.destroy();
-    });
+        this.load.on('progress', function (value) {
+            console.log(value);
+            barraCarregamento.clear();
+            barraCarregamento.fillStyle(0x37ac26, 1);
+            barraCarregamento.fillRect(320, 280, 300 * value, 30);
+            percentText.setText(parseInt(value * 100) + '%');
+        });
+                    
+        this.load.on('fileprogress', function (file) {
+            console.log(file.src);
+        });
+         
+        this.load.on('complete', function () {
+            console.log('complete');
+            barraCarregamento.destroy();
 
-    var width = this.cameras.main.width;
-    var height = this.cameras.main.height;
-    var textoCarregando = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: "Carregando...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff"
-      }
-    });
-    textoCarregando.setOrigin(0.5, 0.5);
+            textoCarregando.destroy();
+            percentText.destroy();
+        });
 
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff"
-      }
-    });
-    percentText.setOrigin(0.5, 0.5);
+        var width = this.cameras.main.width;
+        var height = this.cameras.main.height;
+        var textoCarregando = this.make.text({
+            x: width / 2,
+            y: height / 2 - 50,
+            text: 'Carregando...',
+            style: {
+                font: '20px monospace',
+                fill: '#ffffff'
+            }
+        });
+        textoCarregando.setOrigin(0.5, 0.5);
 
-    /*-------------------Tiles-------------------------
-        this.load.image('tiles', '../../resources/style/assets/praia.png');
-        this.load.tilemapTiledJSON('praia1', '../../resources/style/assets/praia.json');
-        --------------------------------------------------*/
-  }
+        var percentText = this.make.text({
+            x: width / 2,
+            y: height / 2 - 5,
+            text: '0%',
+            style: {
+                font: '18px monospace',
+                fill: '#ffffff'
+            }
+        });
+        percentText.setOrigin(0.5, 0.5);
 
-  create() {
-    var logo = this.add.image(400, 300, "logo");
+        //-------------------Tiles-------------------------
+        this.load.image('tiles', '../../resources/style/assets/grass-tiles-2-small.png');
+        this.load.tilemapTiledJSON('map', '../../resources/style/assets/untitled.json');
+        //--------------------------------------------------
 
-    const btnMontanha = this.add.text(110, 270, "Ir para Montanha", {
-      fontSize: "50px",
-      fill: "#ffffff",
-      fontFamily: "pixel font"
-    });
-    btnMontanha.setInteractive();
+        this.load.image('spot', '../../resources/style/assets/spot.png');
+    }
 
-    btnMontanha.on(
-      "pointerdown",
-      function() {
-        console.log("From SceneC to SceneA");
-        this.scene.start("sceneMontanha");
-      },
-      this
-    );
+    create ()
+    {
+        //var logo = this.add.image(400, 300, 'logo');
+               
+        //-------------------Tiles-------------------------
+        this.map = this.make.tilemap({key: "map"});
 
-    /*-------------------Tiles-------------------------
-        this.map = this.add.tilemap('praia1');
+        this.tileset = this.map.addTilesetImage("grass", "tiles");
+        // layer = layer statico("NomeDoLayerNoJSON", this.vardoTileset,xOrigem, yOrigem)
+        this.belowLayer = this.map.createStaticLayer("layer1", this.tileset,0, 0);
+        //--------------------------------------------------
 
-        var tiles = this.map.addTilesetImage('praia', 'tiles');
+        this.arrayTabuleiro = [];
+        var tileSize = 40;
+        var ROW = 0;
+        var COL = 1;
+        for(var i = 0; i < 15; i++){
+            this.arrayTabuleiro[i] = [];
+            for(var j = 0; j < 15; j++){
+                //var spot = this.add.sprite(this.tileDestination(j, COL), this.tileDestination(i, ROW), "spot")
+                this.arrayTabuleiro[i][j] = {
+                    img : this.add.image((i*tileSize+20),(j*tileSize+20),'spot'),
+                    posx: i,
+                    posy: j
+                }
+                this.arrayTabuleiro[i][j].img.setInteractive();
+                this.arrayTabuleiro[i][j].img.on('pointerdown', function(){
+                    alert("x=" + this.x + " y=" + this.y);
+                })
+            }
+        }
 
-        this.backgroundLayer = this.map.createLayer('backgroundLayer', tileset);
-        --------------------------------------------------*/
-  }
 
-  update() {}
+        const ButtonA = this.add.text(70, 270, 'aqui', {fontSize:'50px', fill: '#000000', fontFamily: 'pixel font'});
+        ButtonA.setInteractive();
+
+        ButtonA.on('pointerdown', function(){
+            var x = prompt("digita x");
+            var y = prompt("digita y");
+            alert(x + " e " + y);
+            for(var i = 0; i < 15; i++){
+                alert(x + " e " + y + " e " + i +"e" + j);
+                for(var j = 0; j < 15; j++){
+                    alert(x + " e " + y + " e " + i +"e" + j);
+                    if((x==i)&&(y==j)){
+                        alert(x + " e " + y + " e " + i +"e" + j + "a");
+                        this.arrayTabuleiro[i][j].img = this.add.image(400, 300, 'logo');
+                    }
+                }
+            }
+        });
+
+    }
+    
+    update ()
+    {
+    }
+
 }
 
 //montanha
