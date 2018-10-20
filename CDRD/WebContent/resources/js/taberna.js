@@ -35,11 +35,11 @@ $(document).ready(function() {
           "src",
           "../../resources/style/images/estatico/jogar.png"
         );
-        $("#imgTaverneiro").css("left","51.85%")
+        $("#imgTaverneiro").css("left", "51.85%");
       },
       function() {
         $("#balaoJogar").attr("src", "");
-        $("#imgTaverneiro").css("left","62%")
+        $("#imgTaverneiro").css("left", "62%");
       }
     );
 
@@ -306,7 +306,9 @@ function validaMinhaConta() {
                 $("input[name=pwdaltconfsenha]").focus();
               }
             } else {
-              alert("Preencha a senha nova.");
+              alert(
+                "Preencha a senha nova. Se não deseja alterar sua senha, basta digitar a senha antiga"
+              );
               $("input[name=pwdaltsenhanova]").focus();
             }
           } else {

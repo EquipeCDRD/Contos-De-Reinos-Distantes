@@ -9,31 +9,6 @@ $(document).ready(function() {
   // inicialização de funções AJAX
   // validar sessão
   $(function() {
-    $.ajax({
-      type: "POST",
-      url: PATH + "ValidarSessao",
-      data: "p=0",
-      success: function(usuario) {
-        if (usuario.login != null) {
-          usuarioLogado = new Object();
-          usuarioLogado.id = usuario.id;
-          usuarioLogado.login = usuario.login;
-          usuarioLogado.email = usuario.email;
-          usuarioLogado.nome = usuario.nome;
-          usuarioLogado.nascimento = usuario.nascimento;
-          buscaAdmParaEditar(usuarioLogado.id);
-        } else {
-          sair();
-        }
-      },
-      error: function(info) {
-        sair();
-      }
-    });
-  });
-
-  // validar sessão
-  $(function() {
     busca(0, "Adm");
     busca(1, "Jog");
     $.ajax({
@@ -281,9 +256,8 @@ $(document).ready(function() {
           busca(p, q);
         },
         error: function(info) {
-          alert(
-            "Erro ao deletar contato: " + info.status + " - " + info.statusText
-          );
+          var msg = "Erro ao deletar usuário: ";
+          alertaErro(msg, info);
         }
       });
     }
@@ -300,12 +274,8 @@ $(document).ready(function() {
           alert(msg.msg);
         },
         error: function(info) {
-          alert(
-            "Erro ao cadastrar um novo jogador: " +
-              info.status +
-              " - " +
-              info.statusText
-          );
+          var msg = "Erro ao cadastrar um novo administrador: ";
+          alertaErro(msg, info);
         }
       });
     }
@@ -330,8 +300,9 @@ $(document).ready(function() {
         $("#altNovaSenha").val("");
         $("#altConfSenha").val("");
       },
-      error: function(rest) {
-        alert("Erro ao encontrar o usuário a ser alterado.");
+      error: function(info) {
+        var msg = "Erro ao encontrar o usuário a ser alterado.";
+        alertaErro(msg, info);
       }
     });
   };
@@ -348,9 +319,8 @@ $(document).ready(function() {
           alert(msg.msg);
         },
         error: function(info) {
-          alert(
-            "Erro ao alterar os dados: " + info.status + " - " + info.statusText
-          );
+          var msg = "Erro ao alterar os dados: ";
+          alertaErro(msg, info);
         }
       });
     }

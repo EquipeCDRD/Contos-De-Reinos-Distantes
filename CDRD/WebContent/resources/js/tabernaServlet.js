@@ -1,6 +1,7 @@
 /**
- * Autor: Equipe CDRD Data de criação: 2018-21-08 Desc: Arquivo contendo as
- * funções relativas às servlets do jogador
+ * Autor: Equipe CDRD
+ * Data de criação: 2018-21-08
+ * Desc: Arquivo contendo as funções relativas às servlets do jogador
  */
 
 // Main
@@ -11,7 +12,7 @@ $(document).ready(function() {
    */
   var PATH = "../../";
 
-  // varável glbal que salva informações sobre o jogador
+  // varável global que salva informações sobre o jogador
   var usuarioLogado;
 
   var ranking = new Object();
@@ -45,7 +46,7 @@ $(document).ready(function() {
                 $("#rankingPessoal").html(mudahtml(3) + geraTabela(dados, 3));
               }
             })
-          ).then(function(x) {
+          ).then(function() {
             $.ajax({
               type: "POST",
               url: PATH + "BuscarPontuacao",
@@ -284,8 +285,7 @@ $(document).ready(function() {
     });
   };
 
-  // --------------------------Tabela de
-  // avisos---------------------------------
+  // --------------------------Tabela de avisos---------------------------------
 
   geraTabelaAvisos = function(listNotificacao) {
     var dados = "";
@@ -353,8 +353,9 @@ $(document).ready(function() {
         $("#altNovaSenha").val("");
         $("#altConfSenha").val("");
       },
-      error: function(rest) {
-        alert("Erro ao encontrar o usuário a ser alterado.");
+      error: function(info) {
+        var msg = "Erro ao encontrar o usuário a ser alterado.";
+        alertaErro(msg, info);
       }
     });
   };
@@ -369,15 +370,14 @@ $(document).ready(function() {
           alert(msg.msg);
         },
         error: function(info) {
-          alert(
-            "Erro ao alterar os dados: " + info.status + " - " + info.statusText
-          );
+          var msg = "Erro ao alterar os dados: ";
+          alertaErro(msg, info);
         }
       });
     }
   };
 
-  deletaUsuario = function(p, q) {
+  deletaUsuario = function() {
     if (
       confirm(
         "Você tem certeza que quer deletar sua conta? Você vai perder tudo que ja teve conosco!"
@@ -397,24 +397,5 @@ $(document).ready(function() {
         }
       });
     }
-  };
-
-  // Cai fora fdp!
-  sair = function() {
-    $.ajax({
-      type: "POST",
-      url: PATH + "Logout",
-      success: function(data) {
-        window.location.href = PATH + "index.html";
-      },
-      error: function(info) {
-        alert(
-          "Erro ao tentar encerrar sua sessão: " +
-            info.status +
-            " - " +
-            info.statusText
-        );
-      }
-    });
   };
 });
