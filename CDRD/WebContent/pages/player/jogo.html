@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+<<<<<<< HEAD
 <meta charset="utf-8" />
 <title>Contos de Reinos Distantes - Jogo</title>
 <meta name="author" content="Equipe CRD">
@@ -8,27 +10,46 @@
 	content="Página do jogo Contos de Reinos Distantes">
 <!--Scripts e CSS-->
 <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+<script src="//cdn.jsdelivr.net/gh/appsbu-de/phaser_plugin_pathfinding@0.2.0/bin/phaser_pathfinding-0.2.0.js"></script>
 <script src="../../resources/js/jogo.js"></script>
+=======
+	<meta charset="utf-8" />
+	<title>Contos de Reinos Distantes - Jogo</title>
+	<meta name="author" content="Equipe CRD">
+	<meta name="description" content="Página do jogo Contos de Reinos Distantes">
+>>>>>>> 64f2d065a783bba821c3139cf21aecfeb70a83bd
 
-<link rel="stylesheet" type="text/css"
-	href="../../resources/style/css/jogo.css" />
-<style>
-@font-face {
-	font-family: pixel font;
-	src: url("../../resources/style/pixel_font7.ttf");
-}
+	<!--Scripts e CSS-->
+	<script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="../../resources/js/jogo/jogo.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../resources/style/css/jogo.css" />
+	<style>
+		@font-face {
+			font-family: "pixel font";
+			src: url("../../resources/style/pixel_font7.ttf");
+		}
 
-.carregaFonte {
-	position: absolute;
-	left: -1000px;
-	visibility: hidden;
-}
+		.carregaFonte {
+			position: absolute;
+			left: -1000px;
+			visibility: hidden;
+		}
 
-</style>
+		#voltar {
+			margin-left: 25%
+		}
+	</style>
 </head>
+
 <body>
 	<div class='carregaFonte' style='font-family: pixel font;'>-</div>
 	<!--Carrega um elemento escondido pq phaser é horrível-->
 	<div id="jogo"></div>
+
+	<a href="index.html">
+		<h1 id="voltar">Voltar para o Siri Cotoco</h1>
+	</a>
 </body>
+
 </html>
