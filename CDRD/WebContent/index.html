@@ -21,13 +21,13 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <!--DetectJS-->
+    <!--DetectJS & tmxJSON.js-->
     <!--
-    Por enquanto o Detect.js fica sendo puxado desta biblioteca local,
+    Por enquanto o Detect.js e o tmxJSON.js fica sendo puxado desta biblioteca local,
     mas o ideal (e exigido pela comissão do Challenge) é utilizar a biblioteca online
     -->
     <script src="resources/js/libs/detect.js"></script>
-
+    <script src="resources/js/libs/tmxJSON.js"></script>
     <!--=== scripts próprios ===-->
 
     <script src="resources/js/inicio.js"></script>
@@ -320,7 +320,7 @@
                     <tr>
                         <th class="intRow" colspan="2">Guarda da Taverna</th>
                         <!--Nome do personagem que está falando-->
-                    </tr>
+                   ' <'/tr>
                     <tr>
                         <td class="intRow vAlign">
                             <!--Td das falas do Personagem-->
@@ -379,13 +379,8 @@
     </div>
     <!--======================== fim containerModais ========================-->
 
-    <div class="background">
-        <p>Background text</p>
-        <img src="http://nuclearpixel.com/content/icons/2010-02-09_stellar_icons_from_space_from_2005/earth_128.png"
-            alt="background" />
-        <img src="http://upload.wikimedia.org/wikipedia/en/0/0c/IrfanView_Logo.png" alt="background 2" />
+    <canvas id="background" width="300px" height="300px"></canvas>
 
-    </div>
 </body>
 
 <!--======================== fim conteúdo ========================-->

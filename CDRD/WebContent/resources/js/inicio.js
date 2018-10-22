@@ -37,6 +37,14 @@ $(document).ready(function() {
   }
 
   carregaModais();
+
+  /*=======================================Background=======================================*/
+
+  var canvas = document.getElementById("background");
+  var context = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  tmxJSON.load("resources/assets/json/planoFundoInicio.json");
 });
 
 /**
@@ -183,5 +191,4 @@ function validaEsqueciSenha() {
     alert('Preencha o campo "Endereço de E-mail"');
     $("input[name=txtmail]").focus();
   }
-  ("");
 }
