@@ -91,7 +91,7 @@ body {
 }
 
 #tabela {
-	margin-top:-2px;
+	margin-top: -2px;
 	height: 100%;
 	width: 360px;
 	font-size: 12px;
@@ -198,9 +198,8 @@ body {
 #imgTaverneiro {
 	height: 170px;
 	position: relative;
-	;
-	left: 800px;
-	bottom: 105px;
+	top: -100px;
+	left: 62%;
 }
 
 #balcao {
@@ -575,4 +574,30 @@ body {
 
 .quadro {
 	margin: 0;
+}
+
+
+/*===================baloes de fala==================*/
+
+.balao {
+	height: 100px;
+	position: relative;
+}
+
+#balaoJogar {
+	bottom: 16%;
+	left: 22%;
+	z-index: 1;
+}
+
+#balaoTaverneiro {
+	top: -49%;
+	left: 45%;
+	z-index: 1;
+}
+
+#balaoBardo {
+	bottom: 177%;
+	right: 12%;
+	z-index: 1;
 }

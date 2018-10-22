@@ -3,14 +3,6 @@ $(document).ready(function() {
   $("#quartoTaverneiro").css("filter", "brightness(50%)");
   $("#paredeQuartoT").css("filter", "brightness(50%)");
   $("#balcao").css("pointer-events", "none");
-  $(".sairBtn").hover(
-    function() {
-      $(this).attr("src", "../../resources/style/images/estatico/xHover.png");
-    },
-    function() {
-      $(this).attr("src", "../../resources/style/images/estatico/x.png");
-    }
-  );
 
   // Detecta o navegador e renderiza as imagens de maneira
   // adequada a cada navegador
@@ -27,6 +19,54 @@ $(document).ready(function() {
         " não é suportado por nossa aplicação. Lamentamos o inconveninete ( ; _ ; ). Atualmente, somente o Chrome e Firefox são suportados."
     );
   }
+  $.when().then(function() {
+    $(".sairBtn").hover(
+      function() {
+        $(this).attr("src", "../../resources/style/images/estatico/xHover.png");
+      },
+      function() {
+        $(this).attr("src", "../../resources/style/images/estatico/x.png");
+      }
+    );
+
+    $("#imgMesa").hover(
+      function() {
+        $("#balaoJogar").attr(
+          "src",
+          "../../resources/style/images/estatico/jogar.png"
+        );
+        $("#imgTaverneiro").css("left", "51.85%");
+      },
+      function() {
+        $("#balaoJogar").attr("src", "");
+        $("#imgTaverneiro").css("left", "62%");
+      }
+    );
+
+    $("#imgTaverneiro").hover(
+      function() {
+        $("#balaoTaverneiro").attr(
+          "src",
+          "../../resources/style/images/estatico/conversar_direita.png"
+        );
+      },
+      function() {
+        $("#balaoTaverneiro").attr("src", "");
+      }
+    );
+
+    $("#imgBardo").hover(
+      function() {
+        $("#balaoBardo").attr(
+          "src",
+          "../../resources/style/images/estatico/conversar_esquerda.png"
+        );
+      },
+      function() {
+        $("#balaoBardo").attr("src", "");
+      }
+    );
+  });
 });
 
 $(document).keydown(function(event) {
@@ -266,7 +306,9 @@ function validaMinhaConta() {
                 $("input[name=pwdaltconfsenha]").focus();
               }
             } else {
-              alert("Preencha a senha nova.");
+              alert(
+                "Preencha a senha nova. Se não deseja alterar sua senha, basta digitar a senha antiga"
+              );
               $("input[name=pwdaltsenhanova]").focus();
             }
           } else {

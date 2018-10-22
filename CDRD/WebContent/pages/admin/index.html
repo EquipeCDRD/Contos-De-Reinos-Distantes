@@ -2,34 +2,26 @@
 <html lang="pt-br">
 
 <head>
-<meta charset="utf-8" />
-<title>Contos de Reinos Distantes - Página de Administrador</title>
-<meta name="author" content="Equipe CRD">
-<meta name="description"
-	content="Página de administrador do Contos de Reinos Distantes">
-<meta name="creation-date" content="2018/06/05">
-<meta name="last-modified" content="2018/06/06">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+	<title>Contos de Reinos Distantes - Página de Administrador</title>
+	<meta name="author" content="Equipe CRD">
+	<meta name="description" content="Página de administrador do Contos de Reinos Distantes">
+	<meta name="creation-date" content="2018/06/05">
+	<meta name="last-modified" content="2018/06/06">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css"
-	href="../../resources/style/css/admin.css" />
-<link rel="icon" type="image/png"
-	href="../../resources/style/images/estatico/magoEstatico_01.png">
-<!--Libs-->
+	<link rel="stylesheet" type="text/css" href="../../resources/style/css/admin.css" />
+	<link rel="icon" type="image/png" href="../../resources/style/images/estatico/magoEstatico_01.png">
+	<!--Libs-->
 
-<!--JQuery-->
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!--JQuery-->
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<!--Google Charts-->
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
-
-<!--Scripts próprios-->
-
-<script src="../../resources/js/admin.js"></script>
-<script src="../../resources/js/shared.js"></script>
-<script src="../../resources/js/adminServlet.js"></script>
+	<!--Scripts próprios-->
+	<script src="../../resources/js/admin.js"></script>
+	<script src="../../resources/js/shared.js"></script>
+	<script src="../../resources/js/adminServlet.js"></script>
 
 </head>
 
@@ -38,28 +30,28 @@
 	<div id="admPaginas">
 		<div class="admMenu">
 			<ul>
-				<li><img id="logo"
-					src="../../resources/style/images/estatico/logoadm.png"
-					title="Contos de Reinos Distantes" alt="Logo"></li>
+				<li><img id="logo" src="../../resources/style/images/estatico/logoadm.png" title="Contos de Reinos Distantes" alt="Logo"></li>
 				<li><a href="#admPaginas-1">
 						<div>Ranking</div>
-				</a></li>
+					</a></li>
 				<li><a href="#admPaginas-2">
 						<div>Gerenciar Contas</div>
-				</a></li>
+					</a></li>
 				<li><a href="#admPaginas-3">
 						<div>Logs de Acesso</div>
-				</a></li>
+					</a></li>
 				<li><a href="#admPaginas-4">
 						<div>Notificações</div>
-				</a></li>
+					</a></li>
 				<li><a href="#admPaginas-6">
 						<div>Gerenciar Admin</div>
-				</a></li>
+					</a></li>
 				<li><a href="#admPaginas-7">
 						<div>Minha Conta</div>
-				</a></li>
-				<li><a><div onclick="sair()">Sair</div></a></li>
+					</a></li>
+				<li><a>
+						<div onclick="sair()">Sair</div>
+					</a></li>
 			</ul>
 		</div>
 		<div class="conteudo" id="admPaginas-1">
@@ -85,15 +77,13 @@
 				<h2>Deletar conta:</h2>
 				<form name="frmdeletarconta">
 					<h3>Usuário selecionado:</h3>
-					<input readonly id="input1" type="text" name="txtJog"
-						placeholder="Nenhum usuário selecionado"> <input
-						type="hidden" name="hdJog">
+					<input readonly id="input1" type="text" name="txtJog" placeholder="Nenhum usuário selecionado"> <input type="hidden"
+					 name="hdJog">
 					<h3 id="tituloMotivo">Motivo:</h3>
 					<textarea name="txamotivoJog" id="txa1"></textarea>
 					<div class="divBotoesDeletar">
 						<button type="reset" name="btnlimparmotivo">Limpar</button>
-						<button type="button" name="btndeletarconta"
-							onclick="deletaUsuario(1,'Jog')">Deletar Conta</button>
+						<button type="button" name="btndeletarconta" onclick="deletaUsuario(1,'Jog')">Deletar Conta</button>
 						<!--Botão para deletar contas-->
 					</div>
 				</form>
@@ -112,13 +102,12 @@
 					<h2>Compor nova notificação:</h2>
 					<textarea name="txacompnotificacao" cols="30" rows="7"></textarea>
 					<div>
-						<button type="button" name="btnpostarnotificacao" id="botaoPostar"
-							onclick="validaNotificacao(0)">Postar Notificação</button>
+						<button type="button" name="btnpostarnotificacao" id="botaoPostar" onclick="validaNotificacao(0)">Postar
+							Notificação</button>
 					</div>
 				</form>
 			</div>
-			<div class="divComporNotificacoes comBorda"
-				id="divEditarNotificacoes">
+			<div class="divComporNotificacoes comBorda" id="divEditarNotificacoes">
 				<form name="frmeditarnotificacoes">
 					<h2>Editar notificação:</h2>
 					<textarea name="txaeditnotificacao" cols="30" rows="7"></textarea>
@@ -142,28 +131,22 @@
 				<h2>Cadastro de Administrador</h2>
 				<form id="cadastrarAdmin" name="frmcadastraradm">
 					<div class="cadCampo">
-						<label>Nome Completo: </label> <input type="text"
-							name="txtnomeadm" id="cadNome">
+						<label>Nome Completo: </label> <input type="text" name="txtnomeadm" id="cadNome">
 					</div>
 					<div class="cadCampo">
-						<label>Email: </label> <input type="text" name="txtemailadm"
-							id="cadEmail">
+						<label>Email: </label> <input type="text" name="txtemailadm" id="cadEmail">
 					</div>
 					<div class="cadCampo">
-						<label>Data de Nascimento: </label> <input type="date"
-							name="dtenascimentoadm" id="cadNascimento">
+						<label>Data de Nascimento: </label> <input type="date" name="dtenascimentoadm" id="cadNascimento">
 					</div>
 					<div class="cadCampo">
-						<label>Nome do Administrador: </label> <input type="text"
-							name="txtapelidoadm" id="cadApelido">
+						<label>Nome do Administrador: </label> <input type="text" name="txtapelidoadm" id="cadApelido">
 					</div>
 					<div class="cadCampo">
-						<label>Senha: </label> <input type="password" name="pwdsenhaadm"
-							id="cadsenha">
+						<label>Senha: </label> <input type="password" name="pwdsenhaadm" id="cadsenha">
 					</div>
 					<div class="cadCampo">
-						<label>Confirmar Senha: </label> <input type="password"
-							name="pwdconfsenhaadm" id="cadconfsenha">
+						<label>Confirmar Senha: </label> <input type="password" name="pwdconfsenhaadm" id="cadconfsenha">
 					</div>
 					<div class="cadBotoes">
 						<button type="button" onclick="validaCadastroAdm()">Enviar</button>
@@ -183,15 +166,13 @@
 				<h2>Deletar administrador:</h2>
 				<form name="frmdeletarcontaadm">
 					<h3>Admin selecionado:</h3>
-					<input readonly type="text" name="txtAdm"
-						placeholder="Nenhum administrador selecionado"> <input
-						type="hidden" name="hdAdm" value="">
+					<input readonly type="text" name="txtAdm" placeholder="Nenhum administrador selecionado"> <input type="hidden"
+					 name="hdAdm" value="">
 					<h3 class="tituloMotivo">Motivo:</h3>
 					<textarea name="txamotivoAdm"></textarea>
 					<div class="divBotoesDeletar">
 						<button type="reset" name="btnlimparmotivo">Limpar</button>
-						<button type="button" name="btndeletarconta"
-							onclick="deletaUsuario(0,'Adm')">Deletar Conta</button>
+						<button type="button" name="btndeletarconta" onclick="deletaUsuario(0,'Adm')">Deletar Conta</button>
 						<!--Botão para deletar contas-->
 					</div>
 				</form>
@@ -204,37 +185,29 @@
 				<h2>Minha Conta</h2>
 				<form name="frmminhaconta" id="editarConta">
 					<div class="cadCampo">
-						<label>Nome Completo: </label> <input type="text"
-							name="txtaltnome" id="altNome">
+						<label>Nome Completo: </label> <input type="text" name="txtaltnome" id="altNome">
 					</div>
 					<div class="cadCampo">
-						<label>Email: </label> <input type="text" name="txtaltemail"
-							id="altEmail">
+						<label>Email: </label> <input type="text" name="txtaltemail" id="altEmail">
 					</div>
 					<div class="cadCampo">
-						<label>Data de Nascimento: </label> <input type="date"
-							name="dtealtnascimento" id="altNascimento">
+						<label>Data de Nascimento: </label> <input type="date" name="dtealtnascimento" id="altNascimento">
 					</div>
 					<div class="cadCampo">
-						<label>Apelido do Administrador: </label> <input type="text"
-							name="txtaltlogger" id="altLogger">
+						<label>Apelido do Administrador: </label> <input type="text" name="txtaltlogger" id="altLogger">
 					</div>
 					<div class="cadCampo">
-						<label>Senha Antiga:</label> <input type="password"
-							name="pwdaltsenhaantiga" id="altVelhaSenha">
+						<label>Senha Antiga:</label> <input type="password" name="pwdaltsenhaantiga" id="altVelhaSenha">
 					</div>
 					<div class="cadCampo">
-						<label>Nova Senha: </label> <input type="password"
-							name="pwdaltsenhanova" id="altNovaSenha">
+						<label>Nova Senha: </label> <input type="password" name="pwdaltsenhanova" id="altNovaSenha">
 					</div>
 					<div class="cadCampo">
-						<label>Confirmar Nova Senha: </label> <input type="password"
-							name="pwdaltconfsenha" id="altConfSenha">
+						<label>Confirmar Nova Senha: </label> <input type="password" name="pwdaltconfsenha" id="altConfSenha">
 					</div>
 					<div class="cadBotoes">
-						<input type="hidden" name="hdid" id="altId"> <input
-							type="button" onclick="alteraUsuario()" value="Enviar"> <input
-							type="button" onclick="buscaAdmParaEditar()" value="Limpar">
+						<input type="hidden" name="hdid" id="altId"> <input type="button" onclick="alteraUsuario()" value="Enviar">
+						<input type="button" onclick="buscaAdmParaEditar()" value="Limpar">
 					</div>
 				</form>
 			</div>

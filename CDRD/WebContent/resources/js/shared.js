@@ -1,5 +1,7 @@
 /**
- * Author: Equipe CDRD Creation date: 2018-10-08 Descrição: Arquivo com scripts
+ * Author: Equipe CDRD 
+ * Creation date: 2018-10-08 
+ * Descrição: Arquivo com scripts
  * js compartilhados por dois ou mais documentos
  */
 
@@ -15,7 +17,9 @@ $(document).ready(function() {
       },
       error: function(info) {
         var msg = "Erro ao tentar encerrar sua sessão: ";
-        alertaErro(msg, info);
+        $.when(alertaErro(msg, info)).then(function() {
+          window.location.href = PATH + "index.html";
+        });
       }
     });
   };
