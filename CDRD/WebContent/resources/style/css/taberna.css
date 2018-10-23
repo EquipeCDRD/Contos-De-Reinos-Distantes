@@ -430,6 +430,10 @@ body {
 	font-size: 30px;
 }
 
+.intDialogue {
+	font-size: 20px;
+}
+
 .vAlign {
 	vertical-align: text-top;
 }
