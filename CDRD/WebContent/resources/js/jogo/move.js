@@ -22,20 +22,20 @@ var Jogo = {};
 
     Jogo.create = function()
     {
-    	// var logo = this.add.image(400, 300, 'logo');
-        // -------------------Tiles-------------------------
+    	
+    	this.input.on('pointerdown', Jogo.handleClick); 
+
         Jogo.map = this.make.tilemap({key: "map"});
 
-        var tiles = Jogo.map.addTilesetImage("praia", "tiles");
-        // layer = layer statico("NomeDoLayerNoJSON", this.vardoTileset,xOrigem,
-		// yOrigem)
-        this.belowLayer = Jogo.map.createStaticLayer("terreno", tiles);
-      // this.aboveLayer = Jogo.map.createStaticLayer( "detalhes", tiles);
-      // this.worldLayer = Jogo.map.createStaticLayer( "obstaculo", tiles);
+        
+        Jogo.camera = this.cameras.main;
+        Jogo.camera.setBounds(0, 0, 20*32, 20*32);
+        
 
         // --------------------------------------------------
         var arqueiro = this.add.sprite(20, 20, 'arqueiro', 1);
         arqueiro.setDepth(1);
+        Jogo.camera.startFollow(arqueiro);
         Jogo.player = arqueiro;
 
             this.anims.create({
@@ -91,7 +91,38 @@ var Jogo = {};
                 frameRate: 16,
                 repeat: 0,
             });
+            const norte = Jogo.scene.add.text(700, 50, 'N', {fontSize:'50px', fill: '#fff', fontFamily: 'pixel font'});
+            norte.setInteractive();
+
+            norte.on('pointerdown', function(){
+            	arqueiro.anims.play('nwalk');
+            });
+            const este = Jogo.scene.add.text(750, 100, 'E', {fontSize:'50px', fill: '#fff', fontFamily: 'pixel font'});
+            este.setInteractive();
+
+            este.on('pointerdown', function(){
+            	arqueiro.anims.play('ewalk');
+            });
+            const sul = Jogo.scene.add.text(700, 150, 'S', {fontSize:'50px', fill: '#fff', fontFamily: 'pixel font'});
+            sul.setInteractive();
+
+            sul.on('pointerdown', function(){
+            	arqueiro.anims.play('swalk');
+            });
+            const oeste = Jogo.scene.add.text(650, 100, 'W', {fontSize:'50px', fill: '#fff', fontFamily: 'pixel font'});
+            oeste.setInteractive();
+
+            oeste.on('pointerdown', function(){
+            	arqueiro.anims.play('wwalk');
+            });
             
+            
+            var tiles = Jogo.map.addTilesetImage("praia", "tiles");
+            // layer = layer statico("NomeDoLayerNoJSON", this.vardoTileset,xOrigem,
+    		// yOrigem)
+            this.belowLayer = Jogo.map.createStaticLayer("terreno", tiles);
+            //this.aboveLayer = Jogo.map.createStaticLayer( "detalhes", tiles);
+            //this.worldLayer = Jogo.map.createStaticLayer( "obstaculo", tiles);
         
             Jogo.marker = this.add.graphics();
             Jogo.marker.lineStyle(2, 0x00cc00, 1);
@@ -115,87 +146,24 @@ var Jogo = {};
             var tileset = Jogo.map.tilesets[0];
             var properties = tileset.tileProperties;
             var acceptableTiles = [];
-
-            // We need to list all the tile IDs that can be walked on. Let's
-			// iterate over all of them
-            // and see what properties have been entered in Tiled.
-            for(var i = tileset.firstgid-1; i < tiles.total; i++){ // firstgid
-																	// and total
-																	// are
-																	// fields
-																	// from
-																	// Tiled
-																	// that
-																	// indicate
-																	// the range
-																	// of IDs
-																	// that the
-																	// tiles can
-																	// take in
-																	// that
-																	// tileset
+            for(var i = tileset.firstgid-1; i < tiles.total; i++){
                 if(!properties.hasOwnProperty(i)) {
-                    // If there is no property indicated at all, it means it's a
-					// walkable tile
                     acceptableTiles.push(i+1);
                     continue;
                 }
                 if(!properties[i].collide) acceptableTiles.push(i+1);
-                if(properties[i].cost) Jogo.finder.setTileCost(i+1, properties[i].cost); // If
-																							// there
-																							// is a
-																							// cost
-																							// attached
-																							// to
-																							// the
-																							// tile,
-																							// let's
-																							// register
-																							// it
+                if(properties[i].cost) Jogo.finder.setTileCost(i+1, properties[i].cost); 
             }
             Jogo.finder.setAcceptableTiles(acceptableTiles);
-        /*
-		 * this.arrayTabuleiro = []; var tileSize = 40; var ROW = 0; var COL =
-		 * 1; for(var i = 0; i < 15; i++){ this.arrayTabuleiro[i] = []; for(var
-		 * j = 0; j < 15; j++){ // var spot =
-		 * this.add.sprite(this.tileDestination(j, COL), //
-		 * this.tileDestination(i, ROW), "spot") this.arrayTabuleiro[i][j] = {
-		 * img : this.add.image((i*tileSize+20),(j*tileSize+20),'spot'), posx:
-		 * i, posy: j } this.arrayTabuleiro[i][j].img.setInteractive();
-		 * this.arrayTabuleiro[i][j].img.on('pointerdown', function(){
-		 * alert("x=" + this.x + " y=" + this.y); }) } }
-		 */
-        const norte = this.add.text(700, 50, 'N', {fontSize:'50px', fill: '#fff', fontFamily: 'pixel font'});
-        norte.setInteractive();
-
-        norte.on('pointerdown', function(){
-        	arqueiro.anims.play('nwalk');
-        });
-        const este = this.add.text(750, 100, 'E', {fontSize:'50px', fill: '#fff', fontFamily: 'pixel font'});
-        este.setInteractive();
-
-        este.on('pointerdown', function(){
-        	arqueiro.anims.play('ewalk');
-        });
-        const sul = this.add.text(700, 150, 'S', {fontSize:'50px', fill: '#fff', fontFamily: 'pixel font'});
-        sul.setInteractive();
-
-        sul.on('pointerdown', function(){
-        	arqueiro.anims.play('swalk');
-        });
-        const oeste = this.add.text(650, 100, 'W', {fontSize:'50px', fill: '#fff', fontFamily: 'pixel font'});
-        oeste.setInteractive();
-
-        oeste.on('pointerdown', function(){
-        	arqueiro.anims.play('wwalk');
-        });
+      
+        
+        
 /*
  * for(var i=0;i<15;i++){ for(var j=0;j<15;j++){
  * player[i][j].anims.play(i+'a'+j, true); } }
  */
 
         
-    	this.input.on('pointerdown', this.handleClick); 
 
     }
     
@@ -205,16 +173,13 @@ var Jogo = {};
     	var worldPoint = this.input.activePointer.positionToCamera(this.cameras.main);
     	var pointerTileX = Jogo.map.worldToTileX(worldPoint.x);
     	var pointerTileY = Jogo.map.worldToTileY(worldPoint.y);
-    	if (pointerTileX<16&&pointerTileX<16){
         	Jogo.marker.x = Jogo.map.tileToWorldX(pointerTileX);
             Jogo.marker.y = Jogo.map.tileToWorldY(pointerTileY);
-            Jogo.marker.setVisible(!this.checkCollision(pointerTileX,pointerTileY));
-    	}
+            Jogo.marker.setVisible(!Jogo.checkCollision(pointerTileX,pointerTileY));
     }
     
     Jogo.handleClick = function(pointer){
     	
-    	if((pointer.x/40)<16&&(pointer.y/40)<16){
     		var x = pointer.x;
     		var y = pointer.y;
     		var toX = Math.floor(x/40);
@@ -246,18 +211,18 @@ var Jogo = {};
 		    });
 		    Jogo.finder.calculate(); // don't forget, otherwise nothing
 											// happens
-		}
+		
     };
     
     Jogo.getTileID = function(x,y)
     {
-        var tile = Jogo.map.getTileAt(x, y, 'obstaculo');
+        var tile = Jogo.map.getTileAt(x, y);
         return tile.index;
     };
     
     Jogo.checkCollision = function(x,y)
     {
-        var tile = Jogo.map.getTileAt(x, y, 'obstaculo');
+        var tile = Jogo.map.getTileAt(x, y);
         return tile.properties.collide == true;
     };
     
