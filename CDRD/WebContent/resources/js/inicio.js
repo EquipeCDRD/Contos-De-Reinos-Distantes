@@ -40,12 +40,9 @@ $(document).ready(function() {
 
   /*=======================================Background=======================================*/
 
-  var canvas = document.getElementById("background");
-  var context = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  tmxJSON.load("resources/assets/json/planoFundoInicio.json");
 });
+
+/*=======================================Modais=======================================*/
 
 /**
  * função que provê um display às janelas modais, abrindo-o ou

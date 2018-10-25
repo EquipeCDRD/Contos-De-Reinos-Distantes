@@ -51,6 +51,8 @@
         Cadastro, etc)
     -->
 
+<canvas id="background" width="300px" height="300px"></canvas>
+
 <body id="contentIndex">
 
     <!--======================== início paredeTaverna ========================-->
@@ -320,41 +322,41 @@
                     <tr>
                         <th class="intRow" colspan="2">Guarda da Taverna</th>
                         <!--Nome do personagem que está falando-->
-                   ' <'/tr>
-                    <tr>
-                        <td class="intRow vAlign">
-                            <!--Td das falas do Personagem-->
-                            <form name="frmesqueci">
-                                <table>
-                                    <!--Tabela da fala-->
-                                    <tr>
-                                        <td colspan="2" class="intCadRow intDialogue">
-                                            Isso é mais comum do que você imagina, até criamos um plano para lidar com
-                                            esse tipo de problema! Enviaremos um pombo correio
-                                            para sua casa. (Você receberá um e-mail com o link com sua nova senha)</td>
-                                        <!--Falas do Personagem-->
-                                    </tr>
-                                    <tr>
-                                        <td class="intCadOptions">Endereço de E-mail:</td>
-                                        <td class="tdInput">
-                                            <input type="text" name="txtmail" value="" class="intInput" maxlength="100">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="reset" value="Limpar" class="intCadButton3">
-                                        </td>
-                                        <td>
-                                            <input type="button" value="Enviar" class="intCadButton4" onclick="validaEsqueciSenha()">
-                                        </td>
-                                    </tr>
-                                </table>
-                                <!--Fim da tabela da fala-->
-                            </form>
-                        </td>
-                        <!--Fim da td das falas do Personagem-->
-                        <td class="intTdImg"><img src="resources/style/images/estatico/guarda.png" alt="img" class="intImg"></td>
-                        <!--Imagem do Personagem-->
+                        ' <'/tr> <tr>
+                            <td class="intRow vAlign">
+                                <!--Td das falas do Personagem-->
+                                <form name="frmesqueci">
+                                    <table>
+                                        <!--Tabela da fala-->
+                                        <tr>
+                                            <td colspan="2" class="intCadRow intDialogue">
+                                                Isso é mais comum do que você imagina, até criamos um plano para lidar
+                                                com
+                                                esse tipo de problema! Enviaremos um pombo correio
+                                                para sua casa. (Você receberá um e-mail com o link com sua nova senha)</td>
+                                            <!--Falas do Personagem-->
+                                        </tr>
+                                        <tr>
+                                            <td class="intCadOptions">Endereço de E-mail:</td>
+                                            <td class="tdInput">
+                                                <input type="text" name="txtmail" value="" class="intInput" maxlength="100">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="reset" value="Limpar" class="intCadButton3">
+                                            </td>
+                                            <td>
+                                                <input type="button" value="Enviar" class="intCadButton4" onclick="validaEsqueciSenha()">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!--Fim da tabela da fala-->
+                                </form>
+                            </td>
+                            <!--Fim da td das falas do Personagem-->
+                            <td class="intTdImg"><img src="resources/style/images/estatico/guarda.png" alt="img" class="intImg"></td>
+                            <!--Imagem do Personagem-->
                     </tr>
                     <tr>
                         <td colspan="2" class="intTdButton">
@@ -378,8 +380,6 @@
 
     </div>
     <!--======================== fim containerModais ========================-->
-
-    <canvas id="background" width="300px" height="300px"></canvas>
 
 </body>
 
