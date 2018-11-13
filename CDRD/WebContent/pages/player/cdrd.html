@@ -413,8 +413,16 @@ Você pega seus equipamentos e segue em direção à praia, fora dos limites do 
 (set: $danoMonstro to 2)</tw-passagedata><tw-passagedata pid="34" name="compraItem1" tags="" position="899,1499" size="100,100">{(if: $dinheiro &gt;= 150)[
 	(set: $dinheiro to it-150)
 	(set: $armaLvl to 2)
-	(set: $dano to 4)
 	Sua arma foi aprimorada com sucesso
+	{(if: $classe is &quot;g&quot;)[
+		(set: $dano to 4)
+	](else-if: $classe is &quot;l&quot;)[ 
+		(set: $dano to 6)
+	](else-if: $classe is &quot;a&quot;)[
+		(set: $dano to 8)
+	](else-if: $classe is &quot;m&quot;)[
+		(set: $dano to 10)
+	]}
 [[Demais! -&gt; loja]]
 ](else:)[
 Você não possui dinheiro suficiente!
@@ -424,7 +432,16 @@ Dinheiro atual: $dinheiro$
 ]}</tw-passagedata><tw-passagedata pid="35" name="compraItem2" tags="" position="1300,1499" size="100,100">{(if: $dinheiro &gt;= 185)[
 	(set: $dinheiro to it-185)
 	(set: $armaLvl to 3)
-	(set: $dano to 6)
+	Sua arma foi aprimorada com sucesso
+	{(if: $classe is &quot;g&quot;)[
+		(set: $dano to 6)
+	](else-if: $classe is &quot;l&quot;)[ 
+		(set: $dano to 8)
+	](else-if: $classe is &quot;a&quot;)[
+		(set: $dano to 10)
+	](else-if: $classe is &quot;m&quot;)[
+		(set: $dano to 12)
+	]}
 	Sua arma foi aprimorada com sucesso!
 	[[Demais! -&gt; loja]]
 ](else:)[
@@ -435,6 +452,20 @@ Dinheiero atual: $dinheiro$
 ]}</tw-passagedata><tw-passagedata pid="36" name="compraSec1" tags="" position="901,1698" size="100,100">{(if: $dinheiro &gt;= 150)[
 	(set: $dinheiro to it-150)
 	(set: $secLvl to 2)
+	Sua arma foi aprimorada com sucesso
+	{(if: $classe is &quot;g&quot;)[
+		(set: $hp to 20)
+		(set: $hpmx to 20)
+	](else-if: $classe is &quot;l&quot;)[ 
+		(set: $hp to 18)
+		(set: $hpmx to 18)
+	](else-if: $classe is &quot;a&quot;)[
+		(set: $hp to 15)
+		(set: $hpmx to 15)
+	](else-if: $classe is &quot;m&quot;)[
+		(set: $hp to 12)
+		(set: $hpmx to 12)
+	]}
 	(set: $hp to 25)
 	(set: $hpmx to 25)
 	Sua secundária foi aprimorada com sucesso
@@ -444,11 +475,22 @@ Você não possui dinheiro suficiente!
 Dinheiro necessário: 185$
 Dinheiero atual: $dinheiro$
 [[Voltarei depois! -&gt; loja]]
-]}</tw-passagedata><tw-passagedata pid="37" name="compraSec2" tags="" position="1302,1700" size="100,100">{(if: $dinheiro &gt;= 180)[
+]}</tw-passagedata><tw-passagedata pid="37" name="compraSec2" tags="" position="1303.6666666666667,1700" size="100,100">{(if: $dinheiro &gt;= 180)[
 	(set: $dinheiro to it - 180)
 	(set: $secLvl to 3)
-	(set: $hp to 35)
-	(set: $hpmx to 35)
+	{(if: $classe is &quot;g&quot;)[
+		(set: $hp to 24)
+		(set: $hpmx to 24)
+	](else-if: $classe is &quot;l&quot;)[ 
+		(set: $hp to 22)
+		(set: $hpmx to 22)
+	](else-if: $classe is &quot;a&quot;)[
+		(set: $hp to 18)
+		(set: $hpmx to 18)
+	](else-if: $classe is &quot;m&quot;)[
+		(set: $hp to 15)
+		(set: $hpmx to 15)
+	]}
 	Sua secundária foi aprimorada com sucesso!
 	[[Demais! -&gt; loja]]
 ](else:)[
