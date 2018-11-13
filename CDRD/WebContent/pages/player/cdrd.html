@@ -30,7 +30,9 @@ tw-sidebar tw-icon.redo {
 tw-sidebar tw-icon.undo {
 	display: none;
 }
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
 
 
 
@@ -60,25 +62,25 @@ Não sabiam, mas não houve tempo para cogitações...
 
 Tem certeza que deseja jogar como um guerreiro?
 
-[[sim -&gt; equipamentoG]]
-[[não -&gt; classe]]</tw-passagedata><tw-passagedata pid="5" name=" ladino" tags="" position="1702,700" size="100,100">O ladino é um lutador ágil que utiliza ataques precisos e esquivas velozes.
+[[Sim -&gt; equipamentoG]]
+[[Não -&gt; classe]]</tw-passagedata><tw-passagedata pid="5" name=" ladino" tags="" position="1702,700" size="100,100">O ladino é um lutador ágil que utiliza ataques precisos e esquivas velozes.
 
 Tem certeza que deseja jogar como um ladino?
 
-[[sim -&gt; equipamentoL]]
-[[não -&gt; classe]]</tw-passagedata><tw-passagedata pid="6" name=" arqueiro" tags="" position="1900,700" size="100,100">O arqueiro é um atirador que luta a longa distância com o uso da precisão para encontrar falhas nas defesas do inimigo.
+[[Sim -&gt; equipamentoL]]
+[[Não -&gt; classe]]</tw-passagedata><tw-passagedata pid="6" name=" arqueiro" tags="" position="1900,700" size="100,100">O arqueiro é um atirador que luta a longa distância com o uso da precisão para encontrar falhas nas defesas do inimigo.
 
 Tem certeza que deseja jogar como um arqueiro?
 
-[[sim -&gt; equipamentoA]]
-[[não -&gt; classe]]</tw-passagedata><tw-passagedata pid="7" name=" mago" tags="" position="2102,699" size="100,100">O mago é um feiticeiro sábio que faz uso de magias e explosões para destruir os inimigos.
+[[Sim -&gt; equipamentoA]]
+[[Não -&gt; classe]]</tw-passagedata><tw-passagedata pid="7" name=" mago" tags="" position="2102,699" size="100,100">O mago é um feiticeiro sábio que faz uso de magias e explosões para destruir os inimigos.
 
 Tem certeza que deseja jogar como um mago?
 
-[[sim -&gt; equipamentoM]]
-[[não -&gt; classe]]</tw-passagedata><tw-passagedata pid="8" name=" equipamentoG" tags="" position="1499,899" size="100,100">Como um guerreiro, você recebe uma espada de treino e um escudo de madeira.
+[[Sim -&gt; equipamentoM]]
+[[Não -&gt; classe]]</tw-passagedata><tw-passagedata pid="8" name=" equipamentoG" tags="" position="1499,899" size="100,100">Como um guerreiro, você recebe uma espada de treino e um escudo de madeira.
 
-[[continuar -&gt;inventário/desembarque]]
+[[Continuar...-&gt;inventário/desembarque]]
 (set: $hp to 18)
 (set: $hpmx to 18)
 (set: $dano to 2) 
@@ -94,7 +96,7 @@ Tem certeza que deseja jogar como um mago?
 (set: $skillTurn to &quot;false&quot;)
 (set: $custoSKill to 1)</tw-passagedata><tw-passagedata pid="9" name=" equipamentoL" tags="" position="1700,900" size="100,100">Como um ladino, você recebe um par de adagas de treino.
 
-[[continuar -&gt;inventário/desembarque]]
+[[Continuar...-&gt;inventário/desembarque]]
 (set: $hp to 14)
 (set: $hpmx to 14)
 (set: $dano to 4) 
@@ -103,14 +105,14 @@ Tem certeza que deseja jogar como um mago?
 (set: $classe to &quot;l&quot;)
 
 (set: $armaNome to &quot;Adagas de Treino&quot;)
-(set: $secNome to &quot;Capa do Kralha4&quot;)
+(set: $secNome to &quot;Capa de couro&quot;)
 
 (set: $skill to &quot;Esquiva&quot;)
 (set: $skillDesc to &quot;Você se concentra em seus movimentos e nos do inimigo, tendo a chance de esquivar do próximo dano recebido.&quot;)
 (set: $skillTurn to &quot;false&quot;)
 (set: $custoSkill to 1)</tw-passagedata><tw-passagedata pid="10" name=" equipamentoA" tags="" position="1900,900" size="100,100">Como um arqueiro, você recebe um arco básico e flechas de madeira.
 
-[[continuar -&gt;inventário/desembarque]]
+[[Continuar...-&gt;inventário/desembarque]]
 (set: $hp to 18)
 (set: $hpmx to 18)
 (set: $dano to 2) 
@@ -118,15 +120,15 @@ Tem certeza que deseja jogar como um mago?
 (set: $manamx to 3)
 (set: $classe to &quot;a&quot;)
 
+(set: $armaNome to &quot;Arco básico&quot;)
+(set: $secNome to &quot;Flechas de madeira&quot;)
+
 (set: $skill to &quot;Sangrar&quot;)
 (set: $skillDesc to &quot;Suas flechas fazem o oponente sangrar.&quot;)
 (set: $skillTurn to &quot;false&quot;)
-(set: $custoSkill to 1)
+(set: $custoSkill to 1)</tw-passagedata><tw-passagedata pid="11" name=" equipamentoM" tags="" position="2100,900" size="100,100">Como um mago, você recebe um cajado de treino e um livro mágico básico.
 
-(set: $armaNome to &quot;Arco básico&quot;)
-(set: $secNome to &quot;Flechas de madeira&quot;)</tw-passagedata><tw-passagedata pid="11" name=" equipamentoM" tags="" position="2100,900" size="100,100">Como um mago, você recebe um cajado de treino e um livro mágico básico.
-
-[[continuar -&gt;inventário/desembarque]]
+[[Continuar...-&gt;inventário/desembarque]]
 (set: $hp to 10)
 (set: $hpmx to 10)
 (set: $dano to 5) 
@@ -135,6 +137,7 @@ Tem certeza que deseja jogar como um mago?
 (set: $classe to &quot;m&quot;)
 
 (set: $armaNome to &quot;Cajado de treino&quot;)
+(set: $secNome to &quot;Livro mágico&quot;)
 
 (set: $skill to &quot;Incinerar&quot;)
 (set: $skillDesc to &quot;Ao concentrar toda a sua energia no cajado de treino, você é capaz de erguer uma barreira de fogo, que queima seus inimigos causando 3 de dano &quot;)
@@ -147,14 +150,14 @@ Tem certeza que deseja jogar como um mago?
 
 (set: $secLvl to 1)
 
-(set: $dinheiro to 1000)</tw-passagedata><tw-passagedata pid="13" name=" recebeQuest1" tags="" position="1500,1100" size="100,100">Derrote (0/3) Siris Gigantes
+(set: $dinheiro to 200)</tw-passagedata><tw-passagedata pid="13" name=" recebeQuest1" tags="" position="1500,1100" size="100,100">Derrote (0/3) Siris Gigantes
 
 
 
 
 [[Aceitar Quest -&gt; menuPrincipal]]
 (set: $quest to 1)
-(set: $questProg to 0)</tw-passagedata><tw-passagedata pid="14" name=" menuPrincipal" tags="" position="1500,1300" size="200,200">O que deseja fazer?
+(set: $questProg to 0)</tw-passagedata><tw-passagedata pid="14" name=" menuPrincipal" tags="" position="1501.6666666666667,1300" size="200,200">O que deseja fazer?
 
 [[Caçar -&gt; preBatalha]]
 [[Melhorar equipamentos -&gt; loja]]
@@ -164,8 +167,8 @@ Tem certeza que deseja jogar como um mago?
 
 HP: $hp
 Mana: $mana
-Arma: $armaNome lvl:$armaLvl
-Secundária: $secNome lvl:$secLvl
+Arma: $armaNome ( Level: $armaLvl )
+Secundária: $secNome ( Level: $secLvl )
 Dinheiro: $dinheiro$</tw-passagedata><tw-passagedata pid="15" name=" loja" tags="" position="1100,1401" size="100,100">Arma atual: $armaNome lvl $armaLvl
 Equipamento secundário: $secNome lvl $secLvl
 Skill Atual: $skill
@@ -177,9 +180,9 @@ Skill Atual: $skill
 	](else-if: $classe is &quot;l&quot;)[ 
 		Afiamento
 	](else-if: $classe is &quot;a&quot;)[
-		Cabo ergonômico
+		Trocar corda do arco
 	](else-if: $classe is &quot;m&quot;)[
-		Pedrinha brilhante
+		Substituir madeira
 	]}
 	Deseja aprimorar sua arma? Custo: 150$. [[Sim -&gt;compraItem1]]
 	[[Não (voltar) -&gt; menuPrincipal]]
@@ -188,13 +191,13 @@ Skill Atual: $skill
 (else-if: $armaLvl is 2)[
 	{Um aprimoramento para sua arma está disponível!
 	(if: $classe is &quot;g&quot;)[
-		Polimento melhor
+		Cabo melhorado
 	](else-if: $classe is &quot;l&quot;)[
-		Afiamento afiado
+		Lâmina envenenada
 	](else-if: $classe is &quot;a&quot;)[
-		Cabo muito ergonômico
+		Corpo ergonômico
 	](else-if: $classe is &quot;m&quot;)[
-		Pedrinha muito brilhante
+		Nova fonte de poder
 	]}
 	Deseja aprimorar sua arma? Custo: 185$. [[Sim -&gt;compraItem2]]
 	[[Não (voltar) -&gt; menuPrincipal]]
@@ -202,17 +205,17 @@ Skill Atual: $skill
 
 {(else:)[
 	Sua arma está topper!
-	[[Verdade -&gt; menuPrincipal]]
+	[[Verdade! -&gt; menuPrincipal]]
 ]}
 
 (if: $secLvl is 1)[
-	{Um aprimoramento para sua arma está disponível: 
+	{Um aprimoramento para seu equipamento secundário está disponível: 
 	(if: $classe is &quot;g&quot;)[
-		Endurecer escudo
+		Consertar escudo
 	](else-if: $classe is &quot;l&quot;)[ 
 		Remendar capa
 	](else-if: $classe is &quot;a&quot;)[
-		Afiar flechas
+		Substituir penas das flechas
 	](else-if: $classe is &quot;m&quot;)[
 		Estudar livro
 	]}
@@ -221,15 +224,15 @@ Skill Atual: $skill
 ]
 
 (else-if: $secLvl is 2)[
-	{Um aprimoramento para sua arma está disponível!
+	{Um aprimoramento para seu equipamento secundário está disponível!
 	(if: $classe is &quot;g&quot;)[
-		Endurecer muito escudo
+		Endurecer escudo
 	](else-if: $classe is &quot;l&quot;)[
 		Costurar capa
 	](else-if: $classe is &quot;a&quot;)[
-		Afiar muito flechas
+		Afiar flechas
 	](else-if: $classe is &quot;m&quot;)[
-		Decorar livro
+		Decifrar passagens misteriosas do livro
 	]}
 	Deseja aprimorar seu equipamento secundário? Custo: 185$. [[Sim -&gt;compraSec2]]
 	[[Não (voltar) -&gt; menuPrincipal]]
@@ -237,7 +240,7 @@ Skill Atual: $skill
 
 {(else:)[
 	Seu equipamento secundário está topper!
-	[[Verdade -&gt; menuPrincipal]]
+	[[Verdade! -&gt; menuPrincipal]]
 ]}</tw-passagedata><tw-passagedata pid="16" name=" comandante" tags="" position="1200,1200" size="100,100">(if:$quest is 1)[
 	(if:$questProg is 3)[
 		Matou os bichos, comgratuleichou! Vai matar O Grande Siri Cotoco!
@@ -407,45 +410,53 @@ Você pega seus equipamentos e segue em direção à praia, fora dos limites do 
 
 [[Lutar -&gt; batalha]]
 (set: $hpMonstro to 50) 
-(set: $danoMonstro to 2)</tw-passagedata><tw-passagedata pid="34" name="compraItem1" tags="" position="899,1499" size="100,100">(if: $dinheiro &gt;= 150)[
+(set: $danoMonstro to 2)</tw-passagedata><tw-passagedata pid="34" name="compraItem1" tags="" position="899,1499" size="100,100">{(if: $dinheiro &gt;= 150)[
 	(set: $dinheiro to it-150)
 	(set: $armaLvl to 2)
-	(set: $armaNome to &quot;arma2&quot;)
 	(set: $dano to 4)
 	Sua arma foi aprimorada com sucesso
 [[Demais! -&gt; loja]]
 ](else:)[
 Você não possui dinheiro suficiente!
 Dinheiro necessário: 150$
-Dinhiero atual: $dinheiro$
-]</tw-passagedata><tw-passagedata pid="35" name="compraItem2" tags="" position="1300,1499" size="100,100">(if: $dinheiro &gt;= 180)[
-	(set: $dinheiro to it-180)
+Dinheiro atual: $dinheiro$
+[[Voltarei depois! -&gt; loja]]
+]}</tw-passagedata><tw-passagedata pid="35" name="compraItem2" tags="" position="1300,1499" size="100,100">{(if: $dinheiro &gt;= 185)[
+	(set: $dinheiro to it-185)
 	(set: $armaLvl to 3)
-	(set: $armaNome to &quot;arma3&quot;)
 	(set: $dano to 6)
 	Sua arma foi aprimorada com sucesso!
 	[[Demais! -&gt; loja]]
-]</tw-passagedata><tw-passagedata pid="36" name="compraSec1" tags="" position="901,1698" size="100,100">(if: $dinheiro &gt;= 150)[
+](else:)[
+Você não possui dinheiro suficiente!
+Dinheiro necessário: 150$
+Dinheiero atual: $dinheiro$
+[[Voltarei depois! -&gt; loja]]
+]}</tw-passagedata><tw-passagedata pid="36" name="compraSec1" tags="" position="901,1698" size="100,100">{(if: $dinheiro &gt;= 150)[
 	(set: $dinheiro to it-150)
 	(set: $secLvl to 2)
-	(set: $secNome to &quot;sec2&quot;)
 	(set: $hp to 25)
 	(set: $hpmx to 25)
 	Sua secundária foi aprimorada com sucesso
 [[Demais! -&gt; loja]]
 ](else:)[
 Você não possui dinheiro suficiente!
-Dinheiro necessário: 150$
-Dinhiero atual: $dinheiro$
-]</tw-passagedata><tw-passagedata pid="37" name="compraSec2" tags="" position="1302,1700" size="100,100">(if: $dinheiro &gt;= 180)[
+Dinheiro necessário: 185$
+Dinheiero atual: $dinheiro$
+[[Voltarei depois! -&gt; loja]]
+]}</tw-passagedata><tw-passagedata pid="37" name="compraSec2" tags="" position="1302,1700" size="100,100">{(if: $dinheiro &gt;= 180)[
 	(set: $dinheiro to it - 180)
 	(set: $secLvl to 3)
-	(set: $secNome to &quot;sec3&quot;)
 	(set: $hp to 35)
 	(set: $hpmx to 35)
 	Sua secundária foi aprimorada com sucesso!
 	[[Demais! -&gt; loja]]
-]</tw-passagedata><tw-passagedata pid="38" name=" ganhou" tags="" position="1000,1199" size="100,100">Você ganhou! Parabéns!</tw-passagedata></tw-storydata>
+](else:)[
+Você não possui dinheiro suficiente!
+Dinheiro necessário: 185$
+Dinheiero atual: $dinheiro$
+[[Voltarei depois! -&gt; loja]]
+]}</tw-passagedata><tw-passagedata pid="38" name=" ganhou" tags="" position="1000,1199" size="100,100">Você ganhou! Parabéns!</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,i=!1,o=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){i=!0,o=e}finally{try{!r&&s.return&&s.return()}finally{if(i)throw o}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(){/**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
