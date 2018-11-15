@@ -96,6 +96,7 @@ body {
 #contentIndex {
 	height: 100%;
 	width: 100%;
+	background-image: url("https://opengameart.org/sites/default/files/grass_14.png");
 }
 
 .background {
