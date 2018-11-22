@@ -1,6 +1,6 @@
 /**
- * Author: Equipe CDRD 
- * Creation date: 2018-10-08 
+ * Author: Equipe CDRD
+ * Creation date: 2018-10-08
  * Descrição: Arquivo com scripts
  * js compartilhados por dois ou mais documentos
  */

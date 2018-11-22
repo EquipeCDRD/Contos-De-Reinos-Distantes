@@ -389,10 +389,10 @@ $(document).ready(function() {
         url: PATH + "DeletarUsuario",
         data: "id=" + usuarioLogado.id + "&&motivo=" + motivo,
         success: function(msg) {
-          alert(msg.msg);
+          $.when(alert(msg.msg)).then(sair());
         },
         error: function(info) {
-          var msg = "Erro ao deletar contato: ";
+          var msg = "Erro ao deletar usuário: ";
           alertaErro(msg, info);
         }
       });

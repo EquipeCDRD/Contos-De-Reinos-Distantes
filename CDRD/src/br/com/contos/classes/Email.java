@@ -17,10 +17,8 @@ public class Email {
 	
 	public boolean enviarEmail(String destinatario, String assunto, String corpo) {
 		
-		//Ctrl+c & Ctrl+v do exemplo do Marlow (^-^)
-		
 		Properties props = new Properties();
-        /** Parâmetros de conexão com servidor Gmail */
+        /** Parï¿½metros de conexï¿½o com servidor Gmail */
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "587");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -34,23 +32,23 @@ public class Email {
         	}
         });
         
-        //ativação do debug da sessão
+        //ativaï¿½ï¿½o do debug da sessï¿½o
         session.setDebug(true);
         
         /*
-         *	Bloco de código onde será enviado o email, utilizando os parâmetros recebidos,
+         *	Bloco de cï¿½digo onde serï¿½ enviado o email, utilizando os parï¿½metros recebidos,
          *	e retornando true se deu tudo certin ou false se deu merda em algum ponto
          */
         try {
         	Message message = new MimeMessage(session);
         	message.setFrom(new InternetAddress("contosdereinosdistantes@gmail.com")); //Remetente
-        	Address[] toUser = InternetAddress //Destinatário(s)
+        	Address[] toUser = InternetAddress //Destinatï¿½rio(s)
         			.parse(destinatario);  
         	message.setRecipients(Message.RecipientType.TO, toUser);
         	message.setSubject(assunto);//Assunto
         	message.setText(corpo);
         	
-        	//Método para enviar a mensagem criada
+        	//Mï¿½todo para enviar a mensagem criada
         	Transport.send(message);
         	System.out.println("Feito!!!");
         	

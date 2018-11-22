@@ -44,12 +44,12 @@ public class DeletarUsuario extends HttpServlet {
         enviar.enviarEmail(usuario.getEmail(), "Contos de Reinos Distantes - Conta Deletada", 
         				"Caro "+usuario.getNome()+", sua conta no jogo Contos de Reinos Distantes foi deletada, "
         				+ "e junto todos os seus dados em nossos registros. "
-        				+ "\n O motivo da deleÁ„o foi: "+motivo);	
+        				+ "\n O motivo da dele√ß√£o foi: "+motivo);	
         Map<String, String> msg = new HashMap<String, String>();
         if (retorno) {
-            msg.put("msg", "Usu·rio deletado com sucesso.");
+            msg.put("msg", "Usu√°rio deletado com sucesso.");
         } else {
-            msg.put("msg", "N„o foi possÌvel deletar o usuario.");
+            msg.put("msg", "N√£o foi poss√≠vel deletar o usu√°rio.");
         }
         String json = new Gson().toJson(msg);
         response.setContentType("application/json");
